@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Chemical Kinetics - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .chemistry-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chemistry-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Chemical Kinetics - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="chemistry-header">
+                <h1 class="chemistry-title">Chemical Kinetics</h1>
+                <p>Understand the factors influencing the rate of chemical reactions, crucial for NEET preparation and the study of reaction dynamics.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Chemical Kinetics</h2>
+                <div class="topic-content">
+                    <p>Chemical kinetics is the study of reaction rates and the steps through which reactions occur. This field helps us understand how quickly products form and the factors affecting reaction speed.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Reaction Rate</h3>
+                            <p>Study the speed at which reactants turn into products, measured as the change in concentration over time.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <h3>Temperature and Reaction Rate</h3>
+                            <p>Examine how temperature impacts reaction rates, often increasing speed by providing reactant molecules with more energy.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Mechanism of Reactions</h3>
+                            <p>Explore the step-by-step sequence in which reactions occur, revealing the formation of intermediates and transition states.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Equilibrium and Rate</h3>
+                            <p>Understand how equilibrium in reversible reactions is reached and how it influences reaction rates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Factors Affecting Reaction Rates</h2>
+                <div class="topic-content">
+                    <p>Various factors impact the speed of chemical reactions. Learning about these factors helps control reaction rates in practical applications.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Concentration of Reactants</h3>
+                            <p>Higher concentrations of reactants usually increase reaction rates due to more frequent collisions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-catalyst"></i>
+                            </div>
+                            <h3>Catalysts</h3>
+                            <p>Catalysts accelerate reactions without being consumed by providing an alternative pathway with lower activation energy.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-poll"></i>
+                            </div>
+                            <h3>Surface Area</h3>
+                            <p>Increasing the surface area of solid reactants boosts reaction rate by allowing more contact between reactants.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-bezier-curve"></i>
+                            </div>
+                            <h3>Pressure</h3>
+                            <p>In gases, increasing pressure raises the reaction rate by forcing gas molecules closer together, resulting in more frequent collisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Chemical Kinetics concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is chemical kinetics?",
+            options: ["The study of how fast chemical reactions occur", "The study of chemical structures", "The study of energy changes in chemical reactions", "The study of chemical equilibrium"],
+            correctAnswer: "The study of how fast chemical reactions occur"
+        },
+        {
+            question: "What is a rate-determining step in a chemical reaction?",
+            options: ["The slowest step that determines the overall rate of reaction", "The fastest step that determines the overall rate of reaction", "The step with the highest activation energy", "The step with the lowest activation energy"],
+            correctAnswer: "The slowest step that determines the overall rate of reaction"
+        },
+        {
+            question: "What is the rate of a chemical reaction?",
+            options: ["The change in concentration of reactants per unit time", "The change in temperature of reactants per unit time", "The change in pressure of reactants per unit time", "The change in volume of reactants per unit time"],
+            correctAnswer: "The change in concentration of reactants per unit time"
+        },
+        {
+            question: "What is the unit of reaction rate in chemistry?",
+            options: ["mol/L", "mol/L/min", "g/L", "g/L/min"],
+            correctAnswer: "mol/L/min"
+        },
+        {
+            question: "What is the order of a reaction with respect to a reactant?",
+            options: ["The power to which the concentration of the reactant is raised in the rate equation", "The number of reactants involved in the reaction", "The stoichiometric coefficient of the reactant in the balanced equation", "The total number of steps in the reaction mechanism"],
+            correctAnswer: "The power to which the concentration of the reactant is raised in the rate equation"
+        },
+        {
+            question: "What is the rate law of a chemical reaction?",
+            options: ["An equation that relates the rate of reaction to the concentration of reactants", "An equation that relates the rate of reaction to the temperature of reactants", "An equation that relates the rate of reaction to the pressure of reactants", "An equation that relates the rate of reaction to the volume of reactants"],
+            correctAnswer: "An equation that relates the rate of reaction to the concentration of reactants"
+        },
+        {
+            question: "What is the overall order of a reaction?",
+            options: ["The sum of the orders of all reactants in the rate law", "The difference between the orders of all reactants in the rate law", "The product of the orders of all reactants in the rate law", "The quotient of the orders of all reactants in the rate law"],
+            correctAnswer: "The sum of the orders of all reactants in the rate law"
+        },
+        {
+            question: "What is the rate constant (k) in chemical kinetics?",
+            options: ["A proportionality constant in the rate law equation", "The total rate of reaction", "The activation energy of the reaction", "The initial rate of reaction"],
+            correctAnswer: "A proportionality constant in the rate law equation"
+        },
+        {
+            question: "How does temperature affect the rate of chemical reactions?",
+            options: ["Increasing temperature generally increases the rate of reaction", "Increasing temperature generally decreases the rate of reaction", "Temperature has no effect on the rate of reaction", "Temperature affects equilibrium but not rate"],
+            correctAnswer: "Increasing temperature generally increases the rate of reaction"
+        },
+        {
+            question: "What is activation energy (Ea) in chemical reactions?",
+            options: ["The energy required to start a chemical reaction", "The total energy change in a chemical reaction", "The energy released in a chemical reaction", "The energy absorbed in a chemical reaction"],
+            correctAnswer: "The energy required to start a chemical reaction"
+        },
+        {
+            question: "What is a catalyst in chemical reactions?",
+            options: ["A substance that increases the rate of reaction without being consumed in the reaction", "A substance that decreases the rate of reaction without being consumed in the reaction", "A substance that increases the rate of reaction and is consumed in the reaction", "A substance that decreases the rate of reaction and is consumed in the reaction"],
+            correctAnswer: "A substance that increases the rate of reaction without being consumed in the reaction"
+        },
+        {
+            question: "What is a homogeneous catalyst?",
+            options: ["A catalyst that exists in the same phase as the reactants", "A catalyst that exists in a different phase from the reactants", "A catalyst that changes phase during the reaction", "A catalyst that remains unchanged throughout the reaction"],
+            correctAnswer: "A catalyst that exists in the same phase as the reactants"
+        },
+        {
+            question: "What is a heterogeneous catalyst?",
+            options: ["A catalyst that exists in a different phase from the reactants", "A catalyst that exists in the same phase as the reactants", "A catalyst that changes phase during the reaction", "A catalyst that remains unchanged throughout the reaction"],
+            correctAnswer: "A catalyst that exists in a different phase from the reactants"
+        },
+        {
+            question: "What is the effect of adding a catalyst on the activation energy of a reaction?",
+            options: ["A catalyst lowers the activation energy of a reaction", "A catalyst increases the activation energy of a reaction", "A catalyst has no effect on the activation energy of a reaction", "A catalyst changes the stoichiometry of a reaction"],
+            correctAnswer: "A catalyst lowers the activation energy of a reaction"
+        },
+        {
+            question: "What is the role of enzymes as biological catalysts?",
+            options: ["Enzymes speed up biochemical reactions in living organisms", "Enzymes slow down biochemical reactions in living organisms", "Enzymes prevent biochemical reactions in living organisms", "Enzymes have no effect on biochemical reactions in living organisms"],
+            correctAnswer: "Enzymes speed up biochemical reactions in living organisms"
+        },
+        {
+            question: "What is the collision theory in chemical kinetics?",
+            options: ["Reactants must collide with sufficient energy and proper orientation to form products", "Reactants must collide with low energy to form products", "Reactants must collide with high energy to form products", "Reactants must collide with any orientation to form products"],
+            correctAnswer: "Reactants must collide with sufficient energy and proper orientation to form products"
+        },
+        {
+            question: "What is the term for the minimum energy required for a chemical reaction to occur?",
+            options: ["Activation energy", "Bond energy", "Ionization energy", "Enthalpy change"],
+            correctAnswer: "Activation energy"
+        },
+        {
+            question: "What is the effect of increasing the concentration of reactants on the rate of reaction?",
+            options: ["Increasing reactant concentration generally increases the rate of reaction", "Increasing reactant concentration generally decreases the rate of reaction", "Increasing reactant concentration has no effect on the rate of reaction", "Increasing reactant concentration decreases activation energy"],
+            correctAnswer: "Increasing reactant concentration generally increases the rate of reaction"
+        },
+        {
+            question: "What is the effect of decreasing the temperature on the rate of reaction?",
+            options: ["Decreasing temperature generally decreases the rate of reaction", "Decreasing temperature generally increases the rate of reaction", "Decreasing temperature has no effect on the rate of reaction", "Decreasing temperature affects equilibrium but not rate"],
+            correctAnswer: "Decreasing temperature generally decreases the rate of reaction"
+        },
+        {
+            question: "What is the term for a reaction where the rate of the forward reaction equals the rate of the reverse reaction?",
+            options: ["Chemical equilibrium", "Dynamic equilibrium", "Steady state equilibrium", "Reversible equilibrium"],
+            correctAnswer: "Dynamic equilibrium"
+        },
+        {
+            question: "What is the term for a reaction where all reactants and products are in the same phase?",
+            options: ["Homogeneous reaction", "Heterogeneous reaction", "Complex reaction", "Catalytic reaction"],
+            correctAnswer: "Homogeneous reaction"
+        },
+        {
+            question: "What is the term for the change in concentration of reactants or products per unit time in a chemical reaction?",
+            options: ["Reaction rate", "Rate constant", "Activation energy", "Enthalpy change"],
+            correctAnswer: "Reaction rate"
+        },
+        {
+            question: "What is the term for the step-by-step sequence of reactions by which overall chemical change occurs?",
+            options: ["Reaction mechanism", "Rate law", "Reaction order", "Reaction equilibrium"],
+            correctAnswer: "Reaction mechanism"
+        },
+        {
+            question: "What is the rate law expression for a reaction A + B ⟶ C?",
+            options: ["Rate = k[A][B]", "Rate = k[A]", "Rate = k[B]", "Rate = k[A]^2[B]"],
+            correctAnswer: "Rate = k[A][B]"
+        },
+        {
+            question: "What is the term for the state where the rate of the forward reaction equals the rate of the reverse reaction?",
+            options: ["Chemical equilibrium", "Dynamic equilibrium", "Steady state equilibrium", "Reversible equilibrium"],
+            correctAnswer: "Chemical equilibrium"
+        },
+        {
+            question: "What is the term for the species formed and consumed in the same elementary step of a reaction mechanism?",
+            options: ["Intermediate", "Catalyst", "Product", "Reactant"],
+            correctAnswer: "Intermediate"
+        },
+        {
+            question: "What is the term for the species that appears in the reaction mechanism but not in the overall balanced equation?",
+            options: ["Reaction intermediate", "Reaction catalyst", "Reaction product", "Reaction reactant"],
+            correctAnswer: "Reaction intermediate"
+        },
+        {
+            question: "What is the term for a substance that speeds up a chemical reaction without being consumed in the reaction?",
+            options: ["Catalyst", "Intermediate", "Product", "Reactant"],
+            correctAnswer: "Catalyst"
+        },
+        {
+            question: "What is the term for a reaction where the reactants are in different phases?",
+            options: ["Heterogeneous reaction", "Homogeneous reaction", "Complex reaction", "Catalytic reaction"],
+            correctAnswer: "Heterogeneous reaction"
+        },
+        {
+            question: "What is the term for the rate of disappearance of reactants or appearance of products in a chemical reaction?",
+            options: ["Rate of reaction", "Rate constant", "Activation energy", "Enthalpy change"],
+            correctAnswer: "Rate of reaction"
+        },
+        {
+            question: "What is the term for the quantity of reactant or product that undergoes reaction in a unit time?",
+            options: ["Rate of reaction", "Rate constant", "Activation energy", "Enthalpy change"],
+            correctAnswer: "Rate of reaction"
+        },
+        {
+            question: "What is the term for the overall rate of a reaction that depends on the slowest step in the reaction mechanism?",
+            options: ["Rate-determining step", "Rate constant", "Activation energy", "Enthalpy change"],
+            correctAnswer: "Rate-determining step"
+        },
+        {
+            question: "What is the term for the rate at which a chemical reaction proceeds in the forward direction?",
+            options: ["Forward rate", "Rate constant", "Activation energy", "Enthalpy change"],
+            correctAnswer: "Forward rate"
+        },
+        {
+            question: "What is the term for the rate at which a chemical reaction proceeds in the reverse direction?",
+            options: ["Reverse rate", "Rate constant", "Activation energy", "Enthalpy change"],
+            correctAnswer: "Reverse rate"
+        },
+        {
+            question: "What is the term for the rate constant of the reverse reaction in a reversible reaction?",
+            options: ["Equilibrium constant", "Rate constant", "Activation energy", "Enthalpy change"],
+            correctAnswer: "Rate constant"
+        },
+        {
+            question: "What is the term for the minimum energy required to start a reaction?",
+            options: ["Activation energy", "Bond energy", "Ionization energy", "Enthalpy change"],
+            correctAnswer: "Activation energy"
+        },
+        {
+            question: "What is the term for a substance that decreases the activation energy of a reaction?",
+            options: ["Catalyst", "Intermediate", "Product", "Reactant"],
+            correctAnswer: "Catalyst"
+        },
+        {
+            question: "What is the term for a substance that increases the activation energy of a reaction?",
+            options: ["Inhibitor", "Intermediate", "Product", "Reactant"],
+            correctAnswer: "Inhibitor"
+        },
+        {
+            question: "What is the term for a substance that reduces the rate of a chemical reaction?",
+            options: ["Inhibitor", "Intermediate", "Catalyst", "Reactant"],
+            correctAnswer: "Inhibitor"
+        },
+        {
+            question: "What is the term for the substance on which an enzyme acts in a biochemical reaction?",
+            options: ["Substrate", "Product", "Enzyme", "Catalyst"],
+            correctAnswer: "Substrate"
+        },
+        {
+            question: "What is the term for the enzyme-catalyzed process that involves a reaction with the participation of water?",
+            options: ["Hydrolysis", "Condensation", "Oxidation", "Reduction"],
+            correctAnswer: "Hydrolysis"
+        },
+        {
+            question: "What is the term for a reaction in which two molecules combine to form a larger molecule and a small molecule, often water?",
+            options: ["Condensation", "Hydrolysis", "Oxidation", "Reduction"],
+            correctAnswer: "Condensation"
+        },
+        {
+            question: "What is the term for a reaction in which a substance gains oxygen or loses hydrogen?",
+            options: ["Oxidation", "Reduction", "Hydrolysis", "Condensation"],
+            correctAnswer: "Oxidation"
+        },
+        {
+            question: "What is the term for a reaction in which a substance loses oxygen or gains hydrogen?",
+            options: ["Reduction", "Oxidation", "Hydrolysis", "Condensation"],
+            correctAnswer: "Reduction"
+        },
+        {
+            question: "What is the term for the process by which an enzyme catalyzes the transfer of a phosphate group to a substrate?",
+            options: ["Phosphorylation", "Dephosphorylation", "Glycosylation", "Methylation"],
+            correctAnswer: "Phosphorylation"
+        },
+        {
+            question: "What is the term for a reaction in which a substance is broken down into smaller molecules by the addition of water?",
+            options: ["Hydrolysis", "Condensation", "Oxidation", "Reduction"],
+            correctAnswer: "Hydrolysis"
+        },
+        {
+            question: "What is the term for the removal of a phosphate group from a molecule?",
+            options: ["Dephosphorylation", "Phosphorylation", "Glycosylation", "Methylation"],
+            correctAnswer: "Dephosphorylation"
+        },
+        {
+            question: "What is the term for the addition of a carbohydrate group to a protein or lipid molecule?",
+            options: ["Glycosylation", "Phosphorylation", "Dephosphorylation", "Methylation"],
+            correctAnswer: "Glycosylation"
+        },
+        {
+            question: "What is the term for the addition of a methyl group to a molecule?",
+            options: ["Methylation", "Phosphorylation", "Dephosphorylation", "Glycosylation"],
+            correctAnswer: "Methylation"
+        },
+        {
+            question: "What is the term for a substance that binds to the active site of an enzyme and inhibits its activity?",
+            options: ["Competitive inhibitor", "Non-competitive inhibitor", "Coenzyme", "Prosthetic group"],
+            correctAnswer: "Competitive inhibitor"
+        },
+        {
+            question: "What is the term for a substance that binds to an allosteric site of an enzyme and inhibits its activity?",
+            options: ["Non-competitive inhibitor", "Competitive inhibitor", "Coenzyme", "Prosthetic group"],
+            correctAnswer: "Non-competitive inhibitor"
+        },
+        {
+            question: "What is the term for a small organic molecule that assists an enzyme-catalyzed reaction by carrying chemical groups between enzymes?",
+            options: ["Coenzyme", "Competitive inhibitor", "Non-competitive inhibitor", "Prosthetic group"],
+            correctAnswer: "Coenzyme"
+        },
+        {
+            question: "What is the term for a tightly bound non-protein molecule required for the function of certain enzymes?",
+            options: ["Prosthetic group", "Competitive inhibitor", "Non-competitive inhibitor", "Coenzyme"],
+            correctAnswer: "Prosthetic group"
+        },
+        {
+            question: "What is the term for a plot of reaction rate versus reactant concentration for a chemical reaction?",
+            options: ["Rate law plot", "Arrhenius plot", "Collision theory plot", "Reaction mechanism plot"],
+            correctAnswer: "Rate law plot"
+        },
+        {
+            question: "What is the term for a plot of ln(k) versus 1/T for a chemical reaction?",
+            options: ["Rate law plot", "Arrhenius plot", "Collision theory plot", "Reaction mechanism plot"],
+            correctAnswer: "Arrhenius plot"
+        },
+        {
+            question: "What is the term for a plot of rate constant versus temperature for a chemical reaction?",
+            options: ["Arrhenius plot", "Rate law plot", "Collision theory plot", "Reaction mechanism plot"],
+            correctAnswer: "Arrhenius plot"
+        },
+        {
+            question: "What is the term for a plot of energy changes versus reaction progress for a chemical reaction?",
+            options: ["Energy diagram", "Arrhenius plot", "Collision theory plot", "Reaction mechanism plot"],
+            correctAnswer: "Energy diagram"
+        },
+        {
+            question: "What is the term for the frequency of collisions with the proper orientation and sufficient energy to result in a reaction?",
+            options: ["Collision frequency", "Reaction rate", "Rate constant", "Activation energy"],
+            correctAnswer: "Collision frequency"
+        },
+        {
+            question: "What is the term for the measure of the fraction of collisions with sufficient energy to result in a reaction?",
+            options: ["Collision efficiency", "Reaction rate", "Rate constant", "Activation energy"],
+            correctAnswer: "Collision efficiency"
+        },
+        {
+            question: "What is the term for the factor by which the rate of a reaction increases for each increase in 10°C temperature?",
+            options: ["Temperature coefficient", "Reaction rate", "Rate constant", "Activation energy"],
+            correctAnswer: "Temperature coefficient"
+        },
+        {
+            question: "What is the term for the process in which reactant molecules are converted into product molecules?",
+            options: ["Chemical reaction", "Chemical equilibrium", "Reaction mechanism", "Rate-determining step"],
+            correctAnswer: "Chemical reaction"
+        },
+        {
+            question: "What is the term for the state where the rate of the forward reaction equals the rate of the reverse reaction?",
+            options: ["Chemical equilibrium", "Dynamic equilibrium", "Steady state equilibrium", "Reversible equilibrium"],
+            correctAnswer: "Dynamic equilibrium"
+        },
+        {
+            question: "What is the term for the state where the rate of the forward reaction is equal to the rate of the reverse reaction and concentrations of reactants and products remain constant?",
+            options: ["Chemical equilibrium", "Dynamic equilibrium", "Steady state equilibrium", "Reversible equilibrium"],
+            correctAnswer: "Chemical equilibrium"
+        },
+        {
+            question: "What is the term for the equilibrium constant expression for a general reaction aA + bB ⟶ cC + dD?",
+            options: ["Kc = [C]^c[D]^d / [A]^a[B]^b", "Kc = [A]^a[B]^b / [C]^c[D]^d", "Kc = [A]^a[B]^b * [C]^c[D]^d", "Kc = [C]^c[D]^d - [A]^a[B]^b"],
+            correctAnswer: "Kc = [C]^c[D]^d / [A]^a[B]^b"
+        },
+        {
+            question: "What is the term for the equilibrium constant expression for a reaction involving gases?",
+            options: ["Kc", "Kp", "Kd", "Keq"],
+            correctAnswer: "Kp"
+        },
+        {
+            question: "What is the term for the equilibrium constant expression for a reaction involving aqueous solutions?",
+            options: ["Kc", "Kp", "Kd", "Keq"],
+            correctAnswer: "Kc"
+        },
+        {
+            question: "What is the term for the relationship between the concentrations of reactants and products at equilibrium?",
+            options: ["Equilibrium law", "Rate law", "Collision theory", "Reaction mechanism"],
+            correctAnswer: "Equilibrium law"
+        },
+        {
+            question: "What is the term for the equilibrium constant for a reaction at a specific temperature?",
+            options: ["Keq", "Kc", "Kp", "Kd"],
+            correctAnswer: "Keq"
+        },
+        {
+            question: "What is the term for the reaction quotient that predicts the direction a reaction will proceed to reach equilibrium?",
+            options: ["Q", "Kc", "Kp", "Keq"],
+            correctAnswer: "Q"
+        },
+        {
+            question: "What is the term for the equilibrium constant expression when reactants and products are in their standard states?",
+            options: ["K", "Kc", "Kp", "Keq"],
+            correctAnswer: "K"
+        },
+        {
+            question: "What is the term for the condition where a chemical system is at equilibrium with no net change in reactants and products?",
+            options: ["Equilibrium state", "Steady state", "Dynamic equilibrium", "Chemical balance"],
+            correctAnswer: "Dynamic equilibrium"
+        },
+        {
+            question: "What is the term for the principle that states that a system at equilibrium will adjust to counteract any change imposed upon it?",
+            options: ["Le Chatelier's principle", "Boyle's law", "Henry's law", "Charles's law"],
+            correctAnswer: "Le Chatelier's principle"
+        },
+        {
+            question: "What is the effect of increasing the concentration of reactants on a system at equilibrium?",
+            options: ["Shifts the equilibrium toward the products", "Shifts the equilibrium toward the reactants", "Has no effect on equilibrium position", "Increases the activation energy of the reaction"],
+            correctAnswer: "Shifts the equilibrium toward the products"
+        },
+        {
+            question: "What is the effect of increasing the pressure on a system at equilibrium involving gases?",
+            options: ["Shifts the equilibrium toward the side with fewer moles of gas", "Shifts the equilibrium toward the side with more moles of gas", "Has no effect on equilibrium position", "Increases the activation energy of the reaction"],
+            correctAnswer: "Shifts the equilibrium toward the side with fewer moles of gas"
+        },
+        {
+            question: "What is the effect of increasing the temperature on an endothermic reaction at equilibrium?",
+            options: ["Shifts the equilibrium toward the products", "Shifts the equilibrium toward the reactants", "Has no effect on equilibrium position", "Increases the activation energy of the reaction"],
+            correctAnswer: "Shifts the equilibrium toward the products"
+        },
+        {
+            question: "What is the effect of decreasing the temperature on an exothermic reaction at equilibrium?",
+            options: ["Shifts the equilibrium toward the products", "Shifts the equilibrium toward the reactants", "Has no effect on equilibrium position", "Increases the activation energy of the reaction"],
+            correctAnswer: "Shifts the equilibrium toward the products"
+        },
+        {
+            question: "What is the term for a reversible reaction where reactants and products reach equilibrium in a closed system?",
+            options: ["Chemical equilibrium", "Dynamic equilibrium", "Steady state equilibrium", "Reversible equilibrium"],
+            correctAnswer: "Chemical equilibrium"
+        },
+        {
+            question: "What is the term for the process in which a chemical system at equilibrium is disturbed and then allowed to reach a new equilibrium state?",
+            options: ["Equilibrium shift", "Dynamic equilibrium", "Le Chatelier's principle", "Equilibrium disturbance"],
+            correctAnswer: "Equilibrium shift"
+        },
+        {
+            question: "What is the term for the change in pressure that occurs when the volume of a gas in a closed system is decreased?",
+            options: ["Increase in pressure", "Decrease in pressure", "No change in pressure", "Depends on the gas"],
+            correctAnswer: "Increase in pressure"
+        },
+        {
+            question: "What is the term for the change in volume that occurs when the pressure of a gas in a closed system is increased?",
+            options: ["Decrease in volume", "Increase in volume", "No change in volume", "Depends on the gas"],
+            correctAnswer: "Decrease in volume"
+        },
+        {
+            question: "What is the term for the principle that states the solubility of a gas in a liquid is directly proportional to the partial pressure of the gas above the liquid?",
+            options: ["Henry's law", "Boyle's law", "Charles's law", "Le Chatelier's principle"],
+            correctAnswer: "Henry's law"
+        },
+        {
+            question: "What is the term for the law that states the volume of a gas is inversely proportional to its pressure, provided temperature remains constant?",
+            options: ["Boyle's law", "Henry's law", "Charles's law", "Le Chatelier's principle"],
+            correctAnswer: "Boyle's law"
+        },
+        {
+            question: "What is the term for the law that states the volume of a gas is directly proportional to its temperature, provided pressure remains constant?",
+            options: ["Charles's law", "Boyle's law", "Henry's law", "Le Chatelier's principle"],
+            correctAnswer: "Charles's law"
+        },
+        {
+            question: "What is the term for the law that states the volume of a fixed amount of gas at constant temperature and pressure is proportional to the number of moles of gas present?",
+            options: ["Avogadro's law", "Boyle's law", "Charles's law", "Le Chatelier's principle"],
+            correctAnswer: "Avogadro's law"
+        },
+        {
+            question: "What is the term for the principle that states a system at equilibrium will adjust to counteract any change imposed upon it?",
+            options: ["Le Chatelier's principle", "Boyle's law", "Henry's law", "Charles's law"],
+            correctAnswer: "Le Chatelier's principle"
+        },
+        {
+            question: "What is the term for the pressure exerted by a vapor in thermodynamic equilibrium with its condensed phases (solid or liquid) at a given temperature?",
+            options: ["Vapor pressure", "Boyle's law", "Charles's law", "Le Chatelier's principle"],
+            correctAnswer: "Vapor pressure"
+        },
+        {
+            question: "What is the term for the equilibrium constant expression for a reaction involving gases?",
+            options: ["Kc", "Kp", "Kd", "Keq"],
+            correctAnswer: "Kp"
+        },
+        {
+            question: "What is the term for the equilibrium constant expression for a reaction involving aqueous solutions?",
+            options: ["Kc", "Kp", "Kd", "Keq"],
+            correctAnswer: "Kc"
+        },
+        {
+            question: "What is the term for the equilibrium constant expression when reactants and products are in their standard states?",
+            options: ["K", "Kc", "Kp", "Keq"],
+            correctAnswer: "K"
+        },
+        {
+            question: "What is the term for the reaction quotient that predicts the direction a reaction will proceed to reach equilibrium?",
+            options: ["Q", "Kc", "Kp", "Keq"],
+            correctAnswer: "Q"
+        },
+        {
+            question: "What is the term for the equilibrium constant for a reaction at a specific temperature?",
+            options: ["Keq", "Kc", "Kp", "Kd"],
+            correctAnswer: "Keq"
+        },
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Chemistry in Everyday Life - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .chemistry-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chemistry-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Chemistry in Everyday Life - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="chemistry-header">
+                <h1 class="chemistry-title">Chemistry in Everyday Life</h1>
+                <p>Explore how chemistry plays a vital role in our daily lives, influencing everything from health to household products, essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Everyday Chemistry</h2>
+                <div class="topic-content">
+                    <p>Chemistry is everywhere around us, affecting everything from the food we eat to the medicines we take. Understanding its applications can help us make informed decisions in daily life.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-prescription-bottle-alt"></i>
+                            </div>
+                            <h3>Medicinal Chemistry</h3>
+                            <p>Study of drugs, their chemical composition, and how they interact with biological systems to cure or prevent diseases.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-apple-alt"></i>
+                            </div>
+                            <h3>Food Chemistry</h3>
+                            <p>Understanding the chemical processes involved in food preparation, preservation, and the effects of nutrients.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Environmental Chemistry</h3>
+                            <p>Exploring the impact of chemicals on the environment, including pollution and green chemistry practices.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-soap"></i>
+                            </div>
+                            <h3>Household Chemicals</h3>
+                            <p>Understanding common household products, their chemical compositions, and safe usage practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Applications and Benefits</h2>
+                <div class="topic-content">
+                    <p>Chemistry enhances our quality of life in numerous ways. Explore various applications that benefit health, safety, and convenience.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3>Pharmaceuticals</h3>
+                            <p>Development and use of drugs to treat and prevent diseases, contributing to health and well-being.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-spray-can"></i>
+                            </div>
+                            <h3>Cleaning Agents</h3>
+                            <p>Understanding how cleaning agents work at the molecular level to remove dirt, stains, and germs effectively.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-car-battery"></i>
+                            </div>
+                            <h3>Batteries and Fuel</h3>
+                            <p>The role of electrochemistry in powering devices, vehicles, and sustainable energy solutions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Cosmetics</h3>
+                            <p>Chemistry of beauty and skincare products, focusing on ingredients, safety, and efficacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Chemistry in Everyday Life concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the most common pain reliever found in many households?",
+            options: ["Aspirin", "Acetaminophen", "Ibuprofen", "Naproxen"],
+            correctAnswer: "Aspirin"
+        },
+        {
+            question: "Which chemical compound is commonly used in toothpaste to prevent tooth decay?",
+            options: ["Fluoride", "Calcium carbonate", "Sodium bicarbonate", "Potassium nitrate"],
+            correctAnswer: "Fluoride"
+        },
+        {
+            question: "What is the active ingredient in antacids that helps neutralize stomach acid?",
+            options: ["Sodium bicarbonate", "Calcium carbonate", "Aluminum hydroxide", "Magnesium hydroxide"],
+            correctAnswer: "Calcium carbonate"
+        },
+        {
+            question: "Which chemical compound is used in sunscreen to protect against UV radiation?",
+            options: ["Titanium dioxide", "Zinc oxide", "Octinoxate", "Avobenzone"],
+            correctAnswer: "Titanium dioxide"
+        },
+        {
+            question: "What is the chemical name for the sweetener commonly known as Equal or NutraSweet?",
+            options: ["Aspartame", "Sucralose", "Saccharin", "Stevia"],
+            correctAnswer: "Aspartame"
+        },
+        {
+            question: "Which substance is commonly used as an artificial preservative in foods?",
+            options: ["Sodium benzoate", "Potassium sorbate", "BHA", "BHT"],
+            correctAnswer: "Sodium benzoate"
+        },
+        {
+            question: "What is the chemical responsible for the bitter taste in tonic water?",
+            options: ["Quinine", "Caffeine", "Tannin", "Capsaicin"],
+            correctAnswer: "Quinine"
+        },
+        {
+            question: "Which compound is used in baking powder to make bread rise?",
+            options: ["Sodium bicarbonate", "Potassium nitrate", "Ammonium chloride", "Calcium carbonate"],
+            correctAnswer: "Sodium bicarbonate"
+        },
+        {
+            question: "What is the active ingredient in deodorants that helps reduce body odor?",
+            options: ["Aluminum chloride", "Magnesium sulfate", "Zinc oxide", "Sodium bicarbonate"],
+            correctAnswer: "Aluminum chloride"
+        },
+        {
+            question: "Which chemical compound is used in refrigerators as a refrigerant?",
+            options: ["Freon", "Ammonia", "Carbon dioxide", "Propane"],
+            correctAnswer: "Freon"
+        },
+        {
+            question: "What is the active ingredient in antifreeze that prevents engine coolant from freezing?",
+            options: ["Ethylene glycol", "Propylene glycol", "Methanol", "Isopropyl alcohol"],
+            correctAnswer: "Ethylene glycol"
+        },
+        {
+            question: "Which compound is commonly used in laundry detergents to soften water?",
+            options: ["Sodium bicarbonate", "Calcium chloride", "Sodium carbonate", "Sodium hexametaphosphate"],
+            correctAnswer: "Sodium carbonate"
+        },
+        {
+            question: "What is the chemical compound found in vinegar?",
+            options: ["Acetic acid", "Citric acid", "Lactic acid", "Formic acid"],
+            correctAnswer: "Acetic acid"
+        },
+        {
+            question: "Which chemical compound is used as a flame retardant in textiles and plastics?",
+            options: ["Brominated flame retardants", "Phthalates", "Perfluorinated compounds", "Bisphenol A"],
+            correctAnswer: "Brominated flame retardants"
+        },
+        {
+            question: "What is the chemical compound responsible for the refreshing smell of mint?",
+            options: ["Menthol", "Eucalyptol", "Camphor", "Limonene"],
+            correctAnswer: "Menthol"
+        },
+        {
+            question: "Which substance is commonly used as a food additive to enhance flavor?",
+            options: ["Monosodium glutamate (MSG)", "Aspartame", "Sucralose", "Saccharin"],
+            correctAnswer: "Monosodium glutamate (MSG)"
+        },
+        {
+            question: "What is the chemical compound responsible for the spicy taste in chili peppers?",
+            options: ["Capsaicin", "Piperine", "Curcumin", "Gingerol"],
+            correctAnswer: "Capsaicin"
+        },
+        {
+            question: "Which chemical compound is used as a solvent in nail polish remover?",
+            options: ["Acetone", "Ethanol", "Methanol", "Isopropyl alcohol"],
+            correctAnswer: "Acetone"
+        },
+        {
+            question: "What is the chemical compound that gives garlic its characteristic odor?",
+            options: ["Allicin", "Cinnamaldehyde", "Limonene", "Eugenol"],
+            correctAnswer: "Allicin"
+        },
+        {
+            question: "Which substance is commonly used in household cleaning products for its disinfectant properties?",
+            options: ["Bleach (sodium hypochlorite)", "Vinegar (acetic acid)", "Baking soda (sodium bicarbonate)", "Ammonia"],
+            correctAnswer: "Bleach (sodium hypochlorite)"
+        },
+        {
+            question: "What is the chemical compound responsible for the blue color in blueberries?",
+            options: ["Anthocyanin", "Chlorophyll", "Carotenoid", "Lycopene"],
+            correctAnswer: "Anthocyanin"
+        },
+        {
+            question: "Which compound is used in fire extinguishers for its ability to smother fires?",
+            options: ["Carbon dioxide", "Water", "Sodium bicarbonate", "Calcium chloride"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the active ingredient in insect repellents that repels mosquitoes?",
+            options: ["DEET (N,N-diethyl-meta-toluamide)", "Permethrin", "Picaridin", "Citronella"],
+            correctAnswer: "DEET (N,N-diethyl-meta-toluamide)"
+        },
+        {
+            question: "Which chemical compound is used in fertilizers to provide nitrogen to plants?",
+            options: ["Ammonium nitrate", "Potassium chloride", "Calcium phosphate", "Sodium sulfate"],
+            correctAnswer: "Ammonium nitrate"
+        },
+        {
+            question: "What is the chemical compound found in batteries?",
+            options: ["Lead dioxide", "Lithium carbonate", "Zinc chloride", "Sodium chloride"],
+            correctAnswer: "Lead dioxide"
+        },
+        {
+            question: "Which compound is used in air fresheners to neutralize odors?",
+            options: ["Activated charcoal", "Baking soda", "Formaldehyde", "Cyclodextrin"],
+            correctAnswer: "Cyclodextrin"
+        },
+        {
+            question: "What is the chemical compound that gives onions their pungent smell?",
+            options: ["Sulfur compounds", "Benzaldehyde", "Vanillin", "Isoamyl acetate"],
+            correctAnswer: "Sulfur compounds"
+        },
+        {
+            question: "Which chemical compound is used as an antioxidant in food preservation?",
+            options: ["Butylated hydroxyanisole (BHA)", "Sodium benzoate", "Propyl gallate", "Sorbic acid"],
+            correctAnswer: "Butylated hydroxyanisole (BHA)"
+        },
+        {
+            question: "What is the chemical compound responsible for the bitter taste in coffee?",
+            options: ["Caffeine", "Theobromine", "Tannin", "Capsaicin"],
+            correctAnswer: "Caffeine"
+        },
+        {
+            question: "Which compound is commonly used in artificial sweeteners?",
+            options: ["Saccharin", "Steviol glycosides", "Sucralose", "Aspartame"],
+            correctAnswer: "Aspartame"
+        },
+        {
+            question: "What is the chemical compound found in mint leaves that gives them their scent?",
+            options: ["Menthol", "Eucalyptol", "Camphor", "Limonene"],
+            correctAnswer: "Menthol"
+        },
+        {
+            question: "Which substance is used in refrigeration systems as a coolant?",
+            options: ["Freon", "Ammonia", "Carbon dioxide", "Propane"],
+            correctAnswer: "Freon"
+        },
+        {
+            question: "What is the chemical compound used in antiseptic solutions?",
+            options: ["Isopropyl alcohol", "Hydrogen peroxide", "Chlorhexidine", "Povidone-iodine"],
+            correctAnswer: "Chlorhexidine"
+        },
+        {
+            question: "Which compound is used in fireworks to produce a bright red color?",
+            options: ["Strontium nitrate", "Barium chloride", "Calcium carbonate", "Potassium nitrate"],
+            correctAnswer: "Strontium nitrate"
+        },
+        {
+            question: "What is the chemical compound responsible for the yellow color in turmeric?",
+            options: ["Curcumin", "Capsaicin", "Lycopene", "Anthocyanin"],
+            correctAnswer: "Curcumin"
+        },
+        {
+            question: "Which chemical compound is commonly used in hair dyes?",
+            options: ["Para-phenylenediamine", "Hydrogen peroxide", "Ammonia", "Sodium hydroxide"],
+            correctAnswer: "Para-phenylenediamine"
+        },
+        {
+            question: "What is the chemical compound that gives bananas their characteristic odor?",
+            options: ["Isoamyl acetate", "Vanillin", "Benzaldehyde", "Sulfur compounds"],
+            correctAnswer: "Isoamyl acetate"
+        },
+        {
+            question: "Which substance is used in baking powder to produce carbon dioxide gas?",
+            options: ["Sodium bicarbonate", "Potassium nitrate", "Ammonium chloride", "Calcium carbonate"],
+            correctAnswer: "Sodium bicarbonate"
+        },
+        {
+            question: "What is the chemical compound responsible for the sour taste in lemons?",
+            options: ["Citric acid", "Ascorbic acid", "Malic acid", "Acetic acid"],
+            correctAnswer: "Citric acid"
+        },
+        {
+            question: "Which compound is commonly used in contact lens solutions as a disinfectant?",
+            options: ["Hydrogen peroxide", "Sodium hypochlorite", "Boric acid", "Chlorhexidine"],
+            correctAnswer: "Hydrogen peroxide"
+        },
+        {
+            question: "What is the chemical compound responsible for the aroma of vanilla?",
+            options: ["Vanillin", "Menthol", "Eucalyptol", "Limonene"],
+            correctAnswer: "Vanillin"
+        },
+        {
+            question: "Which chemical compound is used in mothballs to repel moths?",
+            options: ["Naphthalene", "Camphor", "Boric acid", "Cyclodextrin"],
+            correctAnswer: "Naphthalene"
+        },
+        {
+            question: "What is the chemical compound found in grapes that gives them their taste?",
+            options: ["Tartaric acid", "Citric acid", "Malic acid", "Acetic acid"],
+            correctAnswer: "Tartaric acid"
+        },
+        {
+            question: "Which compound is used in baby diapers to absorb moisture?",
+            options: ["Sodium polyacrylate", "Cellulose", "Polyethylene", "Polypropylene"],
+            correctAnswer: "Sodium polyacrylate"
+        },
+        {
+            question: "What is the chemical compound responsible for the bitter taste in beer?",
+            options: ["Iso-alpha acids", "Ethanol", "Caffeine", "Capsaicin"],
+            correctAnswer: "Iso-alpha acids"
+        },
+        {
+            question: "Which substance is used in water treatment to remove impurities?",
+            options: ["Activated carbon", "Calcium carbonate", "Sodium chloride", "Alum"],
+            correctAnswer: "Activated carbon"
+        },
+        {
+            question: "What is the chemical compound responsible for the spicy taste in black pepper?",
+            options: ["Piperine", "Capsaicin", "Curcumin", "Gingerol"],
+            correctAnswer: "Piperine"
+        },
+        {
+            question: "Which chemical compound is used in smoke detectors?",
+            options: ["Americium-241", "Carbon dioxide", "Sodium chloride", "Radon"],
+            correctAnswer: "Americium-241"
+        },
+        {
+            question: "What is the chemical compound responsible for the green color in plants?",
+            options: ["Chlorophyll", "Anthocyanin", "Carotenoid", "Lycopene"],
+            correctAnswer: "Chlorophyll"
+        },
+        {
+            question: "Which compound is commonly used in batteries?",
+            options: ["Lead dioxide", "Lithium carbonate", "Zinc chloride", "Sodium chloride"],
+            correctAnswer: "Lead dioxide"
+        },
+        {
+            question: "What is the chemical compound that gives almonds their characteristic flavor?",
+            options: ["Benzaldehyde", "Vanillin", "Isoamyl acetate", "Sulfur compounds"],
+            correctAnswer: "Benzaldehyde"
+        },
+        {
+            question: "Which substance is used in fire extinguishers for its ability to smother fires?",
+            options: ["Carbon dioxide", "Water", "Sodium bicarbonate", "Calcium chloride"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical compound responsible for the bitter taste in grapefruit?",
+            options: ["Naringin", "Caffeine", "Capsaicin", "Theobromine"],
+            correctAnswer: "Naringin"
+        },
+        {
+            question: "Which chemical compound is used in air fresheners to neutralize odors?",
+            options: ["Activated charcoal", "Baking soda", "Formaldehyde", "Cyclodextrin"],
+            correctAnswer: "Cyclodextrin"
+        },
+        {
+            question: "What is the chemical compound that gives garlic its characteristic odor?",
+            options: ["Allicin", "Cinnamaldehyde", "Limonene", "Eugenol"],
+            correctAnswer: "Allicin"
+        },
+        {
+            question: "Which compound is used in firecrackers to produce a loud bang?",
+            options: ["Potassium perchlorate", "Sodium bicarbonate", "Calcium chloride", "Ammonium nitrate"],
+            correctAnswer: "Potassium perchlorate"
+        },
+        {
+            question: "What is the chemical compound found in bananas that gives them their smell?",
+            options: ["Isoamyl acetate", "Vanillin", "Benzaldehyde", "Sulfur compounds"],
+            correctAnswer: "Isoamyl acetate"
+        },
+        {
+            question: "Which chemical compound is used in food packaging to prevent spoilage?",
+            options: ["Ethylene", "Polyethylene", "Polystyrene", "Polypropylene"],
+            correctAnswer: "Ethylene"
+        },
+        {
+            question: "What is the chemical compound that gives roses their pleasant fragrance?",
+            options: ["Phenylethanol", "Menthol", "Vanillin", "Limonene"],
+            correctAnswer: "Phenylethanol"
+        },
+        {
+            question: "Which substance is used in mothballs to repel insects?",
+            options: ["Naphthalene", "Camphor", "Boric acid", "Cyclodextrin"],
+            correctAnswer: "Naphthalene"
+        },
+        {
+            question: "What is the chemical compound responsible for the cooling sensation of mint?",
+            options: ["Menthol", "Eucalyptol", "Camphor", "Limonene"],
+            correctAnswer: "Menthol"
+        },
+        {
+            question: "Which chemical compound is used in antiperspirants to reduce sweat production?",
+            options: ["Aluminum chloride", "Magnesium sulfate", "Zinc oxide", "Sodium bicarbonate"],
+            correctAnswer: "Aluminum chloride"
+        },
+        {
+            question: "What is the chemical compound that gives cinnamon its characteristic flavor?",
+            options: ["Cinnamaldehyde", "Vanillin", "Isoamyl acetate", "Sulfur compounds"],
+            correctAnswer: "Cinnamaldehyde"
+        },
+        {
+            question: "Which compound is used in hair styling products to provide hold?",
+            options: ["Polyvinylpyrrolidone (PVP)", "Polyethylene glycol (PEG)", "Polysorbate 80", "Propylene glycol"],
+            correctAnswer: "Polyvinylpyrrolidone (PVP)"
+        },
+        {
+            question: "What is the chemical compound found in chocolate that gives it its flavor?",
+            options: ["Theobromine", "Caffeine", "Naringin", "Capsaicin"],
+            correctAnswer: "Theobromine"
+        },
+        {
+            question: "Which chemical compound is used in artificial turf to enhance durability?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyurethane"],
+            correctAnswer: "Polyethylene"
+        },
+        {
+            question: "What is the chemical compound responsible for the bitter taste in tea?",
+            options: ["Tannin", "Caffeine", "Capsaicin", "Naringin"],
+            correctAnswer: "Tannin"
+        },
+        {
+            question: "Which compound is used in paper production to increase strength?",
+            options: ["Cellulose", "Lignin", "Starch", "Pulp"],
+            correctAnswer: "Lignin"
+        },
+        {
+            question: "What is the chemical compound found in vinegar that gives it its sour taste?",
+            options: ["Acetic acid", "Citric acid", "Lactic acid", "Formic acid"],
+            correctAnswer: "Acetic acid"
+        },
+        {
+            question: "Which chemical compound is used in ink to provide color?",
+            options: ["Carbon black", "Iron oxide", "Titanium dioxide", "Chlorophyll"],
+            correctAnswer: "Carbon black"
+        },
+        {
+            question: "What is the chemical compound responsible for the bitter taste in hops?",
+            options: ["Humulone", "Caffeine", "Capsaicin", "Naringin"],
+            correctAnswer: "Humulone"
+        },
+        {
+            question: "Which compound is commonly used in baby powder for its absorbent properties?",
+            options: ["Talc", "Cornstarch", "Baking soda", "Kaolin"],
+            correctAnswer: "Talc"
+        },
+        {
+            question: "What is the chemical compound found in pineapples that gives them their taste?",
+            options: ["Bromelain", "Papain", "Amylase", "Protease"],
+            correctAnswer: "Bromelain"
+        },
+        {
+            question: "Which chemical compound is used in air fresheners to produce pleasant odors?",
+            options: ["Essential oils", "Isopropyl alcohol", "Formaldehyde", "Cyclodextrin"],
+            correctAnswer: "Essential oils"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

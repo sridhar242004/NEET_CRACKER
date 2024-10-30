@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .topic-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .topic-card a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-card a::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .topic-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            background: var(--surface);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/Physics/physics.html" class="nav-link">Physics</a>
+                <a href="/chemistry.html" class="nav-link active">Chemistry</a>
+                <a href="/Biology/biology.html" class="nav-link">Biology</a>
+                <a href="/resources.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="page-title">Chemistry Topics for NEET</h1>
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-atom"></i></div>
+                <a href="Some Basic Concepts of Chemistry.html">Some Basic Concepts of Chemistry</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-atom"></i></div>
+                <a href="Structure of Atom.html">Structure of Atom</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-table-periodic"></i></div>
+                <a href="Classification of Elements and Periodicity in Properties.html">Classification of Elements and Periodicity in Properties</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-link"></i></div>
+                <a href="Chemical Bonding and Molecular Structure.html">Chemical Bonding and Molecular Structure</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-wind"></i></div>
+                <a href="States of Matter Gases and Liquids.html">States of Matter: Gases and Liquids</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-temperature-high"></i></div>
+                <a href="Thermodynamics.html">Thermodynamics</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-balance-scale"></i></div>
+                <a href="Equilibrium.html">Equilibrium</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-exchange-alt"></i></div>
+                <a href="Redox Reactions.html">Redox Reactions</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-atom"></i></div>
+                <a href="Hydrogen.html">Hydrogen</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-cube"></i></div>
+                <a href="s-Block Elements (Alkali and Alkaline Earth Metals).html">s-Block Elements</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-cube"></i></div>
+                <a href="Some p-Block Elements.html">Some p-Block Elements</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-flask"></i></div>
+                <a href="Organic Chemistry Some Basic Principles and Techniques.html">Organic Chemistry: Basic Principles</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-ring"></i></div>
+                <a href="Hydrocarbons.html">Hydrocarbons</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-leaf"></i></div>
+                <a href="Environmental Chemistry.html">Environmental Chemistry</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-cube"></i></div>
+                <a href="Solid State.html">Solid State</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-vial"></i></div>
+                <a href="Solutions.html">Solutions</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-bolt"></i></div>
+                <a href="Electrochemistry.html">Electrochemistry</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <a href="Chemical Kinetics.html">Chemical Kinetics</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-layer-group"></i></div>
+                <a href="Surface Chemistry.html">Surface Chemistry</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-filter"></i></div>
+                <a href="General Principles and Processes of Isolation of Elements.html">Isolation of Elements</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-cube"></i></div>
+                <a href="p-Block Elements.html">p-Block Elements</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-cube"></i></div>
+                <a href="d- and f-Block Elements.html">d- and f-Block Elements</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-project-diagram"></i></div>
+                <a href="Coordination Compounds.html">Coordination Compounds</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-ring"></i></div>
+                <a href="Haloalkanes and Haloarenes.html">Haloalkanes and Haloarenes</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-wine-bottle"></i></div>
+                <a href="Alcohols and Ethers.html">Alcohols, Phenols, and Ethers</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-flask"></i></div>
+                <a href="Aldehydes, Ketones, and Carboxylic Acids.html">Aldehydes, Ketones, and Carboxylic Acids</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-flask"></i></div>
+                <a href="Organic Compounds Containing Nitrogen.html">Organic Compounds Containing Nitrogen</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-dna"></i></div>
+                <a href="Biomolecules.html">Biomolecules</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-link"></i></div>
+                <a href="Polymers.html">Polymers</a>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon"><i class="fas fa-flask"></i></div>
+                <a href="Chemistry in Everyday Life.html">Chemistry in Everyday Life</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 NEET Aspirants Hub</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.75rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.padding = '1rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
