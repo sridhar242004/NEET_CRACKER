@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Zoology - Complete Study Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-description {
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .topic-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .topic-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .topic-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/chemistry/chemistry.html" class="nav-link">Chemistry</a>
+                <a href="/Biology/biology.html" class="nav-link active">Biology</a>
+                <a href="/Physics/physics.html" class="nav-link">Physics</a>
+                <a href="/resources.html" class="nav-link">Resources</a>
+                <a href="/news.html" class="nav-link">NEET News</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Zoology Topics for NEET</h1>
+            <p class="page-description">Master all the essential zoology concepts required for NEET with our comprehensive study materials, practice questions, and detailed explanations.</p>
+        </div>
+
+        <div class="topic-grid">
+            <a href="Animalkingdom.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <h2 class="topic-title">Animal Kingdom</h2>
+            </a>
+
+            <a href="Structural Organization in animal.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h2 class="topic-title">Structural Organization in Animals</h2>
+            </a>
+
+            <a href="Digestive System.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h2 class="topic-title">Digestive System</h2>
+            </a>
+
+            <a href="Respiratory System.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-lungs"></i>
+                </div>
+                <h2 class="topic-title">Respiratory System</h2>
+            </a>
+
+            <a href="Circulatory System.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h2 class="topic-title">Circulatory System</h2>
+            </a>
+
+            <a href="Excretory System.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-kidneys"></i>
+                </div>
+                <h2 class="topic-title">Excretory System</h2>
+            </a>
+
+            <a href="Nervous System.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h2 class="topic-title">Nervous System</h2>
+            </a>
+
+            <a href="Endocrine System.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <h2 class="topic-title">Endocrine System</h2>
+            </a>
+
+            <a href="Reproductive System.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-venus-mars"></i>
+                </div>
+                <h2 class="topic-title">Reproductive System</h2>
+            </a>
+
+            <a href="Genetics.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <h2 class="topic-title">Genetics</h2>
+            </a>
+
+            <a href="Evolution.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h2 class="topic-title">Evolution</h2>
+            </a>
+
+            <a href="Human Health and Disease.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h2 class="topic-title">Human Health and Disease</h2>
+            </a>
+
+            <a href="Biotechnology and its Applications.html" class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2 class="topic-title">Biotechnology and its Applications</h2>
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.75rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.padding = '1rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>

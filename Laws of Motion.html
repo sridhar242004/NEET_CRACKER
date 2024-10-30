@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Laws of Motion- NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Laws of Motion - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+       
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Laws of Motion</h1>
+                <p>Delve into the fundamental principles that govern motion, essential for understanding physics and preparing for NEET.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Newton's Laws of Motion</h2>
+                <div class="topic-content">
+                    <p>Newton's laws describe the relationship between the motion of an object and the forces acting on it. These laws form the foundation of classical mechanics.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <h3>First Law (Inertia)</h3>
+                            <p>An object will remain at rest or move in a straight line at constant speed unless acted upon by an external force.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <h3>Second Law (F=ma)</h3>
+                            <p>The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>Third Law (Action and Reaction)</h3>
+                            <p>For every action, there is an equal and opposite reaction. Forces always act in pairs.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3>Applications of Newton's Laws</h3>
+                            <p>Explore real-world applications, such as motion in vehicles, sports, and machinery, where Newton's laws play a crucial role.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Friction and Its Effects</h2>
+                <div class="topic-content">
+                    <p>Friction is a force that opposes the relative motion between two surfaces in contact. It plays a significant role in controlling motion.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-grip-lines"></i>
+                            </div>
+                            <h3>Types of Friction</h3>
+                            <p>Different types of friction include static, kinetic, and rolling friction, each affecting motion differently.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Factors Affecting Friction</h3>
+                            <p>Learn how surface roughness, normal force, and material type impact the frictional force.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <h3>Coefficient of Friction</h3>
+                            <p>Understanding the coefficient of friction and how it quantifies the degree of friction between surfaces.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Applications of Friction</h3>
+                            <p>Explore practical examples of friction, including brakes in vehicles, walking, and machinery operations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Laws of Motion concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Who formulated the three laws of motion?",
+            options: ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Nikola Tesla"],
+            correctAnswer: "Isaac Newton"
+        },
+        {
+            question: "What is Newton's First Law of Motion also known as?",
+            options: ["Law of Inertia", "Law of Gravitation", "Law of Action and Reaction", "Law of Acceleration"],
+            correctAnswer: "Law of Inertia"
+        },
+        {
+            question: "According to Newton's First Law, an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. True or false?",
+            options: ["True", "False"],
+            correctAnswer: "True"
+        },
+        {
+            question: "What is Newton's Second Law of Motion?",
+            options: ["F = ma", "F = mv", "a = F/m", "m = F/a"],
+            correctAnswer: "F = ma"
+        },
+        {
+            question: "In the equation F = ma, what does 'F' represent?",
+            options: ["Force", "Mass", "Acceleration", "Velocity"],
+            correctAnswer: "Force"
+        },
+        {
+            question: "In the equation F = ma, what does 'm' represent?",
+            options: ["Mass", "Force", "Acceleration", "Velocity"],
+            correctAnswer: "Mass"
+        },
+        {
+            question: "In the equation F = ma, what does 'a' represent?",
+            options: ["Acceleration", "Force", "Mass", "Velocity"],
+            correctAnswer: "Acceleration"
+        },
+        {
+            question: "What is the unit of force in the International System of Units (SI)?",
+            options: ["Newton (N)", "Meter (m)", "Kilogram (kg)", "Second (s)"],
+            correctAnswer: "Newton (N)"
+        },
+        {
+            question: "What is Newton's Third Law of Motion?",
+            options: ["For every action, there is an equal and opposite reaction", "An object will remain at rest unless acted upon by an external force", "Acceleration is directly proportional to the net force acting on an object", "Every object in a state of uniform motion tends to remain in that state of motion unless acted upon by an external force"],
+            correctAnswer: "For every action, there is an equal and opposite reaction"
+        },
+        {
+            question: "According to Newton's Third Law, if object A exerts a force on object B, what happens?",
+            options: ["Object B exerts an equal and opposite force on object A", "Object B accelerates in the direction of the force", "Object B moves in the same direction as the force", "Object B exerts a greater force on object A"],
+            correctAnswer: "Object B exerts an equal and opposite force on object A"
+        },
+        {
+            question: "When a car accelerates forward on a horizontal surface, what force propels it forward?",
+            options: ["Frictional force", "Gravity", "Normal force", "Engine force"],
+            correctAnswer: "Engine force"
+        },
+        {
+            question: "When a person pushes against a wall, according to Newton's Third Law, what force does the wall exert on the person?",
+            options: ["An equal and opposite force", "A force in the direction of the push", "No force", "A force in the opposite direction"],
+            correctAnswer: "An equal and opposite force"
+        },
+        {
+            question: "What is inertia?",
+            options: ["The tendency of an object to resist changes in its state of motion", "The force required to move an object", "The acceleration of an object", "The velocity of an object"],
+            correctAnswer: "The tendency of an object to resist changes in its state of motion"
+        },
+        {
+            question: "Which law of motion explains why passengers lurch forward in a car when it suddenly stops?",
+            options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "None of the above"],
+            correctAnswer: "Newton's First Law"
+        },
+        {
+            question: "A car accelerates more quickly if there is less mass. True or false?",
+            options: ["True", "False"],
+            correctAnswer: "True"
+        },
+        {
+            question: "What is the mathematical formula for calculating force?",
+            options: ["F = ma", "F = mv", "F = m/a", "F = v/a"],
+            correctAnswer: "F = ma"
+        },
+        {
+            question: "Which of the following is an example of Newton's Third Law in action?",
+            options: ["A rocket blasting off into space", "A car accelerating on a highway", "A book resting on a table", "A person walking on the ground"],
+            correctAnswer: "A rocket blasting off into space"
+        },
+        {
+            question: "Which of Newton's laws explains why you feel a force pushing you to the side when turning in a car?",
+            options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "None of the above"],
+            correctAnswer: "Newton's First Law"
+        },
+        {
+            question: "Why is it harder to stop a moving truck than a bicycle?",
+            options: ["The truck has more mass", "The truck has less mass", "The truck has less force", "The truck has more force"],
+            correctAnswer: "The truck has more mass"
+        },
+        {
+            question: "When a ball is thrown into the air, which force causes it to eventually fall back down?",
+            options: ["Gravity", "Friction", "Normal force", "Tension"],
+            correctAnswer: "Gravity"
+        },
+        {
+            question: "What does the Second Law of Motion state about the relationship between force, mass, and acceleration?",
+            options: ["The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass", "The acceleration of an object is directly proportional to its mass and inversely proportional to the net force acting on it", "The force acting on an object is directly proportional to its acceleration and inversely proportional to its mass", "The force acting on an object is directly proportional to its mass and inversely proportional to its acceleration"],
+            correctAnswer: "The force acting on an object is directly proportional to its acceleration and inversely proportional to its mass"
+        },
+        {
+            question: "Which of the following is not an example of Newton's First Law in action?",
+            options: ["A car coming to a stop at a traffic light", "A ball rolling down a hill", "A spacecraft orbiting around Earth", "A book sliding across a table"],
+            correctAnswer: "A car coming to a stop at a traffic light"
+        },
+        {
+            question: "Which of the following best describes the concept of momentum?",
+            options: ["The product of an object's mass and its velocity", "The force that causes an object to resist changes in its motion", "The tendency of an object to remain at rest or in uniform motion", "The acceleration of an object due to an applied force"],
+            correctAnswer: "The product of an object's mass and its velocity"
+        },
+        {
+            question: "What happens to the momentum of an object when its velocity doubles?",
+            options: ["It doubles", "It quadruples", "It halves", "It remains the same"],
+            correctAnswer: "It doubles"
+        },
+        {
+            question: "What is the conservation of momentum?",
+            options: ["The total momentum of a closed system remains constant if no external forces are acting on it", "The momentum of an object is always conserved", "Momentum is always increasing", "Momentum is always decreasing"],
+            correctAnswer: "The total momentum of a closed system remains constant if no external forces are acting on it"
+        },
+        {
+            question: "Which law of motion is applicable to a situation where a rocket moves upward due to the force exerted by the exhaust gases ejected downwards?",
+            options: ["Newton's Third Law", "Newton's Second Law", "Newton's First Law", "None of the above"],
+            correctAnswer: "Newton's Third Law"
+        },
+        {
+            question: "What is impulse?",
+            options: ["The product of force and time", "The product of mass and velocity", "The change in velocity of an object over time", "The resistance of an object to changes in its motion"],
+            correctAnswer: "The product of force and time"
+        },
+        {
+            question: "What is the area under a force-time graph?",
+            options: ["Impulse", "Momentum", "Acceleration", "Velocity"],
+            correctAnswer: "Impulse"
+        },
+        {
+            question: "Which of the following is an example of impulse?",
+            options: ["Catching a fast-moving ball with a bat", "Pushing against a stationary wall", "Walking on the ground", "Sitting on a chair"],
+            correctAnswer: "Catching a fast-moving ball with a bat"
+        },
+        {
+            question: "Which law of motion explains why a person is pushed backward when firing a gun?",
+            options: ["Newton's Third Law", "Newton's Second Law", "Newton's First Law", "None of the above"],
+            correctAnswer: "Newton's Third Law"
+        },
+        {
+            question: "What is tension?",
+            options: ["The force transmitted through a string, rope, cable, or wire when it is pulled tight by forces acting from opposite ends", "The force that opposes the motion of an object in a fluid", "The force exerted by a surface as an object moves across it", "The gravitational force exerted on an object"],
+            correctAnswer: "The force transmitted through a string, rope, cable, or wire when it is pulled tight by forces acting from opposite ends"
+        },
+        {
+            question: "When a book rests on a table, what force supports its weight?",
+            options: ["Normal force", "Frictional force", "Tension", "Gravity"],
+            correctAnswer: "Normal force"
+        },
+        {
+            question: "Which of the following is an example of frictional force?",
+            options: ["The force that slows down a moving car on a road", "The force that pulls an apple down from a tree", "The force that keeps a book resting on a table", "The force that propels a rocket into space"],
+            correctAnswer: "The force that slows down a moving car on a road"
+        },
+        {
+            question: "What is the force that opposes the motion of an object in a fluid called?",
+            options: ["Drag force", "Frictional force", "Tension", "Normal force"],
+            correctAnswer: "Drag force"
+        },
+        {
+            question: "Which law of motion explains why a balloon moves forward when air is released from it?",
+            options: ["Newton's Third Law", "Newton's Second Law", "Newton's First Law", "None of the above"],
+            correctAnswer: "Newton's Third Law"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

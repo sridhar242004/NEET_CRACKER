@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Genetics - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .genetics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .genetics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Genetics - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="genetics-header">
+                <h1 class="genetics-title">Genetics</h1>
+                <p>Explore the fundamentals of genetics, inheritance patterns, and molecular biology essential for understanding life sciences and NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Genetics</h2>
+                <div class="topic-content">
+                    <p>Genetics is the study of genes, genetic variation, and heredity in living organisms. It plays a crucial role in understanding biological processes and evolution.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Basics of DNA</h3>
+                            <p>Study the structure and function of DNA, the molecular basis of heredity, and the role of genes in biological functions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-gene"></i>
+                            </div>
+                            <h3>Genetic Inheritance</h3>
+                            <p>Understanding Mendelian genetics, inheritance patterns, and the principles of heredity.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <h3>Chromosomal Structure</h3>
+                            <p>Exploration of chromosomes, their structure, and the significance of chromosomal abnormalities.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Genetic Variation</h3>
+                            <p>Analysis of the sources of genetic variation and its implications for evolution and species diversity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Molecular Genetics</h2>
+                <div class="topic-content">
+                    <p>Molecular genetics focuses on the structure and function of genes at a molecular level, including the mechanisms of gene expression and regulation.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-copy"></i>
+                            </div>
+                            <h3>Gene Expression</h3>
+                            <p>Understanding how genes are transcribed and translated into proteins and the factors that regulate these processes.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-briefcase-medical"></i>
+                            </div>
+                            <h3>Genetic Engineering</h3>
+                            <p>Introduction to techniques used in genetic modification and biotechnology applications in medicine and agriculture.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <h3>Human Genetics</h3>
+                            <p>Study of human genetic disorders, the role of genetics in health and disease, and implications for genetic counseling.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Population Genetics</h3>
+                            <p>Exploration of genetic variation within and between populations, evolutionary processes, and the impact of genetics on population dynamics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Genetics concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the basic unit of heredity?",
+            options: ["Gene", "Chromosome", "Nucleus", "Cell"],
+            correctAnswer: "Gene"
+        },
+        {
+            question: "Who is known as the father of genetics?",
+            options: ["Charles Darwin", "Gregor Mendel", "James Watson", "Francis Crick"],
+            correctAnswer: "Gregor Mendel"
+        },
+        {
+            question: "Which of the following is a sex-linked trait?",
+            options: ["Hemophilia", "Albinism", "Sickle cell anemia", "Cystic fibrosis"],
+            correctAnswer: "Hemophilia"
+        },
+        {
+            question: "What is the shape of the DNA molecule?",
+            options: ["Double helix", "Single helix", "Triple helix", "Quadruple helix"],
+            correctAnswer: "Double helix"
+        },
+        {
+            question: "Which process is used for cell division in somatic cells?",
+            options: ["Mitosis", "Meiosis", "Binary fission", "Budding"],
+            correctAnswer: "Mitosis"
+        },
+        {
+            question: "What are alleles?",
+            options: ["Different forms of a gene", "Segments of RNA", "Proteins", "Enzymes"],
+            correctAnswer: "Different forms of a gene"
+        },
+        {
+            question: "What is a genotype?",
+            options: ["The genetic makeup of an organism", "The physical appearance of an organism", "The behavior of an organism", "The environment of an organism"],
+            correctAnswer: "The genetic makeup of an organism"
+        },
+        {
+            question: "What is a phenotype?",
+            options: ["The genetic makeup of an organism", "The physical appearance of an organism", "The behavior of an organism", "The environment of an organism"],
+            correctAnswer: "The physical appearance of an organism"
+        },
+        {
+            question: "What does homozygous mean?",
+            options: ["Having two identical alleles for a trait", "Having two different alleles for a trait", "Having three alleles for a trait", "Having no alleles for a trait"],
+            correctAnswer: "Having two identical alleles for a trait"
+        },
+        {
+            question: "What does heterozygous mean?",
+            options: ["Having two different alleles for a trait", "Having two identical alleles for a trait", "Having three alleles for a trait", "Having no alleles for a trait"],
+            correctAnswer: "Having two different alleles for a trait"
+        },
+        {
+            question: "What is a dominant allele?",
+            options: ["An allele that expresses its phenotype even in the presence of a recessive allele", "An allele that is masked by a recessive allele", "An allele that does not affect the phenotype", "An allele that is only found in males"],
+            correctAnswer: "An allele that expresses its phenotype even in the presence of a recessive allele"
+        },
+        {
+            question: "What is a recessive allele?",
+            options: ["An allele that is masked by the presence of a dominant allele", "An allele that expresses its phenotype even in the presence of a dominant allele", "An allele that does not affect the phenotype", "An allele that is only found in females"],
+            correctAnswer: "An allele that is masked by the presence of a dominant allele"
+        },
+        {
+            question: "What is the purpose of a Punnett square?",
+            options: ["To predict the probability of certain traits in offspring", "To map the DNA sequence", "To clone genes", "To measure the size of chromosomes"],
+            correctAnswer: "To predict the probability of certain traits in offspring"
+        },
+        {
+            question: "What is the genetic disorder caused by an extra chromosome 21?",
+            options: ["Down syndrome", "Turner syndrome", "Klinefelter syndrome", "Edward syndrome"],
+            correctAnswer: "Down syndrome"
+        },
+        {
+            question: "What is the role of mRNA in protein synthesis?",
+            options: ["To carry the genetic code from DNA to the ribosome", "To assemble amino acids into proteins", "To transport amino acids to the ribosome", "To replicate DNA"],
+            correctAnswer: "To carry the genetic code from DNA to the ribosome"
+        },
+        {
+            question: "What is the law of independent assortment?",
+            options: ["Genes for different traits can segregate independently during the formation of gametes", "Genes are inherited together with other genes", "Alleles are dominant or recessive", "The number of chromosomes is halved during meiosis"],
+            correctAnswer: "Genes for different traits can segregate independently during the formation of gametes"
+        },
+        {
+            question: "What is a mutation?",
+            options: ["A change in the DNA sequence", "A type of cell division", "A type of protein", "A type of enzyme"],
+            correctAnswer: "A change in the DNA sequence"
+        },
+        {
+            question: "What is genetic linkage?",
+            options: ["Genes located close together on the same chromosome tend to be inherited together", "Genes located on different chromosomes are inherited independently", "Genes that always mutate together", "Genes that are expressed only in certain environments"],
+            correctAnswer: "Genes located close together on the same chromosome tend to be inherited together"
+        },
+        {
+            question: "What is the function of ribosomes?",
+            options: ["Protein synthesis", "DNA replication", "Cell division", "Energy production"],
+            correctAnswer: "Protein synthesis"
+        },
+        {
+            question: "What is the role of tRNA?",
+            options: ["To bring amino acids to the ribosome", "To replicate DNA", "To carry the genetic code from DNA", "To form the ribosome"],
+            correctAnswer: "To bring amino acids to the ribosome"
+        },
+        {
+            question: "What is a karyotype?",
+            options: ["The number and appearance of chromosomes in the nucleus of a eukaryotic cell", "The physical traits of an organism", "The process of cell division", "The study of inheritance patterns"],
+            correctAnswer: "The number and appearance of chromosomes in the nucleus of a eukaryotic cell"
+        },
+        {
+            question: "What is polygenic inheritance?",
+            options: ["A trait controlled by two or more genes", "A trait controlled by a single gene", "Inheritance of genes located on sex chromosomes", "Inheritance of mutations"],
+            correctAnswer: "A trait controlled by two or more genes"
+        },
+        {
+            question: "What is a codon?",
+            options: ["A sequence of three nucleotides that corresponds with a specific amino acid or stop signal during protein synthesis", "A segment of DNA that codes for a protein", "A type of genetic mutation", "A chromosome region where genes are located"],
+            correctAnswer: "A sequence of three nucleotides that corresponds with a specific amino acid or stop signal during protein synthesis"
+        },
+        {
+            question: "What is the purpose of meiosis?",
+            options: ["To produce gametes with half the number of chromosomes", "To repair damaged cells", "To synthesize proteins", "To produce identical daughter cells"],
+            correctAnswer: "To produce gametes with half the number of chromosomes"
+        },
+        {
+            question: "What is the central dogma of molecular biology?",
+            options: ["DNA -> RNA -> Protein", "RNA -> DNA -> Protein", "Protein -> RNA -> DNA", "DNA -> Protein -> RNA"],
+            correctAnswer: "DNA -> RNA -> Protein"
+        },
+        {
+            question: "What is the function of DNA polymerase?",
+            options: ["To synthesize new strands of DNA", "To synthesize RNA", "To break down proteins", "To unwind the DNA double helix"],
+            correctAnswer: "To synthesize new strands of DNA"
+        },
+        {
+            question: "What is a genome?",
+            options: ["The complete set of genes or genetic material present in a cell or organism", "A segment of DNA that codes for a protein", "A mutation in a gene", "The physical traits of an organism"],
+            correctAnswer: "The complete set of genes or genetic material present in a cell or organism"
+        },
+        {
+            question: "What are the building blocks of proteins?",
+            options: ["Amino acids", "Nucleotides", "Carbohydrates", "Lipids"],
+            correctAnswer: "Amino acids"
+        },
+        {
+            question: "What is the function of helicase?",
+            options: ["To unwind the DNA double helix during DNA replication", "To synthesize RNA from DNA", "To assemble amino acids into proteins", "To transport amino acids to the ribosome"],
+            correctAnswer: "To unwind the DNA double helix during DNA replication"
+        },
+        {
+            question: "What is a genetic locus?",
+            options: ["A specific location on a chromosome where a particular gene or genetic marker is situated", "A type of genetic mutation", "The physical appearance of an organism", "A segment of RNA"],
+            correctAnswer: "A specific location on a chromosome where a particular gene or genetic marker is situated"
+        },
+        {
+            question: "What is the function of restriction enzymes?",
+            options: ["To cut DNA at specific sequences", "To replicate DNA", "To synthesize RNA", "To transport proteins"],
+            correctAnswer: "To cut DNA at specific sequences"
+        },
+        {
+            question: "What is an operon?",
+            options: ["A cluster of genes under the control of a single promoter and operated together", "A type of mutation", "A type of protein", "A segment of RNA"],
+            correctAnswer: "A cluster of genes under the control of a single promoter and operated together"
+        },
+        {
+            question: "What is a plasmid?",
+            options: ["A small, circular piece of DNA found in bacteria that can replicate independently", "A protein that assists in DNA replication", "A segment of RNA", "A type of chromosome"],
+            correctAnswer: "A small, circular piece of DNA found in bacteria that can replicate independently"
+        },
+        {
+            question: "What is gene expression?",
+            options: ["The process by which information from a gene is used to synthesize a functional gene product, usually a protein", "The mutation of a gene", "The inheritance of genes", "The replication of DNA"],
+            correctAnswer: "The process by which information from a gene is used to synthesize a functional gene product, usually a protein"
+        },
+        {
+            question: "What is genetic drift?",
+            options: ["A random change in allele frequencies in a population over time", "The movement of genes between populations", "The mutation of genes", "The expression of genes"],
+            correctAnswer: "A random change in allele frequencies in a population over time"
+        },
+        {
+            question: "What is the role of RNA polymerase?",
+            options: ["To synthesize RNA from a DNA template", "To synthesize proteins", "To replicate DNA", "To transport amino acids"],
+            correctAnswer: "To synthesize RNA from a DNA template"
+        },
+        {
+            question: "What is an exon?",
+            options: ["A segment of a DNA or RNA molecule containing information coding for a protein or peptide sequence", "A non-coding region of DNA", "A type of genetic mutation", "A segment of RNA that is removed during RNA processing"],
+            correctAnswer: "A segment of a DNA or RNA molecule containing information coding for a protein or peptide sequence"
+        },
+        {
+            question: "What is an intron?",
+            options: ["A non-coding region of a DNA or RNA molecule that is removed during RNA processing", "A coding region of DNA", "A type of genetic mutation", "A segment of DNA that codes for a protein"],
+            correctAnswer: "A non-coding region of a DNA or RNA molecule that is removed during RNA processing"
+        },
+        {
+            question: "What is the function of a promoter in genetics?",
+            options: ["A DNA sequence that initiates gene transcription", "A protein that binds to DNA", "A segment of RNA", "A type of enzyme"],
+            correctAnswer: "A DNA sequence that initiates gene transcription"
+        },
+        {
+            question: "What is genetic recombination?",
+            options: ["The exchange of genetic material between different chromosomes during meiosis", "The replication of DNA", "The mutation of genes", "The expression of genes"],
+            correctAnswer: "The exchange of genetic material between different chromosomes during meiosis"
+        },
+        {
+            question: "What is epigenetics?",
+            options: ["The study of changes in gene expression that do not involve alterations to the genetic code itself", "The inheritance of genetic traits", "The mutation of genes", "The replication of DNA"],
+            correctAnswer: "The study of changes in gene expression that do not involve alterations to the genetic code itself"
+        },
+        {
+            question: "What is a gene pool?",
+            options: ["The total set of genes, including all alleles, in a population", "A segment of DNA that codes for a protein", "A type of genetic mutation", "The physical traits of an organism"],
+            correctAnswer: "The total set of genes, including all alleles, in a population"
+        },
+        {
+            question: "What is gene flow?",
+            options: ["The transfer of genetic variation from one population to another", "The mutation of genes", "The expression of genes", "The replication of DNA"],
+            correctAnswer: "The transfer of genetic variation from one population to another"
+        },
+        {
+            question: "What is a polyploid organism?",
+            options: ["An organism with more than two complete sets of chromosomes", "An organism with two sets of chromosomes", "An organism with a mutation in its genes", "An organism with a single set of chromosomes"],
+            correctAnswer: "An organism with more than two complete sets of chromosomes"
+        },
+        {
+            question: "What is a genetic map?",
+            options: ["A representation of the arrangement of genes on a chromosome", "A type of chromosome", "A segment of DNA that codes for a protein", "A type of genetic mutation"],
+            correctAnswer: "A representation of the arrangement of genes on a chromosome"
+        },
+        {
+            question: "What is the function of ligase in DNA replication?",
+            options: ["To join Okazaki fragments on the lagging strand", "To synthesize new strands of DNA", "To unwind the DNA double helix", "To break down proteins"],
+            correctAnswer: "To join Okazaki fragments on the lagging strand"
+        },
+        {
+            question: "What is the genetic code?",
+            options: ["The set of rules by which information encoded in genetic material (DNA or RNA) is translated into proteins by living cells", "The physical traits of an organism", "A type of genetic mutation", "The process of DNA replication"],
+            correctAnswer: "The set of rules by which information encoded in genetic material (DNA or RNA) is translated into proteins by living cells"
+        },
+        {
+            question: "What is a transcription factor?",
+            options: ["A protein that controls the rate of transcription of genetic information from DNA to mRNA", "A segment of DNA that codes for a protein", "A type of genetic mutation", "A type of chromosome"],
+            correctAnswer: "A protein that controls the rate of transcription of genetic information from DNA to mRNA"
+        },
+        {
+            question: "What is a silent mutation?",
+            options: ["A mutation that does not result in a change in the amino acid sequence of a protein", "A mutation that results in a change in the amino acid sequence of a protein", "A mutation that causes a frameshift", "A mutation that leads to a stop codon"],
+            correctAnswer: "A mutation that does not result in a change in the amino acid sequence of a protein"
+        },
+        {
+            question: "What is the role of telomeres?",
+            options: ["To protect the ends of chromosomes from degradation", "To synthesize new strands of DNA", "To unwind the DNA double helix", "To code for proteins"],
+            correctAnswer: "To protect the ends of chromosomes from degradation"
+        },
+        {
+            question: "What is a missense mutation?",
+            options: ["A mutation that results in the substitution of one amino acid for another in a protein", "A mutation that does not change the amino acid sequence", "A mutation that results in a stop codon", "A mutation that causes a frameshift"],
+            correctAnswer: "A mutation that results in the substitution of one amino acid for another in a protein"
+        },
+        {
+            question: "What is a nonsense mutation?",
+            options: ["A mutation that results in a premature stop codon", "A mutation that changes one amino acid for another", "A mutation that does not change the amino acid sequence", "A mutation that causes a frameshift"],
+            correctAnswer: "A mutation that results in a premature stop codon"
+        },
+        {
+            question: "What is a frameshift mutation?",
+            options: ["A mutation that shifts the reading frame of the genetic message by inserting or deleting nucleotides", "A mutation that changes one amino acid for another", "A mutation that results in a stop codon", "A mutation that does not change the amino acid sequence"],
+            correctAnswer: "A mutation that shifts the reading frame of the genetic message by inserting or deleting nucleotides"
+        },
+        {
+            question: "What is a chromosomal inversion?",
+            options: ["A chromosome rearrangement in which a segment of a chromosome is reversed end to end", "The exchange of segments between nonhomologous chromosomes", "The loss of a chromosome segment", "The duplication of a chromosome segment"],
+            correctAnswer: "A chromosome rearrangement in which a segment of a chromosome is reversed end to end"
+        },
+        {
+            question: "What is an autosome?",
+            options: ["Any chromosome that is not a sex chromosome", "A chromosome involved in determining sex", "A segment of DNA that codes for a protein", "A type of genetic mutation"],
+            correctAnswer: "Any chromosome that is not a sex chromosome"
+        },
+        {
+            question: "What is the function of histones?",
+            options: ["To package and order DNA into structural units called nucleosomes", "To synthesize RNA", "To replicate DNA", "To transport amino acids"],
+            correctAnswer: "To package and order DNA into structural units called nucleosomes"
+        },
+        {
+            question: "What is genetic engineering?",
+            options: ["The direct manipulation of an organism's genes using biotechnology", "The natural process of gene expression", "The inheritance of genes", "The mutation of genes"],
+            correctAnswer: "The direct manipulation of an organism's genes using biotechnology"
+        },
+        {
+            question: "What is a genetic marker?",
+            options: ["A gene or DNA sequence with a known location on a chromosome that can be used to identify individuals or species", "A type of genetic mutation", "The physical traits of an organism", "The process of DNA replication"],
+            correctAnswer: "A gene or DNA sequence with a known location on a chromosome that can be used to identify individuals or species"
+        },
+        {
+            question: "What is the role of siRNA?",
+            options: ["To interfere with the expression of specific genes with complementary nucleotide sequences", "To replicate DNA", "To synthesize proteins", "To transport amino acids"],
+            correctAnswer: "To interfere with the expression of specific genes with complementary nucleotide sequences"
+        },
+        {
+            question: "What is the function of topoisomerase?",
+            options: ["To relieve the strain caused by unwinding of the DNA double helix during replication", "To synthesize RNA", "To replicate DNA", "To transport proteins"],
+            correctAnswer: "To relieve the strain caused by unwinding of the DNA double helix during replication"
+        },
+        {
+            question: "What is a promoter?",
+            options: ["A DNA sequence that initiates gene transcription", "A protein that assists in DNA replication", "A segment of RNA", "A type of chromosome"],
+            correctAnswer: "A DNA sequence that initiates gene transcription"
+        },
+        {
+            question: "What is the function of enhancer sequences?",
+            options: ["To increase the transcription of specific genes", "To replicate DNA", "To transport proteins", "To synthesize RNA"],
+            correctAnswer: "To increase the transcription of specific genes"
+        },
+        {
+            question: "What is a telomere?",
+            options: ["The end of a chromosome, which protects it from deterioration or from fusion with neighboring chromosomes", "A type of genetic mutation", "A segment of DNA that codes for a protein", "A type of chromosome"],
+            correctAnswer: "The end of a chromosome, which protects it from deterioration or from fusion with neighboring chromosomes"
+        },
+        {
+            question: "What is a genetic mutation?",
+            options: ["A permanent alteration in the DNA sequence that makes up a gene", "The replication of DNA", "The inheritance of genetic traits", "The expression of genes"],
+            correctAnswer: "A permanent alteration in the DNA sequence that makes up a gene"
+        },
+        {
+            question: "What is genetic counseling?",
+            options: ["The process of advising individuals and families on the nature, risks, and consequences of genetic disorders", "The inheritance of genes", "The mutation of genes", "The replication of DNA"],
+            correctAnswer: "The process of advising individuals and families on the nature, risks, and consequences of genetic disorders"
+        },
+        {
+            question: "What is a heterozygote?",
+            options: ["An organism that has two different alleles for a trait", "An organism that has two identical alleles for a trait", "An organism with a mutation in its genes", "An organism with a single allele for a trait"],
+            correctAnswer: "An organism that has two different alleles for a trait"
+        },
+        {
+            question: "What is a homozygote?",
+            options: ["An organism that has two identical alleles for a trait", "An organism that has two different alleles for a trait", "An organism with a mutation in its genes", "An organism with a single allele for a trait"],
+            correctAnswer: "An organism that has two identical alleles for a trait"
+        },
+        {
+            question: "What is the function of microRNA?",
+            options: ["To regulate gene expression by binding to complementary sequences on target mRNAs", "To replicate DNA", "To synthesize proteins", "To transport amino acids"],
+            correctAnswer: "To regulate gene expression by binding to complementary sequences on target mRNAs"
+        },
+        {
+            question: "What is the function of ribozymes?",
+            options: ["To catalyze specific biochemical reactions, similar to protein enzymes", "To synthesize RNA", "To replicate DNA", "To transport proteins"],
+            correctAnswer: "To catalyze specific biochemical reactions, similar to protein enzymes"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

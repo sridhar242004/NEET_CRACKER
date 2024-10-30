@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Chemistry: Some Basic Principles and Techniques - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .organic-chemistry-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .organic-chemistry-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Organic Chemistry: Some Basic Principles and Techniques - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        <main class="main-content">
+            <div class="organic-chemistry-header">
+                <h1 class="organic-chemistry-title">Organic Chemistry: Some Basic Principles and Techniques</h1>
+                <p>Explore the foundational principles and techniques of organic chemistry essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Organic Chemistry</h2>
+                <div class="topic-content">
+                    <p>Organic chemistry is the study of the structure, properties, composition, reactions, and synthesis of carbon-containing compounds. It is fundamental to the understanding of biological processes and the development of pharmaceuticals.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Structural Representations</h3>
+                            <p>Learn about different ways to represent organic compounds, including structural formulas, condensed formulas, and stereochemistry.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-reaction"></i>
+                            </div>
+                            <h3>Functional Groups</h3>
+                            <p>Understanding various functional groups and their influence on the chemical behavior and reactivity of organic molecules.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-alt-circle-up"></i>
+                            </div>
+                            <h3>Reaction Mechanisms</h3>
+                            <p>Study of common reaction mechanisms, including nucleophilic substitution and electrophilic addition, to understand how organic reactions occur.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Synthesis Techniques</h3>
+                            <p>Introduction to synthetic techniques used in organic chemistry, including extraction, distillation, and chromatography.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Analytical Techniques in Organic Chemistry</h2>
+                <div class="topic-content">
+                    <p>Analytical techniques are essential for identifying and characterizing organic compounds. Learn about key methods used in organic chemistry.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Spectroscopy</h3>
+                            <p>Introduction to various spectroscopic methods such as NMR, IR, and UV-Vis spectroscopy for compound identification.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-thermometer-half"></i>
+                            </div>
+                            <h3>Chromatography</h3>
+                            <p>Understanding chromatographic techniques like TLC and HPLC for separation and analysis of organic mixtures.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3>Mass Spectrometry</h3>
+                            <p>Study of mass spectrometry and its applications in determining the molecular weight and structure of organic compounds.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <h3>Qualitative and Quantitative Analysis</h3>
+                            <p>Introduction to techniques for qualitative and quantitative analysis of organic compounds in various samples.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+      
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Organic Chemistry: Some Basic Principles and Techniques concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the term for the study of carbon-containing compounds and their properties?",
+            options: ["Inorganic chemistry", "Organic chemistry", "Physical chemistry", "Analytical chemistry"],
+            correctAnswer: "Organic chemistry"
+        },
+        {
+            question: "What is the hybridization of carbon in methane (CH4)?",
+            options: ["sp", "sp2", "sp3", "sp3d"],
+            correctAnswer: "sp3"
+        },
+        {
+            question: "Which functional group is present in alcohols?",
+            options: ["-OH", "-COOH", "-CHO", "-NH2"],
+            correctAnswer: "-OH"
+        },
+        {
+            question: "What is the general formula of alkanes?",
+            options: ["CnH2n+2", "CnH2n", "CnHn", "CnHn-2"],
+            correctAnswer: "CnH2n+2"
+        },
+        {
+            question: "What is the name of CH3CH2OH?",
+            options: ["Methanol", "Ethanol", "Propanol", "Butanol"],
+            correctAnswer: "Ethanol"
+        },
+        {
+            question: "What is the product when ethanol is oxidized?",
+            options: ["Ethane", "Ethene", "Ethanoic acid", "Ethylamine"],
+            correctAnswer: "Ethanoic acid"
+        },
+        {
+            question: "Which reagent is used to oxidize primary alcohols to carboxylic acids?",
+            options: ["K2Cr2O7 / H2SO4", "H2 / Ni", "BH3 / THF", "NaBH4"],
+            correctAnswer: "K2Cr2O7 / H2SO4"
+        },
+        {
+            question: "What is the product of the dehydration of ethanol?",
+            options: ["Ethane", "Ethene", "Ethanol", "Ethanoic acid"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "Which compound undergoes combustion with oxygen to produce carbon dioxide and water?",
+            options: ["Alkane", "Alkene", "Alkyne", "Alcohol"],
+            correctAnswer: "Alkane"
+        },
+        {
+            question: "What type of reaction is the conversion of an alkane to an alkene?",
+            options: ["Substitution", "Addition", "Elimination", "Oxidation"],
+            correctAnswer: "Elimination"
+        },
+        {
+            question: "What is the name of CH3COOH?",
+            options: ["Methanoic acid", "Ethanoic acid", "Propanoic acid", "Butanoic acid"],
+            correctAnswer: "Ethanoic acid"
+        },
+        {
+            question: "Which functional group is present in carboxylic acids?",
+            options: ["-OH", "-COOH", "-CHO", "-NH2"],
+            correctAnswer: "-COOH"
+        },
+        {
+            question: "What is the general formula of alkenes?",
+            options: ["CnH2n+2", "CnH2n", "CnHn", "CnHn-2"],
+            correctAnswer: "CnH2n"
+        },
+        {
+            question: "What is the name of CH2=CH2?",
+            options: ["Ethane", "Ethene", "Propane", "Propene"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What type of isomerism is shown by compounds with the same molecular formula but different functional groups?",
+            options: ["Structural isomerism", "Geometric isomerism", "Optical isomerism", "Tautomeric isomerism"],
+            correctAnswer: "Structural isomerism"
+        },
+        {
+            question: "What is the product when ethene undergoes addition reaction with hydrogen?",
+            options: ["Ethane", "Ethene", "Ethanol", "Ethanoic acid"],
+            correctAnswer: "Ethane"
+        },
+        {
+            question: "What is the product when ethene undergoes addition reaction with bromine?",
+            options: ["Ethane", "Ethene dibromide", "Ethanol", "Ethanoic acid"],
+            correctAnswer: "Ethene dibromide"
+        },
+        {
+            question: "Which compound is used in the preparation of polyethylene?",
+            options: ["Ethane", "Ethene", "Ethanol", "Ethanoic acid"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the functional group present in aldehydes?",
+            options: ["-OH", "-COOH", "-CHO", "-NH2"],
+            correctAnswer: "-CHO"
+        },
+        {
+            question: "What is the name of CH3CHO?",
+            options: ["Methanal", "Ethanal", "Propanal", "Butanal"],
+            correctAnswer: "Ethanal"
+        },
+        {
+            question: "Which reagent is used to oxidize primary alcohols to aldehydes?",
+            options: ["K2Cr2O7 / H2SO4", "H2 / Ni", "BH3 / THF", "NaBH4"],
+            correctAnswer: "K2Cr2O7 / H2SO4"
+        },
+        {
+            question: "Which functional group is present in ketones?",
+            options: ["-OH", "-COOH", "-CHO", "-C=O"],
+            correctAnswer: "-C=O"
+        },
+        {
+            question: "What is the name of (CH3)2CO?",
+            options: ["Methanal", "Ethanal", "Propanone", "Butanone"],
+            correctAnswer: "Propanone"
+        },
+        {
+            question: "Which reagent is used to distinguish between aldehydes and ketones?",
+            options: ["Tollens' reagent", "Fehling's solution", "Benedict's solution", "Brady's reagent"],
+            correctAnswer: "Tollens' reagent"
+        },
+        {
+            question: "What is the product of the reduction of a ketone?",
+            options: ["Alcohol", "Alkane", "Aldehyde", "Carboxylic acid"],
+            correctAnswer: "Alcohol"
+        },
+        {
+            question: "What is the product of the reduction of an aldehyde?",
+            options: ["Alcohol", "Alkane", "Ketone", "Carboxylic acid"],
+            correctAnswer: "Alcohol"
+        },
+        {
+            question: "Which functional group is present in ethers?",
+            options: ["-OH", "-COOH", "-CHO", "-O-"],
+            correctAnswer: "-O-"
+        },
+        {
+            question: "What is the product when ethanol reacts with sodium?",
+            options: ["Ethane", "Ethene", "Sodium ethoxide", "Sodium ethanoate"],
+            correctAnswer: "Sodium ethoxide"
+        },
+        {
+            question: "What is the product when ethanoic acid reacts with ethanol in the presence of concentrated sulfuric acid?",
+            options: ["Ethanol", "Ester", "Ethane", "Ethanoic acid"],
+            correctAnswer: "Ester"
+        },
+        {
+            question: "Which functional group is present in esters?",
+            options: ["-OH", "-COOH", "-CHO", "-COO-"],
+            correctAnswer: "-COO-"
+        },
+        {
+            question: "What is the product when ethanol reacts with ethanoic acid in the presence of concentrated sulfuric acid?",
+            options: ["Ethanol", "Ester", "Ethane", "Ethanoic acid"],
+            correctAnswer: "Ester"
+        },
+        {
+            question: "What is the product when an ester undergoes hydrolysis?",
+            options: ["Alcohol and carboxylic acid", "Alcohol and alkene", "Alcohol and ether", "Alcohol and ketone"],
+            correctAnswer: "Alcohol and carboxylic acid"
+        },
+        {
+            question: "What is the product when an ester undergoes saponification?",
+            options: ["Alcohol and carboxylic acid", "Alcohol and alkene", "Alcohol and ether", "Alcohol and ketone"],
+            correctAnswer: "Alcohol and carboxylic acid"
+        },
+        {
+            question: "Which functional group is present in amines?",
+            options: ["-OH", "-COOH", "-CHO", "-NH2"],
+            correctAnswer: "-NH2"
+        },
+        {
+            question: "What is the product when ethanamine reacts with ethanoic acid?",
+            options: ["Ethanol", "Amine", "Ester", "Amide"],
+            correctAnswer: "Amide"
+        },
+        {
+            question: "What is the product when ethanamine reacts with ethanoyl chloride?",
+            options: ["Ethanol", "Amine", "Ester", "Amide"],
+            correctAnswer: "Amide"
+        },
+        {
+            question: "What is the product when ethanamine reacts with nitrous acid?",
+            options: ["Ethanol", "Amine", "Ester", "Amide"],
+            correctAnswer: "Alcohol"
+        },
+        {
+            question: "What is the general formula of alkynes?",
+            options: ["CnH2n+2", "CnH2n", "CnHn", "CnHn-2"],
+            correctAnswer: "CnHn-2"
+        },
+        {
+            question: "What is the name of CH≡CH?",
+            options: ["Ethane", "Ethene", "Propane", "Ethyne"],
+            correctAnswer: "Ethyne"
+        },
+        {
+            question: "Which compound is used in oxy-acetylene torches?",
+            options: ["Ethane", "Ethene", "Ethanol", "Ethyne"],
+            correctAnswer: "Ethyne"
+        },
+        {
+            question: "What is the product when ethyne reacts with hydrogen?",
+            options: ["Ethane", "Ethene", "Ethanol", "Ethanoic acid"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the term for the reaction where a compound breaks down into simpler substances on heating?",
+            options: ["Pyrolysis", "Hydrolysis", "Saponification", "Halogenation"],
+            correctAnswer: "Pyrolysis"
+        },
+        {
+            question: "What is the term for the technique used to separate components of a mixture based on differences in their boiling points?",
+            options: ["Distillation", "Filtration", "Chromatography", "Decantation"],
+            correctAnswer: "Distillation"
+        },
+        {
+            question: "What is the term for the technique used to separate components of a mixture based on their ability to travel at different rates through a stationary phase?",
+            options: ["Distillation", "Filtration", "Chromatography", "Decantation"],
+            correctAnswer: "Chromatography"
+        },
+        {
+            question: "What is the term for the technique used to separate an insoluble solid from a liquid?",
+            options: ["Distillation", "Filtration", "Chromatography", "Decantation"],
+            correctAnswer: "Filtration"
+        },
+        {
+            question: "What is the term for the technique used to separate components of a mixture based on their densities in a continuous phase?",
+            options: ["Decantation", "Centrifugation", "Chromatography", "Distillation"],
+            correctAnswer: "Centrifugation"
+        },
+        {
+            question: "What is the term for the technique used to separate a mixture of liquids with different boiling points?",
+            options: ["Fractional distillation", "Simple distillation", "Chromatography", "Filtration"],
+            correctAnswer: "Fractional distillation"
+        },
+        {
+            question: "What is the term for the technique used to separate immiscible liquids with different densities?",
+            options: ["Decantation", "Centrifugation", "Chromatography", "Distillation"],
+            correctAnswer: "Decantation"
+        },
+        {
+            question: "What is the term for the technique used to separate a solid dissolved in a liquid based on the solubility difference?",
+            options: ["Distillation", "Filtration", "Crystallization", "Decantation"],
+            correctAnswer: "Crystallization"
+        },
+        {
+            question: "What is the term for the technique used to separate a solid from a liquid by allowing the liquid to evaporate?",
+            options: ["Distillation", "Filtration", "Crystallization", "Decantation"],
+            correctAnswer: "Crystallization"
+        },
+        {
+            question: "What is the term for the technique used to separate enantiomers based on their ability to rotate plane-polarized light?",
+            options: ["Distillation", "Filtration", "Crystallization", "Polarimetry"],
+            correctAnswer: "Polarimetry"
+        },
+        {
+            question: "What is the term for the technique used to separate compounds based on their solubility in a solvent?",
+            options: ["Distillation", "Filtration", "Crystallization", "Extraction"],
+            correctAnswer: "Extraction"
+        },
+        {
+            question: "What is the term for the technique used to separate a volatile substance from non-volatile impurities?",
+            options: ["Sublimation", "Extraction", "Chromatography", "Decantation"],
+            correctAnswer: "Sublimation"
+        },
+        {
+            question: "What is the term for the technique used to purify solids by heating them in a vessel and collecting the vapors?",
+            options: ["Sublimation", "Extraction", "Chromatography", "Distillation"],
+            correctAnswer: "Sublimation"
+        },
+        {
+            question: "What is the term for the technique used to identify the components of a mixture based on their retention times?",
+            options: ["Distillation", "Filtration", "Crystallization", "Gas chromatography"],
+            correctAnswer: "Gas chromatography"
+        },
+        {
+            question: "What is the term for the technique used to separate a volatile liquid from a non-volatile solid?",
+            options: ["Sublimation", "Extraction", "Chromatography", "Distillation"],
+            correctAnswer: "Distillation"
+        },
+        {
+            question: "What is the term for the technique used to separate compounds based on their migration on a solid support?",
+            options: ["Distillation", "Filtration", "Chromatography", "Crystallization"],
+            correctAnswer: "Chromatography"
+        },
+        {
+            question: "What is the term for the technique used to separate substances based on their ability to absorb light at different wavelengths?",
+            options: ["Distillation", "Spectroscopy", "Chromatography", "Filtration"],
+            correctAnswer: "Spectroscopy"
+        },
+        {
+            question: "What is the term for the technique used to identify and measure the concentration of substances based on their interaction with light?",
+            options: ["Distillation", "Spectroscopy", "Chromatography", "Filtration"],
+            correctAnswer: "Spectroscopy"
+        },
+        {
+            question: "What is the term for the technique used to separate substances based on their electrical charge and size?",
+            options: ["Electrophoresis", "Spectroscopy", "Chromatography", "Filtration"],
+            correctAnswer: "Electrophoresis"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRIDHAR • Digital Artist & Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .magnetic-button {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .magnetic-button::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .magnetic-button:hover::after {
+            opacity: 1;
+        }
+
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6, #06b6d4);
+            padding: 1px;
+            border-radius: inherit;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5),
+                         0 0 20px rgba(99, 102, 241, 0.3),
+                         0 0 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .glow {
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5))
+                   drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 1rem;
+            width: 100%;
+            height: 600px;
+        }
+
+        .hero-grid-item {
+            border-radius: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .hero-grid-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .sphere-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 100px;
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(180deg, #6366f1, #8b5cf6);
+            animation: scrollProgress 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollProgress {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+
+        .project-card {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), 
+                                      rgba(99, 102, 241, 0.15),
+                                      transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: inherit;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-bar {
+            position: relative;
+            height: 4px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: #6366f1;
+        }
+
+        .magnetic-area {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+    <!-- 3D Background -->
+    <canvas id="bg" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-8 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-glow">SR</a>
+            <div class="space-x-8">
+                <a href="#work" class="magnetic-button px-6 py-3 rounded-full bg-black/50 backdrop-blur-lg">Work</a>
+                <a href="#about" class="magnetic-button px-6 py-3 rounded-full bg-black/50 backdrop-blur-lg">About</a>
+                <a href="#contact" class="gradient-border rounded-full">
+                    <span class="px-6 py-3 block bg-black/50 backdrop-blur-lg rounded-full">Contact</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8 relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"></div>
+            
+            <div class="relative grid grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-8xl font-bold mb-8 text-glow">
+                        Digital
+                        <span class="block gradient-text">Artist</span>
+                        <span class="text-6xl block mt-4">&amp; Developer</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 mb-12 max-w-lg">
+                        Creating immersive digital experiences through code and design
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#work" class="magnetic-button px-8 py-4 rounded-xl bg-indigo-500/10 backdrop-blur-lg">
+                            View Projects
+                        </a>
+                        <a href="#contact" class="px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500">
+                            Let's Connect
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-grid">
+                    <!-- Dynamic grid items will be created by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-6xl font-bold mb-16 text-glow">Selected Works</h2>
+            
+            <div class="grid grid-cols-2 gap-8">
+                <div class="project-card">
+                    <div class="relative rounded-2xl overflow-hidden">
+                        <img src="/api/placeholder/600/400" alt="Project 1" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end">
+                            <span class="text-indigo-400">Featured Project</span>
+                            <h3 class="text-2xl font-bold mt-2">Immersive Experience</h3>
+                            <p class="text-gray-400 mt-2">WebGL-powered interactive art installation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="relative rounded-2xl overflow-hidden">
+                        <img src="/api/placeholder/600/400" alt="Project 2" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-8 flex flex-col justify-end">
+                            <span class="text-indigo-400">Featured Project</span>
+                            <h3 class="text-2xl font-bold mt-2">AI Art Generator</h3>
+                            <p class="text-gray-400 mt-2">Machine learning powered creative tool</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-6xl font-bold mb-16 text-glow">Expertise</h2>
+            
+            <div class="grid grid-cols-3 gap-8">
+                <div class="gradient-border rounded-2xl p-[1px]">
+                    <div class="bg-black/50 backdrop-blur-lg p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-8">Development</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>WebGL/Three.js</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="transform: scaleX(0.95)"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>React/Next.js</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="transform: scaleX(0.9)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Similar skill sections for Design and AI -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-6xl font-bold mb-16 text-glow">Let's Create Together</h2>
+            
+            <div class="grid grid-cols-2 gap-12">
+                <div>
+                    <p class="text-xl text-gray-400 mb-8">
+                        Have a project in mind? Let's discuss how we can bring your vision to life.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="magnetic-area">
+                            <a href="mailto:hello@sridhar.dev" class="flex items-center space-x-4 p-4 rounded-xl bg-indigo-500/10">
+                                <div class="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">Email</h3>
+                                    <span class="text-gray-400">hello@sridhar.dev</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gradient-border rounded-2xl p-[1px]">
+                    <form class="contact-form bg-black/50 backdrop-blur-lg p-8 rounded-2xl">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-xl" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 rounded-xl" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Message</label>
+                                <textarea rows="4" class="w-full px-4 py-3 rounded-xl" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 font-medium">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-glow">SR</span>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400">
+                <p>&copy; 2024 SRIDHAR. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Three.js Scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#bg'), alpha: true });
+        
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.setZ(30);
+
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 100;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0x6366f1,
+            transparent: true,
+            opacity: 0.5
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Magnetic buttons
+        document.querySelectorAll('.magnetic-button').forEach(button => {
+            button.addEventListener('mousemove', e => {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translate(0px, 0px)';
+            });
+        });
+
+        // Project cards hover effect
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate skill bars
+        gsap.utils.toArray('.skill-progress').forEach(progress => {
+            gsap.to(progress, {
+                scaleX: progress.style.transform.replace('scaleX(', '').replace(')', ''),
+                duration: 1.5,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: progress,
+                    start: "top bottom-=100",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Create hero grid items
+        const heroGrid = document.querySelector('.hero-grid');
+        for(let i = 0; i < 64; i++) {
+            const div = document.createElement('div');
+            div.className = 'hero-grid-item';
+            heroGrid.appendChild(div);
+        }
+    </script>
+</body>
+</html>

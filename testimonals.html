@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Toppers - Success Stories and Testimonials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(to bottom, var(--background), var(--surface));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .testimonials {
+            padding: 4rem 2rem;
+            background: var(--surface);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .testimonial-info h3 {
+            color: var(--text);
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-rank {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .testimonial-content {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .interactive-session {
+            padding: 4rem 2rem;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .session-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reminder-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--success);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+
+        .reminder-button:hover {
+            transform: translateY(-2px);
+            background: #0EA371;
+        }
+
+        footer {
+            padding: 2rem;
+            background: var(--surface);
+            text-align: center;
+            color: var(--text-light);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#interactive-session" class="nav-link">Interactive Session</a>
+                <a href="#" class="nav-link">Resources</a>
+                <a href="#" class="cta-button">Join Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">NEET Toppers 2024</h1>
+            <p class="hero-subtitle">Success Stories and Interactive Sessions with Top Scorers</p>
+            <a href="#testimonials" class="cta-button">Learn from the Best</a>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Topper Testimonials</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3>Aarav Patel</h3>
+                            <span class="testimonial-rank">AIR 5</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "Consistency and smart study strategies were key to my success. I focused on understanding concepts deeply rather than mere memorization. The support from NEET Hub's mentors was invaluable in my journey."
+                    </div>
+                    <div class="testimonial-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">720</div>
+                            <div class="stat-label">Total Score</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">99.99</div>
+                            <div class="stat-label">Percentile</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3>Priya Singh</h3>
+                            <span class="testimonial-rank">AIR 12</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "Time management and regular mock tests played a crucial role in my preparation. I created a balanced study schedule that covered all subjects effectively. The adaptive testing platform helped me identify and improve my weak areas."
+                    </div>
+                    <div class="testimonial-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">715</div>
+                            <div class="stat-label">Total Score</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">99.98</div>
+                            <div class="stat-label">Percentile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interactive-session" class="interactive-session">
+        <div class="container">
+            <h2 class="section-title">Monthly Interactive Session</h2>
+            <div class="session-card">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem">Join our next live session with NEET Toppers</h3>
+                <p style="color: var(--text-light); margin-bottom: 0.5rem">Date: August 15, 2024</p>
+                <p style="color: var(--text-light); margin-bottom: 2rem">Time: 6:00 PM IST</p>
+                <button class="reminder-button">
+                    <i class="fas fa-bell"></i>
+                    Set Reminder
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 NEET Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.75rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.padding = '1rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+
+      
+
+        // Reminder button click animation
+        document.querySelector('.reminder-button').addEventListener('click', function(e) {
+            gsap.to(this, {
+                scale: 0.95,
+                duration: 0.1,
+                onComplete: () => {
+                    gsap.to(this, {
+                        scale: 1,
+                        duration: 0.1
+                    });
+                }
+            });
+            
+            // Add reminder functionality here
+            alert('Reminder set for the interactive session!');
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Nav link highlight on scroll
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector(`.nav-link[href="#${sectionId}"]`)?.classList.add('active');
+                } else {
+                    document.querySelector(`.nav-link[href="#${sectionId}"]`)?.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

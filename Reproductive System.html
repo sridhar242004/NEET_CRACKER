@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Reproductive System - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .reproductive-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reproductive-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Reproductive System - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="reproductive-header">
+                <h1 class="reproductive-title">Reproductive System</h1>
+                <p>Explore the structure and function of the reproductive system, essential for understanding human biology.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Overview of the Reproductive System</h2>
+                <div class="topic-content">
+                    <p>The reproductive system is responsible for producing offspring and ensuring the continuation of genetic material. It includes various organs that function together for reproduction.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-female"></i>
+                            </div>
+                            <h3>Female Reproductive Anatomy</h3>
+                            <p>Understanding the structures including ovaries, fallopian tubes, uterus, and vagina, and their roles in reproduction.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-male"></i>
+                            </div>
+                            <h3>Male Reproductive Anatomy</h3>
+                            <p>Exploring the structures such as testes, vas deferens, prostate gland, and penis, and their functions in sperm production and delivery.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-egg"></i>
+                            </div>
+                            <h3>Gamete Production</h3>
+                            <p>Processes of oogenesis and spermatogenesis, detailing how eggs and sperm are produced and matured.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Reproductive Hormones</h3>
+                            <p>Overview of hormones like estrogen, progesterone, and testosterone, and their roles in regulating the reproductive cycle and secondary sexual characteristics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Reproductive Health</h2>
+                <div class="topic-content">
+                    <p>Maintaining reproductive health is vital for overall well-being. This section covers important topics related to reproductive health.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <h3>Reproductive System Disorders</h3>
+                            <p>Common disorders affecting the reproductive system, including PCOS, endometriosis, and infertility.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-baby"></i>
+                            </div>
+                            <h3>Pregnancy and Childbirth</h3>
+                            <p>Overview of the stages of pregnancy, prenatal care, and the childbirth process.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-viruses"></i>
+                            </div>
+                            <h3>Sexually Transmitted Infections (STIs)</h3>
+                            <p>Information on common STIs, prevention methods, and their impact on reproductive health.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>Contraceptive Methods</h3>
+                            <p>Understanding various contraceptive methods, their effectiveness, and implications for reproductive health.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Reproductive System concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Which hormone is responsible for the development and maintenance of male secondary sexual characteristics?",
+            options: ["Testosterone", "Estrogen", "Progesterone", "Prolactin"],
+            correctAnswer: "Testosterone"
+        },
+        {
+            question: "Where does fertilization typically occur in humans?",
+            options: ["Fallopian tube", "Uterus", "Ovary", "Cervix"],
+            correctAnswer: "Fallopian tube"
+        },
+        {
+            question: "Which of the following is not a part of the female reproductive system?",
+            options: ["Vagina", "Urethra", "Ovary", "Fallopian tube"],
+            correctAnswer: "Urethra"
+        },
+        {
+            question: "What is the average length of the menstrual cycle in humans?",
+            options: ["28 days", "30 days", "21 days", "35 days"],
+            correctAnswer: "28 days"
+        },
+        {
+            question: "Where does spermatogenesis occur?",
+            options: ["Testes", "Epididymis", "Vas deferens", "Seminal vesicles"],
+            correctAnswer: "Testes"
+        },
+        {
+            question: "Which structure connects the testes to the urethra?",
+            options: ["Vas deferens", "Epididymis", "Prostate gland", "Seminal vesicles"],
+            correctAnswer: "Vas deferens"
+        },
+        {
+            question: "Which hormone is responsible for the development of the endometrium during the menstrual cycle?",
+            options: ["Estrogen", "Progesterone", "Testosterone", "Follicle-stimulating hormone"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the function of the corpus luteum?",
+            options: ["Produces progesterone", "Produces estrogen", "Produces testosterone", "Produces FSH"],
+            correctAnswer: "Produces progesterone"
+        },
+        {
+            question: "What is the name of the structure that connects the uterus to the vagina?",
+            options: ["Cervix", "Fallopian tube", "Endometrium", "Ovary"],
+            correctAnswer: "Cervix"
+        },
+        {
+            question: "What is the primary function of the scrotum?",
+            options: ["Regulating temperature of the testes", "Producing sperm", "Storing urine", "Producing testosterone"],
+            correctAnswer: "Regulating temperature of the testes"
+        },
+        {
+            question: "Which hormone is responsible for triggering ovulation?",
+            options: ["Luteinizing hormone (LH)", "Follicle-stimulating hormone (FSH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Luteinizing hormone (LH)"
+        },
+        {
+            question: "Where does fertilization typically occur in plants?",
+            options: ["Ovule", "Stigma", "Style", "Anther"],
+            correctAnswer: "Ovule"
+        },
+        {
+            question: "What is the name of the male gamete in humans?",
+            options: ["Sperm", "Ovum", "Zygote", "Blastocyst"],
+            correctAnswer: "Sperm"
+        },
+        {
+            question: "What is the function of the seminal vesicles?",
+            options: ["Produce seminal fluid", "Produce sperm", "Transport sperm to the urethra", "Produce testosterone"],
+            correctAnswer: "Produce seminal fluid"
+        },
+        {
+            question: "Which hormone is responsible for the thickening of the uterine lining during the menstrual cycle?",
+            options: ["Estrogen", "Progesterone", "Testosterone", "Luteinizing hormone (LH)"],
+            correctAnswer: "Estrogen"
+        },
+        {
+            question: "What is the name of the structure that releases the mature egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does implantation of the embryo occur?",
+            options: ["Uterus", "Fallopian tube", "Cervix", "Vagina"],
+            correctAnswer: "Uterus"
+        },
+        {
+            question: "Which hormone is responsible for the growth and development of the mammary glands during pregnancy?",
+            options: ["Prolactin", "Oxytocin", "Estrogen", "Progesterone"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the name of the tube that carries sperm from the epididymis to the urethra?",
+            options: ["Vas deferens", "Seminal vesicle", "Prostate gland", "Bulbourethral gland"],
+            correctAnswer: "Vas deferens"
+        },
+        {
+            question: "During which phase of the menstrual cycle does ovulation typically occur?",
+            options: ["Mid-cycle", "Menstrual phase", "Proliferative phase", "Secretory phase"],
+            correctAnswer: "Mid-cycle"
+        },
+        {
+            question: "What is the function of the prostate gland?",
+            options: ["Produces seminal fluid", "Produces testosterone", "Stores sperm", "Transports sperm to the urethra"],
+            correctAnswer: "Produces seminal fluid"
+        },
+        {
+            question: "Which hormone is responsible for stimulating milk ejection during breastfeeding?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the male reproductive cell in plants?",
+            options: ["Pollen", "Ovule", "Stigma", "Style"],
+            correctAnswer: "Pollen"
+        },
+        {
+            question: "Where does the process of spermatogenesis occur?",
+            options: ["Seminiferous tubules", "Epididymis", "Vas deferens", "Prostate gland"],
+            correctAnswer: "Seminiferous tubules"
+        },
+        {
+            question: "What is the function of the bulbourethral gland?",
+            options: ["Produces pre-ejaculatory fluid", "Produces seminal fluid", "Produces sperm", "Transports sperm to the urethra"],
+            correctAnswer: "Produces pre-ejaculatory fluid"
+        },
+        {
+            question: "Which hormone is responsible for stimulating the release of follicle-stimulating hormone (FSH) and luteinizing hormone (LH) from the anterior pituitary gland?",
+            options: ["Gonadotropin-releasing hormone (GnRH)", "Oxytocin", "Estrogen", "Progesterone"],
+            correctAnswer: "Gonadotropin-releasing hormone (GnRH)"
+        },
+        {
+            question: "What is the function of the epididymis?",
+            options: ["Stores and matures sperm", "Produces sperm", "Transports sperm to the urethra", "Produces seminal fluid"],
+            correctAnswer: "Stores and matures sperm"
+        },
+        {
+            question: "Which structure carries both sperm and urine in males?",
+            options: ["Urethra", "Vas deferens", "Epididymis", "Seminal vesicle"],
+            correctAnswer: "Urethra"
+        },
+        {
+            question: "What is the name of the structure that releases the egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "What is the function of the corpus albicans?",
+            options: ["Scar tissue formed after regression of the corpus luteum", "Produces estrogen", "Produces progesterone", "Produces testosterone"],
+            correctAnswer: "Scar tissue formed after regression of the corpus luteum"
+        },
+        {
+            question: "Which hormone is responsible for maintaining the uterine lining during pregnancy?",
+            options: ["Progesterone", "Estrogen", "Testosterone", "Luteinizing hormone (LH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the name of the structure that produces eggs in females?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does fertilization typically occur in birds?",
+            options: ["Oviduct", "Uterus", "Ovary", "Cloaca"],
+            correctAnswer: "Oviduct"
+        },
+        {
+            question: "What is the function of the fimbriae?",
+            options: ["Helps to guide the egg into the fallopian tube", "Produces eggs", "Produces sperm", "Secretes seminal fluid"],
+            correctAnswer: "Helps to guide the egg into the fallopian tube"
+        },
+        {
+            question: "Which hormone is responsible for the formation of the corpus luteum?",
+            options: ["Luteinizing hormone (LH)", "Follicle-stimulating hormone (FSH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Luteinizing hormone (LH)"
+        },
+        {
+            question: "Where does fertilization typically occur in amphibians?",
+            options: ["Cloaca", "Ovary", "Fallopian tube", "Uterus"],
+            correctAnswer: "Cloaca"
+        },
+        {
+            question: "What is the function of the vas deferens?",
+            options: ["Transport sperm from the epididymis to the urethra", "Produce seminal fluid", "Store sperm", "Produce testosterone"],
+            correctAnswer: "Transport sperm from the epididymis to the urethra"
+        },
+        {
+            question: "Which hormone is responsible for the development of the follicle in the ovary?",
+            options: ["Follicle-stimulating hormone (FSH)", "Luteinizing hormone (LH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Follicle-stimulating hormone (FSH)"
+        },
+        {
+            question: "What is the name of the structure that produces testosterone in males?",
+            options: ["Interstitial cells (Leydig cells)", "Seminiferous tubules", "Epididymis", "Vas deferens"],
+            correctAnswer: "Interstitial cells (Leydig cells)"
+        },
+        {
+            question: "What is the function of the interstitial cells (Leydig cells) in the testes?",
+            options: ["Produce testosterone", "Produce sperm", "Transport sperm to the epididymis", "Produce seminal fluid"],
+            correctAnswer: "Produce testosterone"
+        },
+        {
+            question: "Which hormone is responsible for the contraction of the uterus during childbirth?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the structure that connects the uterus to the vagina?",
+            options: ["Cervix", "Fallopian tube", "Endometrium", "Ovary"],
+            correctAnswer: "Cervix"
+        },
+        {
+            question: "What is the function of the fallopian tubes?",
+            options: ["Transport eggs from the ovaries to the uterus", "Produce eggs", "Produce sperm", "Produce seminal fluid"],
+            correctAnswer: "Transport eggs from the ovaries to the uterus"
+        },
+        {
+            question: "Which hormone is responsible for the development of the endometrium during the menstrual cycle?",
+            options: ["Estrogen", "Progesterone", "Testosterone", "Follicle-stimulating hormone (FSH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the function of the corpus luteum?",
+            options: ["Produces progesterone", "Produces estrogen", "Produces testosterone", "Produces FSH"],
+            correctAnswer: "Produces progesterone"
+        },
+        {
+            question: "What is the name of the structure that releases the mature egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does implantation of the embryo occur?",
+            options: ["Uterus", "Fallopian tube", "Cervix", "Vagina"],
+            correctAnswer: "Uterus"
+        },
+        {
+            question: "Which hormone is responsible for stimulating milk ejection during breastfeeding?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the male reproductive cell in plants?",
+            options: ["Pollen", "Ovule", "Stigma", "Style"],
+            correctAnswer: "Pollen"
+        },
+        {
+            question: "Where does the process of spermatogenesis occur?",
+            options: ["Seminiferous tubules", "Epididymis", "Vas deferens", "Prostate gland"],
+            correctAnswer: "Seminiferous tubules"
+        },
+        {
+            question: "What is the function of the bulbourethral gland?",
+            options: ["Produces pre-ejaculatory fluid", "Produces seminal fluid", "Produces sperm", "Transports sperm to the urethra"],
+            correctAnswer: "Produces pre-ejaculatory fluid"
+        },
+        {
+            question: "Which hormone is responsible for stimulating the release of follicle-stimulating hormone (FSH) and luteinizing hormone (LH) from the anterior pituitary gland?",
+            options: ["Gonadotropin-releasing hormone (GnRH)", "Oxytocin", "Estrogen", "Progesterone"],
+            correctAnswer: "Gonadotropin-releasing hormone (GnRH)"
+        },
+        {
+            question: "What is the function of the epididymis?",
+            options: ["Stores and matures sperm", "Produces sperm", "Transports sperm to the urethra", "Produces seminal fluid"],
+            correctAnswer: "Stores and matures sperm"
+        },
+        {
+            question: "Which structure carries both sperm and urine in males?",
+            options: ["Urethra", "Vas deferens", "Epididymis", "Seminal vesicle"],
+            correctAnswer: "Urethra"
+        },
+        {
+            question: "What is the name of the structure that releases the egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "What is the function of the corpus albicans?",
+            options: ["Scar tissue formed after regression of the corpus luteum", "Produces estrogen", "Produces progesterone", "Produces testosterone"],
+            correctAnswer: "Scar tissue formed after regression of the corpus luteum"
+        },
+        {
+            question: "Which hormone is responsible for maintaining the uterine lining during pregnancy?",
+            options: ["Progesterone", "Estrogen", "Testosterone", "Luteinizing hormone (LH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the name of the structure that produces eggs in females?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does fertilization typically occur in birds?",
+            options: ["Oviduct", "Uterus", "Ovary", "Cloaca"],
+            correctAnswer: "Oviduct"
+        },
+        {
+            question: "What is the function of the fimbriae?",
+            options: ["Helps to guide the egg into the fallopian tube", "Produces eggs", "Produces sperm", "Secretes seminal fluid"],
+            correctAnswer: "Helps to guide the egg into the fallopian tube"
+        },
+        {
+            question: "Which hormone is responsible for the formation of the corpus luteum?",
+            options: ["Luteinizing hormone (LH)", "Follicle-stimulating hormone (FSH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Luteinizing hormone (LH)"
+        },
+        {
+            question: "Where does fertilization typically occur in amphibians?",
+            options: ["Cloaca", "Ovary", "Fallopian tube", "Uterus"],
+            correctAnswer: "Cloaca"
+        },
+        {
+            question: "What is the function of the vas deferens?",
+            options: ["Transport sperm from the epididymis to the urethra", "Produce seminal fluid", "Store sperm", "Produce testosterone"],
+            correctAnswer: "Transport sperm from the epididymis to the urethra"
+        },
+        {
+            question: "Which hormone is responsible for the development of the follicle in the ovary?",
+            options: ["Follicle-stimulating hormone (FSH)", "Luteinizing hormone (LH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Follicle-stimulating hormone (FSH)"
+        },
+        {
+            question: "What is the name of the structure that produces testosterone in males?",
+            options: ["Interstitial cells (Leydig cells)", "Seminiferous tubules", "Epididymis", "Vas deferens"],
+            correctAnswer: "Interstitial cells (Leydig cells)"
+        },
+        {
+            question: "What is the function of the interstitial cells (Leydig cells) in the testes?",
+            options: ["Produce testosterone", "Produce sperm", "Transport sperm to the epididymis", "Produce seminal fluid"],
+            correctAnswer: "Produce testosterone"
+        },
+        {
+            question: "Which hormone is responsible for the contraction of the uterus during childbirth?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the structure that connects the uterus to the vagina?",
+            options: ["Cervix", "Fallopian tube", "Endometrium", "Ovary"],
+            correctAnswer: "Cervix"
+        },
+        {
+            question: "What is the function of the fallopian tubes?",
+            options: ["Transport eggs from the ovaries to the uterus", "Produce eggs", "Produce sperm", "Produce seminal fluid"],
+            correctAnswer: "Transport eggs from the ovaries to the uterus"
+        },
+        {
+            question: "Which hormone is responsible for the development of the endometrium during the menstrual cycle?",
+            options: ["Estrogen", "Progesterone", "Testosterone", "Follicle-stimulating hormone (FSH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the function of the corpus luteum?",
+            options: ["Produces progesterone", "Produces estrogen", "Produces testosterone", "Produces FSH"],
+            correctAnswer: "Produces progesterone"
+        },
+        {
+            question: "What is the name of the structure that releases the mature egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does implantation of the embryo occur?",
+            options: ["Uterus", "Fallopian tube", "Cervix", "Vagina"],
+            correctAnswer: "Uterus"
+        },
+        {
+            question: "Which hormone is responsible for stimulating milk ejection during breastfeeding?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the male reproductive cell in plants?",
+            options: ["Pollen", "Ovule", "Stigma", "Style"],
+            correctAnswer: "Pollen"
+        },
+        {
+            question: "Where does the process of spermatogenesis occur?",
+            options: ["Seminiferous tubules", "Epididymis", "Vas deferens", "Prostate gland"],
+            correctAnswer: "Seminiferous tubules"
+        },
+        {
+            question: "What is the function of the bulbourethral gland?",
+            options: ["Produces pre-ejaculatory fluid", "Produces seminal fluid", "Produces sperm", "Transports sperm to the urethra"],
+            correctAnswer: "Produces pre-ejaculatory fluid"
+        },
+        {
+            question: "Which hormone is responsible for stimulating the release of follicle-stimulating hormone (FSH) and luteinizing hormone (LH) from the anterior pituitary gland?",
+            options: ["Gonadotropin-releasing hormone (GnRH)", "Oxytocin", "Estrogen", "Progesterone"],
+            correctAnswer: "Gonadotropin-releasing hormone (GnRH)"
+        },
+        {
+            question: "What is the function of the epididymis?",
+            options: ["Stores and matures sperm", "Produces sperm", "Transports sperm to the urethra", "Produces seminal fluid"],
+            correctAnswer: "Stores and matures sperm"
+        },
+        {
+            question: "Which structure carries both sperm and urine in males?",
+            options: ["Urethra", "Vas deferens", "Epididymis", "Seminal vesicle"],
+            correctAnswer: "Urethra"
+        },
+        {
+            question: "What is the name of the structure that releases the egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "What is the function of the corpus albicans?",
+            options: ["Scar tissue formed after regression of the corpus luteum", "Produces estrogen", "Produces progesterone", "Produces testosterone"],
+            correctAnswer: "Scar tissue formed after regression of the corpus luteum"
+        },
+        {
+            question: "Which hormone is responsible for maintaining the uterine lining during pregnancy?",
+            options: ["Progesterone", "Estrogen", "Testosterone", "Luteinizing hormone (LH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the name of the structure that produces eggs in females?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does fertilization typically occur in birds?",
+            options: ["Oviduct", "Uterus", "Ovary", "Cloaca"],
+            correctAnswer: "Oviduct"
+        },
+        {
+            question: "What is the function of the fimbriae?",
+            options: ["Helps to guide the egg into the fallopian tube", "Produces eggs", "Produces sperm", "Secretes seminal fluid"],
+            correctAnswer: "Helps to guide the egg into the fallopian tube"
+        },
+        {
+            question: "Which hormone is responsible for the formation of the corpus luteum?",
+            options: ["Luteinizing hormone (LH)", "Follicle-stimulating hormone (FSH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Luteinizing hormone (LH)"
+        },
+        {
+            question: "Where does fertilization typically occur in amphibians?",
+            options: ["Cloaca", "Ovary", "Fallopian tube", "Uterus"],
+            correctAnswer: "Cloaca"
+        },
+        {
+            question: "What is the function of the vas deferens?",
+            options: ["Transport sperm from the epididymis to the urethra", "Produce seminal fluid", "Store sperm", "Produce testosterone"],
+            correctAnswer: "Transport sperm from the epididymis to the urethra"
+        },
+        {
+            question: "Which hormone is responsible for the development of the follicle in the ovary?",
+            options: ["Follicle-stimulating hormone (FSH)", "Luteinizing hormone (LH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Follicle-stimulating hormone (FSH)"
+        },
+        {
+            question: "What is the name of the structure that produces testosterone in males?",
+            options: ["Interstitial cells (Leydig cells)", "Seminiferous tubules", "Epididymis", "Vas deferens"],
+            correctAnswer: "Interstitial cells (Leydig cells)"
+        },
+        {
+            question: "What is the function of the interstitial cells (Leydig cells) in the testes?",
+            options: ["Produce testosterone", "Produce sperm", "Transport sperm to the epididymis", "Produce seminal fluid"],
+            correctAnswer: "Produce testosterone"
+        },
+        {
+            question: "Which hormone is responsible for the contraction of the uterus during childbirth?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the structure that connects the uterus to the vagina?",
+            options: ["Cervix", "Fallopian tube", "Endometrium", "Ovary"],
+            correctAnswer: "Cervix"
+        },
+        {
+            question: "What is the function of the fallopian tubes?",
+            options: ["Transport eggs from the ovaries to the uterus", "Produce eggs", "Produce sperm", "Produce seminal fluid"],
+            correctAnswer: "Transport eggs from the ovaries to the uterus"
+        },
+        {
+            question: "Which hormone is responsible for the development of the endometrium during the menstrual cycle?",
+            options: ["Estrogen", "Progesterone", "Testosterone", "Follicle-stimulating hormone (FSH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the function of the corpus luteum?",
+            options: ["Produces progesterone", "Produces estrogen", "Produces testosterone", "Produces FSH"],
+            correctAnswer: "Produces progesterone"
+        },
+        {
+            question: "What is the name of the structure that releases the mature egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does implantation of the embryo occur?",
+            options: ["Uterus", "Fallopian tube", "Cervix", "Vagina"],
+            correctAnswer: "Uterus"
+        },
+        {
+            question: "Which hormone is responsible for stimulating milk ejection during breastfeeding?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the male reproductive cell in plants?",
+            options: ["Pollen", "Ovule", "Stigma", "Style"],
+            correctAnswer: "Pollen"
+        },
+        {
+            question: "Where does the process of spermatogenesis occur?",
+            options: ["Seminiferous tubules", "Epididymis", "Vas deferens", "Prostate gland"],
+            correctAnswer: "Seminiferous tubules"
+        },
+        {
+            question: "What is the function of the bulbourethral gland?",
+            options: ["Produces pre-ejaculatory fluid", "Produces seminal fluid", "Produces sperm", "Transports sperm to the urethra"],
+            correctAnswer: "Produces pre-ejaculatory fluid"
+        },
+        {
+            question: "Which hormone is responsible for stimulating the release of follicle-stimulating hormone (FSH) and luteinizing hormone (LH) from the anterior pituitary gland?",
+            options: ["Gonadotropin-releasing hormone (GnRH)", "Oxytocin", "Estrogen", "Progesterone"],
+            correctAnswer: "Gonadotropin-releasing hormone (GnRH)"
+        },
+        {
+            question: "What is the function of the epididymis?",
+            options: ["Stores and matures sperm", "Produces sperm", "Transports sperm to the urethra", "Produces seminal fluid"],
+            correctAnswer: "Stores and matures sperm"
+        },
+        {
+            question: "Which structure carries both sperm and urine in males?",
+            options: ["Urethra", "Vas deferens", "Epididymis", "Seminal vesicle"],
+            correctAnswer: "Urethra"
+        },
+        {
+            question: "What is the name of the structure that releases the egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "What is the function of the corpus albicans?",
+            options: ["Scar tissue formed after regression of the corpus luteum", "Produces estrogen", "Produces progesterone", "Produces testosterone"],
+            correctAnswer: "Scar tissue formed after regression of the corpus luteum"
+        },
+        {
+            question: "Which hormone is responsible for maintaining the uterine lining during pregnancy?",
+            options: ["Progesterone", "Estrogen", "Testosterone", "Luteinizing hormone (LH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the name of the structure that produces eggs in females?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does fertilization typically occur in birds?",
+            options: ["Oviduct", "Uterus", "Ovary", "Cloaca"],
+            correctAnswer: "Oviduct"
+        },
+        {
+            question: "What is the function of the fimbriae?",
+            options: ["Helps to guide the egg into the fallopian tube", "Produces eggs", "Produces sperm", "Secretes seminal fluid"],
+            correctAnswer: "Helps to guide the egg into the fallopian tube"
+        },
+        {
+            question: "Which hormone is responsible for the formation of the corpus luteum?",
+            options: ["Luteinizing hormone (LH)", "Follicle-stimulating hormone (FSH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Luteinizing hormone (LH)"
+        },
+        {
+            question: "Where does fertilization typically occur in amphibians?",
+            options: ["Cloaca", "Ovary", "Fallopian tube", "Uterus"],
+            correctAnswer: "Cloaca"
+        },
+        {
+            question: "What is the function of the vas deferens?",
+            options: ["Transport sperm from the epididymis to the urethra", "Produce seminal fluid", "Store sperm", "Produce testosterone"],
+            correctAnswer: "Transport sperm from the epididymis to the urethra"
+        },
+        {
+            question: "Which hormone is responsible for the development of the follicle in the ovary?",
+            options: ["Follicle-stimulating hormone (FSH)", "Luteinizing hormone (LH)", "Estrogen", "Progesterone"],
+            correctAnswer: "Follicle-stimulating hormone (FSH)"
+        },
+        {
+            question: "What is the name of the structure that produces testosterone in males?",
+            options: ["Interstitial cells (Leydig cells)", "Seminiferous tubules", "Epididymis", "Vas deferens"],
+            correctAnswer: "Interstitial cells (Leydig cells)"
+        },
+        {
+            question: "What is the function of the interstitial cells (Leydig cells) in the testes?",
+            options: ["Produce testosterone", "Produce sperm", "Transport sperm to the epididymis", "Produce seminal fluid"],
+            correctAnswer: "Produce testosterone"
+        },
+        {
+            question: "Which hormone is responsible for the contraction of the uterus during childbirth?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the structure that connects the uterus to the vagina?",
+            options: ["Cervix", "Fallopian tube", "Endometrium", "Ovary"],
+            correctAnswer: "Cervix"
+        },
+        {
+            question: "What is the function of the fallopian tubes?",
+            options: ["Transport eggs from the ovaries to the uterus", "Produce eggs", "Produce sperm", "Produce seminal fluid"],
+            correctAnswer: "Transport eggs from the ovaries to the uterus"
+        },
+        {
+            question: "Which hormone is responsible for the development of the endometrium during the menstrual cycle?",
+            options: ["Estrogen", "Progesterone", "Testosterone", "Follicle-stimulating hormone (FSH)"],
+            correctAnswer: "Progesterone"
+        },
+        {
+            question: "What is the function of the corpus luteum?",
+            options: ["Produces progesterone", "Produces estrogen", "Produces testosterone", "Produces FSH"],
+            correctAnswer: "Produces progesterone"
+        },
+        {
+            question: "What is the name of the structure that releases the mature egg during ovulation?",
+            options: ["Ovary", "Fallopian tube", "Cervix", "Corpus luteum"],
+            correctAnswer: "Ovary"
+        },
+        {
+            question: "Where does implantation of the embryo occur?",
+            options: ["Uterus", "Fallopian tube", "Cervix", "Vagina"],
+            correctAnswer: "Uterus"
+        },
+        {
+            question: "Which hormone is responsible for stimulating milk ejection during breastfeeding?",
+            options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"],
+            correctAnswer: "Oxytocin"
+        },
+        {
+            question: "What is the name of the male reproductive cell in plants?",
+            options: ["Pollen", "Ovule", "Stigma", "Style"],
+            correctAnswer: "Pollen"
+        },
+        {
+            question: "Where does the process of spermatogenesis occur?",
+            options: ["Seminiferous tubules", "Epididymis", "Vas deferens", "Prostate gland"],
+            correctAnswer: "Seminiferous tubules"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

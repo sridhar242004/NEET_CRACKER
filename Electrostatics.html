@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  Electrostatics - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title">  Electrostatics - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+      
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Electrostatics</h1>
+                <p>Understand the principles of electric charges and forces, crucial for NEET preparation and understanding fundamental physics.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Fundamentals of Electrostatics</h2>
+                <div class="topic-content">
+                    <p>Electrostatics is the study of electric charges at rest. It explores how charges interact, the forces they exert, and the fields they create.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-charging-station"></i>
+                            </div>
+                            <h3>Electric Charge</h3>
+                            <p>Understanding the basic property of matter that causes it to experience a force when placed in an electric field.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-magnet"></i>
+                            </div>
+                            <h3>Coulomb's Law</h3>
+                            <p>The fundamental law describing the force between two point charges, dependent on charge magnitude and separation distance.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <h3>Electric Field</h3>
+                            <p>Exploring the region around a charged object where other charges experience a force, characterized by field lines and intensity.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Electric Potential</h3>
+                            <p>The work done per unit charge in bringing a test charge from infinity to a point in space, essential for understanding electric potential energy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Applications of Electrostatics</h2>
+                <div class="topic-content">
+                    <p>Electrostatics has numerous applications in daily life and technology, from capacitors to lightning protection.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                            <h3>Capacitors</h3>
+                            <p>Devices that store electric charge and energy, widely used in electronics to manage power supply and signal filtering.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Electrostatic Shielding</h3>
+                            <p>The technique of protecting sensitive equipment from external electric fields by enclosing them in conductive materials.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Static Electricity</h3>
+                            <p>Examining the buildup of electric charges on surfaces, leading to phenomena such as shocks, lightning, and more.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3>Electrostatic Precipitators</h3>
+                            <p>Devices used to remove particles from exhaust gases using electrically charged plates, commonly found in industrial settings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on  Electrostatics concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the SI unit of electric charge?",
+            options: ["Coulomb", "Newton", "Volt", "Ampere"],
+            correctAnswer: "Coulomb"
+        },
+        {
+            question: "What is the charge of an electron?",
+            options: ["-1.6 x 10^-19 C", "+1.6 x 10^-19 C", "1 C", "-1 C"],
+            correctAnswer: "-1.6 x 10^-19 C"
+        },
+        {
+            question: "What is the charge of a proton?",
+            options: ["+1.6 x 10^-19 C", "-1.6 x 10^-19 C", "1 C", "-1 C"],
+            correctAnswer: "+1.6 x 10^-19 C"
+        },
+        {
+            question: "What is the fundamental property of an electric charge?",
+            options: ["Attraction and repulsion", "Mass", "Volume", "Color"],
+            correctAnswer: "Attraction and repulsion"
+        },
+        {
+            question: "What is the net charge on a neutral atom?",
+            options: ["Zero", "Positive", "Negative", "Depends on the element"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the SI unit of electric field?",
+            options: ["Newton per Coulomb", "Coulomb per Newton", "Volt per Meter", "Meter per Coulomb"],
+            correctAnswer: "Newton per Coulomb"
+        },
+        {
+            question: "What is the direction of the electric field produced by a positive point charge?",
+            options: ["Radially outward", "Radially inward", "Tangential", "Circular"],
+            correctAnswer: "Radially outward"
+        },
+        {
+            question: "What is the direction of the electric field produced by a negative point charge?",
+            options: ["Radially inward", "Radially outward", "Tangential", "Circular"],
+            correctAnswer: "Radially inward"
+        },
+        {
+            question: "What is the formula for the electric field produced by a point charge?",
+            options: ["E = k * q / r²", "E = q / (4πε₀r²)", "E = k * r / q²", "E = q * r / k"],
+            correctAnswer: "E = k * q / r²"
+        },
+        {
+            question: "What is the formula for the electric force between two point charges?",
+            options: ["F = k * (q1 * q2) / r²", "F = q / (4πε₀r²)", "F = k * r / q²", "F = q * r / k"],
+            correctAnswer: "F = k * (q1 * q2) / r²"
+        },
+        {
+            question: "What is the formula for the electric field due to a uniformly charged infinite line?",
+            options: ["E = λ / (2πε₀r)", "E = k * λ / r²", "E = λ * r / k", "E = k * λ / r"],
+            correctAnswer: "E = λ / (2πε₀r)"
+        },
+        {
+            question: "What is the formula for the electric field due to a uniformly charged infinite plane?",
+            options: ["E = σ / (2ε₀)", "E = k * σ / r²", "E = σ * r / k", "E = k * σ / r"],
+            correctAnswer: "E = σ / (2ε₀)"
+        },
+        {
+            question: "What is the formula for the electric field due to a uniformly charged sphere?",
+            options: ["E = k * (Q / r²)", "E = Q / (4πε₀r²)", "E = k * Q / r", "E = Q * r / k"],
+            correctAnswer: "E = k * (Q / r²)"
+        },
+        {
+            question: "What is the direction of the electric field inside a conductor?",
+            options: ["Zero", "Towards the positive charges", "Towards the negative charges", "Away from the surface"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the force experienced by a positive charge placed in an electric field?",
+            options: ["In the direction of the electric field", "Opposite to the direction of the electric field", "Tangential to the field lines", "Circular"],
+            correctAnswer: "In the direction of the electric field"
+        },
+        {
+            question: "What is the force experienced by a negative charge placed in an electric field?",
+            options: ["Opposite to the direction of the electric field", "In the direction of the electric field", "Tangential to the field lines", "Circular"],
+            correctAnswer: "Opposite to the direction of the electric field"
+        },
+        {
+            question: "What happens to the electric field between two parallel plates when the distance between them is decreased?",
+            options: ["Increases", "Decreases", "Remains the same", "Becomes zero"],
+            correctAnswer: "Increases"
+        },
+        {
+            question: "What is the work done to bring a charge from infinity to a point in an electric field?",
+            options: ["Zero", "Positive", "Negative", "Depends on the charge"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the potential energy of a system of two charges?",
+            options: ["PE = k * (q1 * q2) / r", "PE = k * (q1 * q2) / r²", "PE = q / (4πε₀r)", "PE = k * q / r"],
+            correctAnswer: "PE = k * (q1 * q2) / r"
+        },
+        {
+            question: "What is the electric potential at a point in an electric field?",
+            options: ["Work done in bringing a unit positive charge from infinity to that point", "Electric field strength", "Electric flux", "Electric intensity"],
+            correctAnswer: "Work done in bringing a unit positive charge from infinity to that point"
+        },
+        {
+            question: "What is the SI unit of electric potential?",
+            options: ["Volt", "Coulomb", "Newton", "Ampere"],
+            correctAnswer: "Volt"
+        },
+        {
+            question: "What is the potential difference between two points in an electric field?",
+            options: ["Work done in moving a unit positive charge from one point to the other", "Electric field strength", "Electric flux", "Electric intensity"],
+            correctAnswer: "Work done in moving a unit positive charge from one point to the other"
+        },
+        {
+            question: "What is the relationship between electric potential and electric field?",
+            options: ["E = -∆V/∆d", "E = ∆V/∆d", "E = ∆d/∆V", "E = -∆d/∆V"],
+            correctAnswer: "E = -∆V/∆d"
+        },
+        {
+            question: "What happens to the electric potential energy of",
+            options: ["Increases", "Decreases", "Remains the same", "Becomes zero"],
+            correctAnswer: "Decreases"
+        },
+        {
+            question: "What is the principle of a Van de Graaff generator based on?",
+            options: ["Accumulation of electric charges on a hollow conductor", "Induction", "Conduction", "Capacitance"],
+            correctAnswer: "Accumulation of electric charges on a hollow conductor"
+        },
+        {
+            question: "What is the formula for capacitance?",
+            options: ["C = Q/V", "C = Q/ε₀A", "C = Q/d", "C = Q/A"],
+            correctAnswer: "C = Q/V"
+        },
+        {
+            question: "What is the SI unit of capacitance?",
+            options: ["Farad", "Coulomb", "Newton", "Ampere"],
+            correctAnswer: "Farad"
+        },
+        {
+            question: "What is the formula for the energy stored in a capacitor?",
+            options: ["U = 1/2 * C * V²", "U = C * V", "U = Q/V", "U = Q/ε₀A"],
+            correctAnswer: "U = 1/2 * C * V²"
+        },
+        {
+            question: "What happens to the capacitance of a parallel plate capacitor when the distance between the plates increases?",
+            options: ["Decreases", "Increases", "Remains the same", "Becomes zero"],
+            correctAnswer: "Decreases"
+        },
+        {
+            question: "What is the dielectric constant of a vacuum?",
+            options: ["1", "0", "∞", "Depends on temperature"],
+            correctAnswer: "1"
+        },
+        {
+            question: "What is the effect of introducing a dielectric in a capacitor?",
+            options: ["Increases capacitance", "Decreases capacitance", "No effect", "Decreases potential difference"],
+            correctAnswer: "Increases capacitance"
+        },
+        {
+            question: "What is the force between two parallel plate capacitors with charge Q and -Q, separated by a distance d?",
+            options: ["Zero", "F = Q²/2ε₀A", "F = Q²/ε₀d²", "F = Q/2ε₀d²"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the phenomenon by which a neutral body acquires a positive or negative charge when brought in contact with a charged body?",
+            options: ["Electrostatic induction", "Capacitance", "Conduction", "Electric polarization"],
+            correctAnswer: "Electrostatic induction"
+        },
+        {
+            question: "What is the formula for the force between two charges in vacuum?",
+            options: ["F = k * (q1 * q2) / r²", "F = k * (q1 * q2) / r", "F = k * q / r", "F = k * r / q"],
+            correctAnswer: "F = k * (q1 * q2) / r²"
+        },
+        {
+            question: "What is the principle of a gold-leaf electroscope based on?",
+            options: ["Electric induction", "Electrostatic induction", "Capacitance", "Conduction"],
+            correctAnswer: "Electrostatic induction"
+        },
+        {
+            question: "What is the charge on the earth?",
+            options: ["Zero", "Positive", "Negative", "Depends on the location"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the process of transferring charge by bringing a charged object near a neutral object and then grounding the neutral object?",
+            options: ["Earthing", "Induction", "Conduction", "Polarization"],
+            correctAnswer: "Induction"
+        },
+        {
+            question: "What happens to the charge of a body when it is grounded?",
+            options: ["Becomes zero", "Increases", "Decreases", "Remains the same"],
+            correctAnswer: "Becomes zero"
+        },
+        {
+            question: "What is the effect of dielectric material on the electric field between the plates of a capacitor?",
+            options: ["Reduces the electric field", "Increases the electric field", "No effect on the electric field", "Decreases the potential difference"],
+            correctAnswer: "Reduces the electric field"
+        },
+        {
+            question: "What is the formula for the force experienced by a charge in an electric field?",
+            options: ["F = q * E", "F = q * V", "F = k * q / r", "F = k * r / q"],
+            correctAnswer: "F = q * E"
+        },
+        {
+            question: "What is the direction of the force experienced by a positive charge in an electric field?",
+            options: ["Along the direction of the electric field", "Opposite to the direction of the electric field", "Tangential to the field lines", "Circular"],
+            correctAnswer: "Along the direction of the electric field"
+        },
+        {
+            question: "What is the direction of the force experienced by a negative charge in an electric field?",
+            options: ["Opposite to the direction of the electric field", "Along the direction of the electric field", "Tangential to the field lines", "Circular"],
+            correctAnswer: "Opposite to the direction of the electric field"
+        },
+        {
+            question: "What is the work done in moving a charge in a closed loop?",
+            options: ["Zero", "Positive", "Negative", "Depends on the charge"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the electric field inside a conductor?",
+            options: ["Zero", "Towards the positive charges", "Towards the negative charges", "Maximum at the center"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the charge on a body when it loses electrons?",
+            options: ["Positive", "Negative", "Zero", "Depends on the situation"],
+            correctAnswer: "Positive"
+        },
+        {
+            question: "What is the electric field at the surface of a charged conductor?",
+            options: ["Normal to the surface", "Tangential to the surface", "Maximum at the edges", "Zero"],
+            correctAnswer: "Normal to the surface"
+        },
+        {
+            question: "What happens to the potential difference between two points when the electric field between them is zero?",
+            options: ["Remains the same", "Increases", "Decreases", "Becomes zero"],
+            correctAnswer: "Remains the same"
+        },
+        {
+            question: "What is the force between two charged bodies when they are brought in contact?",
+            options: ["Attractive", "Repulsive", "Zero", "Depends on the charges"],
+            correctAnswer: "Repulsive"
+        },
+        {
+            question: "What is the electric potential due to a point charge at a distance r?",
+            options: ["V = k * q / r", "V = k * (q1 * q2) / r", "V = q / (4πε₀r²)", "V = k * r / q"],
+            correctAnswer: "V = k * q / r"
+        },
+        {
+            question: "What happens to the electric potential energy of a system of two positive charges when they are brought closer?",
+            options: ["Increases", "Decreases", "Remains the same", "Becomes zero"],
+            correctAnswer: "Increases"
+        },
+        {
+            question: "What happens to the electric potential energy of a system of two negative charges when they are brought closer?",
+            options: ["Increases", "Decreases", "Remains the same", "Becomes zero"],
+            correctAnswer: "Increases"
+        },
+        {
+            question: "What is the relationship between charge and electric potential?",
+            options: ["V = k * q / r", "V = k * (q1 * q2) / r", "V = q / (4πε₀r²)", "V = k * r / q"],
+            correctAnswer: "V = k * q / r"
+        },
+        {
+            question: "What is the relationship between electric field and electric potential?",
+            options: ["E = -∆V/∆d", "E = ∆V/∆d", "E = ∆d/∆V", "E = -∆d/∆V"],
+            correctAnswer: "E = -∆V/∆d"
+        },
+        {
+            question: "What is the formula for the capacitance of a parallel plate capacitor?",
+            options: ["C = ε₀A/d", "C = Q/V", "C = Q/ε₀A", "C = Q/d"],
+            correctAnswer: "C = ε₀A/d"
+        },
+        {
+            question: "What is the relationship between capacitance and potential difference?",
+            options: ["C = Q/V", "C = ε₀A/d", "C = Q/ε₀A", "C = Q/d"],
+            correctAnswer: "C = Q/V"
+        },
+        {
+            question: "What is the relationship between capacitance and charge?",
+            options: ["C = Q/V", "C = ε₀A/d", "C = Q/ε₀A", "C = Q/d"],
+            correctAnswer: "C = Q/V"
+        },
+        {
+            question: "What is the relationship between charge and energy stored in a capacitor?",
+            options: ["U = 1/2 * C * V²", "U = C * V", "U = Q/V", "U = Q/ε₀A"],
+            correctAnswer: "U = 1/2 * C * V²"
+        },
+        {
+            question: "What is the formula for the force between two parallel plate capacitors with charge Q and -Q, separated by a distance d?",
+            options: ["Zero", "F = Q²/2ε₀A", "F = Q²/ε₀d²", "F = Q/2ε₀d²"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the principle of a gold-leaf electroscope based on?",
+            options: ["Electric induction", "Electrostatic induction", "Capacitance", "Conduction"],
+            correctAnswer: "Electrostatic induction"
+        },
+        {
+            question: "What is the charge on the earth?",
+            options: ["Zero", "Positive", "Negative", "Depends on the location"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the process of transferring charge by bringing a charged object near a neutral object and then grounding the neutral object?",
+            options: ["Earthing", "Induction", "Conduction", "Polarization"],
+            correctAnswer: "Induction"
+        },
+        {
+            question: "What happens to the charge of a body when it is grounded?",
+            options: ["Becomes zero", "Increases", "Decreases", "Remains the same"],
+            correctAnswer: "Becomes zero"
+        },
+        {
+            question: "What is the effect of dielectric material on the electric field between the plates of a capacitor?",
+            options: ["Reduces the electric field", "Increases the electric field", "No effect on the electric field", "Decreases the potential difference"],
+            correctAnswer: "Reduces the electric field"
+        },
+        {
+            question: "What is the formula for the force experienced by a charge in an electric field?",
+            options: ["F = q * E", "F = q * V", "F = k * q / r", "F = k * r / q"],
+            correctAnswer: "F = q * E"
+        },
+        {
+            question: "What is the direction of the force experienced by a positive charge in an electric field?",
+            options: ["Along the direction of the electric field", "Opposite to the direction of the electric field", "Tangential to the field lines", "Circular"],
+            correctAnswer: "Along the direction of the electric field"
+        },
+        {
+            question: "What is the direction of the force experienced by a negative charge in an electric field?",
+            options: ["Opposite to the direction of the electric field", "Along the direction of the electric field", "Tangential to the field lines", "Circular"],
+            correctAnswer: "Opposite to the direction of the electric field"
+        },
+        {
+            question: "What is the work done in moving a charge in a closed loop?",
+            options: ["Zero", "Positive", "Negative", "Depends on the charge"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the electric field inside a conductor?",
+            options: ["Zero", "Towards the positive charges", "Towards the negative charges", "Maximum at the center"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the charge on a body when it loses electrons?",
+            options: ["Positive", "Negative", "Zero", "Depends on the situation"],
+            correctAnswer: "Positive"
+        },
+        {
+            question: "What is the electric field at the surface of a charged conductor?",
+            options: ["Normal to the surface", "Tangential to the surface", "Maximum at the edges", "Zero"],
+            correctAnswer: "Normal to the surface"
+        },
+        {
+            question: "What happens to the potential difference between two points when the electric field between them is zero?",
+            options: ["Remains the same", "Increases", "Decreases", "Becomes zero"],
+            correctAnswer: "Remains the same"
+        },
+        {
+            question: "What is the force between two charged bodies when they are brought in contact?",
+            options: ["Attractive", "Repulsive", "Zero", "Depends on the charges"],
+            correctAnswer: "Repulsive"
+        },
+        {
+            question: "What is the electric potential due to a point charge at a distance r?",
+            options: ["V = k * q / r", "V = k * (q1 * q2) / r", "V = q / (4πε₀r²)", "V = k * r / q"],
+            correctAnswer: "V = k * q / r"
+        },
+        {
+            question: "What happens to the electric potential energy of a system of two positive charges when they are brought closer?",
+            options: ["Increases", "Decreases", "Remains the same", "Becomes zero"],
+            correctAnswer: "Increases"
+        },
+        {
+            question: "What happens to the electric potential energy of a system of two negative charges when they are brought closer?",
+            options: ["Increases", "Decreases", "Remains the same", "Becomes zero"],
+            correctAnswer: "Increases"
+        },
+        {
+            question: "What is the relationship between charge and electric potential?",
+            options: ["V = k * q / r", "V = k * (q1 * q2) / r", "V = q / (4πε₀r²)", "V = k * r / q"],
+            correctAnswer: "V = k * q / r"
+        },
+        {
+            question: "What is the relationship between electric field and electric potential?",
+            options: ["E = -∆V/∆d", "E = ∆V/∆d", "E = ∆d/∆V", "E = -∆d/∆V"],
+            correctAnswer: "E = -∆V/∆d"
+        },
+        {
+            question: "What is the formula for the capacitance of a parallel plate capacitor?",
+            options: ["C = ε₀A/d", "C = Q/V", "C = Q/ε₀A", "C = Q/d"],
+            correctAnswer: "C = ε₀A/d"
+        },
+        {
+            question: "What is the relationship between capacitance and potential difference?",
+            options: ["C = Q/V", "C = ε₀A/d", "C = Q/ε₀A", "C = Q/d"],
+            correctAnswer: "C = Q/V"
+        },
+        {
+            question: "What is the relationship between capacitance and charge?",
+            options: ["C = Q/V", "C = ε₀A/d", "C = Q/ε₀A", "C = Q/d"],
+            correctAnswer: "C = Q/V"
+        },
+        {
+            question: "What is the relationship between charge and energy stored in a capacitor?",
+            options: ["U = 1/2 * C * V²", "U = C * V", "U = Q/V", "U = Q/ε₀A"],
+            correctAnswer: "U = 1/2 * C * V²"
+        },
+        {
+            question: "What is the formula for the force between two parallel plate capacitors with charge Q and -Q, separated by a distance d?",
+            options: ["Zero", "F = Q²/2ε₀A", "F = Q²/ε₀d²", "F = Q/2ε₀d²"],
+            correctAnswer: "Zero"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Digestive System< - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .digestive-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .digestive-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Digestive System - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="digestive-header">
+                <h1 class="digestive-title">Digestive System</h1>
+                <p>Explore the intricate processes of the digestive system and its significance in human health essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding the Digestive System</h2>
+                <div class="topic-content">
+                    <p>The digestive system is responsible for breaking down food, absorbing nutrients, and eliminating waste. It involves various organs and complex biochemical processes.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>Organs of the Digestive System</h3>
+                            <p>An overview of the major organs involved in digestion, including the mouth, esophagus, stomach, intestines, liver, and pancreas.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-blender"></i>
+                            </div>
+                            <h3>Digestive Processes</h3>
+                            <p>Understanding the stages of digestion: ingestion, digestion, absorption, and elimination.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Enzymes and Digestion</h3>
+                            <p>Analysis of digestive enzymes, their functions, and how they facilitate the breakdown of food.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h3>Nutrient Absorption</h3>
+                            <p>Exploration of how nutrients are absorbed in the intestines and their role in overall health.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Common Digestive Disorders</h2>
+                <div class="topic-content">
+                    <p>Digestive disorders can significantly affect health. This section covers various common conditions and their impacts.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>Gastroesophageal Reflux Disease (GERD)</h3>
+                            <p>Understanding the causes, symptoms, and treatment options for GERD.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-stomach"></i>
+                            </div>
+                            <h3>Peptic Ulcers</h3>
+                            <p>Exploration of peptic ulcers, their causes, and how they affect the digestive tract.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-procedures"></i>
+                            </div>
+                            <h3>IBS (Irritable Bowel Syndrome)</h3>
+                            <p>Overview of IBS, its symptoms, and management strategies for those affected.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-ambulance"></i>
+                            </div>
+                            <h3>Celiac Disease</h3>
+                            <p>Understanding celiac disease, its effects on the digestive system, and dietary management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Digestive System< concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Which organ is responsible for the production of bile?",
+            options: ["Pancreas", "Stomach", "Liver", "Gallbladder"],
+            correctAnswer: "Liver"
+        },
+        {
+            question: "What is the primary function of the small intestine in the digestive system?",
+            options: ["Absorption of nutrients", "Mechanical digestion", "Production of enzymes", "Storage of waste"],
+            correctAnswer: "Absorption of nutrients"
+        },
+        {
+            question: "What enzyme is responsible for breaking down carbohydrates in the mouth?",
+            options: ["Lipase", "Amylase", "Pepsin", "Trypsin"],
+            correctAnswer: "Amylase"
+        },
+        {
+            question: "Where does the majority of nutrient absorption occur in the digestive system?",
+            options: ["Large intestine", "Stomach", "Esophagus", "Small intestine"],
+            correctAnswer: "Small intestine"
+        },
+        {
+            question: "What is the role of hydrochloric acid (HCl) in the stomach?",
+            options: ["Emulsification of fats", "Neutralizing enzymes", "Breaking down proteins", "Stimulating bile production"],
+            correctAnswer: "Breaking down proteins"
+        },
+        {
+            question: "What is the function of the pancreas in the digestive system?",
+            options: ["Production of bile", "Storage of nutrients", "Regulating blood sugar levels", "Production of digestive enzymes"],
+            correctAnswer: "Production of digestive enzymes"
+        },
+        {
+            question: "Which of the following is not a part of the digestive system?",
+            options: ["Liver", "Lung", "Esophagus", "Colon"],
+            correctAnswer: "Lung"
+        },
+        {
+            question: "What is the muscular movement that helps propel food through the digestive system called?",
+            options: ["Peristalsis", "Diffusion", "Osmosis", "Active transport"],
+            correctAnswer: "Peristalsis"
+        },
+        {
+            question: "What is the function of mucus in the digestive system?",
+            options: ["Absorbing nutrients", "Protecting the lining of the digestive tract", "Breaking down proteins", "Storing bile"],
+            correctAnswer: "Protecting the lining of the digestive tract"
+        },
+        {
+            question: "Which hormone stimulates the release of gastric juices in the stomach?",
+            options: ["Insulin", "Glucagon", "Gastrin", "Leptin"],
+            correctAnswer: "Gastrin"
+        },
+        {
+            question: "What is the main function of the large intestine?",
+            options: ["Absorption of water", "Digestion of proteins", "Production of bile", "Absorption of nutrients"],
+            correctAnswer: "Absorption of water"
+        },
+        {
+            question: "What is the name of the valve that separates the esophagus from the stomach?",
+            options: ["Pyloric sphincter", "Ileocecal valve", "Cardiac sphincter", "Anal sphincter"],
+            correctAnswer: "Cardiac sphincter"
+        },
+        {
+            question: "Which of the following is not a component of saliva?",
+            options: ["Amylase", "Mucus", "Pepsin", "Salivary amylase"],
+            correctAnswer: "Pepsin"
+        },
+        {
+            question: "What is the function of the gallbladder in the digestive system?",
+            options: ["Production of bile", "Storage of bile", "Absorption of nutrients", "Production of enzymes"],
+            correctAnswer: "Storage of bile"
+        },
+        {
+            question: "What is the name of the process by which nutrients are taken up by the cells of the small intestine?",
+            options: ["Diffusion", "Osmosis", "Active transport", "Absorption"],
+            correctAnswer: "Absorption"
+        },
+        {
+            question: "Which of the following is not a type of digestive enzyme?",
+            options: ["Amylase", "Lipase", "Pepsin", "Adrenalase"],
+            correctAnswer: "Adrenalase"
+        },
+        {
+            question: "What is the function of bile in the digestive system?",
+            options: ["Breaking down proteins", "Emulsifying fats", "Absorbing water", "Neutralizing stomach acid"],
+            correctAnswer: "Emulsifying fats"
+        },
+        {
+            question: "What is the primary function of the stomach in the digestive system?",
+            options: ["Absorption of nutrients", "Production of bile", "Mechanical digestion", "Chemical digestion"],
+            correctAnswer: "Chemical digestion"
+        },
+        {
+            question: "Which of the following is not a part of the small intestine?",
+            options: ["Duodenum", "Jejunum", "Ileum", "Colon"],
+            correctAnswer: "Colon"
+        },
+        {
+            question: "What is the role of enzymes in the digestive system?",
+            options: ["Breaking down food molecules", "Storing nutrients", "Producing hormones", "Absorbing water"],
+            correctAnswer: "Breaking down food molecules"
+        },
+        {
+            question: "What is the function of villi in the small intestine?",
+            options: ["Production of enzymes", "Absorption of nutrients", "Storage of bile", "Breaking down proteins"],
+            correctAnswer: "Absorption of nutrients"
+        },
+        {
+            question: "Which of the following is not a component of gastric juice?",
+            options: ["Hydrochloric acid", "Pepsin", "Bicarbonate ions", "Gastric lipase"],
+            correctAnswer: "Bicarbonate ions"
+        },
+        {
+            question: "What is the function of the sphincter muscles in the digestive system?",
+            options: ["Producing enzymes", "Controlling the flow of food", "Absorbing nutrients", "Storing waste"],
+            correctAnswer: "Controlling the flow of food"
+        },
+        {
+            question: "What is the name of the enzyme found in saliva that breaks down starch?",
+            options: ["Lipase", "Pepsin", "Amylase", "Trypsin"],
+            correctAnswer: "Amylase"
+        },
+        {
+            question: "What is the function of the appendix?",
+            options: ["Digestion of carbohydrates", "Storage of bile", "Production of enzymes", "Reservoir for beneficial bacteria"],
+            correctAnswer: "Reservoir for beneficial bacteria"
+        },
+        {
+            question: "Which of the following is not a function of the liver in the digestive system?",
+            options: ["Production of bile", "Storage of nutrients", "Detoxification", "Absorption of water"],
+            correctAnswer: "Absorption of water"
+        },
+        {
+            question: "What is the name of the enzyme that breaks down proteins in the stomach?",
+            options: ["Lipase", "Amylase", "Pepsin", "Trypsin"],
+            correctAnswer: "Pepsin"
+        },
+        {
+            question: "What is the function of the epiglottis?",
+            options: ["Secreting digestive enzymes", "Preventing food from entering the trachea", "Absorbing nutrients", "Storing bile"],
+            correctAnswer: "Preventing food from entering the trachea"
+        },
+        {
+            question: "Which of the following is not a component of bile?",
+            options: ["Water", "Bile salts", "Cholesterol", "Pepsin"],
+            correctAnswer: "Pepsin"
+        },
+        {
+            question: "What is the function of the esophagus in the digestive system?",
+            options: ["Digestion of carbohydrates", "Absorption of nutrients", "Transport of food to the stomach", "Production of enzymes"],
+            correctAnswer: "Transport of food to the stomach"
+        },
+        {
+            question: "Which hormone stimulates the release of bile from the gallbladder?",
+            options: ["Insulin", "Glucagon", "Cholecystokinin", "Leptin"],
+            correctAnswer: "Cholecystokinin"
+        },
+        {
+            question: "What is the name of the wave-like contractions that move food through the digestive system?",
+            options: ["Peristalsis", "Diffusion", "Osmosis", "Active transport"],
+            correctAnswer: "Peristalsis"
+        },
+        {
+            question: "Which of the following is not a component of gastric juice?",
+            options: ["Hydrochloric acid", "Pepsin", "Bicarbonate ions", "Gastric lipase"],
+            correctAnswer: "Bicarbonate ions"
+        },
+        {
+            question: "What is the function of the sphincter muscles in the digestive system?",
+            options: ["Producing enzymes", "Controlling the flow of food", "Absorbing nutrients", "Storing waste"],
+            correctAnswer: "Controlling the flow of food"
+        },
+        {
+            question: "What is the name of the enzyme found in saliva that breaks down starch?",
+            options: ["Lipase", "Pepsin", "Amylase", "Trypsin"],
+            correctAnswer: "Amylase"
+        },
+        {
+            question: "What is the function of the appendix?",
+            options: ["Digestion of carbohydrates", "Storage of bile", "Production of enzymes", "Reservoir for beneficial bacteria"],
+            correctAnswer: "Reservoir for beneficial bacteria"
+        },
+        {
+            question: "Which of the following is not a function of the liver in the digestive system?",
+            options: ["Production of bile", "Storage of nutrients", "Detoxification", "Absorption of water"],
+            correctAnswer: "Absorption of water"
+        },
+        {
+            question: "What is the name of the enzyme that breaks down proteins in the stomach?",
+            options: ["Lipase", "Amylase", "Pepsin", "Trypsin"],
+            correctAnswer: "Pepsin"
+        },
+        {
+            question: "What is the function of the epiglottis?",
+            options: ["Secreting digestive enzymes", "Preventing food from entering the trachea", "Absorbing nutrients", "Storing bile"],
+            correctAnswer: "Preventing food from entering the trachea"
+        },
+        {
+            question: "Which of the following is not a component of bile?",
+            options: ["Water", "Bile salts", "Cholesterol", "Pepsin"],
+            correctAnswer: "Pepsin"
+        },
+        {
+            question: "What is the function of the esophagus in the digestive system?",
+            options: ["Digestion of carbohydrates", "Absorption of nutrients", "Transport of food to the stomach", "Production of enzymes"],
+            correctAnswer: "Transport of food to the stomach"
+        },
+        {
+            question: "Which hormone stimulates the release of bile from the gallbladder?",
+            options: ["Insulin", "Glucagon", "Cholecystokinin", "Leptin"],
+            correctAnswer: "Cholecystokinin"
+        },
+        {
+            question: "What is the name of the wave-like contractions that move food through the digestive system?",
+            options: ["Peristalsis", "Diffusion", "Osmosis", "Active transport"],
+            correctAnswer: "Peristalsis"
+        },
+        {
+            question: "Which of the following is not a component of gastric juice?",
+            options: ["Hydrochloric acid", "Pepsin", "Bicarbonate ions", "Gastric lipase"],
+            correctAnswer: "Bicarbonate ions"
+        },
+        {
+            question: "What is the function of the sphincter muscles in the digestive system?",
+            options: ["Producing enzymes", "Controlling the flow of food", "Absorbing nutrients", "Storing waste"],
+            correctAnswer: "Controlling the flow of food"
+        },
+        {
+            question: "What is the name of the enzyme found in saliva that breaks down starch?",
+            options: ["Lipase", "Pepsin", "Amylase", "Trypsin"],
+            correctAnswer: "Amylase"
+        },
+        {
+            question: "What is the function of the appendix?",
+            options: ["Digestion of carbohydrates", "Storage of bile", "Production of enzymes", "Reservoir for beneficial bacteria"],
+            correctAnswer: "Reservoir for beneficial bacteria"
+        },
+        {
+            question: "Which of the following is not a function of the liver in the digestive system?",
+            options: ["Production of bile", "Storage of nutrients", "Detoxification", "Absorption of water"],
+            correctAnswer: "Absorption of water"
+        },
+        {
+            question: "What is the name of the enzyme that breaks down proteins in the stomach?",
+            options: ["Lipase", "Amylase", "Pepsin", "Trypsin"],
+            correctAnswer: "Pepsin"
+        },
+        {
+            question: "What is the function of the epiglottis?",
+            options: ["Secreting digestive enzymes", "Preventing food from entering the trachea", "Absorbing nutrients", "Storing bile"],
+            correctAnswer: "Preventing food from entering the trachea"
+        },
+        {
+            question: "Which of the following is not a component of bile?",
+            options: ["Water", "Bile salts", "Cholesterol", "Pepsin"],
+            correctAnswer: "Pepsin"
+        },
+        {
+            question: "What is the function of the esophagus in the digestive system?",
+            options: ["Digestion of carbohydrates", "Absorption of nutrients", "Transport of food to the stomach", "Production of enzymes"],
+            correctAnswer: "Transport of food to the stomach"
+        },
+        {
+            question: "Which hormone stimulates the release of bile from the gallbladder?",
+            options: ["Insulin", "Glucagon", "Cholecystokinin", "Leptin"],
+            correctAnswer: "Cholecystokinin"
+        },
+        {
+            question: "What is the name of the wave-like contractions that move food through the digestive system?",
+            options: ["Peristalsis", "Diffusion", "Osmosis", "Active transport"],
+            correctAnswer: "Peristalsis"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

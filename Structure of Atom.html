@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Structure of Atom - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Structure of Atom - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Structure of Atom</h1>
+                <p>Explore the fundamental concepts of atomic structure essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Atomic Structure</h2>
+                <div class="topic-content">
+                    <p>The structure of an atom is the arrangement of subatomic particles within the atom, including protons, neutrons, and electrons. It is crucial for understanding chemical behavior and reactions.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3>Subatomic Particles</h3>
+                            <p>Study of protons, neutrons, and electrons, their properties, and how they determine the identity of an atom.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3>Atomic Models</h3>
+                            <p>Exploration of various atomic models, including Dalton's, Thomson's, Rutherford's, and Bohr's models, and their significance in atomic theory.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <h3>Electron Configuration</h3>
+                            <p>Understanding how electrons are arranged in orbitals around the nucleus and how this affects chemical properties.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Isotopes</h3>
+                            <p>Study of isotopes, their stability, and their applications in fields like medicine and archaeology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Applications of Atomic Structure</h2>
+                <div class="topic-content">
+                    <p>Understanding atomic structure has profound implications in various scientific fields, including chemistry, physics, and materials science.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Chemical Reactions</h3>
+                            <p>How the arrangement of electrons determines the reactivity and bonding of different elements.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-radiation"></i>
+                            </div>
+                            <h3>Nuclear Reactions</h3>
+                            <p>Understanding nuclear fission and fusion processes and their applications in energy production and weaponry.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Material Science</h3>
+                            <p>The role of atomic structure in determining the properties of materials and their applications in technology.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Biological Implications</h3>
+                            <p>How atomic structure affects biological processes, including enzyme activity and DNA replication.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Structure of Atom concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the charge of an electron?",
+            options: ["Positive", "Negative", "Neutral", "Variable"],
+            correctAnswer: "Negative"
+        },
+        {
+            question: "Who discovered the electron?",
+            options: ["J.J. Thomson", "Ernest Rutherford", "Niels Bohr", "Max Planck"],
+            correctAnswer: "J.J. Thomson"
+        },
+        {
+            question: "What particles are found in the nucleus of an atom?",
+            options: ["Protons and electrons", "Protons and neutrons", "Neutrons and electrons", "Only protons"],
+            correctAnswer: "Protons and neutrons"
+        },
+        {
+            question: "Which model of the atom was proposed by Niels Bohr?",
+            options: ["Plum pudding model", "Nuclear model", "Planetary model", "Quantum mechanical model"],
+            correctAnswer: "Planetary model"
+        },
+        {
+            question: "What is the relative mass of a proton?",
+            options: ["1 amu", "0 amu", "1/1836 amu", "4 amu"],
+            correctAnswer: "1 amu"
+        },
+        {
+            question: "What is the relative charge of a neutron?",
+            options: ["+1", "0", "-1", "+2"],
+            correctAnswer: "0"
+        },
+        {
+            question: "Which subatomic particle has the smallest mass?",
+            options: ["Proton", "Neutron", "Electron", "Nucleus"],
+            correctAnswer: "Electron"
+        },
+        {
+            question: "What does the atomic number of an element represent?",
+            options: ["Number of neutrons", "Number of protons", "Number of electrons", "Number of nucleons"],
+            correctAnswer: "Number of protons"
+        },
+        {
+            question: "Who proposed the plum pudding model of the atom?",
+            options: ["Ernest Rutherford", "J.J. Thomson", "Niels Bohr", "James Chadwick"],
+            correctAnswer: "J.J. Thomson"
+        },
+        {
+            question: "What did Rutherford's gold foil experiment demonstrate?",
+            options: ["Atoms are solid spheres", "Atoms have a dense nucleus", "Electrons orbit the nucleus", "Atoms are mostly empty space"],
+            correctAnswer: "Atoms have a dense nucleus"
+        },
+        {
+            question: "Which experiment led to the discovery of the nucleus?",
+            options: ["Oil drop experiment", "Gold foil experiment", "Cathode ray experiment", "Alpha particle scattering experiment"],
+            correctAnswer: "Gold foil experiment"
+        },
+        {
+            question: "What is the principal quantum number?",
+            options: ["It describes the shape of an orbital", "It describes the size and energy level of an orbital", "It describes the orientation of an orbital", "It describes the spin of an electron"],
+            correctAnswer: "It describes the size and energy level of an orbital"
+        },
+        {
+            question: "What is the azimuthal quantum number (l)?",
+            options: ["It describes the size of an orbital", "It describes the shape of an orbital", "It describes the orientation of an orbital", "It describes the spin of an electron"],
+            correctAnswer: "It describes the shape of an orbital"
+        },
+        {
+            question: "What is the magnetic quantum number (m)?",
+            options: ["It describes the size of an orbital", "It describes the shape of an orbital", "It describes the orientation of an orbital", "It describes the spin of an electron"],
+            correctAnswer: "It describes the orientation of an orbital"
+        },
+        {
+            question: "What is the spin quantum number?",
+            options: ["It describes the size of an orbital", "It describes the shape of an orbital", "It describes the orientation of an orbital", "It describes the spin of an electron"],
+            correctAnswer: "It describes the spin of an electron"
+        },
+        {
+            question: "What is the Pauli exclusion principle?",
+            options: ["No two electrons can have the same set of four quantum numbers", "Electrons fill orbitals starting with the lowest energy level", "Electrons occupy degenerate orbitals singly first", "The probability of finding an electron is greatest in the densest part of the cloud"],
+            correctAnswer: "No two electrons can have the same set of four quantum numbers"
+        },
+        {
+            question: "What is Hund's rule?",
+            options: ["No two electrons can have the same set of four quantum numbers", "Electrons fill orbitals starting with the lowest energy level", "Electrons occupy degenerate orbitals singly first", "The probability of finding an electron is greatest in the densest part of the cloud"],
+            correctAnswer: "Electrons occupy degenerate orbitals singly first"
+        },
+        {
+            question: "What is the Aufbau principle?",
+            options: ["No two electrons can have the same set of four quantum numbers", "Electrons fill orbitals starting with the lowest energy level", "Electrons occupy degenerate orbitals singly first", "The probability of finding an electron is greatest in the densest part of the cloud"],
+            correctAnswer: "Electrons fill orbitals starting with the lowest energy level"
+        },
+        {
+            question: "What is an atomic orbital?",
+            options: ["The path an electron takes around the nucleus", "A region of space where there is a high probability of finding an electron", "The distance between the nucleus and the electron", "The energy required to remove an electron from an atom"],
+            correctAnswer: "A region of space where there is a high probability of finding an electron"
+        },
+        {
+            question: "What shape is an s orbital?",
+            options: ["Dumbbell-shaped", "Spherical", "Double dumbbell-shaped", "Complex"],
+            correctAnswer: "Spherical"
+        },
+        {
+            question: "What shape is a p orbital?",
+            options: ["Dumbbell-shaped", "Spherical", "Double dumbbell-shaped", "Complex"],
+            correctAnswer: "Dumbbell-shaped"
+        },
+        {
+            question: "How many p orbitals are there in a p subshell?",
+            options: ["1", "2", "3", "4"],
+            correctAnswer: "3"
+        },
+        {
+            question: "How many d orbitals are there in a d subshell?",
+            options: ["1", "3", "5", "7"],
+            correctAnswer: "5"
+        },
+        {
+            question: "Which element has the electronic configuration 1s2 2s2 2p6 3s2 3p5?",
+            options: ["Neon", "Chlorine", "Argon", "Fluorine"],
+            correctAnswer: "Chlorine"
+        },
+        {
+            question: "What does the Heisenberg uncertainty principle state?",
+            options: ["It is impossible to know the exact position and momentum of an electron simultaneously", "Electrons occupy degenerate orbitals singly first", "Electrons fill orbitals starting with the lowest energy level", "No two electrons can have the same set of four quantum numbers"],
+            correctAnswer: "It is impossible to know the exact position and momentum of an electron simultaneously"
+        },
+        {
+            question: "What is the maximum number of electrons that can be accommodated in a single orbital?",
+            options: ["1", "2", "3", "4"],
+            correctAnswer: "2"
+        },
+        {
+            question: "What is the significance of the Schrödinger equation in atomic structure?",
+            options: ["It describes the path of an electron around the nucleus", "It describes the probability distribution of an electron", "It describes the exact location of an electron", "It describes the energy levels in the nucleus"],
+            correctAnswer: "It describes the probability distribution of an electron"
+        },
+        {
+            question: "Which principle states that lower energy orbitals are filled before higher energy orbitals?",
+            options: ["Pauli exclusion principle", "Hund's rule", "Aufbau principle", "Heisenberg uncertainty principle"],
+            correctAnswer: "Aufbau principle"
+        },
+        {
+            question: "What is the term for the number of protons in the nucleus of an atom?",
+            options: ["Atomic mass", "Atomic number", "Mass number", "Nucleon number"],
+            correctAnswer: "Atomic number"
+        },
+        {
+            question: "What is the term for the total number of protons and neutrons in the nucleus of an atom?",
+            options: ["Atomic mass", "Atomic number", "Mass number", "Nucleon number"],
+            correctAnswer: "Mass number"
+        },
+        {
+            question: "What does the term 'isotope' refer to?",
+            options: ["Atoms with the same number of protons but different numbers of neutrons", "Atoms with the same number of neutrons but different numbers of protons", "Atoms with the same number of protons and neutrons", "Atoms with different numbers of protons and neutrons"],
+            correctAnswer: "Atoms with the same number of protons but different numbers of neutrons"
+        },
+        {
+            question: "Which element has the atomic number 6?",
+            options: ["Oxygen", "Carbon", "Nitrogen", "Fluorine"],
+            correctAnswer: "Carbon"
+        },
+        {
+            question: "What is the mass number of an element with 6 protons and 6 neutrons?",
+            options: ["6", "12", "18", "24"],
+            correctAnswer: "12"
+        },
+        {
+            question: "What does the electron cloud model describe?",
+            options: ["The exact path of electrons around the nucleus", "The most probable locations of electrons in an atom", "The exact position and momentum of electrons", "The energy levels within the nucleus"],
+            correctAnswer: "The most probable locations of electrons in an atom"
+        },
+        {
+            question: "Which quantum number specifies the orientation of an orbital?",
+            options: ["Principal quantum number", "Azimuthal quantum number", "Magnetic quantum number", "Spin quantum number"],
+            correctAnswer: "Magnetic quantum number"
+        },
+        {
+            question: "How many electrons can the first energy level hold?",
+            options: ["2", "4", "6", "8"],
+            correctAnswer: "2"
+        },
+        {
+            question: "How many electrons can the second energy level hold?",
+            options: ["2", "4", "8", "18"],
+            correctAnswer: "8"
+        },
+        {
+            question: "Who proposed the nuclear model of the atom?",
+            options: ["J.J. Thomson", "Ernest Rutherford", "Niels Bohr", "James Chadwick"],
+            correctAnswer: "Ernest Rutherford"
+        },
+        {
+            question: "Which particle was discovered by James Chadwick?",
+            options: ["Proton", "Electron", "Neutron", "Positron"],
+            correctAnswer: "Neutron"
+        },
+        {
+            question: "What is the shape of a d orbital?",
+            options: ["Spherical", "Dumbbell-shaped", "Double dumbbell-shaped", "Complex"],
+            correctAnswer: "Double dumbbell-shaped"
+        },
+        {
+            question: "What is the significance of the principal quantum number (n)?",
+            options: ["It determines the shape of the orbital", "It determines the energy level and size of the orbital", "It determines the orientation of the orbital", "It determines the spin of the electron"],
+            correctAnswer: "It determines the energy level and size of the orbital"
+        },
+        {
+            question: "What does the term 'ground state' refer to?",
+            options: ["The highest energy state of an atom", "The lowest energy state of an atom", "A state where electrons are unpaired", "A state where electrons are excited"],
+            correctAnswer: "The lowest energy state of an atom"
+        },
+        {
+            question: "What is the term for the spectrum of frequencies emitted by an atom's electrons?",
+            options: ["Continuous spectrum", "Line spectrum", "Absorption spectrum", "Emission spectrum"],
+            correctAnswer: "Emission spectrum"
+        },
+        {
+            question: "What is the Heisenberg uncertainty principle?",
+            options: ["Electrons occupy orbitals singly before pairing", "No two electrons can have the same set of four quantum numbers", "It is impossible to know both the exact position and momentum of an electron simultaneously", "Electrons fill orbitals starting with the lowest energy first"],
+            correctAnswer: "It is impossible to know both the exact position and momentum of an electron simultaneously"
+        },
+        {
+            question: "What is an electron configuration?",
+            options: ["The number of protons and neutrons in an atom", "The arrangement of electrons in an atom", "The distribution of neutrons in the nucleus", "The mass and charge of an atom"],
+            correctAnswer: "The arrangement of electrons in an atom"
+        },
+        {
+            question: "Which rule states that electrons will fill degenerate orbitals singly before pairing?",
+            options: ["Pauli exclusion principle", "Hund's rule", "Aufbau principle", "Heisenberg uncertainty principle"],
+            correctAnswer: "Hund's rule"
+        },
+        {
+            question: "Which principle states that no two electrons in an atom can have the same set of four quantum numbers?",
+            options: ["Pauli exclusion principle", "Hund's rule", "Aufbau principle", "Heisenberg uncertainty principle"],
+            correctAnswer: "Pauli exclusion principle"
+        },
+        {
+            question: "What does the Aufbau principle describe?",
+            options: ["Electrons occupy orbitals singly before pairing", "Electrons fill orbitals starting with the lowest energy first", "No two electrons can have the same set of four quantum numbers", "It is impossible to know both the exact position and momentum of an electron simultaneously"],
+            correctAnswer: "Electrons fill orbitals starting with the lowest energy first"
+        },
+        {
+            question: "What is the maximum number of electrons in a p subshell?",
+            options: ["2", "6", "10", "14"],
+            correctAnswer: "6"
+        },
+        {
+            question: "Which orbital has the highest energy in a multi-electron atom?",
+            options: ["1s", "2p", "3d", "4s"],
+            correctAnswer: "3d"
+        },
+        {
+            question: "What is the maximum number of electrons that can occupy the third energy level?",
+            options: ["8", "18", "32", "50"],
+            correctAnswer: "18"
+        },
+        {
+            question: "Which principle explains the arrangement of electrons in an atom in terms of energy levels?",
+            options: ["Pauli exclusion principle", "Hund's rule", "Aufbau principle", "Heisenberg uncertainty principle"],
+            correctAnswer: "Aufbau principle"
+        },
+        {
+            question: "How are orbitals within a subshell filled according to Hund's rule?",
+            options: ["Pairing all electrons first", "Filling one electron per orbital before pairing", "Filling the lowest energy orbital first", "Filling orbitals with the same spin"],
+            correctAnswer: "Filling one electron per orbital before pairing"
+        },
+        {
+            question: "What is an atomic orbital?",
+            options: ["The path of an electron around the nucleus", "A region in space where there is a high probability of finding an electron", "The distance between the nucleus and the electron", "The energy required to remove an electron"],
+            correctAnswer: "A region in space where there is a high probability of finding an electron"
+        },
+        {
+            question: "Which quantum number is associated with the shape of an orbital?",
+            options: ["Principal quantum number", "Azimuthal quantum number", "Magnetic quantum number", "Spin quantum number"],
+            correctAnswer: "Azimuthal quantum number"
+        },
+        {
+            question: "Which orbital is filled after the 3p orbital?",
+            options: ["3d", "4s", "4p", "3f"],
+            correctAnswer: "4s"
+        },
+        {
+            question: "What is the maximum number of electrons that can occupy a d subshell?",
+            options: ["2", "6", "10", "14"],
+            correctAnswer: "10"
+        },
+        {
+            question: "What is the electron configuration of oxygen?",
+            options: ["1s2 2s2 2p4", "1s2 2s2 2p6", "1s2 2s2 2p5", "1s2 2s2 3p4"],
+            correctAnswer: "1s2 2s2 2p4"
+        },
+        {
+            question: "Which quantum number describes the spin of an electron?",
+            options: ["Principal quantum number", "Azimuthal quantum number", "Magnetic quantum number", "Spin quantum number"],
+            correctAnswer: "Spin quantum number"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

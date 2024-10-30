@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Photosynthesis and Plant Growth - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .photosynthesis-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .photosynthesis-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title">  Photosynthesis and Plant Growth - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="photosynthesis-header">
+                <h1 class="photosynthesis-title">Photosynthesis and Plant Growth</h1>
+                <p>Discover the vital processes of photosynthesis and how they contribute to plant growth and the ecosystem.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Photosynthesis</h2>
+                <div class="topic-content">
+                    <p>Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy. This process is essential for producing oxygen and organic compounds that are crucial for life on Earth.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Light Absorption</h3>
+                            <p>Chlorophyll in plant cells captures sunlight, initiating the process of photosynthesis.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Water and Carbon Dioxide</h3>
+                            <p>Plants take in water from the soil and carbon dioxide from the air, which are essential reactants for photosynthesis.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Glucose Production</h3>
+                            <p>The end product of photosynthesis is glucose, a simple sugar that serves as an energy source for plants and other organisms.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Oxygen Release</h3>
+                            <p>As a byproduct of photosynthesis, oxygen is released into the atmosphere, vital for the survival of aerobic organisms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Plant Growth and Development</h2>
+                <div class="topic-content">
+                    <p>Plant growth involves complex processes that are influenced by environmental factors, nutrients, and the plant's genetic makeup. Understanding these processes is essential for agriculture and horticulture.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Seed Germination</h3>
+                            <p>The process begins when a seed absorbs water and swells, leading to the growth of the embryo and the emergence of the seedling.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <h3>Water and Nutrient Uptake</h3>
+                            <p>Roots absorb water and essential nutrients from the soil, which are crucial for plant growth and metabolic processes.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Photosynthesis and Energy Production</h3>
+                            <p>Photosynthesis provides the energy necessary for plant growth, enabling the formation of new tissues and the development of flowers and fruits.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Growth Stages</h3>
+                            <p>Plants undergo several growth stages, including vegetative growth, flowering, and fruiting, each influenced by environmental conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on  Photosynthesis and Plant Growth concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the primary function of photosynthesis in plant growth?",
+            options: ["To produce oxygen", "To release carbon dioxide", "To provide energy for metabolic processes", "To regulate temperature"],
+            correctAnswer: "To provide energy for metabolic processes"
+        },
+        {
+            question: "Which of the following is a product of photosynthesis that directly contributes to plant growth?",
+            options: ["Water", "Carbon dioxide", "Glucose", "Oxygen"],
+            correctAnswer: "Glucose"
+        },
+        {
+            question: "How does photosynthesis influence the growth of plant roots?",
+            options: ["By inhibiting root development", "By providing nutrients for root growth", "By reducing water uptake", "By increasing root respiration"],
+            correctAnswer: "By providing nutrients for root growth"
+        },
+        {
+            question: "What role does photosynthesis play in the growth of plant stems?",
+            options: ["To weaken stem structure", "To transport water", "To synthesize cellulose", "To absorb nutrients"],
+            correctAnswer: "To synthesize cellulose"
+        },
+        {
+            question: "Which plant hormone is primarily synthesized through photosynthesis and influences plant growth?",
+            options: ["Gibberellins", "Auxins", "Cytokinins", "Ethylene"],
+            correctAnswer: "Auxins"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant leaves?",
+            options: ["By causing leaf senescence", "By reducing leaf surface area", "By increasing chlorophyll production", "By inhibiting leaf expansion"],
+            correctAnswer: "By increasing chlorophyll production"
+        },
+        {
+            question: "What is the significance of photosynthesis in promoting flower development?",
+            options: ["To delay flowering", "To increase flower pigmentation", "To inhibit pollen production", "To provide energy for flower formation"],
+            correctAnswer: "To provide energy for flower formation"
+        },
+        {
+            question: "Which of the following is an indirect way in which photosynthesis influences plant growth?",
+            options: ["By causing water loss", "By attracting pollinators", "By increasing soil acidity", "By providing food for herbivores"],
+            correctAnswer: "By attracting pollinators"
+        },
+        {
+            question: "What role does photosynthesis play in promoting seed production in plants?",
+            options: ["To decrease seed viability", "To inhibit seed germination", "To provide energy for seed formation", "To reduce seed dispersal"],
+            correctAnswer: "To provide energy for seed formation"
+        },
+        {
+            question: "How does photosynthesis influence the growth rate of plants?",
+            options: ["By slowing down growth", "By increasing growth rate", "By inhibiting cell division", "By reducing nutrient uptake"],
+            correctAnswer: "By increasing growth rate"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis affects plant growth adaptation?",
+            options: ["By limiting genetic variation", "By promoting drought tolerance", "By decreasing photosynthetic efficiency", "By reducing root growth"],
+            correctAnswer: "By promoting drought tolerance"
+        },
+        {
+            question: "What role does photosynthesis play in promoting overall plant health and vigor?",
+            options: ["To weaken plant immunity", "To increase susceptibility to diseases", "To provide energy for defense mechanisms", "To inhibit nutrient uptake"],
+            correctAnswer: "To provide energy for defense mechanisms"
+        },
+        {
+            question: "How does photosynthesis influence the growth of plant shoots?",
+            options: ["By inhibiting shoot elongation", "By promoting leaf abscission", "By providing energy for shoot development", "By reducing shoot branching"],
+            correctAnswer: "By providing energy for shoot development"
+        },
+        {
+            question: "What is the primary role of photosynthesis in promoting fruit development?",
+            options: ["To decrease fruit size", "To reduce fruit sweetness", "To provide energy for fruit ripening", "To inhibit fruit maturation"],
+            correctAnswer: "To provide energy for fruit ripening"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to environmental stress?",
+            options: ["By reducing plant tolerance to heat", "By promoting susceptibility to pests", "By enhancing plant resilience", "By increasing water availability"],
+            correctAnswer: "By enhancing plant resilience"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant shoots?",
+            options: ["By inhibiting shoot development", "By reducing shoot elongation", "By promoting shoot branching", "By decreasing leaf production"],
+            correctAnswer: "By promoting shoot branching"
+        },
+        {
+            question: "What role does photosynthesis play in promoting the growth of plant vascular tissues?",
+            options: ["To inhibit xylem formation", "To promote phloem development", "To decrease vascular conductivity", "To reduce nutrient transport"],
+            correctAnswer: "To promote phloem development"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to nutrient deficiency?",
+            options: ["By decreasing root growth", "By inhibiting nutrient uptake", "By promoting nutrient absorption", "By increasing nutrient storage"],
+            correctAnswer: "By promoting nutrient absorption"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to shade conditions?",
+            options: ["By reducing chlorophyll production", "By promoting shoot elongation", "By decreasing leaf size", "By inhibiting photosynthetic efficiency"],
+            correctAnswer: "By promoting shoot elongation"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant roots in response to drought stress?",
+            options: ["By promoting root elongation", "By reducing root growth", "By increasing root respiration", "By inhibiting root nutrient uptake"],
+            correctAnswer: "By reducing root growth"
+        },
+        {
+            question: "What role does photosynthesis play in promoting plant growth adaptation to high light intensity?",
+            options: ["To decrease photosynthetic efficiency", "To inhibit chlorophyll production", "To provide energy for photoprotection mechanisms", "To increase leaf wilting"],
+            correctAnswer: "To provide energy for photoprotection mechanisms"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to low light intensity?",
+            options: ["By promoting leaf senescence", "By increasing shoot branching", "By reducing leaf area", "By inhibiting root growth"],
+            correctAnswer: "By increasing shoot branching"
+        },
+        {
+            question: "What is the primary role of photosynthesis in promoting plant growth adaptation to nutrient-rich environments?",
+            options: ["To inhibit nutrient uptake", "To promote leaf shedding", "To provide energy for rapid growth", "To decrease nutrient storage"],
+            correctAnswer: "To provide energy for rapid growth"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant shoots in response to light availability?",
+            options: ["By inhibiting shoot elongation", "By promoting leaf expansion", "By reducing shoot branching", "By increasing shoot wilting"],
+            correctAnswer: "By promoting leaf expansion"
+        },
+        {
+            question: "What role does photosynthesis play in promoting plant growth adaptation to waterlogged conditions?",
+            options: ["To decrease root respiration", "To inhibit leaf transpiration", "To provide energy for root aeration", "To increase shoot wilting"],
+            correctAnswer: "To provide energy for root aeration"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to nutrient deficiency?",
+            options: ["By decreasing shoot elongation", "By inhibiting nutrient uptake", "By promoting leaf senescence", "By reducing nutrient allocation to roots"],
+            correctAnswer: "By inhibiting nutrient uptake"
+        },
+        {
+            question: "What is the significance of photosynthesis in promoting plant growth resilience to pathogen infection?",
+            options: ["To inhibit defense compound synthesis", "To increase pathogen susceptibility", "To provide energy for defense responses", "To decrease plant immune function"],
+            correctAnswer: "To provide energy for defense responses"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant roots in response to soil compaction?",
+            options: ["By promoting root elongation", "By reducing root growth", "By increasing root branching", "By inhibiting root nutrient uptake"],
+            correctAnswer: "By promoting root elongation"
+        },
+        {
+            question: "What role does photosynthesis play in promoting plant growth adaptation to salt stress?",
+            options: ["To increase salt uptake", "To promote leaf wilting", "To provide energy for ion exclusion mechanisms", "To inhibit root growth"],
+            correctAnswer: "To provide energy for ion exclusion mechanisms"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to heat stress?",
+            options: ["By decreasing leaf temperature", "By promoting heat shock protein synthesis", "By inhibiting photosynthetic efficiency", "By increasing leaf desiccation"],
+            correctAnswer: "By promoting heat shock protein synthesis"
+        },
+        {
+            question: "What is the primary role of photosynthesis in promoting plant growth adaptation to cold stress?",
+            options: ["To inhibit cold acclimation", "To increase frost damage", "To provide energy for antifreeze compound synthesis", "To decrease leaf dehydration"],
+            correctAnswer: "To provide energy for antifreeze compound synthesis"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant shoots in response to wind?",
+            options: ["By promoting shoot elongation", "By inhibiting leaf expansion", "By increasing shoot branching", "By reducing shoot stability"],
+            correctAnswer: "By reducing shoot stability"
+        },
+        {
+            question: "What role does photosynthesis play in promoting plant growth adaptation to herbivory?",
+            options: ["To decrease leaf palatability", "To inhibit leaf regrowth", "To provide energy for defense compound synthesis", "To promote herbivore attraction"],
+            correctAnswer: "To provide energy for defense compound synthesis"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to pH changes in soil?",
+            options: ["By inhibiting root respiration", "By promoting nutrient uptake", "By decreasing root growth", "By reducing shoot elongation"],
+            correctAnswer: "By promoting nutrient uptake"
+        },
+        {
+            question: "What is the significance of photosynthesis in promoting plant growth resilience to heavy metal toxicity?",
+            options: ["To increase heavy metal accumulation", "To inhibit root growth", "To provide energy for detoxification mechanisms", "To decrease heavy metal absorption"],
+            correctAnswer: "To provide energy for detoxification mechanisms"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant roots in response to nutrient deficiency?",
+            options: ["By promoting root elongation", "By inhibiting root growth", "By increasing root branching", "By reducing root respiration"],
+            correctAnswer: "By promoting root elongation"
+        },
+        {
+            question: "What role does photosynthesis play in promoting plant growth adaptation to low oxygen levels in soil?",
+            options: ["To decrease root respiration", "To inhibit shoot elongation", "To provide energy for anaerobic respiration", "To increase shoot branching"],
+            correctAnswer: "To provide energy for anaerobic respiration"
+        },
+        {
+            question: "Which of the following is a way in which photosynthesis influences plant growth adaptation to water stress?",
+            options: ["By promoting leaf expansion", "By inhibiting root growth", "By increasing leaf transpiration", "By reducing shoot branching"],
+            correctAnswer: "By promoting leaf expansion"
+        },
+        {
+            question: "What is the primary function of photosynthesis in promoting plant growth?",
+            options: ["To produce oxygen", "To release carbon dioxide", "To provide energy for metabolic processes", "To regulate temperature"],
+            correctAnswer: "To provide energy for metabolic processes"
+        },
+        {
+            question: "Which of the following is a product of photosynthesis that directly contributes to plant growth?",
+            options: ["Water", "Carbon dioxide", "Glucose", "Oxygen"],
+            correctAnswer: "Glucose"
+        },
+        {
+            question: "How does photosynthesis influence the growth of plant roots?",
+            options: ["By inhibiting root development", "By providing nutrients for root growth", "By reducing water uptake", "By increasing root respiration"],
+            correctAnswer: "By providing nutrients for root growth"
+        },
+        {
+            question: "What role does photosynthesis play in the growth of plant stems?",
+            options: ["To weaken stem structure", "To transport water", "To synthesize cellulose", "To absorb nutrients"],
+            correctAnswer: "To synthesize cellulose"
+        },
+        {
+            question: "Which plant hormone is primarily synthesized through photosynthesis and influences plant growth?",
+            options: ["Gibberellins", "Auxins", "Cytokinins", "Ethylene"],
+            correctAnswer: "Auxins"
+        },
+        {
+            question: "How does photosynthesis affect the growth of plant leaves?",
+            options: ["By causing leaf senescence", "By reducing leaf surface area", "By increasing chlorophyll production", "By inhibiting leaf expansion"],
+            correctAnswer: "By increasing chlorophyll production"
+        },
+        {
+            question: "What is the significance of photosynthesis in promoting flower development?",
+            options: ["To delay flowering", "To increase flower pigmentation", "To inhibit pollen production", "To provide energy for flower formation"],
+            correctAnswer: "To provide energy for flower formation"
+        },
+        {
+            question: "Which of the following is an indirect way in which photosynthesis influences plant growth?",
+            options: ["By causing water loss", "By attracting pollinators", "By increasing soil acidity", "By providing food for herbivores"],
+            correctAnswer: "By attracting pollinators"
+        },
+        {
+            question: "What role does photosynthesis play in promoting seed production in plants?",
+            options: ["To decrease seed viability", "To inhibit seed germination", "To provide energy for seed formation", "To reduce seed dispersal"],
+            correctAnswer: "To provide energy for seed formation"
+        },
+        {
+            question: "How does photosynthesis influence the growth rate of plants?",
+            options: ["By slowing down growth", "By increasing growth rate", "By inhibiting cell division", "By reducing nutrient uptake"],
+            correctAnswer: "By increasing growth rate"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

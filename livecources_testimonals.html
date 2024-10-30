@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Live Courses - NEET Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .language-selector {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .language-selector h3 {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .language-btn {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--text);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .language-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .language-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-card {
+            background: var(--surface);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .course-content {
+            padding: 2rem;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .course-details {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .course-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .course-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .enroll-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="language-selector">
+            <h3>Select your preferred language:</h3>
+            <div class="language-grid">
+                <button class="language-btn active">English</button>
+                <button class="language-btn">Hindi</button>
+                <button class="language-btn">Punjabi</button>
+                <button class="language-btn">Assamese</button>
+                <button class="language-btn">Bengali</button>
+                <button class="language-btn">Odia</button>
+                <button class="language-btn">Gujarati</button>
+                <button class="language-btn">Marathi</button>
+                <button class="language-btn">Telugu</button>
+                <button class="language-btn">Malayalam</button>
+                <button class="language-btn">Kannada</button>
+                <button class="language-btn">Tamil</button>
+                <button class="language-btn">Urdu</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Live Courses</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-image">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Complete Physics for NEET 2025</h3>
+                    <p class="course-details">Master all physics concepts with live classes, doubt sessions, and practice tests.</p>
+                    <div class="course-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span>120 hours</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>2.5k enrolled</span>
+                        </div>
+                    </div>
+                    <div class="course-price">₹12,999</div>
+                    <a href="#" class="enroll-btn">Enroll Now</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Chemistry Mastery Program</h3>
+                    <p class="course-details">Comprehensive chemistry course covering organic, inorganic, and physical chemistry.</p>
+                    <div class="course-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span>150 hours</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>3k enrolled</span>
+                        </div>
+                    </div>
+                    <div class="course-price">₹14,999</div>
+                    <a href="#" class="enroll-btn">Enroll Now</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Biology Excellence Course</h3>
+                    <p class="course-details">In-depth coverage of all biology topics with special focus on NCERT alignment.</p>
+                    <div class="course-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span>180 hours</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>4k enrolled</span>
+                        </div>
+                    </div>
+                    <div class="course-price">₹13,999</div>
+                    <a href="#" class="enroll-btn">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Pre-loaded Courses</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-image">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">NEET Complete Package 2025</h3>
+                    <p class="course-details">Recorded lectures covering entire NEET syllabus with practice materials.</p>
+                    <div class="course-stats">
+                        <div class="stat">
+                            <i class="fas fa-video"></i>
+                            <span>500+ videos</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>10k enrolled</span>
+                        </div>
+                    </div>
+                    <div class="course-price">₹24,999</div>
+                    <a href="#" class="enroll-btn">Get Access</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Topic-wise Practice Course</h3>
+                    <p class="course-details">Structured practice sessions with detailed solutions and explanations.</p>
+                    <div class="course-stats">
+                        <div class="stat">
+                            <i class="fas fa-tasks"></i>
+                            <span>10k+ questions</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>8k enrolled</span>
+                        </div>
+                    </div>
+                    <div class="course-price">₹8,999</div>
+                    <a href="#" class="enroll-btn">Get Access</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-image">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Test Series 2025</h3>
+                    <p class="course-details">Comprehensive test series with performance analytics and detailed solutions.</p>
+                    <div class="course-stats">
+                        <div class="stat">
+                            <i class="fas fa-file-alt"></i>
+                            <span>50 tests</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>15k enrolled</span>
+                        </div>
+                    </div>
+                    <div class="course-price">₹4,999</div>
+                    <a href="#" class="enroll-btn">Get Access</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language selector functionality
+        const languageButtons = document.querySelectorAll('.language-btn');
+        languageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                languageButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.75rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.padding = '1rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+
+        // Enroll button hover effect
+        const enrollButtons = document.querySelectorAll('.enroll-btn');
+        enrollButtons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-2px)';
+                button.style.boxShadow = '0 10px 20px rgba(99, 102, 241, 0.2)';
+            });
+
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+                button.style.boxShadow = 'none';
+            });
+        });
+
+        // Course card hover animation
+        const courseCards = document.querySelectorAll('.course-card');
+        courseCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Price formatting
+        const priceElements = document.querySelectorAll('.course-price');
+        priceElements.forEach(element => {
+            const price = element.textContent;
+            element.setAttribute('title', `${price} INR`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Haloalkanes and Haloarenes - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .haloalkanes-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .haloalkanes-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Haloalkanes and Haloarenes - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="haloalkanes-header">
+                <h1 class="haloalkanes-title">Haloalkanes and Haloarenes</h1>
+                <p>Explore the structure, properties, and reactions of haloalkanes and haloarenes, essential topics in organic chemistry.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Haloalkanes and Haloarenes</h2>
+                <div class="topic-content">
+                    <p>Haloalkanes and haloarenes are organic compounds in which halogen atoms (like fluorine, chlorine, bromine, or iodine) are attached to carbon atoms. They exhibit unique properties and reactivity due to the presence of halogens.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3>Structure and Classification</h3>
+                            <p>Classification of haloalkanes and haloarenes based on the carbon chain and the type of halogen atom attached.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Physical Properties</h3>
+                            <p>Examine properties such as boiling point, solubility, and density, and how they vary based on molecular structure and halogen type.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Chemical Reactions</h3>
+                            <p>Explore the types of reactions haloalkanes and haloarenes undergo, including substitution, elimination, and nucleophilic reactions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <h3>Applications and Environmental Impact</h3>
+                            <p>Understand the industrial applications of haloalkanes and haloarenes and their environmental effects, including their role in pollution and ozone layer depletion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Reactivity of Haloalkanes and Haloarenes</h2>
+                <div class="topic-content">
+                    <p>The reactivity of haloalkanes and haloarenes varies based on the nature of the halogen, carbon type, and the type of reactions they participate in.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Substitution Reactions</h3>
+                            <p>Examine nucleophilic substitution reactions, mechanisms, and factors that influence the reactivity of haloalkanes and haloarenes.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrows-alt"></i>
+                            </div>
+                            <h3>Elimination Reactions</h3>
+                            <p>Study elimination reactions, particularly in haloalkanes, leading to the formation of alkenes.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <h3>Reactivity in Haloarenes</h3>
+                            <p>Discover the unique properties of haloarenes, including their stability and reactions with nucleophiles and electrophiles.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <h3>Synthetic Uses</h3>
+                            <p>Learn about the synthetic applications of haloalkanes and haloarenes in organic synthesis and the production of pharmaceuticals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Haloalkanes and Haloarenes concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the general formula of haloalkanes?",
+            options: ["R-X", "R-OH", "R-COOR'", "R-CHO"],
+            correctAnswer: "R-X"
+        },
+        {
+            question: "Which functional group is present in haloalkanes?",
+            options: ["Halogen", "Hydroxyl", "Carbonyl", "Aldehyde"],
+            correctAnswer: "Halogen"
+        },
+        {
+            question: "What is the IUPAC name of CH3CHCl2?",
+            options: ["2-Chloropropane", "1-Chloropropane", "1,2-Dichloropropane", "2,2-Dichloropropane"],
+            correctAnswer: "1,2-Dichloropropane"
+        },
+        {
+            question: "What is the IUPAC name of CH3CH2CH2Br?",
+            options: ["1-Bromopropane", "2-Bromopropane", "1,2-Dibromopropane", "2,2-Dibromopropane"],
+            correctAnswer: "1-Bromopropane"
+        },
+        {
+            question: "Which haloalkane is used as a fire extinguisher?",
+            options: ["Bromochloromethane", "Chloroform", "Bromomethane", "Chlorobenzene"],
+            correctAnswer: "Bromochloromethane"
+        },
+        {
+            question: "What is the product when chloroform reacts with chlorine in sunlight?",
+            options: ["Chloroform", "Chloral", "Chloropicrin", "Chlorobenzene"],
+            correctAnswer: "Chloroform"
+        },
+        {
+            question: "Which of the following compounds is used as an anesthetic?",
+            options: ["Dichloromethane", "Chloroethane", "Chloroform", "Chlorobenzene"],
+            correctAnswer: "Chloroform"
+        },
+        {
+            question: "What is the effect of the halogen size on the reactivity of haloalkanes in nucleophilic substitution reactions?",
+            options: ["Smaller halogens are more reactive", "Larger halogens are more reactive", "Halogen size has no effect", "All halogens are equally reactive"],
+            correctAnswer: "Smaller halogens are more reactive"
+        },
+        {
+            question: "What type of mechanism is typically observed in the reaction of haloalkanes with nucleophiles?",
+            options: ["SN1", "SN2", "E1", "E2"],
+            correctAnswer: "SN2"
+        },
+        {
+            question: "Which haloalkane undergoes the fastest SN2 reaction?",
+            options: ["CH3Cl", "CH3Br", "CH3I", "C6H5Cl"],
+            correctAnswer: "CH3I"
+        },
+        {
+            question: "What is the mechanism of the reaction of 1-bromobutane with NaOH?",
+            options: ["SN1", "SN2", "E1", "E2"],
+            correctAnswer: "SN2"
+        },
+        {
+            question: "Which type of alcohol can be prepared by the reaction of an alkyl halide with NaOH?",
+            options: ["Primary alcohol", "Secondary alcohol", "Tertiary alcohol", "All of the above"],
+            correctAnswer: "Primary alcohol"
+        },
+        {
+            question: "What is the name of the reaction where an alkyl halide reacts with silver nitrate to form a precipitate?",
+            options: ["Finkelstein reaction", "Sandmeyer reaction", "Grignard reaction", "Kolbe reaction"],
+            correctAnswer: "Finkelstein reaction"
+        },
+        {
+            question: "Which reagent is used to convert a haloalkane into an alcohol?",
+            options: ["NaOH", "H2SO4", "HBr", "LiAlH4"],
+            correctAnswer: "LiAlH4"
+        },
+        {
+            question: "What is the product when ethyl bromide reacts with magnesium in dry ether?",
+            options: ["Ethane", "Ethanol", "Ethyl magnesium bromide", "Ethene"],
+            correctAnswer: "Ethyl magnesium bromide"
+        },
+        {
+            question: "What is the major product of the reaction between CH3CH2CH2Cl and alcoholic KOH?",
+            options: ["CH3CH2CH2OH", "CH3CH2CHO", "CH3CH2CH=CH2", "CH3CH2CH2OCH3"],
+            correctAnswer: "CH3CH2CH=CH2"
+        },
+        {
+            question: "Which of the following is an aryl halide?",
+            options: ["CH3Cl", "C6H5Cl", "CH3CH2Cl", "CH3CH2CH2Cl"],
+            correctAnswer: "C6H5Cl"
+        },
+        {
+            question: "What is the IUPAC name of C6H5Cl?",
+            options: ["Benzyl chloride", "Chlorobenzene", "Benzoyl chloride", "Phenyl chloride"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "Which compound is used as a solvent in organic chemistry and as a decaffeinating agent in tea and coffee?",
+            options: ["Chloroform", "Bromochloromethane", "Bromomethane", "Chlorobenzene"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the product when chlorobenzene reacts with Cl2 in the presence of FeCl3?",
+            options: ["Dichlorobenzene", "Trichlorobenzene", "Tetrachlorobenzene", "No reaction occurs"],
+            correctAnswer: "No reaction occurs"
+        },
+        {
+            question: "Which compound is used as a precursor in the synthesis of dyes?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with Br2 in the presence of FeBr3?",
+            options: ["Bromobenzene", "Dibromobenzene", "Tribromobenzene", "No reaction occurs"],
+            correctAnswer: "Bromobenzene"
+        },
+        {
+            question: "What is the name of the reaction where an aryl halide reacts with magnesium in dry ether?",
+            options: ["Finkelstein reaction", "Sandmeyer reaction", "Grignard reaction", "Kolbe reaction"],
+            correctAnswer: "Grignard reaction"
+        },
+        {
+            question: "Which of the following compounds undergoes nucleophilic aromatic substitution reaction most readily?",
+            options: ["Chlorobenzene", "Bromobenzene", "Iodobenzene", "Fluorobenzene"],
+            correctAnswer: "Iodobenzene"
+        },
+        {
+            question: "What is the product when bromobenzene reacts with NaNH2 in liquid ammonia?",
+            options: ["Benzene", "Aniline", "Phenol", "Toluene"],
+            correctAnswer: "Aniline"
+        },
+        {
+            question: "Which compound is used as a tear gas in chemical warfare?",
+            options: ["Chlorobenzene", "Chloropicrin", "Chloroform", "Chloral"],
+            correctAnswer: "Chloropicrin"
+        },
+        {
+            question: "What is the major product when benzene reacts with Cl2 in the presence of FeCl3?",
+            options: ["Chlorobenzene", "Dichlorobenzene", "Trichlorobenzene", "Tetrachlorobenzene"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "Which compound is used as a precursor in the synthesis of pesticides?",
+            options: ["Chloroform", "Chloral", "Chlorobenzene", "Chloropicrin"],
+            correctAnswer: "Chloropicrin"
+        },
+        {
+            question: "What is the major product when benzene reacts with NO2 in the presence of H2SO4?",
+            options: ["Nitrobenzene", "Dinitrobenzene", "Trinitrobenzene", "No reaction occurs"],
+            correctAnswer: "Nitrobenzene"
+        },
+        {
+            question: "Which of the following is a major use of chloroform?",
+            options: ["Solvent in organic chemistry", "Anesthetic", "Fire extinguisher", "All of the above"],
+            correctAnswer: "Anesthetic"
+        },
+        {
+            question: "What is the product when phenol reacts with chloroform in the presence of NaOH?",
+            options: ["2,4,6-Trichlorophenol", "2,4-Dichlorophenol", "2-Chlorophenol", "No reaction occurs"],
+            correctAnswer: "2,4,6-Trichlorophenol"
+        },
+        {
+            question: "Which compound is used as a precursor in the synthesis of trinitrotoluene (TNT)?",
+            options: ["Chlorobenzene", "Chloral", "Chloropicrin", "Chloromethylbenzene"],
+            correctAnswer: "Chloromethylbenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3Cl in the presence of AlCl3?",
+            options: ["Toluene", "Chlorobenzene", "Benzyl chloride", "Aniline"],
+            correctAnswer: "Toluene"
+        },
+        {
+            question: "Which compound is used as a solvent in organic chemistry and in the manufacturing of plastics?",
+            options: ["Chloroform", "Bromochloromethane", "Chlorobenzene", "Bromomethane"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3COCl in the presence of AlCl3?",
+            options: ["Acetophenone", "Phenol", "Benzoyl chloride", "Toluene"],
+            correctAnswer: "Acetophenone"
+        },
+        {
+            question: "Which compound is used as a pesticide and insecticide?",
+            options: ["Chloroform", "Chloral", "Chlorobenzene", "Chloropicrin"],
+            correctAnswer: "Chloropicrin"
+        },
+        {
+            question: "What is the major product when benzene reacts with COCl2 in the presence of AlCl3?",
+            options: ["Phenyl chloride", "Benzoyl chloride", "Phenol", "Benzoic acid"],
+            correctAnswer: "Benzoyl chloride"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of DDT?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3CHO in the presence of H2SO4?",
+            options: ["Acetophenone", "Phenol", "Benzaldehyde", "Toluene"],
+            correctAnswer: "Acetophenone"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of aspirin?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with COOH in the presence of AlCl3?",
+            options: ["Benzoic acid", "Benzaldehyde", "Benzyl chloride", "Toluene"],
+            correctAnswer: "Benzoic acid"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of phenol?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3NO2 in the presence of H2SO4?",
+            options: ["Nitrobenzene", "Dinitrobenzene", "Trinitrobenzene", "Aniline"],
+            correctAnswer: "Nitrobenzene"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of aniline?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3COOH in the presence of AlCl3?",
+            options: ["Acetophenone", "Phenol", "Benzoyl chloride", "Toluene"],
+            correctAnswer: "Acetophenone"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of benzene?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chloroform"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3CHOHCOCH3 in the presence of H2SO4?",
+            options: ["Acetophenone", "Phenol", "Benzaldehyde", "Toluene"],
+            correctAnswer: "Acetophenone"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of TNT?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with NO in the presence of H2SO4?",
+            options: ["Aniline", "Nitrobenzene", "Phenol", "Toluene"],
+            correctAnswer: "Nitrobenzene"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloroform?",
+            options: ["Chlorobenzene", "Bromochloromethane", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chloral"
+        },
+        {
+            question: "What is the major product when benzene reacts with Cl in the presence of FeCl3?",
+            options: ["Chlorobenzene", "Dichlorobenzene", "Trichlorobenzene", "Tetrachlorobenzene"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloral hydrate?",
+            options: ["Chlorobenzene", "Chloroform", "Bromochloromethane", "Chloropicrin"],
+            correctAnswer: "Chloroform"
+        },
+        {
+            question: "What is the major product when benzene reacts with NO2 in the presence of H2SO4?",
+            options: ["Nitrobenzene", "Dinitrobenzene", "Trinitrobenzene", "Aniline"],
+            correctAnswer: "Nitrobenzene"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloropicrin?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Bromochloromethane"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3COCl in the presence of AlCl3?",
+            options: ["Acetophenone", "Phenol", "Benzoyl chloride", "Toluene"],
+            correctAnswer: "Acetophenone"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloroacetic acid?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Bromochloromethane"],
+            correctAnswer: "Chloroform"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3COOCH3 in the presence of H2SO4?",
+            options: ["Acetophenone", "Phenol", "Methyl benzoate", "Toluene"],
+            correctAnswer: "Acetophenone"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloroform?",
+            options: ["Chlorobenzene", "Bromochloromethane", "Chloral", "Chloropicrin"],
+            correctAnswer: "Chloral"
+        },
+        {
+            question: "What is the major product when benzene reacts with COCl2 in the presence of AlCl3?",
+            options: ["Benzoyl chloride", "Phenol", "Benzaldehyde", "Acetophenone"],
+            correctAnswer: "Benzoyl chloride"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloral hydrate?",
+            options: ["Chlorobenzene", "Chloroform", "Bromochloromethane", "Chloropicrin"],
+            correctAnswer: "Chloroform"
+        },
+        {
+            question: "What is the major product when benzene reacts with NO in the presence of H2SO4?",
+            options: ["Nitrobenzene", "Dinitrobenzene", "Trinitrobenzene", "Aniline"],
+            correctAnswer: "Nitrobenzene"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloropicrin?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Bromochloromethane"],
+            correctAnswer: "Chlorobenzene"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3COCl in the presence of AlCl3?",
+            options: ["Acetophenone", "Phenol", "Benzoyl chloride", "Toluene"],
+            correctAnswer: "Acetophenone"
+        },
+        {
+            question: "Which compound is used as a starting material in the synthesis of chloroacetic acid?",
+            options: ["Chlorobenzene", "Chloroform", "Chloral", "Bromochloromethane"],
+            correctAnswer: "Chloroform"
+        },
+        {
+            question: "What is the major product when benzene reacts with CH3COOCH3 in the presence of H2SO4?",
+            options: ["Acetophenone", "Phenol", "Methyl benzoate", "Toluene"],
+            correctAnswer: "Acetophenone"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

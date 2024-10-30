@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Surface Chemistry - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Surface Chemistry - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Surface Chemistry</h1>
+                <p>Explore the principles of surface chemistry and its applications essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Fundamentals of Surface Chemistry</h2>
+                <div class="topic-content">
+                    <p>Surface chemistry deals with the chemical reactions and phenomena that occur at the interfaces of materials. It plays a crucial role in catalysis, adsorption, and material science.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Adsorption</h3>
+                            <p>The process by which atoms, ions, or molecules from a gas, liquid, or dissolved solid adhere to a surface.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h3>Surface Energy</h3>
+                            <p>Understanding the excess energy at the surface of a material compared to its bulk, influencing phenomena like wetting and adhesion.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Catalysis</h3>
+                            <p>The process of accelerating a chemical reaction through the use of a catalyst, often involving surface interactions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Colloids and Interfaces</h3>
+                            <p>Study of colloidal systems and their interfaces, including stability, behavior, and applications in various fields.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Applications of Surface Chemistry</h2>
+                <div class="topic-content">
+                    <p>Surface chemistry has significant applications in fields like catalysis, pharmaceuticals, and environmental science.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>Industrial Catalysts</h3>
+                            <p>Understanding the role of surface chemistry in the development and use of catalysts in industrial processes.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <h3>Drug Delivery Systems</h3>
+                            <p>Exploration of how surface chemistry influences drug release mechanisms and the design of nanocarriers.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Environmental Remediation</h3>
+                            <p>Application of surface chemistry in the removal of pollutants from the environment through adsorption techniques.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Coatings and Films</h3>
+                            <p>Study of surface treatments and coatings to enhance material properties such as corrosion resistance and wear protection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Surface Chemistry concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is surface chemistry?",
+            options: ["The study of chemical reactions on the surfaces of materials", "The study of chemical reactions in solution", "The study of chemical reactions in gases", "The study of chemical reactions in solids"],
+            correctAnswer: "The study of chemical reactions on the surfaces of materials"
+        },
+        {
+            question: "What is adsorption?",
+            options: ["The process of a substance absorbing light energy", "The process of a substance releasing light energy", "The process of molecules sticking to the surface of a solid", "The process of molecules evaporating from a liquid"],
+            correctAnswer: "The process of molecules sticking to the surface of a solid"
+        },
+        {
+            question: "What is the difference between physical adsorption and chemical adsorption?",
+            options: ["Physical adsorption is reversible and weak, while chemical adsorption is irreversible and strong", "Physical adsorption is irreversible and strong, while chemical adsorption is reversible and weak", "Physical adsorption involves a chemical reaction, while chemical adsorption does not", "Physical adsorption occurs only in liquids, while chemical adsorption occurs only in gases"],
+            correctAnswer: "Physical adsorption is reversible and weak, while chemical adsorption is irreversible and strong"
+        },
+        {
+            question: "What is desorption?",
+            options: ["The process of a substance absorbing light energy", "The process of a substance releasing light energy", "The process of molecules sticking to the surface of a solid", "The process of molecules evaporating from a liquid"],
+            correctAnswer: "The process of molecules releasing from the surface of a solid"
+        },
+        {
+            question: "What is meant by Langmuir adsorption isotherm?",
+            options: ["An equation describing the relationship between the pressure of a gas and its volume", "An equation describing the relationship between the concentration of a solute and its solubility", "An equation describing the relationship between the pressure of a gas and its solubility", "An equation describing the relationship between the coverage of adsorbate on a surface and the pressure of the gas"],
+            correctAnswer: "An equation describing the relationship between the coverage of adsorbate on a surface and the pressure of the gas"
+        },
+        {
+            question: "What is the role of catalysts in surface chemistry?",
+            options: ["To increase the surface area of reactants", "To speed up chemical reactions by lowering activation energy", "To change the color of the surface of reactants", "To decrease the surface area of reactants"],
+            correctAnswer: "To speed up chemical reactions by lowering activation energy"
+        },
+        {
+            question: "What is heterogeneous catalysis?",
+            options: ["A catalytic process where the catalyst and reactants are in different phases", "A catalytic process where the catalyst and reactants are in the same phase", "A catalytic process where the catalyst is solid and the reactants are liquid", "A catalytic process where the catalyst is liquid and the reactants are solid"],
+            correctAnswer: "A catalytic process where the catalyst and reactants are in different phases"
+        },
+        {
+            question: "What is an enzyme?",
+            options: ["A substance that speeds up chemical reactions without being consumed", "A substance that releases energy in the form of light", "A substance that absorbs light energy", "A substance that evaporates from a liquid"],
+            correctAnswer: "A substance that speeds up chemical reactions without being consumed"
+        },
+        {
+            question: "What is the role of surfactants in surface chemistry?",
+            options: ["To increase the surface area of reactants", "To decrease the surface area of reactants", "To reduce surface tension between liquids", "To increase surface tension between liquids"],
+            correctAnswer: "To reduce surface tension between liquids"
+        },
+        {
+            question: "What is colloidal chemistry?",
+            options: ["The study of chemical reactions in gases", "The study of chemical reactions in solids", "The study of chemical reactions on the surfaces of materials", "The study of heterogeneous mixtures where particles are intermediate in size between molecules and bulk solids or liquids"],
+            correctAnswer: "The study of heterogeneous mixtures where particles are intermediate in size between molecules and bulk solids or liquids"
+        },
+        {
+            question: "What are micelles?",
+            options: ["Large molecules formed by covalent bonds", "Spherical clusters of surfactant molecules", "Irregularly shaped particles in a colloid", "Small particles formed by physical adsorption"],
+            correctAnswer: "Spherical clusters of surfactant molecules"
+        },
+        {
+            question: "What is Brownian motion?",
+            options: ["The movement of colloidal particles under an applied electric field", "The random movement of colloidal particles due to collisions with solvent molecules", "The movement of surfactant molecules on a surface", "The movement of catalysts during a chemical reaction"],
+            correctAnswer: "The random movement of colloidal particles due to collisions with solvent molecules"
+        },
+        {
+            question: "What is Tyndall effect?",
+            options: ["The scattering of light by colloidal particles", "The absorption of light by colloidal particles", "The reflection of light by colloidal particles", "The transmission of light through colloidal particles"],
+            correctAnswer: "The scattering of light by colloidal particles"
+        },
+        {
+            question: "What is electrophoresis?",
+            options: ["The movement of colloidal particles under an applied electric field", "The random movement of colloidal particles due to collisions with solvent molecules", "The movement of surfactant molecules on a surface", "The movement of catalysts during a chemical reaction"],
+            correctAnswer: "The movement of colloidal particles under an applied electric field"
+        },
+        {
+            question: "What is coagulation?",
+            options: ["The separation of colloidal particles into smaller particles", "The aggregation of colloidal particles into larger particles", "The absorption of light by colloidal particles", "The reflection of light by colloidal particles"],
+            correctAnswer: "The aggregation of colloidal particles into larger particles"
+        },
+        {
+            question: "What is peptization?",
+            options: ["The formation of a colloidal solution from a precipitate", "The separation of a colloidal solution into its components", "The formation of a thin film on the surface of a solid", "The removal of impurities from a colloidal solution"],
+            correctAnswer: "The formation of a colloidal solution from a precipitate"
+        },
+        {
+            question: "What is emulsification?",
+            options: ["The separation of colloidal particles into smaller particles", "The aggregation of colloidal particles into larger particles", "The formation of a colloidal solution from a precipitate", "The formation of a stable suspension of small droplets of one liquid in another"],
+            correctAnswer: "The formation of a stable suspension of small droplets of one liquid in another"
+        },
+        {
+            question: "What is adsorption chromatography?",
+            options: ["A technique used to separate components of a mixture based on their interactions with a stationary phase", "A technique used to separate components of a mixture based on their solubility in a solvent", "A technique used to separate components of a mixture based on their boiling points", "A technique used to separate components of a mixture based on their electrical conductivity"],
+            correctAnswer: "A technique used to separate components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of zeolites in catalysis?",
+            options: ["To increase the surface area of reactants", "To decrease the surface area of reactants", "To act as catalysts in chemical reactions", "To change the color of the surface of reactants"],
+            correctAnswer: "To act as catalysts in chemical reactions"
+        },
+        {
+            question: "What is the principle of chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their boiling points", "The separation of components of a mixture based on their electrical conductivity"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of adsorbents in chromatography?",
+            options: ["To increase the surface area of reactants", "To decrease the surface area of reactants", "To act as the stationary phase for separating components", "To change the color of the surface of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of ion exchange chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their electrical charge", "The separation of components of a mixture based on their boiling points"],
+            correctAnswer: "The separation of components of a mixture based on their electrical charge"
+        },
+        {
+            question: "What is the role of silica gel in TLC?",
+            options: ["To increase the surface area of reactants", "To decrease the surface area of reactants", "To act as the stationary phase for separating components", "To change the color of the surface of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of gas chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their boiling points", "The separation of components of a mixture based on their volatility and interaction with a stationary phase"],
+            correctAnswer: "The separation of components of a mixture based on their volatility and interaction with a stationary phase"
+        },
+        {
+            question: "What is the role of the mobile phase in chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the role of TLC in surface chemistry?",
+            options: ["To analyze the structure of molecules", "To separate components of a mixture based on their interactions with a stationary phase", "To determine the chemical composition of a substance", "To increase the surface area of reactants"],
+            correctAnswer: "To separate components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the principle of paper chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their boiling points", "The separation of components of a mixture based on their electrical conductivity"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of solvent in chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the mobile phase for separating components"
+        },
+        {
+            question: "What is the principle of size exclusion chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their boiling points"],
+            correctAnswer: "The separation of components of a mixture based on their size"
+        },
+        {
+            question: "What is the role of gel electrophoresis in surface chemistry?",
+            options: ["To separate DNA fragments based on their size", "To separate proteins based on their charge and size", "To analyze the structure of molecules", "To separate components of a mixture based on their interactions with a stationary phase"],
+            correctAnswer: "To separate proteins based on their charge and size"
+        },
+        {
+            question: "What is the principle of affinity chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their specific interactions with a ligand"],
+            correctAnswer: "The separation of components of a mixture based on their specific interactions with a ligand"
+        },
+        {
+            question: "What is the role of column chromatography in surface chemistry?",
+            options: ["To separate components of a mixture based on their interactions with a stationary phase", "To analyze the structure of molecules", "To determine the chemical composition of a substance", "To increase the surface area of reactants"],
+            correctAnswer: "To separate components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the principle of reversed-phase chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their boiling points", "The separation of components of a mixture based on their polarity"],
+            correctAnswer: "The separation of components of a mixture based on their polarity"
+        },
+        {
+            question: "What is the role of silica gel in column chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of thin-layer chromatography (TLC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their boiling points", "The separation of components of a mixture based on their volatility and interaction with a stationary phase"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of alumina in chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of gas-liquid chromatography (GLC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their volatility and interaction with a stationary phase"
+        },
+        {
+            question: "What is the role of stationary phase in chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the mobile phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of preparative chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their boiling points", "The separation of components of a mixture based on their size"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of ion-exchange resin in chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of chiral chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of enantiomers based on their chirality", "The separation of components of a mixture based on their boiling points", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of enantiomers based on their chirality"
+        },
+        {
+            question: "What is the role of cyclodextrin in chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of supercritical fluid chromatography (SFC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of CO2 in supercritical fluid chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the mobile phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the mobile phase for separating components"
+        },
+        {
+            question: "What is the principle of ion chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of ions based on their charge", "The separation of components of a mixture based on their boiling points"],
+            correctAnswer: "The separation of ions based on their charge"
+        },
+        {
+            question: "What is the role of ion-exchange membrane in ion chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of liquid-liquid chromatography (LLC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their solubility in a solvent"
+        },
+        {
+            question: "What is the role of aqueous phase in liquid-liquid chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the mobile phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the mobile phase for separating components"
+        },
+        {
+            question: "What is the principle of hydrophobic interaction chromatography (HIC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their hydrophobicity", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their hydrophobicity"
+        },
+        {
+            question: "What is the role of hydrophobic ligand in hydrophobic interaction chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of size exclusion chromatography (SEC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their size"
+        },
+        {
+            question: "What is the role of gel filtration resin in size exclusion chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the stationary phase for separating components", "To act as the catalyst for the reaction", "To decrease the surface area of reactants"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of affinity chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their specific interactions with a ligand", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their specific interactions with a ligand"
+        },
+        {
+            question: "What is the role of specific ligand in affinity chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the mobile phase for separating components", "To act as the catalyst for the reaction", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of high performance liquid chromatography (HPLC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of stationary phase in HPLC?",
+            options: ["To increase the surface area of reactants", "To act as the catalyst for the reaction", "To act as the mobile phase for separating components", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of gas chromatography (GC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their volatility and interaction with a stationary phase"
+        },
+        {
+            question: "What is the role of carrier gas in gas chromatography?",
+            options: ["To act as the mobile phase for separating components", "To increase the surface area of reactants", "To act as the catalyst for the reaction", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the mobile phase for separating components"
+        },
+        {
+            question: "What is the principle of paper chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of filter paper in paper chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the mobile phase for separating components", "To act as the catalyst for the reaction", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of affinity chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their specific interactions with a ligand", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their specific interactions with a ligand"
+        },
+        {
+            question: "What is the role of specific ligand in affinity chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the mobile phase for separating components", "To act as the catalyst for the reaction", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of high performance liquid chromatography (HPLC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their solubility in a solvent", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of stationary phase in HPLC?",
+            options: ["To increase the surface area of reactants", "To act as the catalyst for the reaction", "To act as the mobile phase for separating components", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        },
+        {
+            question: "What is the principle of gas chromatography (GC)?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their volatility and interaction with a stationary phase"
+        },
+        {
+            question: "What is the role of carrier gas in gas chromatography?",
+            options: ["To act as the mobile phase for separating components", "To increase the surface area of reactants", "To act as the catalyst for the reaction", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the mobile phase for separating components"
+        },
+        {
+            question: "What is the principle of paper chromatography?",
+            options: ["The separation of components of a mixture based on their interactions with a stationary phase", "The separation of components of a mixture based on their size", "The separation of components of a mixture based on their volatility and interaction with a stationary phase", "The separation of components of a mixture based on their electrical charge"],
+            correctAnswer: "The separation of components of a mixture based on their interactions with a stationary phase"
+        },
+        {
+            question: "What is the role of filter paper in paper chromatography?",
+            options: ["To increase the surface area of reactants", "To act as the mobile phase for separating components", "To act as the catalyst for the reaction", "To act as the stationary phase for separating components"],
+            correctAnswer: "To act as the stationary phase for separating components"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

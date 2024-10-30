@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Electromagnetic Waves - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Electromagnetic Waves - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Electromagnetic Waves</h1>
+                <p>Explore the properties, types, and applications of electromagnetic waves essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Electromagnetic Waves</h2>
+                <div class="topic-content">
+                    <p>Electromagnetic waves are oscillations of electric and magnetic fields that travel through space. They are fundamental to various technologies and natural phenomena.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </div>
+                            <h3>Nature of Electromagnetic Waves</h3>
+                            <p>Understanding the dual nature of electromagnetic waves as both particles and waves, including concepts like wavelength, frequency, and amplitude.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <h3>Types of Electromagnetic Waves</h3>
+                            <p>Exploring different types of electromagnetic waves, including radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>Wave-Particle Duality</h3>
+                            <p>Examining how electromagnetic waves exhibit both wave-like and particle-like properties, leading to the concept of photons.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <h3>Propagation of Electromagnetic Waves</h3>
+                            <p>Understanding how electromagnetic waves propagate through different media, including vacuum and various materials.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Applications of Electromagnetic Waves</h2>
+                <div class="topic-content">
+                    <p>Electromagnetic waves play a crucial role in various applications across different fields, from communication to medicine.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>Communication Systems</h3>
+                            <p>Utilization of radio waves and microwaves in wireless communication, including mobile phones and satellite transmissions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Medical Imaging</h3>
+                            <p>Application of X-rays and other electromagnetic waves in medical diagnostics, including CT scans and MRIs.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Solar Energy</h3>
+                            <p>Harvesting solar energy using photovoltaic cells that convert visible light into electrical energy.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-radiation"></i>
+                            </div>
+                            <h3>Radiation and Safety</h3>
+                            <p>Understanding the safety aspects and biological effects of exposure to various types of electromagnetic radiation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+            
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Electromagnetic Waves concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What type of waves are electromagnetic waves?",
+            options: ["Transverse waves", "Longitudinal waves", "Surface waves", "Mechanical waves"],
+            correctAnswer: "Transverse waves"
+        },
+        {
+            question: "What is the speed of electromagnetic waves in a vacuum?",
+            options: ["Speed of light (3 x 10^8 m/s)", "Speed of sound (343 m/s)", "Speed of wind (variable)", "Speed of water waves (variable)"],
+            correctAnswer: "Speed of light (3 x 10^8 m/s)"
+        },
+        {
+            question: "What is the wavelength range of visible light?",
+            options: ["400 nm to 700 nm", "100 nm to 1000 nm", "10 nm to 100 nm", "1000 nm to 2000 nm"],
+            correctAnswer: "400 nm to 700 nm"
+        },
+        {
+            question: "Which electromagnetic wave has the shortest wavelength?",
+            options: ["Gamma rays", "Radio waves", "Microwaves", "X-rays"],
+            correctAnswer: "Gamma rays"
+        },
+        {
+            question: "Which electromagnetic wave has the highest frequency?",
+            options: ["Gamma rays", "Radio waves", "Microwaves", "Infrared waves"],
+            correctAnswer: "Gamma rays"
+        },
+        {
+            question: "What is the range of frequencies for radio waves?",
+            options: ["3 kHz to 300 GHz", "300 GHz to 3 THz", "3 Hz to 300 kHz", "3 MHz to 300 GHz"],
+            correctAnswer: "3 kHz to 300 GHz"
+        },
+        {
+            question: "Which material is transparent to visible light?",
+            options: ["Glass", "Wood", "Metal", "Concrete"],
+            correctAnswer: "Glass"
+        },
+        {
+            question: "What is the primary source of electromagnetic waves?",
+            options: ["Accelerating charged particles", "Friction between surfaces", "Heat energy", "Nuclear reactions"],
+            correctAnswer: "Accelerating charged particles"
+        },
+        {
+            question: "What is the electromagnetic spectrum?",
+            options: ["The range of all possible frequencies of electromagnetic radiation", "The range of colors visible to the human eye", "The range of temperatures on Earth", "The range of wavelengths in a radio broadcast"],
+            correctAnswer: "The range of all possible frequencies of electromagnetic radiation"
+        },
+        {
+            question: "Which electromagnetic wave is commonly used in microwave ovens?",
+            options: ["Microwaves", "Radio waves", "Infrared waves", "X-rays"],
+            correctAnswer: "Microwaves"
+        },
+        {
+            question: "Which electromagnetic wave is used for communication in satellites?",
+            options: ["Microwaves", "Radio waves", "Infrared waves", "Ultraviolet waves"],
+            correctAnswer: "Microwaves"
+        },
+        {
+            question: "What is the main use of infrared waves?",
+            options: ["Night vision and thermal imaging", "Cooking food in microwave ovens", "Sterilization of medical equipment", "Remote controls for electronic devices"],
+            correctAnswer: "Night vision and thermal imaging"
+        },
+        {
+            question: "Which electromagnetic wave has the ability to penetrate through most materials?",
+            options: ["X-rays", "Visible light", "Ultraviolet waves", "Infrared waves"],
+            correctAnswer: "X-rays"
+        },
+        {
+            question: "What is the primary application of X-rays?",
+            options: ["Medical imaging", "Cooking food in microwave ovens", "Wireless communication", "Remote controls for electronic devices"],
+            correctAnswer: "Medical imaging"
+        },
+        {
+            question: "Which electromagnetic wave is used for sterilization of medical equipment?",
+            options: ["Ultraviolet waves", "Gamma rays", "Infrared waves", "Visible light"],
+            correctAnswer: "Ultraviolet waves"
+        },
+        {
+            question: "What is the effect of ultraviolet waves on human skin?",
+            options: ["Can cause sunburn and skin cancer", "No effect", "Heals wounds", "Causes relaxation"],
+            correctAnswer: "Can cause sunburn and skin cancer"
+        },
+        {
+            question: "Which electromagnetic wave has the highest energy?",
+            options: ["Gamma rays", "Radio waves", "Microwaves", "Visible light"],
+            correctAnswer: "Gamma rays"
+        },
+        {
+            question: "What is the source of gamma rays?",
+            options: ["Nuclear reactions", "Friction between surfaces", "Light bulbs", "Television antennas"],
+            correctAnswer: "Nuclear reactions"
+        },
+        {
+            question: "Which electromagnetic wave has the lowest energy?",
+            options: ["Radio waves", "Gamma rays", "Microwaves", "Infrared waves"],
+            correctAnswer: "Radio waves"
+        },
+        {
+            question: "What is the effect of radio waves on human health?",
+            options: ["Generally considered safe", "Causes cancer", "Causes immediate burns", "Leads to radiation sickness"],
+            correctAnswer: "Generally considered safe"
+        },
+        {
+            question: "What is the primary use of radio waves?",
+            options: ["Wireless communication", "Medical imaging", "Cooking food", "Creating visible light"],
+            correctAnswer: "Wireless communication"
+        },
+        {
+            question: "Which electromagnetic wave is used for cancer treatment?",
+            options: ["Gamma rays", "Radio waves", "Infrared waves", "Ultraviolet waves"],
+            correctAnswer: "Gamma rays"
+        },
+        {
+            question: "What is the primary use of visible light?",
+            options: ["Illumination and vision", "Cooking food", "Heating water", "Sterilization of medical equipment"],
+            correctAnswer: "Illumination and vision"
+        },
+        {
+            question: "Which electromagnetic wave is commonly used in photography?",
+            options: ["Visible light", "X-rays", "Ultraviolet waves", "Gamma rays"],
+            correctAnswer: "Visible light"
+        },
+        {
+            question: "What is the main source of visible light?",
+            options: ["Sun and artificial light sources", "Heat energy", "Nuclear reactions", "Friction between surfaces"],
+            correctAnswer: "Sun and artificial light sources"
+        },
+        {
+            question: "What is the main use of ultraviolet waves?",
+            options: ["Killing bacteria and viruses", "Cooking food", "Detecting heat", "Generating electricity"],
+            correctAnswer: "Killing bacteria and viruses"
+        },
+        {
+            question: "Which electromagnetic wave has the ability to cause fluorescence in certain substances?",
+            options: ["Ultraviolet waves", "Gamma rays", "Infrared waves", "Radio waves"],
+            correctAnswer: "Ultraviolet waves"
+        },
+        {
+            question: "What is the main use of infrared waves in remote controls?",
+            options: ["Communicating with electronic devices", "Creating visible light", "Sterilizing medical equipment", "Heating food"],
+            correctAnswer: "Communicating with electronic devices"
+        },
+        {
+            question: "What is the effect of infrared waves on skin?",
+            options: ["Produces warmth", "Causes sunburn", "Leads to radiation sickness", "Can cause skin cancer"],
+            correctAnswer: "Produces warmth"
+        },
+        {
+            question: "Which electromagnetic wave is used in the treatment of muscle and joint pain?",
+            options: ["Infrared waves", "Microwaves", "Ultraviolet waves", "Gamma rays"],
+            correctAnswer: "Infrared waves"
+        },
+        {
+            question: "What is the primary use of microwaves?",
+            options: ["Heating food", "Sterilizing medical equipment", "Killing bacteria", "Communication"],
+            correctAnswer: "Heating food"
+        },
+        {
+            question: "Which electromagnetic wave is used for radar systems?",
+            options: ["Microwaves", "Radio waves", "Ultraviolet waves", "Infrared waves"],
+            correctAnswer: "Microwaves"
+        },
+        {
+            question: "What is the main use of radio waves in astronomy?",
+            options: ["Studying celestial objects", "Cooking food", "Heating water", "Communicating with spacecraft"],
+            correctAnswer: "Studying celestial objects"
+        },
+        {
+            question: "Which electromagnetic wave is commonly used in weather forecasting?",
+            options: ["Radio waves", "Microwaves", "Visible light", "Infrared waves"],
+            correctAnswer: "Microwaves"
+        },
+        {
+            question: "What is the primary use of gamma rays in medicine?",
+            options: ["Cancer treatment", "Sterilization", "Food preservation", "Communication"],
+            correctAnswer: "Cancer treatment"
+        },
+        {
+            question: "Which electromagnetic wave is used in X-ray crystallography?",
+            options: ["X-rays", "Ultraviolet waves", "Microwaves", "Gamma rays"],
+            correctAnswer: "X-rays"
+        },
+        {
+            question: "What is the primary use of X-rays in security?",
+            options: ["Checking baggage at airports", "Detecting explosives", "Screening for weapons", "Monitoring traffic"],
+            correctAnswer: "Checking baggage at airports"
+        },
+        {
+            question: "Which electromagnetic wave is used in satellite communication?",
+            options: ["Microwaves", "Radio waves", "Infrared waves", "Visible light"],
+            correctAnswer: "Microwaves"
+        },
+        {
+            question: "What is the primary use of visible light in fiber optics?",
+            options: ["Transmitting data", "Generating electricity", "Sterilizing medical equipment", "Killing bacteria"],
+            correctAnswer: "Transmitting data"
+        },
+        {
+            question: "Which electromagnetic wave is used in UV lamps for sterilization?",
+            options: ["Ultraviolet waves", "Gamma rays", "Infrared waves", "Microwaves"],
+            correctAnswer: "Ultraviolet waves"
+        },
+        {
+            question: "What is the main use of infrared waves in night vision goggles?",
+            options: ["Detecting heat", "Creating visible light", "Cooking food", "Sterilizing medical equipment"],
+            correctAnswer: "Detecting heat"
+        },
+        {
+            question: "Which electromagnetic wave is used in photography for night vision?",
+            options: ["Infrared waves", "Microwaves", "Ultraviolet waves", "X-rays"],
+            correctAnswer: "Infrared waves"
+        },
+        {
+            question: "What is the primary use of microwaves in wireless communication?",
+            options: ["Sending signals over long distances", "Cooking food", "Detecting heat", "Generating electricity"],
+            correctAnswer: "Sending signals over long distances"
+        },
+        {
+            question: "Which electromagnetic wave is used in remote sensing of Earth's atmosphere?",
+            options: ["Infrared waves", "Microwaves", "Radio waves", "Gamma rays"],
+            correctAnswer: "Microwaves"
+        },
+        {
+            question: "What is the main use of radio waves in RFID technology?",
+            options: ["Tracking and identification", "Medical imaging", "Heating food", "Killing bacteria"],
+            correctAnswer: "Tracking and identification"
+        },
+        {
+            question: "Which electromagnetic wave is used in UV light therapy for skin conditions?",
+            options: ["Ultraviolet waves", "Gamma rays", "Infrared waves", "Microwaves"],
+            correctAnswer: "Ultraviolet waves"
+        },
+        {
+            question: "What is the primary use of visible light in solar cells?",
+            options: ["Generating electricity", "Communicating with spacecraft", "Sterilizing medical equipment", "Killing bacteria"],
+            correctAnswer: "Generating electricity"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

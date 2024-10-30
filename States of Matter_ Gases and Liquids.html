@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> States of Matter: Gases and Liquids - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> States of Matter: Gases and Liquids - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">States of Matter: Gases and Liquids</h1>
+                <p>Explore the properties and behaviors of gases and liquids essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Gases</h2>
+                <div class="topic-content">
+                    <p>Gases have unique properties that differentiate them from solids and liquids. They are compressible and expand to fill their container, with interactions between molecules being minimal.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3>Properties of Gases</h3>
+                            <p>Study of gas properties, including pressure, volume, temperature, and how they relate through gas laws.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <h3>Gas Laws</h3>
+                            <p>Understanding Boyle's Law, Charles's Law, and Avogadro's Law in relation to gas behavior.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3>Ideal Gas vs. Real Gas</h3>
+                            <p>Comparison of ideal gases with real gases, including deviations from ideal behavior at high pressures and low temperatures.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <h3>Applications of Gases</h3>
+                            <p>Exploration of the role of gases in various applications, such as in the atmosphere, industrial processes, and everyday life.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Liquids</h2>
+                <div class="topic-content">
+                    <p>Liquids possess distinct characteristics that set them apart from gases and solids. They have a definite volume but no definite shape, adapting to the shape of their container.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Properties of Liquids</h3>
+                            <p>Examination of properties like viscosity, surface tension, and cohesion in liquids.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <h3>Phase Changes</h3>
+                            <p>Understanding phase transitions, including evaporation, condensation, and freezing, and how they relate to temperature and pressure.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Liquid Behavior</h3>
+                            <p>Investigation of the behavior of liquids under different conditions, including hydrostatic pressure and buoyancy.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h3>Applications of Liquids</h3>
+                            <p>Exploration of the importance of liquids in various fields, such as chemistry, biology, and engineering.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on States of Matter: Gases and Liquids concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the main assumption of the kinetic molecular theory regarding gases?",
+            options: ["Particles are in constant motion", "Particles attract each other strongly", "Particles have definite volumes", "Particles have high densities"],
+            correctAnswer: "Particles are in constant motion"
+        },
+        {
+            question: "Which gas law states that the pressure of a gas is inversely proportional to its volume at constant temperature?",
+            options: ["Boyle's law", "Charles's law", "Gay-Lussac's law", "Avogadro's law"],
+            correctAnswer: "Boyle's law"
+        },
+        {
+            question: "According to Charles's law, at constant pressure, what happens to the volume of a gas when its temperature is increased?",
+            options: ["Volume increases", "Volume decreases", "Volume remains constant", "Volume doubles"],
+            correctAnswer: "Volume increases"
+        },
+        {
+            question: "What is the term for the temperature at which a gas becomes a liquid?",
+            options: ["Boiling point", "Melting point", "Condensation point", "Critical temperature"],
+            correctAnswer: "Boiling point"
+        },
+        {
+            question: "What is the critical temperature of a substance?",
+            options: ["The temperature above which the gas cannot be liquefied", "The temperature at which the gas becomes a liquid", "The temperature at which the gas solidifies", "The temperature at which the gas condenses"],
+            correctAnswer: "The temperature above which the gas cannot be liquefied"
+        },
+        {
+            question: "What is the term for the pressure exerted by the vapor in equilibrium with its liquid phase at a given temperature?",
+            options: ["Vapor pressure", "Atmospheric pressure", "Surface tension", "Boiling point"],
+            correctAnswer: "Vapor pressure"
+        },
+        {
+            question: "Which gas law states that the volume of a gas is directly proportional to its absolute temperature at constant pressure?",
+            options: ["Boyle's law", "Charles's law", "Gay-Lussac's law", "Avogadro's law"],
+            correctAnswer: "Charles's law"
+        },
+        {
+            question: "What is the term for the temperature at which a solid becomes a liquid?",
+            options: ["Boiling point", "Melting point", "Condensation point", "Critical temperature"],
+            correctAnswer: "Melting point"
+        },
+        {
+            question: "What is the term for the volume occupied by one mole of an ideal gas at standard temperature and pressure?",
+            options: ["Molar volume", "Atomic volume", "Molecular volume", "Specific volume"],
+            correctAnswer: "Molar volume"
+        },
+        {
+            question: "What is the term for the attraction between molecules of different substances?",
+            options: ["Adhesion", "Cohesion", "Surface tension", "Capillarity"],
+            correctAnswer: "Adhesion"
+        },
+        {
+            question: "What is the process by which a liquid turns into vapor at its boiling point throughout the liquid?",
+            options: ["Evaporation", "Condensation", "Sublimation", "Boiling"],
+            correctAnswer: "Boiling"
+        },
+        {
+            question: "What is the term for the resistance of a liquid to an increase in its surface area?",
+            options: ["Surface tension", "Viscosity", "Adhesion", "Cohesion"],
+            correctAnswer: "Surface tension"
+        },
+        {
+            question: "What is the term for the ability of a liquid to flow?",
+            options: ["Surface tension", "Viscosity", "Adhesion", "Cohesion"],
+            correctAnswer: "Viscosity"
+        },
+        {
+            question: "What is the term for the temperature at which the vapor pressure of a liquid equals the external pressure?",
+            options: ["Melting point", "Freezing point", "Boiling point", "Condensation point"],
+            correctAnswer: "Boiling point"
+        },
+        {
+            question: "What is the term for the process of a gas changing directly to a solid without passing through the liquid phase?",
+            options: ["Condensation", "Vaporization", "Sublimation", "Freezing"],
+            correctAnswer: "Sublimation"
+        },
+        {
+            question: "What is the term for the ability of a liquid to rise in a narrow tube against the force of gravity?",
+            options: ["Surface tension", "Viscosity", "Adhesion", "Capillarity"],
+            correctAnswer: "Capillarity"
+        },
+        {
+            question: "What is the term for the energy required to change a unit mass of a substance from liquid to gas at its boiling point?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of vaporization"
+        },
+        {
+            question: "What is the term for the energy required to change a unit mass of a substance from solid to liquid at its melting point?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of fusion"
+        },
+        {
+            question: "What is the term for the energy released when a gas changes to a liquid?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of condensation"
+        },
+        {
+            question: "What is the term for the process of a gas changing into a liquid?",
+            options: ["Condensation", "Vaporization", "Sublimation", "Freezing"],
+            correctAnswer: "Condensation"
+        },
+        {
+            question: "What is the term for the process of a liquid changing into a gas?",
+            options: ["Evaporation", "Condensation", "Sublimation", "Boiling"],
+            correctAnswer: "Vaporization"
+        },
+        {
+            question: "What is the term for the change of state from a solid to a liquid?",
+            options: ["Melting", "Freezing", "Condensation", "Sublimation"],
+            correctAnswer: "Melting"
+        },
+        {
+            question: "What is the term for the change of state from a liquid to a solid?",
+            options: ["Melting", "Freezing", "Condensation", "Sublimation"],
+            correctAnswer: "Freezing"
+        },
+        {
+            question: "What is the term for the change of state from a gas to a solid?",
+            options: ["Deposition", "Evaporation", "Sublimation", "Condensation"],
+            correctAnswer: "Deposition"
+        },
+        {
+            question: "What is the term for the change of state from a solid to a gas?",
+            options: ["Deposition", "Evaporation", "Sublimation", "Condensation"],
+            correctAnswer: "Sublimation"
+        },
+        {
+            question: "What is the term for the change of state from a gas to a liquid?",
+            options: ["Deposition", "Evaporation", "Sublimation", "Condensation"],
+            correctAnswer: "Condensation"
+        },
+        {
+            question: "What is the term for the change of state from a liquid to a gas at the surface of the liquid?",
+            options: ["Evaporation", "Condensation", "Sublimation", "Boiling"],
+            correctAnswer: "Evaporation"
+        },
+        {
+            question: "What is the term for the temperature at which a solid changes directly to a gas?",
+            options: ["Melting point", "Boiling point", "Condensation point", "Sublimation point"],
+            correctAnswer: "Sublimation point"
+        },
+        {
+            question: "What is the term for the pressure exerted by a vapor in equilibrium with its liquid phase at a given temperature?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Boiling point"],
+            correctAnswer: "Vapor pressure"
+        },
+        {
+            question: "Which gas law states that the volume of a gas is directly proportional to the number of moles of gas at constant temperature and pressure?",
+            options: ["Boyle's law", "Charles's law", "Gay-Lussac's law", "Avogadro's law"],
+            correctAnswer: "Avogadro's law"
+        },
+        {
+            question: "What is the term for the hypothetical temperature below which a substance would condense to a liquid?",
+            options: ["Critical temperature", "Boiling point", "Melting point", "Absolute zero"],
+            correctAnswer: "Critical temperature"
+        },
+        {
+            question: "What is the term for the study of the physical properties of gases and liquids?",
+            options: ["Thermodynamics", "Kinetics", "Equilibrium", "Fluid mechanics"],
+            correctAnswer: "Fluid mechanics"
+        },
+        {
+            question: "What is the term for the process by which a gas becomes a liquid?",
+            options: ["Evaporation", "Condensation", "Sublimation", "Boiling"],
+            correctAnswer: "Condensation"
+        },
+        {
+            question: "What is the term for the pressure exerted by a vapor in equilibrium with its solid phase at a given temperature?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Boiling point"],
+            correctAnswer: "Sublimation pressure"
+        },
+        {
+            question: "What is the term for the force per unit area exerted by a liquid against a solid surface?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Viscosity"],
+            correctAnswer: "Surface tension"
+        },
+        {
+            question: "What is the term for the pressure exerted by a vapor in a closed system when the vapor and liquid phases are in equilibrium at a given temperature?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Boiling point"],
+            correctAnswer: "Equilibrium vapor pressure"
+        },
+        {
+            question: "What is the term for the temperature at which the vapor pressure of a liquid equals the external pressure?",
+            options: ["Melting point", "Freezing point", "Boiling point", "Condensation point"],
+            correctAnswer: "Boiling point"
+        },
+        {
+            question: "What is the term for the temperature at which a liquid becomes a solid?",
+            options: ["Boiling point", "Melting point", "Condensation point", "Critical temperature"],
+            correctAnswer: "Melting point"
+        },
+        {
+            question: "What is the term for the energy required to change a unit mass of a substance from liquid to gas at its boiling point?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of vaporization"
+        },
+        {
+            question: "What is the term for the energy required to change a unit mass of a substance from solid to liquid at its melting point?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of fusion"
+        },
+        {
+            question: "What is the term for the energy released when a gas changes to a liquid?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of condensation"
+        },
+        {
+            question: "What is the term for the process of a gas changing into a liquid?",
+            options: ["Condensation", "Vaporization", "Sublimation", "Freezing"],
+            correctAnswer: "Condensation"
+        },
+        {
+            question: "What is the term for the process of a liquid changing into a gas?",
+            options: ["Evaporation", "Condensation", "Sublimation", "Boiling"],
+            correctAnswer: "Vaporization"
+        },
+        {
+            question: "What is the term for the change of state from a solid to a liquid?",
+            options: ["Melting", "Freezing", "Condensation", "Sublimation"],
+            correctAnswer: "Melting"
+        },
+        {
+            question: "What is the term for the change of state from a liquid to a solid?",
+            options: ["Melting", "Freezing", "Condensation", "Sublimation"],
+            correctAnswer: "Freezing"
+        },
+        {
+            question: "What is the term for the change of state from a gas to a solid?",
+            options: ["Deposition", "Evaporation", "Sublimation", "Condensation"],
+            correctAnswer: "Deposition"
+        },
+        {
+            question: "What is the term for the change of state from a solid to a gas?",
+            options: ["Deposition", "Evaporation", "Sublimation", "Condensation"],
+            correctAnswer: "Sublimation"
+        },
+        {
+            question: "What is the term for the change of state from a gas to a liquid?",
+            options: ["Deposition", "Evaporation", "Sublimation", "Condensation"],
+            correctAnswer: "Condensation"
+        },
+        {
+            question: "What is the term for the change of state from a liquid to a gas at the surface of the liquid?",
+            options: ["Evaporation", "Condensation", "Sublimation", "Boiling"],
+            correctAnswer: "Evaporation"
+        },
+        {
+            question: "What is the term for the temperature at which a solid changes directly to a gas?",
+            options: ["Melting point", "Boiling point", "Condensation point", "Sublimation point"],
+            correctAnswer: "Sublimation point"
+        },
+        {
+            question: "What is the term for the pressure exerted by a vapor in equilibrium with its liquid phase at a given temperature?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Boiling point"],
+            correctAnswer: "Vapor pressure"
+        },
+        {
+            question: "Which gas law states that the volume of a gas is directly proportional to the number of moles of gas at constant temperature and pressure?",
+            options: ["Boyle's law", "Charles's law", "Gay-Lussac's law", "Avogadro's law"],
+            correctAnswer: "Avogadro's law"
+        },
+        {
+            question: "What is the term for the hypothetical temperature below which a substance would condense to a liquid?",
+            options: ["Critical temperature", "Boiling point", "Melting point", "Absolute zero"],
+            correctAnswer: "Critical temperature"
+        },
+        {
+            question: "What is the term for the study of the physical properties of gases and liquids?",
+            options: ["Thermodynamics", "Kinetics", "Equilibrium", "Fluid mechanics"],
+            correctAnswer: "Fluid mechanics"
+        },
+        {
+            question: "What is the term for the pressure exerted by a vapor in equilibrium with its solid phase at a given temperature?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Boiling point"],
+            correctAnswer: "Sublimation pressure"
+        },
+        {
+            question: "What is the term for the force per unit area exerted by a liquid against a solid surface?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Viscosity"],
+            correctAnswer: "Surface tension"
+        },
+        {
+            question: "What is the term for the pressure exerted by a vapor in a closed system when the vapor and liquid phases are in equilibrium at a given temperature?",
+            options: ["Atmospheric pressure", "Vapor pressure", "Surface tension", "Boiling point"],
+            correctAnswer: "Equilibrium vapor pressure"
+        },
+        {
+            question: "What is the term for the temperature at which the vapor pressure of a liquid equals the external pressure?",
+            options: ["Melting point", "Freezing point", "Boiling point", "Condensation point"],
+            correctAnswer: "Boiling point"
+        },
+        {
+            question: "What is the term for the temperature at which a liquid becomes a solid?",
+            options: ["Boiling point", "Melting point", "Condensation point", "Critical temperature"],
+            correctAnswer: "Melting point"
+        },
+        {
+            question: "What is the term for the energy required to change a unit mass of a substance from liquid to gas at its boiling point?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of vaporization"
+        },
+        {
+            question: "What is the term for the energy required to change a unit mass of a substance from solid to liquid at its melting point?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of fusion"
+        },
+        {
+            question: "What is the term for the energy released when a gas changes to a liquid?",
+            options: ["Heat of vaporization", "Heat of fusion", "Heat of condensation", "Heat of sublimation"],
+            correctAnswer: "Heat of condensation"
+        },
+        {
+            question: "What is the term for the process of a gas changing into a liquid?",
+            options: ["Condensation", "Vaporization", "Sublimation", "Freezing"],
+            correctAnswer: "Condensation"
+        },
+        {
+            question: "What is the term for the process of a liquid changing into a gas?",
+            options: ["Evaporation", "Condensation", "Sublimation", "Boiling"],
+            correctAnswer: "Vaporization"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

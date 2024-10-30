@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical World and Measurement - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Properties of Bulk Matter - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Properties of Bulk Matter</h1>
+                <p>Delve into the physical properties of materials and their behavior under different conditions, essential concepts for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Mechanical Properties of Solids</h2>
+                <div class="topic-content">
+                    <p>Understanding the mechanical properties of solids helps us analyze the behavior of materials under different forces.</p>
+        
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <h3>Elasticity</h3>
+                            <p>Study of how materials deform and return to their original shape under the influence of forces.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrows-alt"></i>
+                            </div>
+                            <h3>Stress and Strain</h3>
+                            <p>Understanding the concepts of stress and strain in solids and their relationship through Young's modulus.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-compress-arrows-alt"></i>
+                            </div>
+                            <h3>Bulk Modulus</h3>
+                            <p>Analysis of volume changes in materials under compressive forces, described by the bulk modulus.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </div>
+                            <h3>Shear Modulus</h3>
+                            <p>Exploration of how materials respond to shear forces, described by the shear modulus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Mechanical Properties of Fluids</h2>
+                <div class="topic-content">
+                    <p>Fluids have unique properties under different conditions, making them essential to understanding phenomena in nature and engineering.</p>
+        
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <h3>Viscosity</h3>
+                            <p>Study of fluid resistance to flow, affected by intermolecular forces and temperature.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Surface Tension</h3>
+                            <p>Understanding the cohesive forces between molecules at the surface of a liquid and its effects on fluid behavior.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-thermometer-half"></i>
+                            </div>
+                            <h3>Buoyancy</h3>
+                            <p>Exploration of the upward force exerted by fluids on submerged objects, described by Archimedes' principle.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Pressure in Fluids</h3>
+                            <p>Understanding fluid pressure, Pascal's law, and its applications in hydraulic systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+            
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Physical World and Measurement concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the SI unit of pressure?",
+            options: ["Pascal", "Newton", "Watt", "Joule"],
+            correctAnswer: "Pascal"
+        },
+        {
+            question: "Which of the following is NOT a property of matter?",
+            options: ["Energy", "Volume", "Density", "Color"],
+            correctAnswer: "Energy"
+        },
+        {
+            question: "What is the SI unit of density?",
+            options: ["Kilogram per cubic meter", "Newton per square meter", "Watt per meter", "Meter per second"],
+            correctAnswer: "Kilogram per cubic meter"
+        },
+        {
+            question: "Which of the following is NOT a state of matter?",
+            options: ["Solid", "Liquid", "Gas", "Energy"],
+            correctAnswer: "Energy"
+        },
+        {
+            question: "What is the property of a material that enables it to be drawn into wires?",
+            options: ["Ductility", "Elasticity", "Malleability", "Viscosity"],
+            correctAnswer: "Ductility"
+        },
+        {
+            question: "What is the SI unit of viscosity?",
+            options: ["Pascal-second", "Newton per square meter", "Watt per meter", "Meter per second"],
+            correctAnswer: "Pascal-second"
+        },
+        {
+            question: "Which of the following is a measure of the amount of matter in an object?",
+            options: ["Mass", "Weight", "Volume", "Density"],
+            correctAnswer: "Mass"
+        },
+        {
+            question: "What is the property of a material that enables it to be hammered or rolled into thin sheets?",
+            options: ["Malleability", "Ductility", "Elasticity", "Viscosity"],
+            correctAnswer: "Malleability"
+        },
+        {
+            question: "What is the SI unit of surface tension?",
+            options: ["Newton per meter", "Pascal", "Watt", "Joule"],
+            correctAnswer: "Newton per meter"
+        },
+        {
+            question: "Which of the following is NOT a property of liquids?",
+            options: ["Viscosity", "Compressibility", "Surface tension", "Capillarity"],
+            correctAnswer: "Compressibility"
+        },
+        {
+            question: "What is the property of a material that allows it to return to its original shape after being deformed?",
+            options: ["Elasticity", "Ductility", "Malleability", "Viscosity"],
+            correctAnswer: "Elasticity"
+        },
+        {
+            question: "Which of the following is NOT a property of gases?",
+            options: ["Definite shape", "Compressibility", "Diffusion", "Expansibility"],
+            correctAnswer: "Definite shape"
+        },
+        {
+            question: "What is the SI unit of bulk modulus?",
+            options: ["Pascal", "Newton per meter", "Watt", "Joule"],
+            correctAnswer: "Pascal"
+        },
+        {
+            question: "What is the property of a material that opposes the relative motion between its layers?",
+            options: ["Viscosity", "Elasticity", "Surface tension", "Ductility"],
+            correctAnswer: "Viscosity"
+        },
+        {
+            question: "Which of the following is NOT a property of solids?",
+            options: ["Rigidity", "Elasticity", "Fluidity", "Definite shape"],
+            correctAnswer: "Fluidity"
+        },
+        {
+            question: "What is the SI unit of Young's modulus?",
+            options: ["Pascal", "Newton per meter", "Watt", "Joule"],
+            correctAnswer: "Pascal"
+        },
+        {
+            question: "What is the property of a material that allows it to absorb energy and deform under stress?",
+            options: ["Elasticity", "Ductility", "Malleability", "Viscosity"],
+            correctAnswer: "Elasticity"
+        },
+        {
+            question: "What is the property of a material that enables it to withstand deformation without breaking or rupturing?",
+            options: ["Elasticity", "Ductility", "Malleability", "Brittleness"],
+            correctAnswer: "Elasticity"
+        },
+        {
+            question: "What is the SI unit of coefficient of viscosity?",
+            options: ["Pascal-second", "Newton per meter", "Watt", "Joule"],
+            correctAnswer: "Pascal-second"
+        },
+        {
+            question: "What is the property of a material that allows it to flow?",
+            options: ["Fluidity", "Elasticity", "Malleability", "Viscosity"],
+            correctAnswer: "Fluidity"
+        },
+        {
+            question: "What is the SI unit of stress?",
+            options: ["Pascal", "Newton per meter", "Watt", "Joule"],
+            correctAnswer: "Pascal"
+        },
+        {
+            question: "What is the property of a material that allows it to change shape under the action of an external force?",
+            options: ["Elasticity", "Ductility", "Malleability", "Rigidity"],
+            correctAnswer: "Elasticity"
+        },
+        {
+            question: "What is the SI unit of strain?",
+            options: ["Dimensionless", "Newton per meter", "Watt", "Joule"],
+            correctAnswer: "Dimensionless"
+        },
+        {
+            question: "What is the property of a material that enables it to be compressed or expanded?",
+            options: ["Compressibility", "Elasticity", "Malleability", "Viscosity"],
+            correctAnswer: "Compressibility"
+        },
+        {
+            question: "What is the SI unit of surface area?",
+            options: ["Square meter", "Cubic meter", "Meter", "Kilogram"],
+            correctAnswer: "Square meter"
+        },
+        {
+            question: "What is the property of a material that allows it to transmit heat?",
+            options: ["Thermal conductivity", "Electrical conductivity", "Ductility", "Malleability"],
+            correctAnswer: "Thermal conductivity"
+        },
+        {
+            question: "What is the SI unit of thermal conductivity?",
+            options: ["Watt per meter-kelvin", "Newton per meter", "Pascal", "Joule"],
+            correctAnswer: "Watt per meter-kelvin"
+        },
+        {
+            question: "What is the property of a material that allows it to conduct electric current?",
+            options: ["Electrical conductivity", "Thermal conductivity", "Ductility", "Malleability"],
+            correctAnswer: "Electrical conductivity"
+        },
+        {
+            question: "What is the SI unit of electrical conductivity?",
+            options: ["Siemens per meter", "Watt per meter-kelvin", "Pascal", "Joule"],
+            correctAnswer: "Siemens per meter"
+        },
+        {
+            question: "What is the property of a material that opposes the motion of charged particles?",
+            options: ["Resistance", "Inductance", "Capacitance", "Reactance"],
+            correctAnswer: "Resistance"
+        },
+        {
+            question: "What is the SI unit of resistance?",
+            options: ["Ohm", "Siemens per meter", "Pascal", "Joule"],
+            correctAnswer: "Ohm"
+        },
+        {
+            question: "What is the property of a material that opposes the change in electric current?",
+            options: ["Inductance", "Resistance", "Capacitance", "Reactance"],
+            correctAnswer: "Inductance"
+        },
+        {
+            question: "What is the SI unit of inductance?",
+            options: ["Henry", "Siemens per meter", "Pascal", "Joule"],
+            correctAnswer: "Henry"
+        },
+        {
+            question: "What is the property of a material that stores electrical energy in an electric field?",
+            options: ["Capacitance", "Resistance", "Inductance", "Reactance"],
+            correctAnswer: "Capacitance"
+        },
+        {
+            question: "What is the SI unit of capacitance?",
+            options: ["Farad", "Siemens per meter", "Pascal", "Joule"],
+            correctAnswer: "Farad"
+        },
+        {
+            question: "What is the property of a material that opposes the flow of alternating current?",
+            options: ["Reactance", "Resistance", "Inductance", "Capacitance"],
+            correctAnswer: "Reactance"
+        },
+        {
+            question: "What is the SI unit of reactance?",
+            options: ["Ohm", "Siemens per meter", "Henry", "Farad"],
+            correctAnswer: "Ohm"
+        },
+        {
+            question: "What is the property of a material that is a measure of its opposition to the flow of current?",
+            options: ["Impedance", "Resistance", "Inductance", "Capacitance"],
+            correctAnswer: "Impedance"
+        },
+        {
+            question: "What is the SI unit of impedance?",
+            options: ["Ohm", "Siemens per meter", "Henry", "Farad"],
+            correctAnswer: "Ohm"
+        },
+        {
+            question: "What is the property of a material that describes its ability to resist changes in velocity?",
+            options: ["Inertia", "Mass", "Weight", "Force"],
+            correctAnswer: "Inertia"
+        },
+        {
+            question: "What is the SI unit of moment of inertia?",
+            options: ["Kilogram square meter", "Newton per meter", "Pascal", "Joule"],
+            correctAnswer: "Kilogram square meter"
+        },
+        {
+            question: "What is the property of a material that determines the gravitational force acting on it?",
+            options: ["Mass", "Weight", "Volume", "Density"],
+            correctAnswer: "Mass"
+        },
+        {
+            question: "What is the SI unit of weight?",
+            options: ["Newton", "Kilogram", "Meter", "Second"],
+            correctAnswer: "Newton"
+        },
+        {
+            question: "What is the property of a material that determines the force acting on it due to gravity?",
+            options: ["Weight", "Mass", "Volume", "Density"],
+            correctAnswer: "Weight"
+        },
+        {
+            question: "What is the SI unit of pressure?",
+            options: ["Pascal", "Newton", "Watt", "Joule"],
+            correctAnswer: "Pascal"
+        },
+        {
+            question: "Which of the following is NOT a property of matter?",
+            options: ["Energy", "Volume", "Density", "Color"],
+            correctAnswer: "Energy"
+        },
+        {
+            question: "What is the SI unit of density?",
+            options: ["Kilogram per cubic meter", "Newton per square meter", "Watt per meter", "Meter per second"],
+            correctAnswer: "Kilogram per cubic meter"
+        },
+        {
+            question: "Which of the following is NOT a state of matter?",
+            options: ["Solid", "Liquid", "Gas", "Energy"],
+            correctAnswer: "Energy"
+        },
+        {
+            question: "What is the property of a material that enables it to be drawn into wires?",
+            options: ["Ductility", "Elasticity", "Malleability", "Viscosity"],
+            correctAnswer: "Ductility"
+        },
+        {
+            question: "What is the SI unit of viscosity?",
+            options: ["Pascal-second", "Newton per square meter", "Watt per meter", "Meter per second"],
+            correctAnswer: "Pascal-second"
+        },
+        {
+            question: "Which of the following is a measure of the amount of matter in an object?",
+            options: ["Mass", "Weight", "Volume", "Density"],
+            correctAnswer: "Mass"
+        },
+        {
+            question: "What is the property of a material that allows it to return to its original shape after being deformed?",
+            options: ["Elasticity", "Ductility", "Malleability", "Viscosity"],
+            correctAnswer: "Elasticity"
+        },
+        {
+            question: "What is the property of a material that enables it to be hammered or rolled into thin sheets?",
+            options: ["Malleability", "Ductility", "Elasticity", "Viscosity"],
+            correctAnswer: "Malleability"
+        },
+        {
+            question: "What is the SI unit of surface tension?",
+            options: ["Newton per meter", "Pascal", "Watt", "Joule"],
+            correctAnswer: "Newton per meter"
+        },
+        {
+            question: "Which of the following is NOT a property of liquids?",
+            options: ["Viscosity", "Compressibility", "Surface tension", "Capillarity"],
+            correctAnswer: "Compressibility"
+        },
+        {
+            question: "What is the property of a material that allows it to absorb energy and deform under stress?",
+            options: ["Elasticity", "Ductility", "Malleability", "Viscosity"],
+            correctAnswer: "Elasticity"
+        },
+        {
+            question: "What is the property of a material that opposes the relative motion between its layers?",
+            options: ["Viscosity", "Elasticity", "Surface tension", "Ductility"],
+            correctAnswer: "Viscosity"
+        },
+        {
+            question: "What is the property of a material that allows it to flow?",
+            options: ["Fluidity", "Elasticity", "Malleability", "Viscosity"],
+            correctAnswer: "Fluidity"
+        },
+        {
+            question: "What is the SI unit of bulk modulus?",
+            options: ["Pascal", "Newton per meter", "Watt", "Joule"],
+            correctAnswer: "Pascal"
+        },
+        {
+            question: "What is the property of a material that enables it to withstand deformation without breaking or rupturing?",
+            options: ["Elasticity", "Ductility", "Malleability", "Brittleness"],
+            correctAnswer: "Elasticity"
+        },
+        {
+            question: "What is the SI unit of stress?",
+            options: ["Pascal", "Newton per meter", "Watt", "Joule"],
+            correctAnswer: "Pascal"
+        },
+        {
+            question: "What is the property of a material that allows it to transmit heat?",
+            options: ["Thermal conductivity", "Electrical conductivity", "Ductility", "Malleability"],
+            correctAnswer: "Thermal conductivity"
+        },
+        {
+            question: "What is the SI unit of thermal conductivity?",
+            options: ["Watt per meter-kelvin", "Newton per meter", "Pascal", "Joule"],
+            correctAnswer: "Watt per meter-kelvin"
+        },
+        {
+            question: "What is the property of a material that allows it to conduct electric current?",
+            options: ["Electrical conductivity", "Thermal conductivity", "Ductility", "Malleability"],
+            correctAnswer: "Electrical conductivity"
+        },
+        {
+            question: "What is the SI unit of electrical conductivity?",
+            options: ["Siemens per meter", "Watt per meter-kelvin", "Pascal", "Joule"],
+            correctAnswer: "Siemens per meter"
+        },
+        {
+            question: "What is the property of a material that opposes the motion of charged particles?",
+            options: ["Resistance", "Inductance", "Capacitance", "Reactance"],
+            correctAnswer: "Resistance"
+        },
+        {
+            question: "What is the SI unit of resistance?",
+            options: ["Ohm", "Siemens per meter", "Pascal", "Joule"],
+            correctAnswer: "Ohm"
+        },
+        {
+            question: "What is the property of a material that opposes the change in electric current?",
+            options: ["Inductance", "Resistance", "Capacitance", "Reactance"],
+            correctAnswer: "Inductance"
+        },
+        {
+            question: "What is the SI unit of inductance?",
+            options: ["Henry", "Siemens per meter", "Pascal", "Joule"],
+            correctAnswer: "Henry"
+        },
+        {
+            question: "What is the property of a material that stores electrical energy in an electric field?",
+            options: ["Capacitance", "Resistance", "Inductance", "Reactance"],
+            correctAnswer: "Capacitance"
+        },
+        {
+            question: "What is the SI unit of capacitance?",
+            options: ["Farad", "Siemens per meter", "Pascal", "Joule"],
+            correctAnswer: "Farad"
+        },
+        {
+            question: "What is the property of a material that opposes the flow of alternating current?",
+            options: ["Reactance", "Resistance", "Inductance", "Capacitance"],
+            correctAnswer: "Reactance"
+        },
+        {
+            question: "What is the SI unit of reactance?",
+            options: ["Ohm", "Siemens per meter", "Henry", "Farad"],
+            correctAnswer: "Ohm"
+        },
+        {
+            question: "What is the property of a material that is a measure of its opposition to the flow of current?",
+            options: ["Impedance", "Resistance", "Inductance", "Capacitance"],
+            correctAnswer: "Impedance"
+        },
+        {
+            question: "What is the SI unit of impedance?",
+            options: ["Ohm", "Siemens per meter", "Henry", "Farad"],
+            correctAnswer: "Ohm"
+        },
+        {
+            question: "What is the property of a material that describes its ability to resist changes in velocity?",
+            options: ["Inertia", "Mass", "Weight", "Force"],
+            correctAnswer: "Inertia"
+        },
+        {
+            question: "What is the SI unit of moment of inertia?",
+            options: ["Kilogram square meter", "Newton per meter", "Pascal", "Joule"],
+            correctAnswer: "Kilogram square meter"
+        },
+        {
+            question: "What is the property of a material that determines the gravitational force acting on it?",
+            options: ["Mass", "Weight", "Volume", "Density"],
+            correctAnswer: "Mass"
+        },
+        {
+            question: "What is the SI unit of weight?",
+            options: ["Newton", "Kilogram", "Meter", "Second"],
+            correctAnswer: "Newton"
+        },
+        {
+            question: "What is the property of a material that determines the force acting on it due to gravity?",
+            options: ["Weight", "Mass", "Volume", "Density"],
+            correctAnswer: "Weight"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

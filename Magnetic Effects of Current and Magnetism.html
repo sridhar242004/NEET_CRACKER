@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Magnetic Effects of Current and Magnetism - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Magnetic Effects of Current and Magnetism - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+            <main class="main-content">
+                <div class="physics-header">
+                    <h1 class="physics-title">Magnetic Effects of Current and Magnetism</h1>
+                    <p>Explore the magnetic properties of electric currents and magnetic fields essential for NEET preparation.</p>
+                </div>
+            
+                <div class="topic-container">
+                    <h2 class="topic-title">Magnetic Effects of Electric Current</h2>
+                    <div class="topic-content">
+                        <p>When an electric current flows through a conductor, it creates a magnetic field around it. This phenomenon is the foundation of electromagnetism.</p>
+                        
+                        <div class="concept-grid">
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-magnet"></i>
+                                </div>
+                                <h3>Oersted's Experiment</h3>
+                                <p>Understanding how electric currents produce magnetic fields, as discovered by Hans Christian Oersted.</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-compass"></i>
+                                </div>
+                                <h3>Magnetic Field of a Current-Carrying Conductor</h3>
+                                <p>Study of the magnetic field generated around straight conductors, circular loops, and solenoids.</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-swatchbook"></i>
+                                </div>
+                                <h3>Right-Hand Rule</h3>
+                                <p>A rule to determine the direction of the magnetic field produced by current flow in a conductor.</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h3>Magnetic Force on a Moving Charge</h3>
+                                <p>Analysis of the force experienced by a charged particle moving in a magnetic field.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="topic-container">
+                    <h2 class="topic-title">Magnetism and Magnetic Materials</h2>
+                    <div class="topic-content">
+                        <p>Explore the nature of magnetism, different types of magnetic materials, and their behavior in magnetic fields.</p>
+                        
+                        <div class="concept-grid">
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-magnet"></i>
+                                </div>
+                                <h3>Magnetic Field and Magnetic Flux</h3>
+                                <p>Understanding the concept of magnetic field lines, magnetic flux, and Gauss's law for magnetism.</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <h3>Types of Magnetic Materials</h3>
+                                <p>Classification of materials into diamagnetic, paramagnetic, and ferromagnetic categories based on their magnetic properties.</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-magnet"></i>
+                                </div>
+                                <h3>Earth's Magnetism</h3>
+                                <p>Study of Earth's magnetic field, its origin, and how it influences compasses and navigation.</p>
+                            </div>
+                            
+                            <div class="concept-card">
+                                <div class="concept-icon">
+                                    <i class="fas fa-satellite-dish"></i>
+                                </div>
+                                <h3>Magnetic Hysteresis</h3>
+                                <p>Understanding the behavior of ferromagnetic materials and their response to magnetic fields.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Magnetic Effects of Current and Magnetism concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the SI unit of magnetic field?",
+            options: ["Tesla", "Watt", "Ohm", "Ampere"],
+            correctAnswer: "Tesla"
+        },
+        {
+            question: "What is the direction of the magnetic field lines around a straight current-carrying conductor?",
+            options: ["Circular", "Radial", "Tangential", "Straight"],
+            correctAnswer: "Circular"
+        },
+        {
+            question: "What is the right-hand thumb rule used for in magnetism?",
+            options: ["Determining the direction of magnetic field around a current-carrying conductor", "Determining the direction of electric field around a charge", "Determining the direction of gravitational force", "Determining the direction of current flow"],
+            correctAnswer: "Determining the direction of magnetic field around a current-carrying conductor"
+        },
+        {
+            question: "What is the direction of magnetic field lines inside a bar magnet?",
+            options: ["From south pole to north pole", "From north pole to south pole", "Away from the magnet", "Towards the magnet"],
+            correctAnswer: "From south pole to north pole"
+        },
+        {
+            question: "What is the SI unit of magnetic flux?",
+            options: ["Weber", "Coulomb", "Tesla", "Ampere-turn"],
+            correctAnswer: "Weber"
+        },
+        {
+            question: "What is the formula for magnetic force on a current-carrying conductor?",
+            options: ["F = BILsinθ", "F = BILcosθ", "F = BILtanθ", "F = BIL"],
+            correctAnswer: "F = BILsinθ"
+        },
+        {
+            question: "What happens to the magnetic force on a current-carrying conductor when the angle between the magnetic field and current direction is 90 degrees?",
+            options: ["Maximum", "Minimum", "Zero", "Undefined"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the magnetic force experienced by a straight current-carrying conductor placed in a magnetic field?",
+            options: ["Depends on the length of the conductor", "Depends on the current in the conductor", "Depends on the strength of the magnetic field", "All of the above"],
+            correctAnswer: "All of the above"
+        },
+        {
+            question: "What is the principle of a DC motor based on?",
+            options: ["Lorentz force", "Ohm's law", "Kirchhoff's law", "Newton's law"],
+            correctAnswer: "Lorentz force"
+        },
+        {
+            question: "What is the function of a split-ring commutator in a DC motor?",
+            options: ["To reverse the direction of current", "To maintain the direction of current", "To increase the speed of rotation", "To decrease the speed of rotation"],
+            correctAnswer: "To reverse the direction of current"
+        },
+        {
+            question: "What is the SI unit of magnetic dipole moment?",
+            options: ["Am²", "Tesla", "Weber", "Coulomb"],
+            correctAnswer: "Am²"
+        },
+        {
+            question: "What is the magnetic effect of a solenoid?",
+            options: ["It behaves like a magnet", "It repels magnets", "It attracts magnets", "It has no magnetic effect"],
+            correctAnswer: "It behaves like a magnet"
+        },
+        {
+            question: "What is the function of a galvanometer?",
+            options: ["To measure small currents", "To measure large currents", "To measure potential difference", "To measure resistance"],
+            correctAnswer: "To measure small currents"
+        },
+        {
+            question: "What is the principle of electromagnetic induction?",
+            options: ["Change in magnetic field induces an emf in a conductor", "Change in electric field induces a magnetic field", "Change in gravitational field induces an emf", "Change in magnetic field induces a current"],
+            correctAnswer: "Change in magnetic field induces an emf in a conductor"
+        },
+        {
+            question: "What is Faraday's law of electromagnetic induction?",
+            options: ["Rate of change of magnetic flux through a loop induces an emf in the loop", "Rate of change of electric field induces a magnetic field", "Rate of change of current induces a magnetic field", "Rate of change of magnetic field induces an electric field"],
+            correctAnswer: "Rate of change of magnetic flux through a loop induces an emf in the loop"
+        },
+        {
+            question: "What is Lenz's law?",
+            options: ["The direction of induced emf opposes the change in magnetic flux that produces it", "The direction of induced emf supports the change in magnetic flux that produces it", "The induced emf is always zero", "The induced current is always in the same direction as the change in magnetic flux"],
+            correctAnswer: "The direction of induced emf opposes the change in magnetic flux that produces it"
+        },
+        {
+            question: "What is the formula for induced emf?",
+            options: ["ε = -NΔΦ/Δt", "ε = NΔΦ/Δt", "ε = -N/ΔΦΔt", "ε = N/ΔΦΔt"],
+            correctAnswer: "ε = -NΔΦ/Δt"
+        },
+        {
+            question: "What is the SI unit of self-inductance?",
+            options: ["Henry", "Tesla", "Weber", "Ampere-turn"],
+            correctAnswer: "Henry"
+        },
+        {
+            question: "What is the formula for self-induced emf in a coil?",
+            options: ["ε = -LΔi/Δt", "ε = LΔi/Δt", "ε = -L/ΔiΔt", "ε = L/ΔiΔt"],
+            correctAnswer: "ε = -LΔi/Δt"
+        },
+        {
+            question: "What is the phenomenon of mutual induction?",
+            options: ["Induction of emf in a coil due to change in current in another coil", "Induction of magnetic field due to change in electric field", "Induction of emf due to change in resistance", "Induction of electric field due to change in magnetic field"],
+            correctAnswer: "Induction of emf in a coil due to change in current in another coil"
+        },
+        {
+            question: "What is the formula for mutual inductance?",
+            options: ["M = k√(L1L2)", "M = k(L1/L2)", "M = k(L1+L2)", "M = k(L1-L2)"],
+            correctAnswer: "M = k√(L1L2)"
+        },
+        {
+            question: "What is the principle of a transformer based on?",
+            options: ["Mutual induction", "Self-induction", "Ohm's law", "Lorentz force"],
+            correctAnswer: "Mutual induction"
+        },
+        {
+            question: "What is the function of the iron core in a transformer?",
+            options: ["To enhance magnetic coupling", "To decrease magnetic coupling", "To increase resistance", "To decrease resistance"],
+            correctAnswer: "To enhance magnetic coupling"
+        },
+        {
+            question: "What is the formula for transformer ratio?",
+            options: ["N1/N2 = V1/V2", "N1/N2 = I1/I2", "N1/N2 = P1/P2", "N1/N2 = V1I1/V2I2"],
+            correctAnswer: "N1/N2 = V1/V2"
+        },
+        {
+            question: "What is the function of a choke coil?",
+            options: ["To oppose sudden changes in current", "To oppose sudden changes in voltage", "To increase current", "To decrease current"],
+            correctAnswer: "To oppose sudden changes in current"
+        },
+        {
+            question: "What is the function of an inductor in an electrical circuit?",
+            options: ["To store energy in the form of a magnetic field", "To store energy in the form of an electric field", "To resist the flow of current", "To increase the flow of current"],
+            correctAnswer: "To store energy in the form of a magnetic field"
+        },
+        {
+            question: "What is the phenomenon of eddy currents?",
+            options: ["Circular currents induced in conductors by changing magnetic fields", "Circular currents induced in conductors by static magnetic fields", "Linear currents induced in conductors by changing electric fields", "Linear currents induced in conductors by static electric fields"],
+            correctAnswer: "Circular currents induced in conductors by changing magnetic fields"
+        },
+        {
+            question: "What is the function of a magnetic amplifier?",
+            options: ["To amplify electrical signals using magnetic fields", "To amplify magnetic signals using electrical fields", "To amplify both electrical and magnetic signals", "To reduce electrical noise"],
+            correctAnswer: "To amplify electrical signals using magnetic fields"
+        },
+        {
+            question: "What is the principle of a magnetic levitation train?",
+            options: ["Opposing magnetic fields repel the train from the track", "Attracting magnetic fields repel the train from the track", "Opposing magnetic fields attract the train to the track", "Attracting magnetic fields attract the train to the track"],
+            correctAnswer: "Opposing magnetic fields repel the train from the track"
+        },
+        {
+            question: "What is the formula for magnetic moment?",
+            options: ["m = IA", "m = IAcosθ", "m = IAsinθ", "m = I"],
+            correctAnswer: "m = IA"
+        },
+        {
+            question: "What is the torque experienced by a current loop in a magnetic field?",
+            options: ["τ = mBsinθ", "τ = mBcosθ", "τ = mBtanθ", "τ = mB"],
+            correctAnswer: "τ = mBsinθ"
+        },
+        {
+            question: "What is the function of a magnetic tape?",
+            options: ["To store data magnetically", "To store data optically", "To store data electrically", "To store data mechanically"],
+            correctAnswer: "To store data magnetically"
+        },
+        {
+            question: "What is the function of a magnetic disk?",
+            options: ["To store data magnetically", "To store data optically", "To store data electrically", "To store data mechanically"],
+            correctAnswer: "To store data magnetically"
+        },
+        {
+            question: "What is the function of a magnetic stripe card?",
+            options: ["To store data magnetically", "To store data optically", "To store data electrically", "To store data mechanically"],
+            correctAnswer: "To store data magnetically"
+        },
+        {
+            question: "What is the function of a magnetic ink character recognition (MICR) system?",
+            options: ["To read characters printed with magnetic ink", "To read characters printed with optical ink", "To read characters printed with electrically conductive ink", "To read characters printed with mechanical ink"],
+            correctAnswer: "To read characters printed with magnetic ink"
+        },
+        {
+            question: "What is the function of a Hall effect sensor?",
+            options: ["To measure magnetic field strength", "To measure electric field strength", "To measure gravitational field strength", "To measure temperature"],
+            correctAnswer: "To measure magnetic field strength"
+        },
+        {
+            question: "What is the formula for Hall voltage?",
+            options: ["VH = BIL", "VH = Bvd", "VH = IBd", "VH = IBl"],
+            correctAnswer: "VH = Bvd"
+        },
+        {
+            question: "What is the principle of a magnetic resonance imaging (MRI) machine?",
+            options: ["Interaction of magnetic field with hydrogen atoms in the body", "Interaction of magnetic field with oxygen atoms in the body", "Interaction of magnetic field with carbon atoms in the body", "Interaction of magnetic field with nitrogen atoms in the body"],
+            correctAnswer: "Interaction of magnetic field with hydrogen atoms in the body"
+        },
+        {
+            question: "What is the function of a magnetic compass?",
+            options: ["To determine direction using Earth's magnetic field", "To determine direction using Earth's electric field", "To determine direction using Earth's gravitational field", "To determine direction using Earth's optical field"],
+            correctAnswer: "To determine direction using Earth's magnetic field"
+        },
+        {
+            question: "What is the phenomenon of magnetic hysteresis?",
+            options: ["Delay in the magnetization of a material", "Instantaneous magnetization of a material", "Permanent magnetization of a material", "Temporary magnetization of a material"],
+            correctAnswer: "Delay in the magnetization of a material"
+        },
+        {
+            question: "What is the function of a magnetron in a microwave oven?",
+            options: ["To produce microwaves using a magnetic field", "To produce microwaves using an electric field", "To produce microwaves using a gravitational field", "To produce microwaves using an optical field"],
+            correctAnswer: "To produce microwaves using a magnetic field"
+        },
+        {
+            question: "What is the phenomenon of magnetic shielding?",
+            options: ["Preventing external magnetic fields from affecting sensitive equipment", "Attracting external magnetic fields towards sensitive equipment", "Converting external magnetic fields into electric fields", "Enhancing external magnetic fields"],
+            correctAnswer: "Preventing external magnetic fields from affecting sensitive equipment"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

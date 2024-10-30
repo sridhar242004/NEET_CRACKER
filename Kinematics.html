@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Kinematics - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Kinematics- Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Kinematics</h1>
+                <p>Explore the concepts of motion, velocity, acceleration, and the mathematical relationships essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Kinematics</h2>
+                <div class="topic-content">
+                    <p>Kinematics is the branch of physics that describes the motion of objects without considering the forces that cause motion. It deals with parameters like displacement, velocity, and acceleration.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrows-alt"></i>
+                            </div>
+                            <h3>Displacement and Distance</h3>
+                            <p>Understanding the difference between distance (a scalar quantity) and displacement (a vector quantity) in motion.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Speed and Velocity</h3>
+                            <p>Differentiating between speed (scalar) and velocity (vector) and learning how they describe the rate of motion.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3>Acceleration</h3>
+                            <p>Analyzing how acceleration describes changes in velocity over time and its impact on motion.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Equations of Motion</h3>
+                            <p>Exploring the kinematic equations that relate displacement, velocity, acceleration, and time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Projectile and Circular Motion</h2>
+                <div class="topic-content">
+                    <p>Kinematics also covers more complex motions like projectile motion and circular motion, which involve both horizontal and vertical components of motion.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Projectile Motion</h3>
+                            <p>Study of objects launched into the air and the influence of gravity on their curved trajectory.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-circle-notch"></i>
+                            </div>
+                            <h3>Circular Motion</h3>
+                            <p>Understanding the motion of objects moving along a circular path and concepts like angular velocity and centripetal acceleration.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-vector-square"></i>
+                            </div>
+                            <h3>Relative Velocity</h3>
+                            <p>Analyzing motion from different reference frames and determining the relative velocity between objects.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-compress-arrows-alt"></i>
+                            </div>
+                            <h3>Graphical Analysis</h3>
+                            <p>Using graphs to analyze motion, including position-time, velocity-time, and acceleration-time graphs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Kinematics concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is kinematics?",
+            options: ["The study of motion without considering its causes", "The study of motion and its causes", "The study of forces", "The study of energy"],
+            correctAnswer: "The study of motion without considering its causes"
+        },
+        {
+            question: "What is displacement?",
+            options: ["Change in position of an object", "Distance covered by an object", "Speed of an object", "Acceleration of an object"],
+            correctAnswer: "Change in position of an object"
+        },
+        {
+            question: "What is the SI unit of displacement?",
+            options: ["Meter", "Kilogram", "Second", "Candela"],
+            correctAnswer: "Meter"
+        },
+        {
+            question: "What is velocity?",
+            options: ["Rate of change of displacement", "Rate of change of speed", "Distance covered per unit time", "Acceleration of an object"],
+            correctAnswer: "Rate of change of displacement"
+        },
+        {
+            question: "What is the SI unit of velocity?",
+            options: ["Meter per second (m/s)", "Meter", "Second", "Candela"],
+            correctAnswer: "Meter per second (m/s)"
+        },
+        {
+            question: "What is speed?",
+            options: ["Distance covered per unit time", "Rate of change of displacement", "Rate of change of velocity", "Acceleration of an object"],
+            correctAnswer: "Distance covered per unit time"
+        },
+        {
+            question: "What is the SI unit of speed?",
+            options: ["Meter per second (m/s)", "Meter", "Second", "Candela"],
+            correctAnswer: "Meter per second (m/s)"
+        },
+        {
+            question: "What is acceleration?",
+            options: ["Rate of change of velocity", "Rate of change of displacement", "Rate of change of speed", "Velocity per unit time"],
+            correctAnswer: "Rate of change of velocity"
+        },
+        {
+            question: "What is the SI unit of acceleration?",
+            options: ["Meter per second squared (m/s²)", "Meter", "Second", "Candela"],
+            correctAnswer: "Meter per second squared (m/s²)"
+        },
+        {
+            question: "What is constant acceleration?",
+            options: ["Acceleration that remains the same over time", "Acceleration that changes over time", "Acceleration that is zero", "Acceleration that is negative"],
+            correctAnswer: "Acceleration that remains the same over time"
+        },
+        {
+            question: "What is uniform acceleration?",
+            options: ["Acceleration that changes at a constant rate", "Acceleration that remains the same over time", "Acceleration that is zero", "Acceleration that is negative"],
+            correctAnswer: "Acceleration that remains the same over time"
+        },
+        {
+            question: "What is non-uniform acceleration?",
+            options: ["Acceleration that changes at a variable rate", "Acceleration that remains the same over time", "Acceleration that is zero", "Acceleration that is negative"],
+            correctAnswer: "Acceleration that changes at a variable rate"
+        },
+        {
+            question: "What is deceleration?",
+            options: ["Negative acceleration", "Positive acceleration", "Zero acceleration", "Uniform acceleration"],
+            correctAnswer: "Negative acceleration"
+        },
+        {
+            question: "What is the formula for average velocity?",
+            options: ["Total displacement / Total time taken", "Total distance / Total time taken", "Total displacement x Total time taken", "Total distance x Total time taken"],
+            correctAnswer: "Total displacement / Total time taken"
+        },
+        {
+            question: "What is the formula for average speed?",
+            options: ["Total distance / Total time taken", "Total displacement / Total time taken", "Total distance x Total time taken", "Total displacement x Total time taken"],
+            correctAnswer: "Total distance / Total time taken"
+        },
+        {
+            question: "What is the formula for acceleration?",
+            options: ["Change in velocity / Time taken", "Change in displacement / Time taken", "Change in speed / Time taken", "Velocity / Time taken"],
+            correctAnswer: "Change in velocity / Time taken"
+        },
+        {
+            question: "What is the formula for final velocity?",
+            options: ["Initial velocity + (Acceleration x Time)", "Initial velocity - (Acceleration x Time)", "Initial velocity x (Acceleration x Time)", "Initial velocity / (Acceleration x Time)"],
+            correctAnswer: "Initial velocity + (Acceleration x Time)"
+        },
+        {
+            question: "What is the formula for displacement in terms of initial velocity, acceleration, and time?",
+            options: ["Initial velocity x Time + (1/2)Acceleration x Time²", "Initial velocity + (1/2)Acceleration x Time", "Initial velocity x Time² + (1/2)Acceleration", "Initial velocity + Acceleration x Time"],
+            correctAnswer: "Initial velocity x Time + (1/2)Acceleration x Time²"
+        },
+        {
+            question: "What is the formula for final velocity in terms of initial velocity, acceleration, and displacement?",
+            options: ["sqrt(Initial velocity² + 2 x Acceleration x Displacement)", "sqrt(Initial velocity² - 2 x Acceleration x Displacement)", "sqrt(Initial velocity² + 2 x Displacement / Acceleration)", "sqrt(Initial velocity² - 2 x Displacement / Acceleration)"],
+            correctAnswer: "sqrt(Initial velocity² + 2 x Acceleration x Displacement)"
+        },
+        {
+            question: "What is the formula for time taken in terms of initial velocity, final velocity, and acceleration?",
+            options: ["(Final velocity - Initial velocity) / Acceleration", "(Final velocity + Initial velocity) / Acceleration", "(Final velocity - Initial velocity) x Acceleration", "(Final velocity + Initial velocity) x Acceleration"],
+            correctAnswer: "(Final velocity - Initial velocity) / Acceleration"
+        },
+        {
+            question: "What is the formula for distance covered in terms of initial velocity, final velocity, and acceleration?",
+            options: ["(Initial velocity + Final velocity) x Time / 2", "(Initial velocity - Final velocity) x Time / 2", "(Initial velocity + Final velocity) x Time", "(Initial velocity - Final velocity) x Time"],
+            correctAnswer: "(Initial velocity + Final velocity) x Time / 2"
+        },
+        {
+            question: "What is the formula for distance covered in terms of initial velocity, acceleration, and time?",
+            options: ["Initial velocity x Time + (1/2)Acceleration x Time²", "Initial velocity + (1/2)Acceleration x Time", "Initial velocity x Time² + (1/2)Acceleration", "Initial velocity + Acceleration x Time"],
+            correctAnswer: "Initial velocity x Time + (1/2)Acceleration x Time²"
+        },
+        {
+            question: "What is the formula for distance covered in terms of final velocity, acceleration, and time?",
+            options: ["(Final velocity x Time) - (1/2)Acceleration x Time²", "(Final velocity + (1/2)Acceleration x Time) x Time", "(Final velocity - (1/2)Acceleration x Time) x Time", "(Final velocity x Time) + (1/2)Acceleration x Time²"],
+            correctAnswer: "(Final velocity x Time) - (1/2)Acceleration x Time²"
+        },
+        {
+            question: "What is the formula for displacement covered in terms of initial velocity, final velocity, and time?",
+            options: ["(Initial velocity + Final velocity) x Time / 2", "(Initial velocity - Final velocity) x Time / 2", "(Initial velocity + Final velocity) x Time", "(Initial velocity - Final velocity) x Time"],
+            correctAnswer: "(Initial velocity + Final velocity) x Time / 2"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of initial velocity, final velocity, and distance?",
+            options: ["(Final velocity² - Initial velocity²) / (2 x Distance)", "(Final velocity - Initial velocity) / Distance", "(Final velocity - Initial velocity) / (2 x Distance)", "(Final velocity + Initial velocity) / (2 x Distance)"],
+            correctAnswer: "(Final velocity² - Initial velocity²) / (2 x Distance)"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of initial velocity, final velocity, and time?",
+            options: ["(Final velocity - Initial velocity) / Time", "(Final velocity + Initial velocity) / Time", "(Final velocity - Initial velocity) / (2 x Time)", "(Final velocity + Initial velocity) / (2 x Time)"],
+            correctAnswer: "(Final velocity - Initial velocity) / Time"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of initial velocity, distance, and time?",
+            options: ["(2 x Distance) / (Initial velocity x Time)", "(2 x Distance) / (Final velocity x Time)", "(Final velocity - Initial velocity) / (2 x Time)", "(Final velocity + Initial velocity) / (2 x Time)"],
+            correctAnswer: "(2 x Distance) / (Initial velocity x Time)"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of final velocity, distance, and time?",
+            options: ["(Final velocity² - Initial velocity²) / (2 x Distance)", "(2 x Distance) / (Initial velocity x Time)", "(2 x Distance) / (Final velocity x Time)", "(Final velocity + Initial velocity) / (2 x Time)"],
+            correctAnswer: "(2 x Distance) / (Final velocity x Time)"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of final velocity, initial velocity, and time?",
+            options: ["(Final velocity - Initial velocity) / Time", "(Final velocity + Initial velocity) / Time", "(Final velocity - Initial velocity) / (2 x Time)", "(Final velocity² - Initial velocity²) / (2 x Time)"],
+            correctAnswer: "(Final velocity - Initial velocity) / Time"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of final velocity, initial velocity, and distance?",
+            options: ["(Final velocity² - Initial velocity²) / (2 x Distance)", "(Final velocity - Initial velocity) / Distance", "(Final velocity - Initial velocity) / (2 x Distance)", "(Final velocity + Initial velocity) / (2 x Distance)"],
+            correctAnswer: "(Final velocity - Initial velocity) / (2 x Distance)"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of distance, time, and initial velocity?",
+            options: ["(Final velocity - Initial velocity) / Time", "(2 x Distance) / (Final velocity x Time)", "(Final velocity - Initial velocity) / (2 x Time)", "(Final velocity + Initial velocity) / (2 x Time)"],
+            correctAnswer: "(Final velocity - Initial velocity) / (2 x Time)"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of distance, time, and final velocity?",
+            options: ["(2 x Distance) / (Initial velocity x Time)", "(Final velocity - Initial velocity) / Time", "(Final velocity - Initial velocity) / (2 x Time)", "(Final velocity + Initial velocity) / (2 x Time)"],
+            correctAnswer: "(Final velocity - Initial velocity) / (2 x Time)"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of distance, initial velocity, and final velocity?",
+            options: ["(Final velocity² - Initial velocity²) / (2 x Distance)", "(Final velocity - Initial velocity) / Distance", "(Final velocity - Initial velocity) / (2 x Distance)", "(Final velocity + Initial velocity) / (2 x Distance)"],
+            correctAnswer: "(Final velocity - Initial velocity) / (2 x Distance)"
+        },
+        {
+            question: "What is the formula for distance covered in terms of initial velocity, final velocity, and acceleration?",
+            options: ["(Initial velocity + Final velocity) x Time / 2", "(Initial velocity - Final velocity) x Time / 2", "(Initial velocity + Final velocity) x Time", "(Initial velocity - Final velocity) x Time"],
+            correctAnswer: "(Initial velocity + Final velocity) x Time / 2"
+        },
+        {
+            question: "What is the formula for displacement covered in terms of initial velocity, final velocity, and time?",
+            options: ["(Initial velocity + Final velocity) x Time / 2", "(Initial velocity - Final velocity) x Time / 2", "(Initial velocity + Final velocity) x Time", "(Initial velocity - Final velocity) x Time"],
+            correctAnswer: "(Initial velocity + Final velocity) x Time / 2"
+        },
+        {
+            question: "What is the formula for velocity covered in terms of initial velocity, final velocity, and time?",
+            options: ["(Initial velocity + Final velocity) / 2", "(Initial velocity - Final velocity) / 2", "(Initial velocity + Final velocity) x Time", "(Initial velocity - Final velocity) x Time"],
+            correctAnswer: "(Initial velocity + Final velocity) / 2"
+        },
+        {
+            question: "What is the formula for time covered in terms of initial velocity, final velocity, and acceleration?",
+            options: ["(Final velocity - Initial velocity) / Acceleration", "(Final velocity + Initial velocity) / Acceleration", "(Final velocity - Initial velocity) / (2 x Acceleration)", "(Final velocity + Initial velocity) / (2 x Acceleration)"],
+            correctAnswer: "(Final velocity - Initial velocity) / Acceleration"
+        },
+        {
+            question: "What is the formula for acceleration covered in terms of initial velocity, final velocity, and time?",
+            options: ["(Final velocity - Initial velocity) / Time", "(Final velocity + Initial velocity) / Time", "(Final velocity - Initial velocity) / (2 x Time)", "(Final velocity + Initial velocity) / (2 x Time)"],
+            correctAnswer: "(Final velocity - Initial velocity) / Time"
+        },
+        {
+            question: "What is the formula for velocity covered in terms of acceleration, distance, and initial velocity?",
+            options: ["sqrt(Initial velocity² + 2 x Acceleration x Distance)", "sqrt(Initial velocity² - 2 x Acceleration x Distance)", "sqrt(Initial velocity² + 2 x Distance / Acceleration)", "sqrt(Initial velocity² - 2 x Distance / Acceleration)"],
+            correctAnswer: "sqrt(Initial velocity² + 2 x Acceleration x Distance)"
+        },
+        {
+            question: "What is the formula for velocity covered in terms of acceleration, distance, and final velocity?",
+            options: ["sqrt(Final velocity² + 2 x Acceleration x Distance)", "sqrt(Final velocity² - 2 x Acceleration x Distance)", "sqrt(Final velocity² + 2 x Distance / Acceleration)", "sqrt(Final velocity² - 2 x Distance / Acceleration)"],
+            correctAnswer: "sqrt(Final velocity² + 2 x Acceleration x Distance)"
+        },
+        {
+            question: "What is the formula for velocity covered in terms of acceleration, time, and initial velocity?",
+            options: ["Initial velocity + (Acceleration x Time)", "Initial velocity - (Acceleration x Time)", "Initial velocity x (Acceleration x Time)", "Initial velocity / (Acceleration x Time)"],
+            correctAnswer: "Initial velocity + (Acceleration x Time)"
+        },
+        {
+            question: "What is the formula for velocity covered in terms of acceleration, time, and final velocity?",
+            options: ["Final velocity - (Acceleration x Time)", "Final velocity + (Acceleration x Time)", "Final velocity x (Acceleration x Time)", "Final velocity / (Acceleration x Time)"],
+            correctAnswer: "Final velocity - (Acceleration x Time)"
+        },
+        {
+            question: "What is the formula for acceleration?",
+            options: ["Change in velocity / Time taken", "Change in displacement / Time taken", "Change in speed / Time taken", "Velocity / Time taken"],
+            correctAnswer: "Change in velocity / Time taken"
+        },
+        {
+            question: "What is the formula for velocity?",
+            options: ["Change in displacement / Time taken", "Change in time / Change in displacement", "Change in displacement x Time taken", "Displacement / Time taken"],
+            correctAnswer: "Change in displacement / Time taken"
+        },
+        {
+            question: "What is the formula for distance?",
+            options: ["Velocity x Time taken", "Acceleration x Time taken", "Velocity / Time taken", "Acceleration / Time taken"],
+            correctAnswer: "Velocity x Time taken"
+        },
+        {
+            question: "What is the formula for time?",
+            options: ["Distance / Velocity", "Velocity / Distance", "Distance x Velocity", "Velocity + Distance"],
+            correctAnswer: "Distance / Velocity"
+        },
+        {
+            question: "What is the SI unit of acceleration?",
+            options: ["Meter per second squared (m/s²)", "Meter per second (m/s)", "Meter", "Second"],
+            correctAnswer: "Meter per second squared (m/s²)"
+        },
+        {
+            question: "What is the SI unit of velocity?",
+            options: ["Meter per second (m/s)", "Meter", "Second", "Candela"],
+            correctAnswer: "Meter per second (m/s)"
+        },
+        {
+            question: "What is the SI unit of distance?",
+            options: ["Meter", "Meter per second (m/s)", "Second", "Candela"],
+            correctAnswer: "Meter"
+        },
+        {
+            question: "What is the SI unit of time?",
+            options: ["Second", "Meter", "Meter per second (m/s)", "Candela"],
+            correctAnswer: "Second"
+        },
+        {
+            question: "What is the formula for average velocity?",
+            options: ["Total displacement / Total time taken", "Total distance / Total time taken", "Total displacement x Total time taken", "Total distance x Total time taken"],
+            correctAnswer: "Total displacement / Total time taken"
+        },
+        {
+            question: "What is the formula for average speed?",
+            options: ["Total distance / Total time taken", "Total displacement / Total time taken", "Total distance x Total time taken", "Total displacement x Total time taken"],
+            correctAnswer: "Total distance / Total time taken"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

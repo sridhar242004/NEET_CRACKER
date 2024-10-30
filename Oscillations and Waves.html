@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Oscillations and Waves - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title">Oscillations and Waves - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Oscillations and Waves</h1>
+                <p>Explore the principles of oscillatory motion and wave phenomena, crucial concepts for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Oscillations</h2>
+                <div class="topic-content">
+                    <p>Oscillations refer to repetitive variations in time of physical quantities. They are fundamental to understanding various natural and mechanical systems.</p>
+        
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-wave-square"></i>
+                            </div>
+                            <h3>Simple Harmonic Motion (SHM)</h3>
+                            <p>Study the motion of systems that exhibit periodic oscillations, such as springs and pendulums, characterized by SHM principles.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Period and Frequency</h3>
+                            <p>Understanding the time-related characteristics of oscillations, including period, frequency, and their relationship.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-signal"></i>
+                            </div>
+                            <h3>Damping</h3>
+                            <p>Analysis of systems where oscillations gradually decrease due to resistance or frictional forces.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3>Resonance</h3>
+                            <p>Exploration of the phenomenon where an oscillating system experiences amplified motion at a specific frequency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Waves and Their Properties</h2>
+                <div class="topic-content">
+                    <p>Waves are disturbances that transfer energy across space. Dive into the different types of waves and their characteristics.</p>
+        
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <h3>Types of Waves</h3>
+                            <p>Differentiate between mechanical and electromagnetic waves, and understand transverse and longitudinal waves.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <h3>Wave Speed</h3>
+                            <p>Learn the factors affecting the speed of wave propagation in various media.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-waveform"></i>
+                            </div>
+                            <h3>Amplitude and Wavelength</h3>
+                            <p>Understand the significance of amplitude and wavelength in determining a wave's energy and spatial extent.</p>
+                        </div>
+        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrows-alt-h"></i>
+                            </div>
+                            <h3>Interference and Diffraction</h3>
+                            <p>Examine how waves interact with each other and with obstacles, resulting in unique patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Oscillations and Waves concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the time period of a simple pendulum?",
+            options: ["The time taken to complete one oscillation", "The time taken to cover one meter", "The time taken to travel one wavelength", "The time taken to complete one wave cycle"],
+            correctAnswer: "The time taken to complete one oscillation"
+        },
+        {
+            question: "What is the formula for the time period (T) of a simple pendulum of length (L)?",
+            options: ["T = 2π√(L/g)", "T = 2π/L", "T = √(2πL/g)", "T = L/π"],
+            correctAnswer: "T = 2π√(L/g)"
+        },
+        {
+            question: "What is the formula for the frequency (f) of a simple pendulum?",
+            options: ["f = 1/T", "f = T/2π", "f = g/L", "f = L/g"],
+            correctAnswer: "f = 1/T"
+        },
+        {
+            question: "What does the amplitude of an oscillating object represent?",
+            options: ["The maximum displacement from the mean position", "The total distance traveled by the object", "The time taken to complete one oscillation", "The velocity of the object"],
+            correctAnswer: "The maximum displacement from the mean position"
+        },
+        {
+            question: "What is the angular frequency (ω) of an oscillating object?",
+            options: ["The rate of change of angular displacement with respect to time", "The maximum angular displacement of the object", "The angular position of the object at a particular instant", "The time taken to complete one oscillation"],
+            correctAnswer: "The rate of change of angular displacement with respect to time"
+        },
+        {
+            question: "What is the formula for the angular frequency (ω) of an oscillating object?",
+            options: ["ω = 2πf", "ω = 2π/T", "ω = 2π/λ", "ω = πf"],
+            correctAnswer: "ω = 2πf"
+        },
+        {
+            question: "What is the relationship between frequency (f) and time period (T)?",
+            options: ["f = 1/T", "f = T/2π", "f = g/L", "f = L/g"],
+            correctAnswer: "f = 1/T"
+        },
+        {
+            question: "What is the displacement of an object in simple harmonic motion when it is at equilibrium?",
+            options: ["Zero", "Maximum", "Minimum", "Infinity"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the phase difference between two waves when they are in phase?",
+            options: ["0 degrees", "90 degrees", "180 degrees", "360 degrees"],
+            correctAnswer: "0 degrees"
+        },
+        {
+            question: "What is the phase difference between two waves when they are in anti-phase?",
+            options: ["180 degrees", "0 degrees", "90 degrees", "360 degrees"],
+            correctAnswer: "180 degrees"
+        },
+        {
+            question: "What is the formula for the displacement (x) of an object in simple harmonic motion?",
+            options: ["x = A * cos(ωt)", "x = A * sin(ωt)", "x = A * tan(ωt)", "x = A * cot(ωt)"],
+            correctAnswer: "x = A * cos(ωt)"
+        },
+        {
+            question: "What is the formula for the velocity (v) of an object in simple harmonic motion?",
+            options: ["v = -ωA * sin(ωt)", "v = ωA * cos(ωt)", "v = -A * cos(ωt)", "v = A * sin(ωt)"],
+            correctAnswer: "v = -ωA * sin(ωt)"
+        },
+        {
+            question: "What is the formula for the acceleration (a) of an object in simple harmonic motion?",
+            options: ["a = -ω² * x", "a = -ω * v", "a = ω² * x", "a = ω * v"],
+            correctAnswer: "a = -ω² * x"
+        },
+        {
+            question: "What happens to the amplitude of an oscillating object if the energy loss due to damping is considered?",
+            options: ["It decreases", "It increases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It decreases"
+        },
+        {
+            question: "What is the unit of frequency?",
+            options: ["Hertz (Hz)", "Meter (m)", "Second (s)", "Newton (N)"],
+            correctAnswer: "Hertz (Hz)"
+        },
+        {
+            question: "What is the unit of angular frequency?",
+            options: ["Radians per second (rad/s)", "Hertz (Hz)", "Meter per second (m/s)", "Newton (N)"],
+            correctAnswer: "Radians per second (rad/s)"
+        },
+        {
+            question: "What is the unit of time period?",
+            options: ["Second (s)", "Hertz (Hz)", "Meter (m)", "Newton (N)"],
+            correctAnswer: "Second (s)"
+        },
+        {
+            question: "What is the unit of amplitude?",
+            options: ["Meter (m)", "Second (s)", "Hertz (Hz)", "Newton (N)"],
+            correctAnswer: "Meter (m)"
+        },
+        {
+            question: "What is the unit of displacement?",
+            options: ["Meter (m)", "Second (s)", "Hertz (Hz)", "Newton (N)"],
+            correctAnswer: "Meter (m)"
+        },
+        {
+            question: "What is the unit of velocity?",
+            options: ["Meter per second (m/s)", "Hertz (Hz)", "Meter (m)", "Newton (N)"],
+            correctAnswer: "Meter per second (m/s)"
+        },
+        {
+            question: "What is the unit of acceleration?",
+            options: ["Meter per second squared (m/s²)", "Hertz (Hz)", "Meter (m)", "Newton (N)"],
+            correctAnswer: "Meter per second squared (m/s²)"
+        },
+        {
+            question: "What is the unit of force constant (k) in Hooke's Law?",
+            options: ["Newton per meter (N/m)", "Meter per second squared (m/s²)", "Meter (m)", "Newton (N)"],
+            correctAnswer: "Newton per meter (N/m)"
+        },
+        {
+            question: "What is the condition for simple harmonic motion?",
+            options: ["The restoring force is directly proportional to the displacement and acts towards the mean position", "The velocity is directly proportional to the displacement and acts towards the mean position", "The acceleration is directly proportional to the displacement and acts towards the mean position", "The acceleration is directly proportional to the displacement and acts in the direction opposite to the displacement"],
+            correctAnswer: "The acceleration is directly proportional to the displacement and acts in the direction opposite to the displacement"
+        },
+        {
+            question: "What is the total energy of an object in simple harmonic motion?",
+            options: ["The sum of kinetic and potential energy", "The difference between kinetic and potential energy", "Only kinetic energy", "Only potential energy"],
+            correctAnswer: "The sum of kinetic and potential energy"
+        },
+        {
+            question: "What is the phase difference between the displacement and velocity of an object in simple harmonic motion?",
+            options: ["90 degrees", "180 degrees", "0 degrees", "45 degrees"],
+            correctAnswer: "90 degrees"
+        },
+        {
+            question: "What is the phase difference between the velocity and acceleration of an object in simple harmonic motion?",
+            options: ["90 degrees", "180 degrees", "0 degrees", "45 degrees"],
+            correctAnswer: "90 degrees"
+        },
+        {
+            question: "What is the phase difference between the displacement and acceleration of an object in simple harmonic motion?",
+            options: ["180 degrees", "90 degrees", "0 degrees", "45 degrees"],
+            correctAnswer: "180 degrees"
+        },
+        {
+            question: "What happens to the frequency of an oscillating object if the spring constant is doubled?",
+            options: ["It remains the same", "It becomes half", "It becomes double", "It becomes four times"],
+            correctAnswer: "It remains the same"
+        },
+        {
+            question: "What happens to the frequency of an oscillating object if the mass attached to the spring is doubled?",
+            options: ["It remains the same", "It becomes half", "It becomes double", "It becomes four times"],
+            correctAnswer: "It becomes half"
+        },
+        {
+            question: "What is the relationship between the time period and frequency of an oscillating object?",
+            options: ["T = 1/f", "T = f/2π", "T = g/L", "T = L/g"],
+            correctAnswer: "T = 1/f"
+        },
+        {
+            question: "What is the phase difference between two waves when they are in phase?",
+            options: ["0 degrees", "90 degrees", "180 degrees", "360 degrees"],
+            correctAnswer: "0 degrees"
+        },
+        {
+            question: "What is the phase difference between two waves when they are in anti-phase?",
+            options: ["180 degrees", "0 degrees", "90 degrees", "360 degrees"],
+            correctAnswer: "180 degrees"
+        },
+        {
+            question: "What is the formula for the displacement (x) of a wave?",
+            options: ["x = A * sin(kx - ωt)", "x = A * cos(kx - ωt)", "x = A * tan(kx - ωt)", "x = A * cot(kx - ωt)"],
+            correctAnswer: "x = A * sin(kx - ωt)"
+        },
+        {
+            question: "What is the formula for the velocity (v) of a wave?",
+            options: ["v = ω/k", "v = λ/T", "v = fλ", "v = A * sin(kx - ωt)"],
+            correctAnswer: "v = ω/k"
+        },
+        {
+            question: "What is the formula for the wavelength (λ) of a wave?",
+            options: ["λ = v/f", "λ = v/T", "λ = f/v", "λ = 1/f"],
+            correctAnswer: "λ = v/f"
+        },
+        {
+            question: "What is the formula for the frequency (f) of a wave?",
+            options: ["f = v/λ", "f = λ/T", "f = v/T", "f = 1/λ"],
+            correctAnswer: "f = v/λ"
+        },
+        {
+            question: "What is the formula for the wave number (k) of a wave?",
+            options: ["k = 2π/λ", "k = 2πf", "k = 2π/T", "k = 1/λ"],
+            correctAnswer: "k = 2π/λ"
+        },
+        {
+            question: "What is the relationship between the speed of sound in a medium and its density?",
+            options: ["Higher density leads to lower speed of sound", "Higher density leads to higher speed of sound", "Density has no effect on the speed of sound", "Density is inversely proportional to the speed of sound"],
+            correctAnswer: "Higher density leads to lower speed of sound"
+        },
+        {
+            question: "What is the relationship between the speed of sound in a medium and its elasticity?",
+            options: ["Higher elasticity leads to higher speed of sound", "Higher elasticity leads to lower speed of sound", "Elasticity has no effect on the speed of sound", "Elasticity is inversely proportional to the speed of sound"],
+            correctAnswer: "Higher elasticity leads to higher speed of sound"
+        },
+        {
+            question: "What is the relationship between the speed of sound in a gas and its temperature?",
+            options: ["Higher temperature leads to higher speed of sound", "Higher temperature leads to lower speed of sound", "Temperature has no effect on the speed of sound", "Temperature is inversely proportional to the speed of sound"],
+            correctAnswer: "Higher temperature leads to higher speed of sound"
+        },
+        {
+            question: "What happens to the speed of sound in a medium if the temperature increases?",
+            options: ["It increases", "It decreases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It increases"
+        },
+        {
+            question: "What happens to the speed of sound in a medium if the pressure increases?",
+            options: ["It increases", "It decreases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It remains constant"
+        },
+        {
+            question: "What happens to the speed of sound in a medium if the density increases?",
+            options: ["It increases", "It decreases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It decreases"
+        },
+        {
+            question: "What is the phenomenon of beats in waves?",
+            options: ["The periodic variation in amplitude when two waves of slightly different frequencies superpose", "The change in direction of waves when they pass through an opening", "The interference pattern formed by waves passing through a narrow slit", "The bending of waves around obstacles"],
+            correctAnswer: "The periodic variation in amplitude when two waves of slightly different frequencies superpose"
+        },
+        {
+            question: "What is the formula for the beat frequency?",
+            options: ["f_beat = |f1 - f2|", "f_beat = f1 + f2", "f_beat = f1 - f2", "f_beat = f1 * f2"],
+            correctAnswer: "f_beat = |f1 - f2|"
+        },
+        {
+            question: "What is the effect of increasing the tension in a stretched string on the speed of waves?",
+            options: ["Increases", "Decreases", "Remains constant", "Becomes zero"],
+            correctAnswer: "Increases"
+        },
+        {
+            question: "What is the effect of increasing the linear density of a stretched string on the speed of waves?",
+            options: ["Decreases", "Increases", "Remains constant", "Becomes zero"],
+            correctAnswer: "Decreases"
+        },
+        {
+            question: "What is the formula for the velocity of a wave in a stretched string?",
+            options: ["v = √(T/μ)", "v = √(μ/T)", "v = T/μ", "v = μ/T"],
+            correctAnswer: "v = √(T/μ)"
+        },
+        {
+            question: "What is the formula for the tension (T) in a stretched string?",
+            options: ["T = μv²", "T = mv²", "T = μ/v²", "T = mv"],
+            correctAnswer: "T = μv²"
+        },
+        {
+            question: "What is the formula for the linear density (μ) of a stretched string?",
+            options: ["μ = m/L", "μ = L/m", "μ = mv", "μ = T/v²"],
+            correctAnswer: "μ = m/L"
+        },
+        {
+            question: "What is the unit of linear density (μ)?",
+            options: ["kg/m", "kg/m²", "m/kg", "m²/kg"],
+            correctAnswer: "kg/m"
+        },
+        {
+            question: "What is the unit of tension (T)?",
+            options: ["Newton (N)", "Kilogram (kg)", "Meter per second (m/s)", "Hertz (Hz)"],
+            correctAnswer: "Newton (N)"
+        },
+        {
+            question: "What is the formula for the power (P) of a wave?",
+            options: ["P = Fv", "P = F²v", "P = F²v²", "P = F/v"],
+            correctAnswer: "P = Fv"
+        },
+        {
+            question: "What is the formula for the intensity (I) of a wave?",
+            options: ["I = P/A", "I = P/A²", "I = A/P", "I = P/A²"],
+            correctAnswer: "I = P/A"
+        },
+        {
+            question: "What is the unit of power (P)?",
+            options: ["Watt (W)", "Joule (J)", "Newton (N)", "Hertz (Hz)"],
+            correctAnswer: "Watt (W)"
+        },
+        {
+            question: "What is the unit of intensity (I)?",
+            options: ["Watt per square meter (W/m²)", "Watt (W)", "Newton (N)", "Hertz (Hz)"],
+            correctAnswer: "Watt per square meter (W/m²)"
+        },
+        {
+            question: "What is the relationship between the intensity and amplitude of a wave?",
+            options: ["Directly proportional", "Inversely proportional", "No relationship", "Logarithmic relationship"],
+            correctAnswer: "Directly proportional"
+        },
+        {
+            question: "What is the relationship between the intensity and frequency of a wave?",
+            options: ["Directly proportional", "Inversely proportional", "No relationship", "Logarithmic relationship"],
+            correctAnswer: "No relationship"
+        },
+        {
+            question: "What is the relationship between the intensity and wavelength of a wave?",
+            options: ["Inversely proportional", "Directly proportional", "No relationship", "Logarithmic relationship"],
+            correctAnswer: "No relationship"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Circulatory System - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .circulatory-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .circulatory-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Circulatory System - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+     
+        <main class="main-content">
+            <div class="circulatory-header">
+                <h1 class="circulatory-title">Circulatory System</h1>
+                <p>Explore the vital role of the circulatory system in human health and its functions essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding the Circulatory System</h2>
+                <div class="topic-content">
+                    <p>The circulatory system is responsible for transporting blood, nutrients, oxygen, carbon dioxide, and hormones throughout the body. It plays a crucial role in maintaining homeostasis and overall health.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Structure of the Heart</h3>
+                            <p>An overview of the heart's anatomy, including its chambers, valves, and major blood vessels.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Blood Vessels</h3>
+                            <p>Understanding the types of blood vessels: arteries, veins, and capillaries, and their roles in circulation.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3>Blood Composition</h3>
+                            <p>Analysis of the components of blood, including red blood cells, white blood cells, platelets, and plasma.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>Circulatory Pathways</h3>
+                            <p>Exploration of systemic and pulmonary circulation and how blood travels throughout the body.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Common Circulatory Disorders</h2>
+                <div class="topic-content">
+                    <p>Various disorders can affect the circulatory system. This section covers common conditions and their impacts on health.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3>Hypertension</h3>
+                            <p>Understanding high blood pressure: causes, effects, and management strategies.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <h3>Atherosclerosis</h3>
+                            <p>Exploration of plaque buildup in arteries and its impact on blood flow.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-ambulance"></i>
+                            </div>
+                            <h3>Heart Attack</h3>
+                            <p>Overview of the causes and symptoms of heart attacks and preventive measures.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>Stroke</h3>
+                            <p>Understanding strokes, their types, causes, and the importance of quick treatment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Circulatory System concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the main organ responsible for pumping blood in the human circulatory system?",
+            options: ["Heart", "Lungs", "Liver", "Brain"],
+            correctAnswer: "Heart"
+        },
+        {
+            question: "Which type of blood vessels carry blood away from the heart?",
+            options: ["Arteries", "Veins", "Capillaries", "Venules"],
+            correctAnswer: "Arteries"
+        },
+        {
+            question: "What is the liquid component of blood called?",
+            options: ["Plasma", "Serum", "Lymph", "Platelets"],
+            correctAnswer: "Plasma"
+        },
+        {
+            question: "What is the medical term for the 'windpipe'?",
+            options: ["Trachea", "Bronchus", "Esophagus", "Larynx"],
+            correctAnswer: "Trachea"
+        },
+        {
+            question: "Which chamber of the heart receives oxygenated blood from the lungs?",
+            options: ["Left Atrium", "Right Atrium", "Left Ventricle", "Right Ventricle"],
+            correctAnswer: "Left Atrium"
+        },
+        {
+            question: "What causes the lub-dub sound of the heart?",
+            options: ["Closing of heart valves", "Blood rushing through arteries", "Muscle contraction", "Electrical impulses"],
+            correctAnswer: "Closing of heart valves"
+        },
+        {
+            question: "Which blood vessels have the thinnest walls?",
+            options: ["Capillaries", "Veins", "Arteries", "Venules"],
+            correctAnswer: "Capillaries"
+        },
+        {
+            question: "What is the function of valves in veins?",
+            options: ["Prevent backflow of blood", "Pump blood to the heart", "Oxygenate blood", "Regulate blood pressure"],
+            correctAnswer: "Prevent backflow of blood"
+        },
+        {
+            question: "What is the average adult human heart rate at rest?",
+            options: ["60-100 beats per minute", "20-40 beats per minute", "120-150 beats per minute", "200-220 beats per minute"],
+            correctAnswer: "60-100 beats per minute"
+        },
+        {
+            question: "Which blood vessel carries oxygenated blood from the lungs to the heart?",
+            options: ["Pulmonary vein", "Pulmonary artery", "Aorta", "Coronary artery"],
+            correctAnswer: "Pulmonary vein"
+        },
+        {
+            question: "What is the medical term for high blood pressure?",
+            options: ["Hypertension", "Hypotension", "Bradycardia", "Tachycardia"],
+            correctAnswer: "Hypertension"
+        },
+        {
+            question: "Which component of blood is responsible for clotting?",
+            options: ["Platelets", "Red blood cells", "White blood cells", "Plasma"],
+            correctAnswer: "Platelets"
+        },
+        {
+            question: "What is the medical term for a heart attack?",
+            options: ["Myocardial infarction", "Atherosclerosis", "Angina", "Arrhythmia"],
+            correctAnswer: "Myocardial infarction"
+        },
+        {
+            question: "Which of the following is not a type of blood vessel?",
+            options: ["Ureter", "Artery", "Vein", "Capillary"],
+            correctAnswer: "Ureter"
+        },
+        {
+            question: "What is the primary function of red blood cells?",
+            options: ["Transport oxygen", "Fight infection", "Clot blood", "Store nutrients"],
+            correctAnswer: "Transport oxygen"
+        },
+        {
+            question: "What is the medical term for the 'voice box'?",
+            options: ["Larynx", "Trachea", "Bronchus", "Epiglottis"],
+            correctAnswer: "Larynx"
+        },
+        {
+            question: "Which blood vessel carries deoxygenated blood from the body to the heart?",
+            options: ["Vena cava", "Aorta", "Pulmonary vein", "Pulmonary artery"],
+            correctAnswer: "Vena cava"
+        },
+        {
+            question: "What is the average lifespan of a red blood cell?",
+            options: ["120 days", "30 days", "1 year", "10 years"],
+            correctAnswer: "120 days"
+        },
+        {
+            question: "Which chamber of the heart pumps blood to the lungs for oxygenation?",
+            options: ["Right Ventricle", "Left Ventricle", "Right Atrium", "Left Atrium"],
+            correctAnswer: "Right Ventricle"
+        },
+        {
+            question: "What is the medical term for low blood pressure?",
+            options: ["Hypotension", "Hypertension", "Bradycardia", "Tachycardia"],
+            correctAnswer: "Hypotension"
+        },
+        {
+            question: "Which blood vessel supplies oxygenated blood to the heart muscle itself?",
+            options: ["Coronary artery", "Aorta", "Pulmonary artery", "Carotid artery"],
+            correctAnswer: "Coronary artery"
+        },
+        {
+            question: "What is the function of white blood cells?",
+            options: ["Fight infection", "Transport oxygen", "Clot blood", "Store nutrients"],
+            correctAnswer: "Fight infection"
+        },
+        {
+            question: "What is the medical term for the 'windpipe'?",
+            options: ["Trachea", "Bronchus", "Esophagus", "Larynx"],
+            correctAnswer: "Trachea"
+        },
+        {
+            question: "Which blood vessel carries blood from the heart to the rest of the body?",
+            options: ["Aorta", "Pulmonary artery", "Pulmonary vein", "Coronary artery"],
+            correctAnswer: "Aorta"
+        },
+        {
+            question: "What is the average adult human blood volume?",
+            options: ["5-6 liters", "2-3 liters", "10-12 liters", "8-9 liters"],
+            correctAnswer: "5-6 liters"
+        },
+        {
+            question: "Which component of blood is responsible for transporting oxygen?",
+            options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+            correctAnswer: "Red blood cells"
+        },
+        {
+            question: "What is the main function of the circulatory system?",
+            options: ["Transport nutrients and oxygen", "Filter waste products", "Regulate body temperature", "Produce hormones"],
+            correctAnswer: "Transport nutrients and oxygen"
+        },
+        {
+            question: "Which blood vessel carries deoxygenated blood from the heart to the lungs?",
+            options: ["Pulmonary artery", "Pulmonary vein", "Aorta", "Vena cava"],
+            correctAnswer: "Pulmonary artery"
+        },
+        {
+            question: "What is the medical term for the 'voice box'?",
+            options: ["Larynx", "Trachea", "Bronchus", "Epiglottis"],
+            correctAnswer: "Larynx"
+        },
+        {
+            question: "What is the process of blood clotting called?",
+            options: ["Coagulation", "Hemolysis", "Hematopoiesis", "Erythropoiesis"],
+            correctAnswer: "Coagulation"
+        },
+        {
+            question: "Which blood vessel carries blood directly from the intestines to the liver?",
+            options: ["Hepatic portal vein", "Aorta", "Renal artery", "Carotid artery"],
+            correctAnswer: "Hepatic portal vein"
+        },
+        {
+            question: "What is the function of hemoglobin?",
+            options: ["Transport oxygen", "Fight infection", "Clot blood", "Regulate blood pressure"],
+            correctAnswer: "Transport oxygen"
+        },
+        {
+            question: "Which blood cells are responsible for carrying oxygen?",
+            options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+            correctAnswer: "Red blood cells"
+        },
+        {
+            question: "What is the medical term for the 'food pipe'?",
+            options: ["Esophagus", "Trachea", "Bronchus", "Duodenum"],
+            correctAnswer: "Esophagus"
+        },
+        {
+            question: "Which blood vessel carries blood back to the heart from the body?",
+            options: ["Veins", "Arteries", "Capillaries", "Venules"],
+            correctAnswer: "Veins"
+        },
+        {
+            question: "What is the function of valves in the heart?",
+            options: ["Prevent backflow of blood", "Pump blood to the body", "Transport oxygen", "Produce hormones"],
+            correctAnswer: "Prevent backflow of blood"
+        },
+        {
+            question: "What is the medical term for a clot that breaks loose and travels through the bloodstream?",
+            options: ["Embolism", "Thrombosis", "Aneurysm", "Ischemia"],
+            correctAnswer: "Embolism"
+        },
+        {
+            question: "What is the medical term for 'low red blood cell count'?",
+            options: ["Anemia", "Leukemia", "Hemophilia", "Thrombocytopenia"],
+            correctAnswer: "Anemia"
+        },
+        {
+            question: "Which component of blood is primarily responsible for transporting nutrients?",
+            options: ["Plasma", "Red blood cells", "White blood cells", "Platelets"],
+            correctAnswer: "Plasma"
+        },
+        {
+            question: "What is the medical term for a 'heart attack'?",
+            options: ["Myocardial infarction", "Arrhythmia", "Atherosclerosis", "Angina"],
+            correctAnswer: "Myocardial infarction"
+        },
+        {
+            question: "What is the function of the lymphatic system?",
+            options: ["Maintain fluid balance", "Transport oxygen", "Regulate body temperature", "Digest food"],
+            correctAnswer: "Maintain fluid balance"
+        },
+        {
+            question: "Which blood vessel carries blood from the heart to the lungs?",
+            options: ["Pulmonary artery", "Pulmonary vein", "Aorta", "Vena cava"],
+            correctAnswer: "Pulmonary artery"
+        },
+        {
+            question: "What is the medical term for 'high red blood cell count'?",
+            options: ["Polycythemia", "Leukopenia", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Polycythemia"
+        },
+        {
+            question: "Which component of blood is responsible for fighting infections?",
+            options: ["White blood cells", "Red blood cells", "Platelets", "Plasma"],
+            correctAnswer: "White blood cells"
+        },
+        {
+            question: "What is the medical term for 'inflammation of a vein'?",
+            options: ["Phlebitis", "Thrombosis", "Atherosclerosis", "Embolism"],
+            correctAnswer: "Phlebitis"
+        },
+        {
+            question: "Which blood vessel carries blood from the lungs to the heart?",
+            options: ["Pulmonary vein", "Pulmonary artery", "Aorta", "Vena cava"],
+            correctAnswer: "Pulmonary vein"
+        },
+        {
+            question: "What is the function of the spleen in the circulatory system?",
+            options: ["Filter blood", "Pump blood", "Produce hormones", "Regulate blood pressure"],
+            correctAnswer: "Filter blood"
+        },
+        {
+            question: "Which blood cells are responsible for clotting?",
+            options: ["Platelets", "Red blood cells", "White blood cells", "Plasma"],
+            correctAnswer: "Platelets"
+        },
+        {
+            question: "What is the medical term for 'high white blood cell count'?",
+            options: ["Leukocytosis", "Leukopenia", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Leukocytosis"
+        },
+        {
+            question: "What is the function of the aorta?",
+            options: ["Carry blood from the heart to the body", "Carry blood from the body to the heart", "Pump blood to the lungs", "Filter blood"],
+            correctAnswer: "Carry blood from the heart to the body"
+        },
+        {
+            question: "What is the medical term for 'low white blood cell count'?",
+            options: ["Leukopenia", "Leukocytosis", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Leukopenia"
+        },
+        {
+            question: "Which component of blood is primarily water?",
+            options: ["Plasma", "Red blood cells", "White blood cells", "Platelets"],
+            correctAnswer: "Plasma"
+        },
+        {
+            question: "What is the medical term for 'hardening of the arteries'?",
+            options: ["Atherosclerosis", "Arteriosclerosis", "Embolism", "Thrombosis"],
+            correctAnswer: "Atherosclerosis"
+        },
+        {
+            question: "Which blood vessel carries blood from the intestines to the liver?",
+            options: ["Hepatic portal vein", "Aorta", "Renal artery", "Carotid artery"],
+            correctAnswer: "Hepatic portal vein"
+        },
+        {
+            question: "What is the function of the lymph nodes?",
+            options: ["Filter lymph", "Produce lymphocytes", "Transport oxygen", "Regulate blood pressure"],
+            correctAnswer: "Filter lymph"
+        },
+        {
+            question: "Which blood cells are responsible for carrying oxygen?",
+            options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+            correctAnswer: "Red blood cells"
+        },
+        {
+            question: "What is the medical term for 'inflammation of a vein'?",
+            options: ["Phlebitis", "Thrombosis", "Atherosclerosis", "Embolism"],
+            correctAnswer: "Phlebitis"
+        },
+        {
+            question: "What is the function of the spleen in the circulatory system?",
+            options: ["Filter blood", "Pump blood", "Produce hormones", "Regulate blood pressure"],
+            correctAnswer: "Filter blood"
+        },
+        {
+            question: "Which blood cells are responsible for clotting?",
+            options: ["Platelets", "Red blood cells", "White blood cells", "Plasma"],
+            correctAnswer: "Platelets"
+        },
+        {
+            question: "What is the medical term for 'high white blood cell count'?",
+            options: ["Leukocytosis", "Leukopenia", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Leukocytosis"
+        },
+        {
+            question: "What is the function of the aorta?",
+            options: ["Carry blood from the heart to the body", "Carry blood from the body to the heart", "Pump blood to the lungs", "Filter blood"],
+            correctAnswer: "Carry blood from the heart to the body"
+        },
+        {
+            question: "What is the medical term for 'low white blood cell count'?",
+            options: ["Leukopenia", "Leukocytosis", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Leukopenia"
+        },
+        {
+            question: "Which component of blood is primarily water?",
+            options: ["Plasma", "Red blood cells", "White blood cells", "Platelets"],
+            correctAnswer: "Plasma"
+        },
+        {
+            question: "What is the medical term for 'hardening of the arteries'?",
+            options: ["Atherosclerosis", "Arteriosclerosis", "Embolism", "Thrombosis"],
+            correctAnswer: "Atherosclerosis"
+        },
+        {
+            question: "Which blood vessel carries blood from the heart to the lungs?",
+            options: ["Pulmonary artery", "Pulmonary vein", "Aorta", "Vena cava"],
+            correctAnswer: "Pulmonary artery"
+        },
+        {
+            question: "What is the function of the lymphatic system?",
+            options: ["Maintain fluid balance", "Transport oxygen", "Regulate body temperature", "Digest food"],
+            correctAnswer: "Maintain fluid balance"
+        },
+        {
+            question: "What is the medical term for 'high red blood cell count'?",
+            options: ["Polycythemia", "Leukopenia", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Polycythemia"
+        },
+        {
+            question: "Which component of blood is responsible for fighting infections?",
+            options: ["White blood cells", "Red blood cells", "Platelets", "Plasma"],
+            correctAnswer: "White blood cells"
+        },
+        {
+            question: "What is the medical term for 'inflammation of a vein'?",
+            options: ["Phlebitis", "Thrombosis", "Atherosclerosis", "Embolism"],
+            correctAnswer: "Phlebitis"
+        },
+        {
+            question: "Which blood vessel carries blood from the lungs to the heart?",
+            options: ["Pulmonary vein", "Pulmonary artery", "Aorta", "Vena cava"],
+            correctAnswer: "Pulmonary vein"
+        },
+        {
+            question: "What is the function of the spleen in the circulatory system?",
+            options: ["Filter blood", "Pump blood", "Produce hormones", "Regulate blood pressure"],
+            correctAnswer: "Filter blood"
+        },
+        {
+            question: "Which blood cells are responsible for clotting?",
+            options: ["Platelets", "Red blood cells", "White blood cells", "Plasma"],
+            correctAnswer: "Platelets"
+        },
+        {
+            question: "What is the medical term for 'high white blood cell count'?",
+            options: ["Leukocytosis", "Leukopenia", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Leukocytosis"
+        },
+        {
+            question: "What is the function of the aorta?",
+            options: ["Carry blood from the heart to the body", "Carry blood from the body to the heart", "Pump blood to the lungs", "Filter blood"],
+            correctAnswer: "Carry blood from the heart to the body"
+        },
+        {
+            question: "What is the medical term for 'low white blood cell count'?",
+            options: ["Leukopenia", "Leukocytosis", "Thrombocytopenia", "Hemophilia"],
+            correctAnswer: "Leukopenia"
+        },
+        {
+            question: "Which component of blood is primarily water?",
+            options: ["Plasma", "Red blood cells", "White blood cells", "Platelets"],
+            correctAnswer: "Plasma"
+        },
+        {
+            question: "What is the medical term for 'hardening of the arteries'?",
+            options: ["Atherosclerosis", "Arteriosclerosis", "Embolism", "Thrombosis"],
+            correctAnswer: "Atherosclerosis"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

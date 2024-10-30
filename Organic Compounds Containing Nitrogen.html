@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Organic Compounds Containing Nitrogen - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .nitrogen-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nitrogen-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title">Organic Compounds Containing Nitrogen - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="nitrogen-header">
+                <h1 class="nitrogen-title">Organic Compounds Containing Nitrogen</h1>
+                <p>Discover the significance of nitrogen-containing organic compounds in chemistry and their applications.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Organic Nitrogen Compounds</h2>
+                <div class="topic-content">
+                    <p>Organic compounds containing nitrogen play a vital role in biological systems and synthetic chemistry. These compounds include amines, amides, and nitrogenous bases, which are fundamental in various biochemical processes.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Amines</h3>
+                            <p>Study of amines, their structure, classification, and properties, including their roles as bases and nucleophiles.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Amides</h3>
+                            <p>Understanding the formation, structure, and reactivity of amides in organic synthesis and biological systems.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Nitrogenous Bases</h3>
+                            <p>Analysis of nitrogenous bases in nucleic acids, their structure, and their importance in genetics and molecular biology.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Applications in Medicine</h3>
+                            <p>Exploration of nitrogen-containing compounds in pharmaceuticals and their roles as therapeutic agents.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Properties of Nitrogen-Containing Organic Compounds</h2>
+                <div class="topic-content">
+                    <p>Nitrogen-containing organic compounds exhibit a variety of properties that influence their reactivity, stability, and applications.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <h3>Basicity of Amines</h3>
+                            <p>Understanding the basic properties of amines, factors affecting their basicity, and their applications in chemical reactions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>Stability of Amides</h3>
+                            <p>Study of the stability and reactivity of amides in various chemical environments and their hydrolysis.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-biohazard"></i>
+                            </div>
+                            <h3>Functional Group Transformations</h3>
+                            <p>Exploration of transformations involving nitrogen-containing functional groups in organic synthesis.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <h3>Environmental Impact</h3>
+                            <p>Discussion on the environmental implications of nitrogenous organic compounds and their role in pollution.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Organic Compounds Containing Nitrogen concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the general formula of amines?",
+            options: ["R-NH2", "R-COOH", "R-OH", "R-CHO"],
+            correctAnswer: "R-NH2"
+        },
+        {
+            question: "Which functional group is present in amines?",
+            options: ["OH", "COOH", "NH2", "CHO"],
+            correctAnswer: "NH2"
+        },
+        {
+            question: "What is the IUPAC name of CH3NH2?",
+            options: ["Methylamine", "Methanol", "Methanoic acid", "Methanal"],
+            correctAnswer: "Methylamine"
+        },
+        {
+            question: "What is the IUPAC name of C2H5NH2?",
+            options: ["Ethylamine", "Ethanol", "Ethanoic acid", "Ethanal"],
+            correctAnswer: "Ethylamine"
+        },
+        {
+            question: "What is the IUPAC name of (CH3)2NH?",
+            options: ["Dimethylamine", "Dimethanol", "Dimethanoic acid", "Dimethanal"],
+            correctAnswer: "Dimethylamine"
+        },
+        {
+            question: "Which of the following is a secondary amine?",
+            options: ["CH3NH2", "(CH3)2NH", "C6H5NH2", "CH3CH2NH2"],
+            correctAnswer: "(CH3)2NH"
+        },
+        {
+            question: "What is the structure of aniline?",
+            options: ["C6H5-NH2", "C6H5-CH3", "C6H5-OH", "C6H5-COOH"],
+            correctAnswer: "C6H5-NH2"
+        },
+        {
+            question: "Which compound is known as phenylamine?",
+            options: ["Aniline", "Methylamine", "Ethylamine", "Benzylamine"],
+            correctAnswer: "Aniline"
+        },
+        {
+            question: "What is the structure of benzylamine?",
+            options: ["C6H5-NH2", "C6H5-CH3", "C6H5-OH", "C6H5-COOH"],
+            correctAnswer: "C6H5-CH2NH2"
+        },
+        {
+            question: "What is the general formula of amides?",
+            options: ["R-NH2", "R-CO-NH2", "R-OH", "R-CHO"],
+            correctAnswer: "R-CO-NH2"
+        },
+        {
+            question: "Which functional group is present in amides?",
+            options: ["OH", "COOH", "NH2", "CONH2"],
+            correctAnswer: "CONH2"
+        },
+        {
+            question: "What is the IUPAC name of CH3CONH2?",
+            options: ["Methylamide", "Methanol", "Methanoic acid", "Methanal"],
+            correctAnswer: "Methylamide"
+        },
+        {
+            question: "What is the IUPAC name of CH3CH2CONH2?",
+            options: ["Ethylamide", "Ethanol", "Ethanoic acid", "Ethanal"],
+            correctAnswer: "Ethylamide"
+        },
+        {
+            question: "What is the IUPAC name of (CH3)2NCONH2?",
+            options: ["Dimethylamide", "Dimethanol", "Dimethanoic acid", "Dimethanal"],
+            correctAnswer: "Dimethylamide"
+        },
+        {
+            question: "Which of the following is a secondary amide?",
+            options: ["CH3CONH2", "(CH3)2NCONH2", "C6H5CONH2", "CH3CH2CONH2"],
+            correctAnswer: "(CH3)2NCONH2"
+        },
+        {
+            question: "What is the structure of acetamide?",
+            options: ["CH3CONH2", "CH3CH2CONH2", "CH3CH2NH2", "CH3NH2"],
+            correctAnswer: "CH3CONH2"
+        },
+        {
+            question: "Which compound is known as ethanamide?",
+            options: ["Acetamide", "Propylamide", "Butanamide", "Methanamide"],
+            correctAnswer: "Ethanamide"
+        },
+        {
+            question: "What is the structure of benzamide?",
+            options: ["C6H5CONH2", "C6H5COOH", "C6H5OH", "C6H5CH3"],
+            correctAnswer: "C6H5CONH2"
+        },
+        {
+            question: "What is the general formula of nitriles?",
+            options: ["R-NH2", "R-C≡N", "R-OH", "R-CHO"],
+            correctAnswer: "R-C≡N"
+        },
+        {
+            question: "Which functional group is present in nitriles?",
+            options: ["OH", "COOH", "NH2", "C≡N"],
+            correctAnswer: "C≡N"
+        },
+        {
+            question: "What is the IUPAC name of CH3CN?",
+            options: ["Methyl nitrile", "Methanol", "Methanoic acid", "Methanal"],
+            correctAnswer: "Methyl nitrile"
+        },
+        {
+            question: "What is the IUPAC name of C2H5CN?",
+            options: ["Ethyl nitrile", "Ethanol", "Ethanoic acid", "Ethanal"],
+            correctAnswer: "Ethyl nitrile"
+        },
+        {
+            question: "What is the IUPAC name of (CH3)2CHCN?",
+            options: ["Isopropyl nitrile", "Isopropyl alcohol", "Isopropanoic acid", "Isopropanal"],
+            correctAnswer: "Isopropyl nitrile"
+        },
+        {
+            question: "Which of the following is a primary nitrile?",
+            options: ["CH3CN", "(CH3)2CHCN", "C6H5CN", "CH3CH2CN"],
+            correctAnswer: "CH3CN"
+        },
+        {
+            question: "What is the structure of benzonitrile?",
+            options: ["C6H5CN", "C6H5COOH", "C6H5OH", "C6H5CH3"],
+            correctAnswer: "C6H5CN"
+        },
+        {
+            question: "Which compound is known as phenyl nitrile?",
+            options: ["Benzonitrile", "Aniline", "Toluene", "Benzylamine"],
+            correctAnswer: "Benzonitrile"
+        },
+        {
+            question: "What is the structure of propionitrile?",
+            options: ["CH3CH2CN", "CH3CN", "CH3CH2CH2CN", "CH3CH2CONH2"],
+            correctAnswer: "CH3CH2CN"
+        },
+        {
+            question: "What is the general formula of nitro compounds?",
+            options: ["R-NH2", "R-NO2", "R-OH", "R-CHO"],
+            correctAnswer: "R-NO2"
+        },
+        {
+            question: "Which functional group is present in nitro compounds?",
+            options: ["OH", "COOH", "NH2", "NO2"],
+            correctAnswer: "NO2"
+        },
+        {
+            question: "What is the IUPAC name of CH3NO2?",
+            options: ["Nitromethane", "Methanol", "Methanoic acid", "Methanal"],
+            correctAnswer: "Nitromethane"
+        },
+        {
+            question: "What is the IUPAC name of C2H5NO2?",
+            options: ["Nitroethane", "Ethanol", "Ethanoic acid", "Ethanal"],
+            correctAnswer: "Nitroethane"
+        },
+        {
+            question: "What is the IUPAC name of (CH3)2CHNO2?",
+            options: ["Isopropyl nitrite", "Isopropyl alcohol", "Isopropanoic acid", "Isopropanal"],
+            correctAnswer: "Isopropyl nitrite"
+        },
+        {
+            question: "Which of the following is a primary nitro compound?",
+            options: ["CH3NO2", "(CH3)2CHNO2", "C6H5NO2", "CH3CH2NO2"],
+            correctAnswer: "CH3NO2"
+        },
+        {
+            question: "What is the structure of nitrobenzene?",
+            options: ["C6H5NO2", "C6H5COOH", "C6H5OH", "C6H5CH3"],
+            correctAnswer: "C6H5NO2"
+        },
+        {
+            question: "Which compound is known as phenyl nitrite?",
+            options: ["Nitrobenzene", "Aniline", "Toluene", "Benzylamine"],
+            correctAnswer: "Nitrobenzene"
+        },
+        {
+            question: "What is the structure of nitropropane?",
+            options: ["CH3CH2NO2", "CH3NO2", "CH3CH2CH2NO2", "CH3CH2CONH2"],
+            correctAnswer: "CH3CH2CH2NO2"
+        },
+        {
+            question: "What is the general formula of cyanides?",
+            options: ["R-NH2", "R-CN", "R-OH", "R-CHO"],
+            correctAnswer: "R-CN"
+        },
+        {
+            question: "Which functional group is present in cyanides?",
+            options: ["OH", "COOH", "NH2", "CN"],
+            correctAnswer: "CN"
+        },
+        {
+            question: "What is the IUPAC name of CH3CN?",
+            options: ["Methyl cyanide", "Methanol", "Methanoic acid", "Methanal"],
+            correctAnswer: "Methyl cyanide"
+        },
+        {
+            question: "What is the IUPAC name of C2H5CN?",
+            options: ["Ethyl cyanide", "Ethanol", "Ethanoic acid", "Ethanal"],
+            correctAnswer: "Ethyl cyanide"
+        },
+        {
+            question: "What is the IUPAC name of (CH3)2CHCN?",
+            options: ["Isopropyl cyanide", "Isopropyl alcohol", "Isopropanoic acid", "Isopropanal"],
+            correctAnswer: "Isopropyl cyanide"
+        },
+        {
+            question: "Which of the following is a primary cyanide?",
+            options: ["CH3CN", "(CH3)2CHCN", "C6H5CN", "CH3CH2CN"],
+            correctAnswer: "CH3CN"
+        },
+        {
+            question: "What is the structure of benzonitrile?",
+            options: ["C6H5CN", "C6H5COOH", "C6H5OH", "C6H5CH3"],
+            correctAnswer: "C6H5CN"
+        },
+        {
+            question: "Which compound is known as phenyl cyanide?",
+            options: ["Benzonitrile", "Aniline", "Toluene", "Benzylamine"],
+            correctAnswer: "Benzonitrile"
+        },
+        {
+            question: "What is the structure of propionitrile?",
+            options: ["CH3CH2CN", "CH3CN", "CH3CH2CH2CN", "CH3CH2CONH2"],
+            correctAnswer: "CH3CH2CN"
+        },
+        {
+            question: "What is the general formula of azides?",
+            options: ["R-NH2", "R-N3", "R-OH", "R-CHO"],
+            correctAnswer: "R-N3"
+        },
+        {
+            question: "Which functional group is present in azides?",
+            options: ["OH", "COOH", "NH2", "N3"],
+            correctAnswer: "N3"
+        },
+        {
+            question: "What is the IUPAC name of CH3N3?",
+            options: ["Methyl azide", "Methanol", "Methanoic acid", "Methanal"],
+            correctAnswer: "Methyl azide"
+        },
+        {
+            question: "What is the IUPAC name of C2H5N3?",
+            options: ["Ethyl azide", "Ethanol", "Ethanoic acid", "Ethanal"],
+            correctAnswer: "Ethyl azide"
+        },
+        {
+            question: "What is the IUPAC name of (CH3)2CHN3?",
+            options: ["Isopropyl azide", "Isopropyl alcohol", "Isopropanoic acid", "Isopropanal"],
+            correctAnswer: "Isopropyl azide"
+        },
+        {
+            question: "Which of the following is a primary azide?",
+            options: ["CH3N3", "(CH3)2CHN3", "C6H5N3", "CH3CH2N3"],
+            correctAnswer: "CH3N3"
+        },
+        {
+            question: "What is the structure of phenyl azide?",
+            options: ["C6H5N3", "C6H5COOH", "C6H5OH", "C6H5CH3"],
+            correctAnswer: "C6H5N3"
+        },
+        {
+            question: "Which compound is known as azidobenzene?",
+            options: ["Phenyl azide", "Aniline", "Toluene", "Benzyl azide"],
+            correctAnswer: "Phenyl azide"
+        },
+        {
+            question: "What is the structure of propyl azide?",
+            options: ["CH3CH2N3", "CH3N3", "CH3CH2CH2N3", "CH3CH2CONH2"],
+            correctAnswer: "CH3CH2CH2N3"
+        },
+        {
+            question: "What is the general formula of nitroso compounds?",
+            options: ["R-NH2", "R-NO", "R-OH", "R-CHO"],
+            correctAnswer: "R-NO"
+        },
+        {
+            question: "Which functional group is present in nitroso compounds?",
+            options: ["OH", "COOH", "NH2", "NO"],
+            correctAnswer: "NO"
+        },
+        {
+            question: "What is the IUPAC name of CH3NO?",
+            options: ["Methylnitroso", "Methanol", "Methanoic acid", "Methanal"],
+            correctAnswer: "Methylnitroso"
+        },
+        {
+            question: "What is the IUPAC name of C2H5NO?",
+            options: ["Ethylnitroso", "Ethanol", "Ethanoic acid", "Ethanal"],
+            correctAnswer: "Ethylnitroso"
+        },
+        {
+            question: "What is the IUPAC name of (CH3)2CHNO?",
+            options: ["Isopropylnitroso", "Isopropyl alcohol", "Isopropanoic acid", "Isopropanal"],
+            correctAnswer: "Isopropylnitroso"
+        },
+        {
+            question: "Which of the following is a primary nitroso compound?",
+            options: ["CH3NO", "(CH3)2CHNO", "C6H5NO", "CH3CH2NO"],
+            correctAnswer: "CH3NO"
+        },
+        {
+            question: "What is the structure of phenylnitroso?",
+            options: ["C6H5NO", "C6H5COOH", "C6H5OH", "C6H5CH3"],
+            correctAnswer: "C6H5NO"
+        },
+        {
+            question: "Which compound is known as nitrosobenzene?",
+            options: ["Phenylnitroso", "Aniline", "Toluene", "Benzyl nitroso"],
+            correctAnswer: "Phenylnitroso"
+        },
+        {
+            question: "What is the structure of propylnitroso?",
+            options: ["CH3CH2NO", "CH3NO", "CH3CH2CH2NO", "CH3CH2CONH2"],
+            correctAnswer: "CH3CH2NO"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

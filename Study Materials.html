@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Materials - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .material-card {
+            background: var(--surface);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .material-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .material-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .material-content {
+            padding: 2rem;
+        }
+
+        .material-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .material-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--surface);
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Courses</a>
+                <a href="#" class="nav-link active">Resources</a>
+                <a href="#" class="nav-link">Community</a>
+                <a href="news.html" class="nav-link">NEET News</a>
+                <a href="#" class="nav-link">Success Stories</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="page-title">Study Materials</h1>
+        
+        <div class="materials-grid">
+            <div class="material-card">
+                <img src="9780241412725.jpg" alt="Physics Textbook" class="material-image">
+                <div class="material-content">
+                    <h2 class="material-title">Physics Complete Guide</h2>
+                    <p class="material-description">A comprehensive textbook covering all major topics in physics, including mechanics, thermodynamics, electromagnetism, and modern physics. Includes solved examples and practice problems.</p>
+                    <a href="#" class="download-button">
+                        <i class="fas fa-download"></i>
+                        Download Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="material-card">
+                <img src="OIP (9).jpg" alt="Biology Notes" class="material-image">
+                <div class="material-content">
+                    <h2 class="material-title">Biology Master Notes</h2>
+                    <p class="material-description">Detailed notes covering all NEET biology topics with color diagrams, important concepts, and previous year questions. Perfect for quick revision and concept clarity.</p>
+                    <a href="#" class="download-button">
+                        <i class="fas fa-download"></i>
+                        Download Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="material-card">
+                <img src="91k7BsWeoGL._SL1500_.jpg" alt="Chemistry Guide" class="material-image">
+                <div class="material-content">
+                    <h2 class="material-title">Chemistry Complete Guide</h2>
+                    <p class="material-description">A comprehensive chemistry guide covering organic, inorganic, and physical chemistry. Includes important reactions, mechanisms, and solved numerical problems.</p>
+                    <a href="#" class="download-button">
+                        <i class="fas fa-download"></i>
+                        Download Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.75rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.padding = '1rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>

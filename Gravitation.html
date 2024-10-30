@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Gravitation - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Gravitation - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+      
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Gravitation</h1>
+                <p>Explore the fundamental force of gravity and its role in the universe, essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Gravitation</h2>
+                <div class="topic-content">
+                    <p>Gravitation is a natural phenomenon by which objects with mass are attracted to each other. This force governs the motion of planets, stars, and galaxies in the universe.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Newton's Law of Gravitation</h3>
+                            <p>The universal law that states that every mass attracts every other mass with a force that is proportional to their masses and inversely proportional to the square of the distance between them.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Gravitational Force</h3>
+                            <p>Understanding the force of attraction between two masses and how it influences celestial bodies.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrows-alt"></i>
+                            </div>
+                            <h3>Gravitational Potential Energy</h3>
+                            <p>Energy possessed by an object due to its position in a gravitational field, crucial in analyzing motion in space.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Acceleration Due to Gravity</h3>
+                            <p>The constant acceleration experienced by an object in free fall near the Earth's surface, approximately 9.8 m/s².</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Orbital Mechanics</h2>
+                <div class="topic-content">
+                    <p>Gravitation plays a crucial role in keeping celestial bodies in orbit. Explore the principles governing orbits and motion in space.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-planet-ringed"></i>
+                            </div>
+                            <h3>Kepler's Laws of Planetary Motion</h3>
+                            <p>Three fundamental laws that describe the motion of planets around the sun, detailing their orbits and relative speeds.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3>Escape Velocity</h3>
+                            <p>The minimum speed needed for an object to escape the gravitational pull of a celestial body.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>Satellites and Orbits</h3>
+                            <p>Understanding the orbits of artificial satellites and the forces that keep them in motion around planets.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Weightlessness and Free Fall</h3>
+                            <p>Exploring the phenomenon of weightlessness in space and the effects of free-fall on objects and astronauts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Gravitation concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Who formulated the law of universal gravitation?",
+            options: ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Johannes Kepler"],
+            correctAnswer: "Isaac Newton"
+        },
+        {
+            question: "What is the gravitational force between two objects proportional to?",
+            options: ["Product of their masses and inversely proportional to the square of the distance between their centers", "Product of their masses and directly proportional to the distance between their centers", "Sum of their masses and inversely proportional to the distance between their centers", "Sum of their masses and directly proportional to the square of the distance between their centers"],
+            correctAnswer: "Product of their masses and inversely proportional to the square of the distance between their centers"
+        },
+        {
+            question: "What is the value of acceleration due to gravity on the surface of the Earth?",
+            options: ["9.8 m/s²", "6.67 x 10^-11 Nm²/kg²", "3 x 10^8 m/s", "6.3 x 10^6 m"],
+            correctAnswer: "9.8 m/s²"
+        },
+        {
+            question: "What happens to the gravitational force between two objects when the distance between them is doubled?",
+            options: ["It becomes one-fourth", "It becomes half", "It becomes double", "It remains the same"],
+            correctAnswer: "It becomes one-fourth"
+        },
+        {
+            question: "What is the gravitational force between two masses if the distance between them is tripled?",
+            options: ["1/9 times the original force", "1/3 times the original force", "1/6 times the original force", "1/12 times the original force"],
+            correctAnswer: "1/9 times the original force"
+        },
+        {
+            question: "What is the value of gravitational constant (G) in the equation F = (G * m1 * m2) / r²?",
+            options: ["6.67 x 10^-11 Nm²/kg²", "9.8 m/s²", "3 x 10^8 m/s", "6.3 x 10^6 m"],
+            correctAnswer: "6.67 x 10^-11 Nm²/kg²"
+        },
+        {
+            question: "What does the gravitational force between two objects depend on?",
+            options: ["Mass of the objects and the distance between them", "Mass of the objects only", "Distance between the objects only", "Shape of the objects"],
+            correctAnswer: "Mass of the objects and the distance between them"
+        },
+        {
+            question: "At what point does the gravitational force become zero?",
+            options: ["At infinity", "At the center of the Earth", "At the surface of the Earth", "At the poles"],
+            correctAnswer: "At infinity"
+        },
+        {
+            question: "What is the weight of an object?",
+            options: ["The gravitational force acting on the object", "The mass of the object", "The volume of the object", "The density of the object"],
+            correctAnswer: "The gravitational force acting on the object"
+        },
+        {
+            question: "What is the value of acceleration due to gravity at a height equal to the radius of the Earth from its surface?",
+            options: ["4.9 m/s²", "9.8 m/s²", "0 m/s²", "19.6 m/s²"],
+            correctAnswer: "4.9 m/s²"
+        },
+        {
+            question: "What is the gravitational force between two objects if their masses are doubled and the distance between them is halved?",
+            options: ["Four times the original force", "Twice the original force", "Half the original force", "One-fourth the original force"],
+            correctAnswer: "Four times the original force"
+        },
+        {
+            question: "What is the effect of increasing the mass of one object on the gravitational force between two objects?",
+            options: ["Increases the force", "Decreases the force", "No effect on the force", "Changes the direction of the force"],
+            correctAnswer: "Increases the force"
+        },
+        {
+            question: "What is the gravitational force experienced by an object in free fall?",
+            options: ["Weight", "Mass", "Acceleration", "Friction"],
+            correctAnswer: "Weight"
+        },
+        {
+            question: "What happens to the weight of an object when it is taken to the Moon?",
+            options: ["It decreases", "It increases", "It remains the same", "It becomes zero"],
+            correctAnswer: "It decreases"
+        },
+        {
+            question: "What is the gravitational force between two objects if one of the objects is twice as massive as the other?",
+            options: ["Twice the original force", "Half the original force", "Four times the original force", "One-fourth the original force"],
+            correctAnswer: "Twice the original force"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at the center of the Earth?",
+            options: ["Zero", "Infinity", "Half its weight", "Equal to its weight"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the value of gravitational force between two objects if their masses are halved and the distance between them is doubled?",
+            options: ["One-fourth the original force", "One-half the original force", "Four times the original force", "Twice the original force"],
+            correctAnswer: "One-fourth the original force"
+        },
+        {
+            question: "What happens to the gravitational force between two objects when the distance between them is tripled?",
+            options: ["It becomes one-ninth", "It becomes one-third", "It becomes one-sixth", "It remains the same"],
+            correctAnswer: "It becomes one-ninth"
+        },
+        {
+            question: "What is the value of gravitational force between two objects if their masses are tripled and the distance between them is halved?",
+            options: ["Nine times the original force", "Three times the original force", "One-third the original force", "One-ninth the original force"],
+            correctAnswer: "Nine times the original force"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed on the surface of the Moon?",
+            options: ["One-sixth its weight on Earth", "Equal to its weight on Earth", "Twice its weight on Earth", "Zero"],
+            correctAnswer: "One-sixth its weight on Earth"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at the center of a hollow sphere?",
+            options: ["Zero", "Infinity", "Half its weight", "Equal to its weight"],
+            correctAnswer: "Zero"
+        },
+        
+        {
+            question: "What is the value of acceleration due to gravity at the center of the Earth?",
+            options: ["Zero", "9.8 m/s²", "Half its value at the surface", "Twice its value at the surface"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What is the relationship between distance and gravitational force?",
+            options: ["Gravitational force decreases with distance", "Gravitational force increases with distance", "Gravitational force is independent of distance", "Gravitational force is inversely proportional to distance squared"],
+            correctAnswer: "Gravitational force is inversely proportional to distance squared"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to the radius of the Earth from its center?",
+            options: ["Half its weight", "Equal to its weight", "One-fourth its weight", "Zero"],
+            correctAnswer: "Half its weight"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed on the surface of the Earth?",
+            options: ["Equal to its weight", "Half its weight", "Twice its weight", "Zero"],
+            correctAnswer: "Equal to its weight"
+        },
+        {
+            question: "What is the gravitational force between two objects if their masses are doubled and the distance between them is also doubled?",
+            options: ["Same as the original force", "Four times the original force", "Half the original force", "One-fourth the original force"],
+            correctAnswer: "Same as the original force"
+        },
+        {
+            question: "What is the gravitational force between two objects if one of the masses is doubled and the other is halved?",
+            options: ["Twice the original force", "Same as the original force", "Half the original force", "One-fourth the original force"],
+            correctAnswer: "Same as the original force"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to twice the radius of the Earth from its center?",
+            options: ["One-fourth its weight", "Half its weight", "One-eighth its weight", "Zero"],
+            correctAnswer: "One-fourth its weight"
+        },
+        {
+            question: "What happens to the gravitational force between two objects when the distance between them is halved?",
+            options: ["It becomes four times", "It becomes half", "It becomes one-fourth", "It remains the same"],
+            correctAnswer: "It becomes four times"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed on the surface of a planet with twice the mass of Earth and the same radius?",
+            options: ["Twice its weight on Earth", "Same as its weight on Earth", "Half its weight on Earth", "Zero"],
+            correctAnswer: "Twice its weight on Earth"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to three times the radius of the Earth from its center?",
+            options: ["One-ninth its weight", "One-third its weight", "One-sixth its weight", "Zero"],
+            correctAnswer: "One-ninth its weight"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to four times the radius of the Earth from its center?",
+            options: ["One-sixteenth its weight", "One-fourth its weight", "One-eighth its weight", "Zero"],
+            correctAnswer: "One-sixteenth its weight"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to half the radius of the Earth from its center?",
+            options: ["Four times its weight", "Twice its weight", "One-fourth its weight", "Zero"],
+            correctAnswer: "Four times its weight"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to the radius of the Earth from its center?",
+            options: ["Half its weight", "Equal to its weight", "One-fourth its weight", "Zero"],
+            correctAnswer: "Half its weight"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to twice the radius of the Earth from its center?",
+            options: ["One-fourth its weight", "Half its weight", "One-eighth its weight", "Zero"],
+            correctAnswer: "One-fourth its weight"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to four times the radius of the Earth from its center?",
+            options: ["One-sixteenth its weight", "One-fourth its weight", "One-eighth its weight", "Zero"],
+            correctAnswer: "One-sixteenth its weight"
+        },
+        {
+            question: "What is the gravitational force experienced by an object placed at a distance equal to three times the radius of the Earth from its center?",
+            options: ["One-ninth its weight", "One-third its weight", "One-sixth its weight", "Zero"],
+            correctAnswer: "One-ninth its weight"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

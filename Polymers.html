@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Polymers - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .polymer-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .polymer-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Polymers - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="polymer-header">
+                <h1 class="polymer-title">Polymers</h1>
+                <p>Explore the fascinating world of polymers, their properties, applications, and significance in chemistry and materials science.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Polymers</h2>
+                <div class="topic-content">
+                    <p>Polymers are large molecules made up of repeating structural units called monomers. They play a crucial role in everyday materials and biological systems.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Types of Polymers</h3>
+                            <p>Overview of different types of polymers including natural, synthetic, thermoplastics, and thermosets.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Polymerization Processes</h3>
+                            <p>Understanding the various polymerization methods such as addition and condensation polymerization.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h3>Properties of Polymers</h3>
+                            <p>Study of physical and chemical properties of polymers, including elasticity, viscosity, and thermal stability.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <h3>Applications of Polymers</h3>
+                            <p>Exploration of the diverse applications of polymers in industries such as packaging, textiles, and medicine.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Biopolymers</h2>
+                <div class="topic-content">
+                    <p>Biopolymers are naturally occurring polymers that play critical roles in biological processes and applications.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Types of Biopolymers</h3>
+                            <p>Overview of key biopolymers such as proteins, nucleic acids, and polysaccharides.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Biopolymer Functions</h3>
+                            <p>Understanding the functions of biopolymers in biological systems, including structure, function, and energy storage.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>Biopolymer Applications</h3>
+                            <p>Exploration of biopolymer applications in medicine, agriculture, and biodegradable materials.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Environmental Impact</h3>
+                            <p>Discussion on the environmental implications of synthetic polymers and the importance of biopolymers in sustainability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Polymers concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What are polymers?",
+            options: ["Single molecules", "Large molecules made of repeating units", "Isolated atoms", "Small molecules"],
+            correctAnswer: "Large molecules made of repeating units"
+        },
+        {
+            question: "Which of the following is not a natural polymer?",
+            options: ["Cellulose", "Starch", "Nylon", "Proteins"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "What is a monomer?",
+            options: ["A small molecule that combines with others to form a polymer", "A large molecule made of repeating units", "A type of cross-link in polymers", "A polymer chain"],
+            correctAnswer: "A small molecule that combines with others to form a polymer"
+        },
+        {
+            question: "What is the process of forming polymers from monomers called?",
+            options: ["Polymerization", "Depolymerization", "Oxidation", "Reduction"],
+            correctAnswer: "Polymerization"
+        },
+        {
+            question: "Which polymer is known as the 'king of polymers'?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyester"],
+            correctAnswer: "Polyethylene"
+        },
+        {
+            question: "Which polymer is used in making bottles for storing carbonated drinks?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyethylene terephthalate (PET)"],
+            correctAnswer: "Polyethylene terephthalate (PET)"
+        },
+        {
+            question: "Which polymer is commonly used in making non-stick cookware?",
+            options: ["Polyethylene", "Polypropylene", "Polytetrafluoroethylene (PTFE)", "Polystyrene"],
+            correctAnswer: "Polytetrafluoroethylene (PTFE)"
+        },
+        {
+            question: "Which polymer is used in making synthetic fibers?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polycarbonate"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "What is vulcanization?",
+            options: ["The process of forming polymers", "The process of converting rubber into a more durable material", "The process of breaking down polymers into monomers", "The process of adding color to polymers"],
+            correctAnswer: "The process of converting rubber into a more durable material"
+        },
+        {
+            question: "Which polymer is used in making pipes and fittings for plumbing?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyester"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which type of polymerization process produces no by-products?",
+            options: ["Condensation polymerization", "Addition polymerization", "Free radical polymerization", "Polymerization with catalyst"],
+            correctAnswer: "Addition polymerization"
+        },
+        {
+            question: "Which polymer is known for its elasticity and is used in making rubber bands?",
+            options: ["Polyethylene", "Polypropylene", "Natural rubber", "Polystyrene"],
+            correctAnswer: "Natural rubber"
+        },
+        {
+            question: "What is the main component of natural rubber?",
+            options: ["Polyethylene", "Cellulose", "Isoprene", "Nylon"],
+            correctAnswer: "Isoprene"
+        },
+        {
+            question: "Which polymer is used in making transparent windows and lenses?",
+            options: ["Polyethylene", "Polycarbonate", "Polypropylene", "Polyester"],
+            correctAnswer: "Polycarbonate"
+        },
+        {
+            question: "Which polymer is used in making disposable gloves and surgical masks?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polystyrene"],
+            correctAnswer: "Polypropylene"
+        },
+        {
+            question: "Which polymer is used in making synthetic rubber?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Styrene-butadiene rubber (SBR)"],
+            correctAnswer: "Styrene-butadiene rubber (SBR)"
+        },
+        {
+            question: "Which polymer is used in making bulletproof vests due to its high strength?",
+            options: ["Polyethylene", "Polypropylene", "Kevlar", "Polyester"],
+            correctAnswer: "Kevlar"
+        },
+        {
+            question: "Which polymer is used in making packaging films and bags?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polystyrene"],
+            correctAnswer: "Polyethylene"
+        },
+        {
+            question: "Which polymer is known for its resistance to heat and chemicals, used in laboratory equipment?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polytetrafluoroethylene (PTFE)"],
+            correctAnswer: "Polytetrafluoroethylene (PTFE)"
+        },
+        {
+            question: "Which polymer is used in making water bottles and food containers?",
+            options: ["Polyethylene", "Polypropylene", "Polystyrene", "Polyethylene terephthalate (PET)"],
+            correctAnswer: "Polyethylene terephthalate (PET)"
+        },
+        {
+            question: "Which polymer is known for its clarity and is used in making optical lenses?",
+            options: ["Polycarbonate", "Polypropylene", "Polyethylene", "Polyester"],
+            correctAnswer: "Polycarbonate"
+        },
+        {
+            question: "Which polymer is used in making synthetic fibers for clothing and carpets?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyvinyl chloride"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "Which polymer is used in making insulation for electrical wiring?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polystyrene"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making disposable syringes and medical tubing?",
+            options: ["Polyethylene", "Polypropylene", "Polystyrene", "Polyvinyl chloride"],
+            correctAnswer: "Polypropylene"
+        },
+        {
+            question: "Which polymer is used in making CD and DVD discs?",
+            options: ["Polyethylene", "Polycarbonate", "Polypropylene", "Polyester"],
+            correctAnswer: "Polycarbonate"
+        },
+        {
+            question: "Which polymer is used in making acrylic paints and Plexiglas?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polymethyl methacrylate (PMMA)"],
+            correctAnswer: "Polymethyl methacrylate (PMMA)"
+        },
+        {
+            question: "Which polymer is used in making synthetic leather and upholstery?",
+            options: ["Polyethylene", "Polypropylene", "Polyurethane", "Polystyrene"],
+            correctAnswer: "Polyurethane"
+        },
+        {
+            question: "Which polymer is used in making chewing gum and adhesives?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl acetate", "Polystyrene"],
+            correctAnswer: "Polyvinyl acetate"
+        },
+        {
+            question: "Which polymer is used in making water pipes and fittings?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polybutylene"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making artificial turf and fishing lines?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyester"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "Which polymer is used in making dental fillings and sealants?",
+            options: ["Polyethylene", "Polypropylene", "Polystyrene", "Polymethyl methacrylate (PMMA)"],
+            correctAnswer: "Polymethyl methacrylate (PMMA)"
+        },
+        {
+            question: "Which polymer is used in making flexible foam and mattresses?",
+            options: ["Polyethylene", "Polypropylene", "Polyurethane", "Polystyrene"],
+            correctAnswer: "Polyurethane"
+        },
+        {
+            question: "Which polymer is used in making insect screens and coated fabrics?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyethylene terephthalate (PET)"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making detergent bottles and plastic bags?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyethylene terephthalate (PET)"],
+            correctAnswer: "Polyethylene"
+        },
+        {
+            question: "Which polymer is used in making synthetic rubber and conveyor belts?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyurethane"],
+            correctAnswer: "Polyurethane"
+        },
+        {
+            question: "Which polymer is used in making disposable tableware and packaging foam?",
+            options: ["Polystyrene", "Polypropylene", "Polyethylene", "Polyvinyl chloride"],
+            correctAnswer: "Polystyrene"
+        },
+        {
+            question: "Which polymer is used in making automotive parts and household appliances?",
+            options: ["Polyethylene", "Polypropylene", "Polycarbonate", "Polyester"],
+            correctAnswer: "Polycarbonate"
+        },
+        {
+            question: "Which polymer is used in making baby diapers and sanitary products?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyethylene terephthalate (PET)"],
+            correctAnswer: "Polypropylene"
+        },
+        {
+            question: "Which polymer is used in making synthetic grass and ropes?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyester"],
+            correctAnswer: "Polypropylene"
+        },
+        {
+            question: "Which polymer is used in making plastic bottles and food containers?",
+            options: ["Polyethylene terephthalate (PET)", "Polypropylene", "Polyvinyl chloride", "Polystyrene"],
+            correctAnswer: "Polyethylene terephthalate (PET)"
+        },
+        {
+            question: "Which polymer is used in making synthetic fibers for clothing and carpets?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyester"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "Which polymer is used in making electrical insulation and plumbing pipes?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polycarbonate"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making synthetic rubber and shoe soles?",
+            options: ["Polyethylene", "Polypropylene", "Styrene-butadiene rubber (SBR)", "Polyurethane"],
+            correctAnswer: "Styrene-butadiene rubber (SBR)"
+        },
+        {
+            question: "Which polymer is used in making paints and coatings?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl acetate", "Polystyrene"],
+            correctAnswer: "Polyvinyl acetate"
+        },
+        {
+            question: "Which polymer is used in making garden hoses and window frames?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polycarbonate"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making artificial leather and upholstery?",
+            options: ["Polyethylene", "Polypropylene", "Polyurethane", "Polyvinyl chloride"],
+            correctAnswer: "Polyurethane"
+        },
+        {
+            question: "Which polymer is used in making adhesives and carpentry glue?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl acetate", "Polystyrene"],
+            correctAnswer: "Polyvinyl acetate"
+        },
+        {
+            question: "Which polymer is used in making textile fibers and car tires?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyester"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "Which polymer is used in making water pipes and fittings?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polybutylene"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making outdoor furniture and playground equipment?",
+            options: ["Polyethylene", "Polypropylene", "Polycarbonate", "Polyurethane"],
+            correctAnswer: "Polyethylene"
+        },
+        {
+            question: "Which polymer is used in making synthetic sponges and foam mattresses?",
+            options: ["Polyethylene", "Polypropylene", "Polyurethane", "Polystyrene"],
+            correctAnswer: "Polyurethane"
+        },
+        {
+            question: "Which polymer is used in making food packaging films and bottles?",
+            options: ["Polyethylene terephthalate (PET)", "Polypropylene", "Polyvinyl chloride", "Polystyrene"],
+            correctAnswer: "Polyethylene terephthalate (PET)"
+        },
+        {
+            question: "Which polymer is used in making garden hoses and raincoats?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polycarbonate"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making insulation for electrical cables and wiring?",
+            options: ["Polyethylene", "Polypropylene", "Polystyrene", "Polyvinyl chloride"],
+            correctAnswer: "Polyethylene"
+        },
+        {
+            question: "Which polymer is used in making disposable cups and plates?",
+            options: ["Polyethylene", "Polypropylene", "Polystyrene", "Polyvinyl chloride"],
+            correctAnswer: "Polystyrene"
+        },
+        {
+            question: "Which polymer is used in making headlights and motorcycle helmets?",
+            options: ["Polycarbonate", "Polypropylene", "Polyethylene", "Polyester"],
+            correctAnswer: "Polycarbonate"
+        },
+        {
+            question: "Which polymer is used in making disposable diapers and sanitary napkins?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyethylene terephthalate (PET)"],
+            correctAnswer: "Polypropylene"
+        },
+        {
+            question: "Which polymer is used in making fishing nets and ropes?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyester"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "Which polymer is used in making dental implants and bone cements?",
+            options: ["Polyethylene", "Polypropylene", "Polymethyl methacrylate (PMMA)", "Polyurethane"],
+            correctAnswer: "Polymethyl methacrylate (PMMA)"
+        },
+        {
+            question: "Which polymer is used in making inflatable boats and life jackets?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl chloride", "Polyurethane"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making paints and varnishes?",
+            options: ["Polyethylene", "Polypropylene", "Polyvinyl acetate", "Polystyrene"],
+            correctAnswer: "Polyvinyl acetate"
+        },
+        {
+            question: "Which polymer is used in making carpets and upholstery?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyester"],
+            correctAnswer: "Nylon"
+        },
+        {
+            question: "Which polymer is used in making protective helmets and sporting goods?",
+            options: ["Polycarbonate", "Polypropylene", "Polyethylene", "Polyester"],
+            correctAnswer: "Polycarbonate"
+        },
+        {
+            question: "Which polymer is used in making synthetic fibers for clothing and insulation?",
+            options: ["Polyethylene", "Polypropylene", "Nylon", "Polyester"],
+            correctAnswer: "Polyester"
+        },
+        {
+            question: "Which polymer is used in making contact lenses and intraocular lenses?",
+            options: ["Polycarbonate", "Polypropylene", "Polyethylene", "Polymethyl methacrylate (PMMA)"],
+            correctAnswer: "Polymethyl methacrylate (PMMA)"
+        },
+        {
+            question: "Which polymer is used in making disposable gloves and syringes?",
+            options: ["Polyethylene", "Polypropylene", "Polystyrene", "Polyvinyl chloride"],
+            correctAnswer: "Polyvinyl chloride"
+        },
+        {
+            question: "Which polymer is used in making greenhouse panels and riot shields?",
+            options: ["Polycarbonate", "Polypropylene", "Polyethylene", "Polyester"],
+            correctAnswer: "Polycarbonate"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

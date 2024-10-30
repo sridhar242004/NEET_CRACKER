@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Optics - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Optics - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+       
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Optics</h1>
+                <p>Explore the principles of light, its properties, and applications essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Nature and Behavior of Light</h2>
+                <div class="topic-content">
+                    <p>Optics is the branch of physics that studies the properties and behavior of light, including reflection, refraction, and diffraction.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>Reflection of Light</h3>
+                            <p>Understanding how light reflects off surfaces and the laws that govern this phenomenon.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-glasses"></i>
+                            </div>
+                            <h3>Refraction of Light</h3>
+                            <p>Study of how light bends when passing through different media, including concepts like Snell's Law and refractive index.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-wave-square"></i>
+                            </div>
+                            <h3>Diffraction and Interference</h3>
+                            <p>Exploration of light's wave nature through patterns created by diffraction and interference.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3>Color and Dispersion</h3>
+                            <p>Study of how light splits into various colors, as seen in phenomena like rainbows and prisms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Optical Instruments</h2>
+                <div class="topic-content">
+                    <p>Learn about various instruments that use optical principles, including microscopes, telescopes, and cameras.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Microscopes</h3>
+                            <p>Understanding how microscopes magnify objects using lenses and optical components.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-binoculars"></i>
+                            </div>
+                            <h3>Telescopes</h3>
+                            <p>Study of telescopes, which allow us to observe distant objects by gathering and focusing light.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h3>Cameras</h3>
+                            <p>Exploration of how cameras capture images using lenses, sensors, and light sensitivity.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3>The Human Eye</h3>
+                            <p>Understanding the human eye's anatomy and how it processes light to form images.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Optics concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the law of reflection?",
+            options: ["Angle of incidence is equal to angle of reflection", "Angle of incidence is half the angle of reflection", "Angle of incidence is double the angle of reflection", "Angle of incidence is not related to angle of reflection"],
+            correctAnswer: "Angle of incidence is equal to angle of reflection"
+        },
+        {
+            question: "What type of mirror always forms a virtual, erect, and diminished image?",
+            options: ["Convex mirror", "Concave mirror", "Plane mirror", "Cylindrical mirror"],
+            correctAnswer: "Convex mirror"
+        },
+        {
+            question: "The phenomenon of bending of light when it passes from one medium to another is called:",
+            options: ["Refraction", "Reflection", "Diffraction", "Dispersion"],
+            correctAnswer: "Refraction"
+        },
+        {
+            question: "What happens to the speed of light when it enters a denser medium?",
+            options: ["It decreases", "It increases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It decreases"
+        },
+        {
+            question: "What is the law of refraction?",
+            options: ["Snell's Law", "Fermat's Principle", "Hooke's Law", "Ohm's Law"],
+            correctAnswer: "Snell's Law"
+        },
+        {
+            question: "Which lens can form both real and virtual images?",
+            options: ["Concave lens", "Convex lens", "Biconvex lens", "Cylindrical lens"],
+            correctAnswer: "Convex lens"
+        },
+        {
+            question: "What is the focal length of a concave lens?",
+            options: ["Negative", "Positive", "Zero", "Infinite"],
+            correctAnswer: "Negative"
+        },
+        {
+            question: "What is the nature of the image formed by a convex lens when the object is placed beyond 2F?",
+            options: ["Real and inverted", "Virtual and erect", "Real and erect", "Virtual and inverted"],
+            correctAnswer: "Real and inverted"
+        },
+        {
+            question: "Which lens is used to correct myopia?",
+            options: ["Concave lens", "Convex lens", "Biconcave lens", "Plano-concave lens"],
+            correctAnswer: "Concave lens"
+        },
+        {
+            question: "What is the lens formula?",
+            options: ["1/f = 1/v - 1/u", "f = v + u", "f = v/u", "f = v - u"],
+            correctAnswer: "1/f = 1/v - 1/u"
+        },
+        {
+            question: "What is the power of a lens with a focal length of 20 cm?",
+            options: ["5 diopters", "0.05 diopters", "20 diopters", "50 diopters"],
+            correctAnswer: "5 diopters"
+        },
+        {
+            question: "What is the unit of power of a lens?",
+            options: ["Diopters", "Meters", "Joules", "Watts"],
+            correctAnswer: "Diopters"
+        },
+        {
+            question: "What is the color of the sky during a clear day?",
+            options: ["Blue", "Red", "Green", "Yellow"],
+            correctAnswer: "Blue"
+        },
+        {
+            question: "What causes the blue color of the sky?",
+            options: ["Scattering of sunlight by air molecules", "Absorption of blue light by air", "Reflection of blue light by clouds", "Presence of blue dust in the atmosphere"],
+            correctAnswer: "Scattering of sunlight by air molecules"
+        },
+        {
+            question: "What is the angle of deviation for a light ray passing through a prism?",
+            options: ["The angle between the incident ray and the emergent ray", "The angle between the incident ray and the normal", "The angle between the emergent ray and the normal", "The angle between the incident ray and the refracted ray"],
+            correctAnswer: "The angle between the incident ray and the emergent ray"
+        },
+        {
+            question: "What is the phenomenon responsible for the formation of rainbow?",
+            options: ["Dispersion and internal reflection", "Total internal reflection", "Diffraction", "Interference"],
+            correctAnswer: "Dispersion and internal reflection"
+        },
+        {
+            question: "What happens to the focal length of a lens when it is immersed in a medium of higher refractive index?",
+            options: ["It decreases", "It increases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It decreases"
+        },
+        {
+            question: "Which type of lens is used to correct hypermetropia?",
+            options: ["Convex lens", "Concave lens", "Biconvex lens", "Plano-convex lens"],
+            correctAnswer: "Convex lens"
+        },
+        {
+            question: "What is the SI unit of refractive index?",
+            options: ["No unit", "Meter", "Newton", "Radian"],
+            correctAnswer: "No unit"
+        },
+        {
+            question: "What is the speed of light in a vacuum?",
+            options: ["3 x 10^8 m/s", "3 x 10^6 m/s", "3 x 10^4 m/s", "3 x 10^2 m/s"],
+            correctAnswer: "3 x 10^8 m/s"
+        },
+        {
+            question: "What is the critical angle?",
+            options: ["The angle of incidence for which the angle of refraction is 90 degrees", "The angle of reflection for which the angle of incidence is 90 degrees", "The angle of refraction for which the angle of incidence is 90 degrees", "The angle of deviation for which the angle of incidence is 90 degrees"],
+            correctAnswer: "The angle of incidence for which the angle of refraction is 90 degrees"
+        },
+        {
+            question: "What is the focal length of a plane mirror?",
+            options: ["Infinite", "Positive", "Negative", "Zero"],
+            correctAnswer: "Infinite"
+        },
+        {
+            question: "What type of lens is a magnifying glass?",
+            options: ["Convex lens", "Concave lens", "Biconvex lens", "Plano-concave lens"],
+            correctAnswer: "Convex lens"
+        },
+        {
+            question: "What is the center of curvature of a concave mirror?",
+            options: ["Behind the mirror", "At the focus", "At the pole", "In front of the mirror"],
+            correctAnswer: "Behind the mirror"
+        },
+        {
+            question: "What is the focal length of a convex lens?",
+            options: ["Positive", "Negative", "Infinite", "Zero"],
+            correctAnswer: "Positive"
+        },
+        {
+            question: "What is the mirror formula?",
+            options: ["1/f = 1/v + 1/u", "f = v - u", "f = v + u", "1/f = 1/v - 1/u"],
+            correctAnswer: "1/f = 1/v + 1/u"
+        },
+        {
+            question: "What is the unit of wavelength?",
+            options: ["Meter", "Newton", "Second", "Radian"],
+            correctAnswer: "Meter"
+        },
+        {
+            question: "What is the speed of light in water?",
+            options: ["2.25 x 10^8 m/s", "3 x 10^8 m/s", "2.99 x 10^8 m/s", "2 x 10^8 m/s"],
+            correctAnswer: "2.25 x 10^8 m/s"
+        },
+        {
+            question: "Which phenomenon of light explains why the sky appears blue?",
+            options: ["Rayleigh scattering", "Diffraction", "Refraction", "Total internal reflection"],
+            correctAnswer: "Rayleigh scattering"
+        },
+        {
+            question: "What is the color of the light that is least bent when passing through a prism?",
+            options: ["Red", "Blue", "Green", "Violet"],
+            correctAnswer: "Red"
+        },
+        {
+            question: "What is the phenomenon that occurs when light bends as it passes through a narrow slit?",
+            options: ["Diffraction", "Interference", "Refraction", "Polarization"],
+            correctAnswer: "Diffraction"
+        },
+        {
+            question: "What type of lens is a diverging lens?",
+            options: ["Concave lens", "Convex lens", "Biconvex lens", "Plano-convex lens"],
+            correctAnswer: "Concave lens"
+        },
+        {
+            question: "What is the nature of the image formed by a concave mirror when the object is placed between F and the pole?",
+            options: ["Virtual and erect", "Real and inverted", "Real and erect", "Virtual and inverted"],
+            correctAnswer: "Virtual and erect"
+        },
+        {
+            question: "What is the law of lenses?",
+            options: ["Lens maker's formula", "Lens formula", "Snell's law", "Hooke's law"],
+            correctAnswer: "Lens formula"
+        },
+        {
+            question: "What is the focal length of a concave mirror?",
+            options: ["Positive", "Negative", "Infinite", "Zero"],
+            correctAnswer: "Positive"
+        },
+        {
+            question: "What happens to the wavelength of light when it enters a denser medium?",
+            options: ["It decreases", "It increases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It decreases"
+        },
+        {
+            question: "What is the angle of incidence for a light ray passing through a prism?",
+            options: ["Equal to the angle of emergence", "Equal to the angle of deviation", "Equal to the angle of refraction", "Equal to the angle of reflection"],
+            correctAnswer: "Equal to the angle of emergence"
+        },
+        {
+            question: "What is the lens formula for a concave lens?",
+            options: ["1/f = 1/v - 1/u", "f = v - u", "1/f = 1/v + 1/u", "f = v + u"],
+            correctAnswer: "1/f = 1/v - 1/u"
+        },
+        {
+            question: "What is the focal length of a plane mirror?",
+            options: ["Zero", "Positive", "Negative", "Infinite"],
+            correctAnswer: "Infinite"
+        },
+        {
+            question: "What type of lens is used in a magnifying glass?",
+            options: ["Convex lens", "Concave lens", "Biconvex lens", "Plano-concave lens"],
+            correctAnswer: "Convex lens"
+        },
+        {
+            question: "What is the nature of the image formed by a convex mirror?",
+            options: ["Virtual and erect", "Real and inverted", "Real and erect", "Virtual and inverted"],
+            correctAnswer: "Virtual and erect"
+        },
+        {
+            question: "What happens to the speed of light when it enters a rarer medium?",
+            options: ["It increases", "It decreases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It increases"
+        },
+        {
+            question: "What is the angle of incidence when the light ray is incident normal to the surface?",
+            options: ["0 degrees", "90 degrees", "180 degrees", "45 degrees"],
+            correctAnswer: "0 degrees"
+        },
+        {
+            question: "What is the angle of refraction for a light ray incident normally?",
+            options: ["0 degrees", "90 degrees", "180 degrees", "45 degrees"],
+            correctAnswer: "0 degrees"
+        },
+        {
+            question: "What type of lens is used in a camera to form a real image?",
+            options: ["Convex lens", "Concave lens", "Biconcave lens", "Plano-convex lens"],
+            correctAnswer: "Convex lens"
+        },
+        {
+            question: "What is the angle of incidence when the light ray is parallel to the surface?",
+            options: ["0 degrees", "90 degrees", "180 degrees", "45 degrees"],
+            correctAnswer: "0 degrees"
+        },
+        {
+            question: "What is the nature of the image formed by a plane mirror?",
+            options: ["Virtual and erect", "Real and inverted", "Real and erect", "Virtual and inverted"],
+            correctAnswer: "Virtual and erect"
+        },
+        {
+            question: "What is the phenomenon responsible for the formation of mirage?",
+            options: ["Total internal reflection", "Refraction of light", "Diffraction of light", "Interference of light"],
+            correctAnswer: "Refraction of light"
+        },
+        {
+            question: "What type of lens is a human eye?",
+            options: ["Convex lens", "Concave lens", "Biconvex lens", "Plano-concave lens"],
+            correctAnswer: "Convex lens"
+        },
+        {
+            question: "What is the angle of incidence when the light ray is incident along the normal?",
+            options: ["0 degrees", "90 degrees", "180 degrees", "45 degrees"],
+            correctAnswer: "0 degrees"
+        },
+        {
+            question: "What is the angle of refraction when the light ray is incident along the normal?",
+            options: ["0 degrees", "90 degrees", "180 degrees", "45 degrees"],
+            correctAnswer: "0 degrees"
+        },
+        {
+            question: "What happens to the angle of deviation when the angle of incidence is increased?",
+            options: ["It increases", "It decreases", "It remains constant", "It becomes zero"],
+            correctAnswer: "It increases"
+        },
+        {
+            question: "What is the angle of deviation for a light ray passing through a glass prism?",
+            options: ["The angle between the incident ray and the emergent ray", "The angle between the incident ray and the normal", "The angle between the emergent ray and the normal", "The angle between the incident ray and the refracted ray"],
+            correctAnswer: "The angle between the incident ray and the emergent ray"
+        },
+        {
+            question: "What is the focal length of a concave lens?",
+            options: ["Negative", "Positive", "Infinite", "Zero"],
+            correctAnswer: "Negative"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

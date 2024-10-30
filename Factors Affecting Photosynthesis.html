@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Factors Affecting Photosynthesis - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .photosynthesis-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .photosynthesis-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Factors Affecting Photosynthesis - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="photosynthesis-header">
+                <h1 class="photosynthesis-title">Factors Affecting Photosynthesis</h1>
+                <p>Explore the key factors that influence the rate of photosynthesis in plants.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Photosynthesis Factors</h2>
+                <div class="topic-content">
+                    <p>Photosynthesis is impacted by various environmental and internal factors that affect how efficiently plants can convert light energy into chemical energy.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Light Intensity</h3>
+                            <p>The rate of photosynthesis increases with light intensity up to a certain point, beyond which it plateaus.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <h3>Temperature</h3>
+                            <p>Temperature affects enzyme activity involved in photosynthesis, with an optimal range that maximizes the reaction rate.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3>Carbon Dioxide Levels</h3>
+                            <p>CO<sub>2</sub> concentration is a limiting factor; higher levels can enhance photosynthesis until saturation is reached.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <h3>Water Availability</h3>
+                            <p>Water is essential for photosynthesis, as it provides the electrons needed and helps maintain cell turgor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Additional Influences on Photosynthesis</h2>
+                <div class="topic-content">
+                    <p>Beyond the main factors, certain environmental and internal conditions also affect photosynthetic efficiency.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <h3>Oxygen Concentration</h3>
+                            <p>High oxygen levels can inhibit photosynthesis through photorespiration, which competes with carbon fixation.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Leaf Structure</h3>
+                            <p>The arrangement, size, and number of chloroplasts in leaf cells affect how light is captured and utilized.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-thermometer"></i>
+                            </div>
+                            <h3>Humidity</h3>
+                            <p>Humidity influences the rate of water loss through transpiration, impacting photosynthesis indirectly.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-filter"></i>
+                            </div>
+                            <h3>Nutrient Availability</h3>
+                            <p>Minerals such as nitrogen, magnesium, and iron are vital for chlorophyll synthesis and enzymatic activity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Factors Affecting Photosynthesis concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Which of the following factors directly affects the rate of photosynthesis?",
+            options: ["Temperature", "Humidity", "Soil pH", "Wind speed"],
+            correctAnswer: "Temperature"
+        },
+        {
+            question: "How does an increase in temperature affect the rate of photosynthesis?",
+            options: ["Initially increases, then decreases", "Decreases linearly", "Has no effect", "Increases linearly"],
+            correctAnswer: "Initially increases, then decreases"
+        },
+        {
+            question: "At what temperature does photosynthesis typically exhibit the highest rate in most plants?",
+            options: ["25°C to 30°C", "10°C to 15°C", "35°C to 40°C", "Above 45°C"],
+            correctAnswer: "25°C to 30°C"
+        },
+        {
+            question: "How does a decrease in carbon dioxide concentration affect the rate of photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which gas is utilized during the process of photosynthesis?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Methane"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "How does an increase in light intensity affect the rate of photosynthesis?",
+            options: ["Initially increases, then levels off", "Decreases linearly", "Has no effect", "Increases linearly"],
+            correctAnswer: "Initially increases, then levels off"
+        },
+        {
+            question: "What is the optimal pH range for most plant enzymes involved in photosynthesis?",
+            options: ["6.0 to 7.5", "4.0 to 5.5", "8.0 to 9.5", "10.0 to 11.5"],
+            correctAnswer: "6.0 to 7.5"
+        },
+        {
+            question: "How does a decrease in light intensity affect the rate of photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which environmental factor directly influences stomatal opening and closure, thereby affecting photosynthesis?",
+            options: ["Humidity", "Temperature", "Soil pH", "Wind speed"],
+            correctAnswer: "Humidity"
+        },
+        {
+            question: "How does a decrease in humidity affect the rate of photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following factors indirectly affects the rate of photosynthesis?",
+            options: ["Wind speed", "Carbon dioxide concentration", "Light intensity", "Temperature"],
+            correctAnswer: "Wind speed"
+        },
+        {
+            question: "How does a decrease in wind speed affect the rate of photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which environmental factor affects the availability of water, thereby influencing photosynthesis?",
+            options: ["Temperature", "Humidity", "Soil pH", "Wind speed"],
+            correctAnswer: "Humidity"
+        },
+        {
+            question: "How does a decrease in water availability affect the rate of photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "What is the primary role of magnesium ions (Mg²⁺) in photosynthesis?",
+            options: ["Component of chlorophyll molecules", "Source of carbon dioxide", "Electron carrier", "Enzyme cofactor"],
+            correctAnswer: "Component of chlorophyll molecules"
+        },
+        {
+            question: "How does a deficiency in magnesium ions affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "What is the primary role of nitrogen in photosynthesis?",
+            options: ["Component of chlorophyll molecules", "Source of carbon dioxide", "Electron carrier", "Enzyme cofactor"],
+            correctAnswer: "Component of chlorophyll molecules"
+        },
+        {
+            question: "How does a deficiency in nitrogen affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following nutrients is essential for the synthesis of chlorophyll?",
+            options: ["Iron", "Calcium", "Potassium", "Phosphorus"],
+            correctAnswer: "Iron"
+        },
+        {
+            question: "How does a deficiency in iron affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "What is the role of potassium ions (K⁺) in photosynthesis?",
+            options: ["Regulation of stomatal opening", "Source of carbon dioxide", "Electron carrier", "Enzyme cofactor"],
+            correctAnswer: "Regulation of stomatal opening"
+        },
+        {
+            question: "How does a deficiency in potassium ions affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following nutrients is essential for the synthesis of ATP and NADPH?",
+            options: ["Phosphorus", "Calcium", "Sulfur", "Magnesium"],
+            correctAnswer: "Phosphorus"
+        },
+        {
+            question: "How does a deficiency in phosphorus affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "What is the role of sulfur in photosynthesis?",
+            options: ["Component of proteins and coenzymes", "Source of carbon dioxide", "Electron carrier", "Enzyme cofactor"],
+            correctAnswer: "Component of proteins and coenzymes"
+        },
+        {
+            question: "How does a deficiency in sulfur affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following factors indirectly affects photosynthesis by influencing soil pH?",
+            options: ["Soil pH", "Humidity", "Temperature", "Carbon dioxide concentration"],
+            correctAnswer: "Soil pH"
+        },
+        {
+            question: "What is the optimal pH range for most plants to carry out photosynthesis efficiently?",
+            options: ["6.0 to 7.5", "4.0 to 5.5", "8.0 to 9.5", "10.0 to 11.5"],
+            correctAnswer: "6.0 to 7.5"
+        },
+        {
+            question: "How does an acidic soil pH affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "How does an alkaline soil pH affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following is NOT an environmental factor affecting photosynthesis?",
+            options: ["ATP concentration", "Light intensity", "Carbon dioxide concentration", "Temperature"],
+            correctAnswer: "ATP concentration"
+        },
+        {
+            question: "What is the role of manganese ions (Mn²⁺) in photosynthesis?",
+            options: ["Oxygen evolution during water splitting", "Source of carbon dioxide", "Electron carrier", "Enzyme cofactor"],
+            correctAnswer: "Oxygen evolution during water splitting"
+        },
+        {
+            question: "How does a deficiency in manganese ions affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following factors influences the availability of light for photosynthesis?",
+            options: ["Leaf orientation", "Soil pH", "Carbon dioxide concentration", "Nitrogen content"],
+            correctAnswer: "Leaf orientation"
+        },
+        {
+            question: "How does a decrease in leaf orientation affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "What is the primary role of cobalt ions (Co²⁺) in photosynthesis?",
+            options: ["Enzyme cofactor", "Source of carbon dioxide", "Electron carrier", "Component of chlorophyll"],
+            correctAnswer: "Enzyme cofactor"
+        },
+        {
+            question: "How does a deficiency in cobalt ions affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following factors directly influences the opening and closing of stomata?",
+            options: ["Light intensity", "Carbon dioxide concentration", "Temperature", "Humidity"],
+            correctAnswer: "Light intensity"
+        },
+        {
+            question: "How does an increase in light intensity affect the rate of photosynthesis?",
+            options: ["Increases the rate", "Decreases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Increases the rate"
+        },
+        {
+            question: "What is the role of copper ions (Cu²⁺) in photosynthesis?",
+            options: ["Electron carrier", "Source of carbon dioxide", "Enzyme cofactor", "Component of chlorophyll"],
+            correctAnswer: "Enzyme cofactor"
+        },
+        {
+            question: "What is the role of boron in photosynthesis?",
+            options: ["Enzyme cofactor", "Source of carbon dioxide", "Electron carrier", "Component of chlorophyll"],
+            correctAnswer: "Enzyme cofactor"
+        },
+        {
+            question: "How does a deficiency in boron affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following nutrients is essential for the synthesis of chlorophyll?",
+            options: ["Zinc", "Sodium", "Chromium", "Nickel"],
+            correctAnswer: "Zinc"
+        },
+        {
+            question: "How does a deficiency in zinc affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "What is the primary role of calcium ions (Ca²⁺) in photosynthesis?",
+            options: ["Enzyme cofactor", "Source of carbon dioxide", "Electron carrier", "Component of chlorophyll"],
+            correctAnswer: "Enzyme cofactor"
+        },
+        {
+            question: "How does a deficiency in calcium ions affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "Which of the following nutrients is essential for the synthesis of chlorophyll?",
+            options: ["Copper", "Molybdenum", "Lead", "Tungsten"],
+            correctAnswer: "Copper"
+        },
+        {
+            question: "How does a deficiency in copper affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        },
+        {
+            question: "What is the primary role of molybdenum in photosynthesis?",
+            options: ["Enzyme cofactor", "Source of carbon dioxide", "Electron carrier", "Component of chlorophyll"],
+            correctAnswer: "Enzyme cofactor"
+        },
+        {
+            question: "How does a deficiency in molybdenum affect photosynthesis?",
+            options: ["Decreases the rate", "Increases the rate", "Has no effect", "Causes inhibition"],
+            correctAnswer: "Decreases the rate"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

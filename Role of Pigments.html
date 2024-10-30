@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Role of Pigments - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .pigments-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pigments-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Role of Pigments - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="pigments-header">
+                <h1 class="pigments-title">Role of Pigments</h1>
+                <p>Explore the significance of pigments in nature, their functions, and their impact on various ecosystems.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Pigments</h2>
+                <div class="topic-content">
+                    <p>Pigments are substances that provide color to organisms and play crucial roles in various biological processes. They can absorb light energy, protect against UV radiation, and facilitate photosynthesis.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Photosynthetic Pigments</h3>
+                            <p>Chlorophylls and carotenoids are essential for photosynthesis, allowing plants to convert light energy into chemical energy.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Coloration and Attraction</h3>
+                            <p>How pigments in flowers and fruits attract pollinators and seed dispersers, enhancing reproductive success.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Protective Functions</h3>
+                            <p>Roles of pigments in providing UV protection and acting as antioxidants, reducing oxidative stress in organisms.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <h3>Environmental Adaptation</h3>
+                            <p>The adaptive significance of pigments in organisms to various environmental conditions, such as light intensity and temperature.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Types of Pigments</h2>
+                <div class="topic-content">
+                    <p>Various types of pigments serve different functions in living organisms. Understanding these types can provide insights into their ecological roles and applications in technology.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3>Chlorophyll</h3>
+                            <p>The primary pigment in plants that captures light energy for photosynthesis, essential for plant growth and development.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-carrot"></i>
+                            </div>
+                            <h3>Carotenoids</h3>
+                            <p>These pigments provide yellow, orange, and red colors in many plants and fruits, and have antioxidant properties.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Anthocyanins</h3>
+                            <p>Water-soluble pigments that give red, blue, and purple colors to many fruits and flowers, playing roles in pollination and seed dispersal.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Melanin</h3>
+                            <p>A pigment responsible for coloration in animal skin, fur, and feathers, providing protection from UV radiation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Role of Pigments concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Which pigment primarily absorbs blue and red wavelengths of light in photosynthesis?",
+            options: ["Chlorophyll", "Carotenoids", "Anthocyanins", "Phycobilins"],
+            correctAnswer: "Chlorophyll"
+        },
+        {
+            question: "What is the main role of carotenoids in photosynthesis?",
+            options: ["Accessory pigments", "Primary electron carriers", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Accessory pigments"
+        },
+        {
+            question: "Which pigment is responsible for the yellow and orange colors seen in autumn leaves?",
+            options: ["Carotenoids", "Chlorophyll", "Anthocyanins", "Phycobilins"],
+            correctAnswer: "Carotenoids"
+        },
+        {
+            question: "What is the function of anthocyanins in plants?",
+            options: ["Protection against UV radiation", "Primary electron carriers", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Protection against UV radiation"
+        },
+        {
+            question: "Which pigment contributes to the red, blue, and purple colors in certain flowers and fruits?",
+            options: ["Anthocyanins", "Chlorophyll", "Carotenoids", "Phycobilins"],
+            correctAnswer: "Anthocyanins"
+        },
+        {
+            question: "What is the primary role of phycobilins in algae and cyanobacteria?",
+            options: ["Light harvesting", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Light harvesting"
+        },
+        {
+            question: "Which pigment absorbs primarily in the blue and green regions of the light spectrum?",
+            options: ["Chlorophyll b", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Chlorophyll b"
+        },
+        {
+            question: "Which pigment is found in the reaction center of photosystem II?",
+            options: ["Chlorophyll a", "Chlorophyll b", "Carotenoids", "Phycobilins"],
+            correctAnswer: "Chlorophyll a"
+        },
+        {
+            question: "What is the function of accessory pigments in photosynthesis?",
+            options: ["Expand the range of light absorption", "Regulate stomatal opening", "Fix carbon dioxide", "Produce oxygen"],
+            correctAnswer: "Expand the range of light absorption"
+        },
+        {
+            question: "Which pigment plays a crucial role in non-photochemical quenching to dissipate excess light energy?",
+            options: ["Xanthophylls", "Chlorophyll a", "Anthocyanins", "Phycobilins"],
+            correctAnswer: "Xanthophylls"
+        },
+        {
+            question: "What is the primary role of phycobiliproteins in photosynthetic organisms?",
+            options: ["Light harvesting", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Light harvesting"
+        },
+        {
+            question: "Which pigment absorbs primarily in the red and far-red regions of the light spectrum?",
+            options: ["Phytochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Phytochromes"
+        },
+        {
+            question: "What is the primary role of phytochromes in plants?",
+            options: ["Regulation of photoperiodism", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Regulation of photoperiodism"
+        },
+        {
+            question: "Which pigment is involved in the sensing of light quality and quantity in plants?",
+            options: ["Phytochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Phytochromes"
+        },
+        {
+            question: "What is the role of chlorophyll in photosynthesis?",
+            options: ["Absorb light energy", "Regulate stomatal opening", "Fix carbon dioxide", "Produce oxygen"],
+            correctAnswer: "Absorb light energy"
+        },
+        {
+            question: "Which pigment is responsible for the blue-green color of cyanobacteria?",
+            options: ["Phycocyanin", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Phycocyanin"
+        },
+        {
+            question: "What is the function of phycocyanin in cyanobacteria?",
+            options: ["Light harvesting", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Light harvesting"
+        },
+        {
+            question: "Which pigment is primarily involved in the absorption of blue light in plants?",
+            options: ["Cryptochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Cryptochromes"
+        },
+        {
+            question: "What is the role of cryptochromes in plants?",
+            options: ["Regulation of photomorphogenesis", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Regulation of photomorphogenesis"
+        },
+        {
+            question: "Which pigment absorbs primarily in the ultraviolet (UV) region of the light spectrum?",
+            options: ["Ultraviolet-absorbing pigments", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Ultraviolet-absorbing pigments"
+        },
+        {
+            question: "What is the role of chlorophyll a in photosynthesis?",
+            options: ["Primary electron donor", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Primary electron donor"
+        },
+        {
+            question: "Which pigment absorbs primarily in the green region of the light spectrum?",
+            options: ["Chlorophyll a", "Chlorophyll b", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Chlorophyll a"
+        },
+        {
+            question: "What is the primary role of phycobilisomes in photosynthesis?",
+            options: ["Light harvesting", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Light harvesting"
+        },
+        {
+            question: "Which pigment plays a crucial role in photoprotection by dissipating excess light energy as heat?",
+            options: ["Xanthophylls", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Xanthophylls"
+        },
+        {
+            question: "What is the function of phycoerythrin in red algae?",
+            options: ["Light harvesting", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Light harvesting"
+        },
+        {
+            question: "Which pigment is primarily responsible for the blue color of certain cyanobacteria?",
+            options: ["Phycocyanin", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Phycocyanin"
+        },
+        {
+            question: "What is the role of phytoene in photosynthesis?",
+            options: ["Precursor of carotenoids", "Primary electron carrier", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Precursor of carotenoids"
+        },
+        {
+            question: "Which pigment is involved in the sensing of blue light for phototropism in plants?",
+            options: ["Cryptochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Cryptochromes"
+        },
+        {
+            question: "What is the primary function of cryptochromes in plants?",
+            options: ["Regulation of phototropism", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Regulation of phototropism"
+        },
+        {
+            question: "Which pigment absorbs primarily in the orange and red regions of the light spectrum?",
+            options: ["Phycoerythrin", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Phycoerythrin"
+        },
+        {
+            question: "What is the role of zeaxanthin in plants?",
+            options: ["Photoprotection", "Primary electron carrier", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Photoprotection"
+        },
+        {
+            question: "Which pigment is involved in the sensing of red and far-red light for seed germination?",
+            options: ["Phytochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Phytochromes"
+        },
+        {
+            question: "What is the primary function of phytochromes in plants?",
+            options: ["Regulation of seed germination", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Regulation of seed germination"
+        },
+        {
+            question: "Which pigment is primarily involved in the absorption of blue and green light in plants?",
+            options: ["Chlorophyll b", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Chlorophyll b"
+        },
+        {
+            question: "What is the role of neoxanthin in plants?",
+            options: ["Photoprotection", "Primary electron carrier", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Photoprotection"
+        },
+        {
+            question: "Which pigment is involved in the sensing of UV-B light for photomorphogenesis in plants?",
+            options: ["Ultraviolet-absorbing pigments", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Ultraviolet-absorbing pigments"
+        },
+        {
+            question: "What is the primary function of ultraviolet-absorbing pigments in plants?",
+            options: ["Protection against UV radiation", "Regulation of photomorphogenesis", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Protection against UV radiation"
+        },
+        {
+            question: "Which pigment is primarily involved in the absorption of red and far-red light for photoperiodism?",
+            options: ["Phytochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Phytochromes"
+        },
+        {
+            question: "What is the role of lutein in plants?",
+            options: ["Photoprotection", "Primary electron carrier", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Photoprotection"
+        },
+        {
+            question: "Which pigment is involved in the sensing of green light for chloroplast movement in plants?",
+            options: ["Flavonoids", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Flavonoids"
+        },
+        {
+            question: "What is the role of flavonoids in plants?",
+            options: ["Sensing green light for chloroplast movement", "Protection against UV radiation", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Sensing green light for chloroplast movement"
+        },
+        {
+            question: "Which pigment is primarily involved in the absorption of blue and green light in plants?",
+            options: ["Chlorophyll b", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Chlorophyll b"
+        },
+        {
+            question: "What is the primary function of chlorophyll b in plants?",
+            options: ["Accessory pigment", "Primary electron donor", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Accessory pigment"
+        },
+        {
+            question: "Which pigment is involved in the sensing of UV-A light for photomorphogenesis in plants?",
+            options: ["Cryptochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Cryptochromes"
+        },
+        {
+            question: "What is the primary function of UV-A-absorbing pigments in plants?",
+            options: ["Protection against UV radiation", "Regulation of photomorphogenesis", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Protection against UV radiation"
+        },
+        {
+            question: "Which pigment absorbs primarily in the blue region of the light spectrum?",
+            options: ["Cryptochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Cryptochromes"
+        },
+        {
+            question: "What is the role of anthocyanins in plants?",
+            options: ["Protection against UV radiation", "Primary electron donor", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Protection against UV radiation"
+        },
+        {
+            question: "Which pigment is responsible for the red color of tomato fruits?",
+            options: ["Lycopene", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Lycopene"
+        },
+        {
+            question: "What is the primary function of lycopene in plants?",
+            options: ["Antioxidant", "Primary electron donor", "Oxygen evolution", "Stomatal regulation"],
+            correctAnswer: "Antioxidant"
+        },
+        {
+            question: "Which pigment is involved in the sensing of blue light for phototropism in plants?",
+            options: ["Cryptochromes", "Chlorophyll a", "Carotenoids", "Anthocyanins"],
+            correctAnswer: "Cryptochromes"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

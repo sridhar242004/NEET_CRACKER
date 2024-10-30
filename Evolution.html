@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Evolution - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .evolution-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .evolution-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Evolution - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="evolution-header">
+                <h1 class="evolution-title">Evolution</h1>
+                <p>Explore the principles of evolution, natural selection, and the diversity of life essential for understanding biology and NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Evolution</h2>
+                <div class="topic-content">
+                    <p>Evolution is the process by which species change over time through variations, mutations, and natural selection. It explains the diversity of life on Earth and the relationships between different organisms.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tree"></i>
+                            </div>
+                            <h3>Theory of Evolution</h3>
+                            <p>Overview of the historical context and foundational concepts of the theory of evolution, including key figures like Charles Darwin.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <h3>Natural Selection</h3>
+                            <p>Understanding the mechanism of natural selection and how it leads to adaptation and speciation.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Genetic Variation</h3>
+                            <p>Exploration of genetic variation within populations and its role in evolution through mutation and recombination.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-earth-americas"></i>
+                            </div>
+                            <h3>Evidence of Evolution</h3>
+                            <p>Examination of various lines of evidence supporting evolution, including fossil records, comparative anatomy, and molecular biology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Speciation and Extinction</h2>
+                <div class="topic-content">
+                    <p>Speciation refers to the process by which new species arise, while extinction is the end of an existing species. Both processes play significant roles in shaping biodiversity.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-plus-square"></i>
+                            </div>
+                            <h3>Mechanisms of Speciation</h3>
+                            <p>Understanding the processes that lead to the formation of new species, including allopatric and sympatric speciation.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-skull-crossbones"></i>
+                            </div>
+                            <h3>Mass Extinctions</h3>
+                            <p>Overview of historical mass extinction events, their causes, and their impact on biodiversity and evolution.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3>Adaptive Radiation</h3>
+                            <p>Exploration of adaptive radiation as a process where organisms diversify rapidly into a variety of forms to adapt to different environments.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Human Evolution</h3>
+                            <p>Study of the evolutionary history of humans, including the emergence of Homo sapiens and our relationship to other primates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Evolution concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Who proposed the theory of evolution by natural selection?",
+            options: ["Charles Darwin", "Gregor Mendel", "Alfred Russel Wallace", "Jean-Baptiste Lamarck"],
+            correctAnswer: "Charles Darwin"
+        },
+        {
+            question: "What is the process through which advantageous traits are passed on more frequently to future generations?",
+            options: ["Natural selection", "Artificial selection", "Genetic drift", "Mutation"],
+            correctAnswer: "Natural selection"
+        },
+        {
+            question: "Which scientist proposed the theory of inheritance of acquired characteristics?",
+            options: ["Jean-Baptiste Lamarck", "Charles Darwin", "Gregor Mendel", "Alfred Russel Wallace"],
+            correctAnswer: "Jean-Baptiste Lamarck"
+        },
+        {
+            question: "What term describes the process by which unrelated species evolve similar traits?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which type of selection favors extreme phenotypes over intermediate phenotypes?",
+            options: ["Disruptive selection", "Stabilizing selection", "Directional selection", "Balancing selection"],
+            correctAnswer: "Disruptive selection"
+        },
+        {
+            question: "What is the evolutionary process by which new species arise from a single ancestral species?",
+            options: ["Speciation", "Hybridization", "Mutation", "Adaptation"],
+            correctAnswer: "Speciation"
+        },
+        {
+            question: "Which type of reproductive isolation occurs due to differences in mating behaviors or rituals?",
+            options: ["Behavioral isolation", "Geographical isolation", "Temporal isolation", "Mechanical isolation"],
+            correctAnswer: "Behavioral isolation"
+        },
+        {
+            question: "What term describes the phenomenon where species evolve rapidly into diverse forms to fill available ecological niches?",
+            options: ["Adaptive radiation", "Genetic drift", "Gene flow", "Punctuated equilibrium"],
+            correctAnswer: "Adaptive radiation"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Temporal isolation", "Hybrid inviability", "Hybrid breakdown", "Hybrid sterility"],
+            correctAnswer: "Temporal isolation"
+        },
+        {
+            question: "What is the term for the physical splitting of a population into smaller, isolated populations?",
+            options: ["Allopatric speciation", "Sympatric speciation", "Parapatric speciation", "Peripatric speciation"],
+            correctAnswer: "Allopatric speciation"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of genetic variation?",
+            options: ["Adaptation", "Mutation", "Gene flow", "Sexual reproduction"],
+            correctAnswer: "Adaptation"
+        },
+        {
+            question: "What type of selection favors intermediate phenotypes over extreme phenotypes?",
+            options: ["Stabilizing selection", "Directional selection", "Disruptive selection", "Balancing selection"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "Which scientist proposed the theory of punctuated equilibrium?",
+            options: ["Stephen Jay Gould and Niles Eldredge", "Charles Darwin", "Jean-Baptiste Lamarck", "Alfred Russel Wallace"],
+            correctAnswer: "Stephen Jay Gould and Niles Eldredge"
+        },
+        {
+            question: "What is the term for the study of the geographic distribution of species?",
+            options: ["Biogeography", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Biogeography"
+        },
+        {
+            question: "Which of the following is an example of a postzygotic barrier to reproduction?",
+            options: ["Hybrid inviability", "Temporal isolation", "Behavioral isolation", "Geographical isolation"],
+            correctAnswer: "Hybrid inviability"
+        },
+        {
+            question: "What term describes the evolution of similar structures in unrelated organisms due to similar selective pressures?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is NOT a factor that can lead to speciation?",
+            options: ["Mutation", "Gene flow", "Stabilizing selection", "Genetic drift"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "What is the term for the evolutionary process by which two species become more similar over time?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which type of reproductive isolation occurs due to differences in mating seasons or times?",
+            options: ["Temporal isolation", "Geographical isolation", "Behavioral isolation", "all the above"],
+            correctAnswer: "Temporal isolation"
+        },
+        {
+            question: "What is the term for the presence of more than two forms of a trait in a population?",
+            options: ["Polymorphism", "Monomorphism", "Dichotomy", "Heteromorphism"],
+            correctAnswer: "Polymorphism"
+        },
+        {
+            question: "Which type of selection favors individuals with an average phenotype over extreme phenotypes?",
+            options: ["Stabilizing selection", "Directional selection", "Disruptive selection", "Balancing selection"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "What term describes the process of the gradual change in species over time?",
+            options: ["Evolution", "Natural selection", "Mutation", "Speciation"],
+            correctAnswer: "Evolution"
+        },
+        {
+            question: "Which type of isolation occurs when populations are physically separated by geographic barriers?",
+            options: ["Geographical isolation", "Behavioral isolation", "Temporal isolation", "Mechanical isolation"],
+            correctAnswer: "Geographical isolation"
+        },
+        {
+            question: "What is the term for the situation in which two species evolve in response to each other?",
+            options: ["Co-evolution", "Convergent evolution", "Divergent evolution", "Parallel evolution"],
+            correctAnswer: "Co-evolution"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Fossil record", "Homologous structures", "Analogous structures", "Embryological similarities"],
+            correctAnswer: "Analogous structures"
+        },
+        {
+            question: "What term describes the process by which humans intentionally breed plants or animals for certain traits?",
+            options: ["Artificial selection", "Natural selection", "Genetic drift", "Mutation"],
+            correctAnswer: "Artificial selection"
+        },
+        {
+            question: "Which of the following is an example of divergent evolution?",
+            options: ["Homologous structures", "Analogous structures", "Vestigial structures", "Convergent evolution"],
+            correctAnswer: "Homologous structures"
+        },
+        {
+            question: "What term describes a structure that has lost its original function in the course of evolution?",
+            options: ["Vestigial structure", "Analogous structure", "Homologous structure", "Convergent structure"],
+            correctAnswer: "Vestigial structure"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of evolution?",
+            options: ["Lamarckism", "Natural selection", "Mutation", "Genetic drift"],
+            correctAnswer: "Lamarckism"
+        },
+        {
+            question: "What term describes the concept that all living organisms are related and descended from a common ancestor?",
+            options: ["Common descent", "Adaptive radiation", "Punctuated equilibrium", "Biogeography"],
+            correctAnswer: "Common descent"
+        },
+        {
+            question: "Which scientist proposed the theory of natural selection independently of Charles Darwin?",
+            options: ["Alfred Russel Wallace", "Jean-Baptiste Lamarck", "Gregor Mendel", "Stephen Jay Gould"],
+            correctAnswer: "Alfred Russel Wallace"
+        },
+        {
+            question: "What term describes the formation of new species in the absence of geographic barriers?",
+            options: ["Sympatric speciation", "Allopatric speciation", "Parapatric speciation", "Peripatric speciation"],
+            correctAnswer: "Sympatric speciation"
+        },
+        {
+            question: "Which of the following is an example of convergent evolution?",
+            options: ["Analogous structures", "Homologous structures", "Vestigial structures", "Divergent evolution"],
+            correctAnswer: "Analogous structures"
+        },
+        {
+            question: "What term describes the random change in allele frequencies in a population?",
+            options: ["Genetic drift", "Gene flow", "Natural selection", "Mutation"],
+            correctAnswer: "Genetic drift"
+        },
+        {
+            question: "Which type of selection favors individuals at one extreme of the phenotypic range?",
+            options: ["Directional selection", "Stabilizing selection", "Disruptive selection", "Balancing selection"],
+            correctAnswer: "Directional selection"
+        },
+        {
+            question: "What is the term for the process by which species evolve from a common ancestor into diverse forms?",
+            options: ["Divergent evolution", "Convergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Divergent evolution"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Embryological similarities", "Analogous structures", "Homologous structures", "Vestigial structures"],
+            correctAnswer: "Embryological similarities"
+        },
+        {
+            question: "What term describes the existence of separate species populations in the same geographic area?",
+            options: ["Sympatry", "Allopatry", "Parapatry", "Peripatry"],
+            correctAnswer: "Sympatry"
+        },
+        {
+            question: "Which of the following is an example of a postzygotic barrier to reproduction?",
+            options: ["Hybrid sterility", "Temporal isolation", "Behavioral isolation", "Geographical isolation"],
+            correctAnswer: "Hybrid sterility"
+        },
+        {
+            question: "What is the term for the random change in allele frequencies due to a sudden reduction in population size?",
+            options: ["Founder effect", "Bottleneck effect", "Gene flow", "Genetic drift"],
+            correctAnswer: "Bottleneck effect"
+        },
+        {
+            question: "Which type of isolation occurs when populations occupy different habitats within the same area?",
+            options: ["Ecological isolation", "Behavioral isolation", "Geographical isolation", "Temporal isolation"],
+            correctAnswer: "Ecological isolation"
+        },
+        {
+            question: "What term describes the study of the genetic composition of populations and how it changes over time?",
+            options: ["Population genetics", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Population genetics"
+        },
+        {
+            question: "Which of the following is an example of parallel evolution?",
+            options: ["Marsupials in Australia and placental mammals elsewhere", "Bats and birds with wings", "Fish and dolphins with streamlined bodies", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Marsupials in Australia and placental mammals elsewhere"
+        },
+        {
+            question: "What is the term for the presence of two distinct forms of a trait in a population?",
+            options: ["Dichotomy", "Polymorphism", "Monomorphism", "Heteromorphism"],
+            correctAnswer: "Dichotomy"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Mechanical isolation", "Hybrid breakdown", "Hybrid sterility", "Hybrid inviability"],
+            correctAnswer: "Mechanical isolation"
+        },
+        {
+            question: "What term describes the preservation of features from an ancestral organism that no longer serve a function?",
+            options: ["Vestigiality", "Atavism", "Mutation", "Genetic drift"],
+            correctAnswer: "Vestigiality"
+        },
+        {
+            question: "Which of the following is NOT a requirement for natural selection?",
+            options: ["Variation", "Inheritance", "Mutation", "Differential survival and reproduction"],
+            correctAnswer: "Mutation"
+        },
+        {
+            question: "What is the term for the ability of an organism to survive and reproduce in its environment?",
+            options: ["Fitness", "Adaptation", "Mutation", "Hybridization"],
+            correctAnswer: "Fitness"
+        },
+        {
+            question: "Which of the following is an example of co-evolution?",
+            options: ["Flowers and pollinators", "Birds and bats with wings", "Fish and dolphins with streamlined bodies", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Flowers and pollinators"
+        },
+        {
+            question: "What term describes the evolutionary process by which unrelated species develop similar traits due to similar environmental pressures?",
+            options: ["Parallel evolution", "Convergent evolution", "Divergent evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is NOT a factor contributing to genetic variation?",
+            options: ["Mutation", "Gene flow", "Genetic drift", "Natural selection"],
+            correctAnswer: "Natural selection"
+        },
+        {
+            question: "What is the term for the movement of alleles between populations?",
+            options: ["Gene flow", "Genetic drift", "Natural selection", "Mutation"],
+            correctAnswer: "Gene flow"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Biogeography", "Embryological similarities", "Fossil record", "Analogous structures"],
+            correctAnswer: "Analogous structures"
+        },
+        {
+            question: "What term describes the formation of a new species while still in contact with the parent species?",
+            options: ["Parapatric speciation", "Sympatric speciation", "Allopatric speciation", "Peripatric speciation"],
+            correctAnswer: "Sympatric speciation"
+        },
+        {
+            question: "Which of the following is an example of adaptive radiation?",
+            options: ["Darwin's finches", "Penguins and seals in Antarctica", "Bats and birds with wings", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Darwin's finches"
+        },
+        {
+            question: "What term describes the study of the development of embryos across different species?",
+            options: ["Comparative embryology", "Biogeography", "Ecology", "Ethology"],
+            correctAnswer: "Comparative embryology"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of reproductive isolation?",
+            options: ["Temporal isolation", "Behavioral isolation", "Mechanical isolation", "Geographical isolation"],
+            correctAnswer: "Geographical isolation"
+        },
+        {
+            question: "What term describes the process by which unrelated species develop similar traits in response to similar environmental pressures?",
+            options: ["Convergent evolution", "Parallel evolution", "Divergent evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Mechanical isolation", "Hybrid breakdown", "Hybrid sterility", "Hybrid inviability"],
+            correctAnswer: "Mechanical isolation"
+        },
+        {
+            question: "What term describes the study of the geographic distribution of species?",
+            options: ["Biogeography", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Biogeography"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Homologous structures", "Analogous structures", "Vestigial structures", "Embryological similarities"],
+            correctAnswer: "Embryological similarities"
+        },
+        {
+            question: "What term describes the evolutionary process by which two species become more similar over time?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which type of reproductive isolation occurs due to differences in mating behaviors or rituals?",
+            options: ["Behavioral isolation", "Geographical isolation", "Temporal isolation", "Mechanical isolation"],
+            correctAnswer: "Behavioral isolation"
+        },
+        {
+            question: "What term describes the phenomenon where species evolve rapidly into diverse forms to fill available ecological niches?",
+            options: ["Adaptive radiation", "Genetic drift", "Gene flow", "Punctuated equilibrium"],
+            correctAnswer: "Adaptive radiation"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Temporal isolation", "Hybrid inviability", "Hybrid breakdown", "Hybrid sterility"],
+            correctAnswer: "Temporal isolation"
+        },
+        {
+            question: "What is the term for the physical splitting of a population into smaller, isolated populations?",
+            options: ["Allopatric speciation", "Sympatric speciation", "Parapatric speciation", "Peripatric speciation"],
+            correctAnswer: "Allopatric speciation"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of genetic variation?",
+            options: ["Adaptation", "Mutation", "Gene flow", "Sexual reproduction"],
+            correctAnswer: "Adaptation"
+        },
+        {
+            question: "What type of selection favors intermediate phenotypes over extreme phenotypes?",
+            options: ["Stabilizing selection", "Directional selection", "Disruptive selection", "Balancing selection"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "Which scientist proposed the theory of punctuated equilibrium?",
+            options: ["Stephen Jay Gould and Niles Eldredge", "Charles Darwin", "Jean-Baptiste Lamarck", "Alfred Russel Wallace"],
+            correctAnswer: "Stephen Jay Gould and Niles Eldredge"
+        },
+        {
+            question: "What is the term for the study of the geographic distribution of species?",
+            options: ["Biogeography", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Biogeography"
+        },
+        {
+            question: "Which of the following is an example of a postzygotic barrier to reproduction?",
+            options: ["Hybrid inviability", "Temporal isolation", "Behavioral isolation", "Geographical isolation"],
+            correctAnswer: "Hybrid inviability"
+        },
+        {
+            question: "What term describes the evolution of similar structures in unrelated organisms due to similar selective pressures?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "all the above"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is NOT a factor that can lead to speciation?",
+            options: ["Mutation", "Gene flow", "Stabilizing selection", "Genetic drift"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "What is the term for the evolutionary process by which two species become more similar over time?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which type of reproductive isolation occurs due to differences in mating seasons or times?",
+            options: ["Temporal isolation", "Geographical isolation", "Behavioral isolation", "Mechanical isolation"],
+            correctAnswer: "Temporal isolation"
+        },
+        {
+            question: "What term describes the presence of more than two forms of a trait in a population?",
+            options: ["Polymorphism", "Monomorphism", "Dichotomy", "Heteromorphism"],
+            correctAnswer: "Polymorphism"
+        },
+        {
+            question: "Which type of selection favors individuals with an average phenotype over extreme phenotypes?",
+            options: ["Stabilizing selection", "Directional selection", "Disruptive selection", "Balancing selection"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "What term describes the process of the gradual change in species over time?",
+            options: ["Evolution", "Natural selection", "Mutation", "Speciation"],
+            correctAnswer: "Evolution"
+        },
+        {
+            question: "Which type of isolation occurs when populations are physically separated by geographic barriers?",
+            options: ["Geographical isolation", "Behavioral isolation", "Temporal isolation", "Mechanical isolation"],
+            correctAnswer: "Geographical isolation"
+        },
+        {
+            question: "What is the term for the situation in which two species evolve in response to each other?",
+            options: ["Co-evolution", "Convergent evolution", "Divergent evolution", "Parallel evolution"],
+            correctAnswer: "Co-evolution"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Fossil record", "Homologous structures", "Analogous structures", "Embryological similarities"],
+            correctAnswer: "Analogous structures"
+        },
+        {
+            question: "What term describes the process by which humans intentionally breed plants or animals for certain traits?",
+            options: ["Artificial selection", "Natural selection", "Genetic drift", "Mutation"],
+            correctAnswer: "Artificial selection"
+        },
+        {
+            question: "Which of the following is an example of divergent evolution?",
+            options: ["Homologous structures", "Analogous structures", "Vestigial structures", "Convergent evolution"],
+            correctAnswer: "Homologous structures"
+        },
+        {
+            question: "What term describes a structure that has lost its original function in the course of evolution?",
+            options: ["Vestigial structure", "Analogous structure", "Homologous structure", "Convergent structure"],
+            correctAnswer: "Vestigial structure"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of evolution?",
+            options: ["Lamarckism", "Natural selection", "Mutation", "Genetic drift"],
+            correctAnswer: "Lamarckism"
+        },
+        {
+            question: "What term describes the concept that all living organisms are related and descended from a common ancestor?",
+            options: ["Common descent", "Adaptive radiation", "Punctuated equilibrium", "Biogeography"],
+            correctAnswer: "Common descent"
+        },
+        {
+            question: "Which scientist proposed the theory of natural selection independently of Charles Darwin?",
+            options: ["Alfred Russel Wallace", "Jean-Baptiste Lamarck", "Gregor Mendel", "Stephen Jay Gould"],
+            correctAnswer: "Alfred Russel Wallace"
+        },
+        {
+            question: "What term describes the formation of new species in the absence of geographic barriers?",
+            options: ["Sympatric speciation", "Allopatric speciation", "Parapatric speciation", "Peripatric speciation"],
+            correctAnswer: "Sympatric speciation"
+        },
+        {
+            question: "Which of the following is an example of convergent evolution?",
+            options: ["Analogous structures", "Homologous structures", "Vestigial structures", "Divergent evolution"],
+            correctAnswer: "Analogous structures"
+        },
+        {
+            question: "What term describes the random change in allele frequencies in a population?",
+            options: ["Genetic drift", "Gene flow", "Natural selection", "Mutation"],
+            correctAnswer: "Genetic drift"
+        },
+        {
+            question: "Which type of selection favors individuals at one extreme of the phenotypic range?",
+            options: ["Directional selection", "Stabilizing selection", "Disruptive selection", "Balancing selection"],
+            correctAnswer: "Directional selection"
+        },
+        {
+            question: "What is the term for the process by which species evolve from a common ancestor into diverse forms?",
+            options: ["Divergent evolution", "Convergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Divergent evolution"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Embryological similarities", "Analogous structures", "Homologous structures", "Vestigial structures"],
+            correctAnswer: "Embryological similarities"
+        },
+        {
+            question: "What term describes the existence of separate species populations in the same geographic area?",
+            options: ["Sympatry", "Allopatry", "Parapatry", "Peripatry"],
+            correctAnswer: "Sympatry"
+        },
+        {
+            question: "Which of the following is an example of a postzygotic barrier to reproduction?",
+            options: ["Hybrid sterility", "Temporal isolation", "Behavioral isolation", "Geographical isolation"],
+            correctAnswer: "Hybrid sterility"
+        },
+        {
+            question: "What is the term for the random change in allele frequencies due to a sudden reduction in population size?",
+            options: ["Founder effect", "Bottleneck effect", "Gene flow", "Genetic drift"],
+            correctAnswer: "Bottleneck effect"
+        },
+        {
+            question: "Which type of isolation occurs when populations occupy different habitats within the same area?",
+            options: ["Ecological isolation", "Behavioral isolation", "Geographical isolation", "Temporal isolation"],
+            correctAnswer: "Ecological isolation"
+        },
+        {
+            question: "What term describes the study of the genetic composition of populations and how it changes over time?",
+            options: ["Population genetics", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Population genetics"
+        },
+        {
+            question: "Which of the following is an example of parallel evolution?",
+            options: ["Marsupials in Australia and placental mammals elsewhere", "Bats and birds         with wings", "Fish and dolphins with streamlined bodies", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Marsupials in Australia and placental mammals elsewhere"
+        },
+        {
+            question: "What is the term for the presence of two distinct forms of a trait in a population?",
+            options: ["Dichotomy", "Polymorphism", "Monomorphism", "Heteromorphism"],
+            correctAnswer: "Dichotomy"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Mechanical isolation", "Hybrid breakdown", "Hybrid sterility", "Hybrid inviability"],
+            correctAnswer: "Mechanical isolation"
+        },
+        {
+            question: "What term describes the preservation of features from an ancestral organism that no longer serve a function?",
+            options: ["Vestigiality", "Atavism", "Mutation", "Genetic drift"],
+            correctAnswer: "Vestigiality"
+        },
+        {
+            question: "Which of the following is NOT a requirement for natural selection?",
+            options: ["Variation", "Inheritance", "Mutation", "Differential survival and reproduction"],
+            correctAnswer: "Mutation"
+        },
+        {
+            question: "What is the term for the ability of an organism to survive and reproduce in its environment?",
+            options: ["Fitness", "Adaptation", "Mutation", "Hybridization"],
+            correctAnswer: "Fitness"
+        },
+        {
+            question: "Which of the following is an example of co-evolution?",
+            options: ["Flowers and pollinators", "Birds and bats with wings", "Fish and dolphins with streamlined bodies", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Flowers and pollinators"
+        },
+        {
+            question: "What term describes the evolutionary process by which unrelated species develop similar traits due to similar environmental pressures?",
+            options: ["Parallel evolution", "Convergent evolution", "Divergent evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is NOT a factor contributing to genetic variation?",
+            options: ["Mutation", "Gene flow", "Genetic drift", "Natural selection"],
+            correctAnswer: "Natural selection"
+        },
+        {
+            question: "What is the term for the movement of alleles between populations?",
+            options: ["Gene flow", "Genetic drift", "Natural selection", "Mutation"],
+            correctAnswer: "Gene flow"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Analogous structures", "Homologous structures", "Vestigial structures", "Embryological similarities"],
+            correctAnswer: "Analogous structures"
+        },
+        {
+            question: "What term describes the formation of a new species while still in contact with the parent species?",
+            options: ["Parapatric speciation", "Sympatric speciation", "Allopatric speciation", "Peripatric speciation"],
+            correctAnswer: "Sympatric speciation"
+        },
+        {
+            question: "Which of the following is an example of adaptive radiation?",
+            options: ["Darwin's finches", "Penguins and seals in Antarctica", "Bats and birds with wings", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Darwin's finches"
+        },
+        {
+            question: "What term describes the study of the development of embryos across different species?",
+            options: ["Comparative embryology", "Biogeography", "Ecology", "Ethology"],
+            correctAnswer: "Comparative embryology"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of reproductive isolation?",
+            options: ["Temporal isolation", "Behavioral isolation", "Mechanical isolation", "Geographical isolation"],
+            correctAnswer: "Geographical isolation"
+        },
+        {
+            question: "What term describes the process by which unrelated species develop similar traits in response to similar environmental pressures?",
+            options: ["Convergent evolution", "Parallel evolution", "Divergent evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Mechanical isolation", "Hybrid breakdown", "Hybrid sterility", "Hybrid inviability"],
+            correctAnswer: "Mechanical isolation"
+        },
+        {
+            question: "What term describes the study of the geographic distribution of species?",
+            options: ["Biogeography", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Biogeography"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Embryological similarities", "Analogous structures", "Homologous structures", "Vestigial structures"],
+            correctAnswer: "Embryological similarities"
+        },
+        {
+            question: "What term describes the evolutionary process by which two species become more similar over time?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which type of reproductive isolation occurs due to differences in mating behaviors or rituals?",
+            options: ["Behavioral isolation", "Geographical isolation", "Temporal isolation", "Mechanical isolation"],
+            correctAnswer: "Behavioral isolation"
+        },
+        {
+            question: "What term describes the phenomenon where species evolve rapidly into diverse forms to fill available ecological niches?",
+            options: ["Adaptive radiation", "Genetic drift", "Gene flow", "Punctuated equilibrium"],
+            correctAnswer: "Adaptive radiation"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Temporal isolation", "Hybrid inviability", "Hybrid breakdown", "Hybrid sterility"],
+            correctAnswer: "Temporal isolation"
+        },
+        {
+            question: "What is the term for the physical splitting of a population into smaller, isolated populations?",
+            options: ["Allopatric speciation", "Sympatric speciation", "Parapatric speciation", "Peripatric speciation"],
+            correctAnswer: "Allopatric speciation"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of genetic variation?",
+            options: ["Adaptation", "Mutation", "Gene flow", "Sexual reproduction"],
+            correctAnswer: "Adaptation"
+        },
+        {
+            question: "What type of selection favors intermediate phenotypes over extreme phenotypes?",
+            options: ["Stabilizing selection", "Directional selection", "Disruptive selection", "Balancing selection"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "Which scientist proposed the theory of punctuated equilibrium?",
+            options: ["Stephen Jay Gould and Niles Eldredge", "Charles Darwin", "Jean-Baptiste Lamarck", "Alfred Russel Wallace"],
+            correctAnswer: "Stephen Jay Gould and Niles Eldredge"
+        },
+        {
+            question: "What is the term for the study of the geographic distribution of species?",
+            options: ["Biogeography", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Biogeography"
+        },
+        {
+            question: "Which of the following is an example of a postzygotic barrier to reproduction?",
+            options: ["Hybrid inviability", "Temporal isolation", "Behavioral isolation", "Geographical isolation"],
+            correctAnswer: "Hybrid inviability"
+        },
+        {
+            question: "What term describes the evolution of similar structures in unrelated organisms due to similar selective pressures?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is NOT a factor that can lead to speciation?",
+            options: ["Mutation", "Gene flow", "Stabilizing selection", "Genetic drift"],
+            correctAnswer: "Stabilizing selection"
+        },
+        {
+            question: "What is the term for the evolutionary process by which two species become more similar over time?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which type of reproductive isolation occurs due to differences in mating seasons or times?",
+            options: ["Temporal isolation", "Geographical isolation", "Behavioral isolation", "Mechanical isolation"],
+            correctAnswer: "Temporal isolation"
+        },
+        {
+            question: "What term describes the presence of more than two forms of a trait in a population?",
+            options: ["Polymorphism", "Monomorphism", "Dichotomy", "Heteromorphism"],
+            correctAnswer: "Polymorphism"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Mechanical isolation", "Hybrid breakdown", "Hybrid sterility", "Hybrid inviability"],
+            correctAnswer: "Mechanical isolation"
+        },
+        {
+            question: "What term describes the preservation of features from an ancestral organism that no longer serve a function?",
+            options: ["Vestigiality", "Atavism", "Mutation", "Genetic drift"],
+            correctAnswer: "Vestigiality"
+        },
+        {
+            question: "Which of the following is NOT a requirement for natural selection?",
+            options: ["Variation", "Inheritance", "Mutation", "Differential survival and reproduction"],
+            correctAnswer: "Mutation"
+        },
+        {
+            question: "What is the term for the ability of an organism to survive and reproduce in its environment?",
+            options: ["Fitness", "Adaptation", "Mutation", "Hybridization"],
+            correctAnswer: "Fitness"
+        },
+        {
+            question: "Which of the following is an example of co-evolution?",
+            options: ["Flowers and pollinators", "Birds and bats with wings", "Fish and dolphins with streamlined bodies", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Flowers and pollinators"
+        },
+        {
+            question: "What term describes the evolutionary process by which unrelated species develop similar traits due to similar environmental pressures?",
+            options: ["Parallel evolution", "Convergent evolution", "Divergent evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is NOT a factor contributing to genetic variation?",
+            options: ["Mutation", "Gene flow", "Genetic drift", "Natural selection"],
+            correctAnswer: "Natural selection"
+        },
+        {
+            question: "What is the term for the movement of alleles between populations?",
+            options: ["Gene flow", "Genetic drift", "Natural selection", "Mutation"],
+            correctAnswer: "Gene flow"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Analogous structures", "Homologous structures", "Vestigial structures", "Embryological similarities"],
+            correctAnswer: "Analogous structures"
+        },
+        {
+            question: "What term describes the formation of a new species while still in contact with the parent species?",
+            options: ["Parapatric speciation", "Sympatric speciation", "Allopatric speciation", "Peripatric speciation"],
+            correctAnswer: "Sympatric speciation"
+        },
+        {
+            question: "Which of the following is an example of adaptive radiation?",
+            options: ["Darwin's finches", "Penguins and seals in Antarctica", "Bats and birds with wings", "Humans and apes with opposable thumbs"],
+            correctAnswer: "Darwin's finches"
+        },
+        {
+            question: "What term describes the study of the development of embryos across different species?",
+            options: ["Comparative embryology", "Biogeography", "Ecology", "Ethology"],
+            correctAnswer: "Comparative embryology"
+        },
+        {
+            question: "Which of the following is NOT a mechanism of reproductive isolation?",
+            options: ["Temporal isolation", "Behavioral isolation", "Mechanical isolation", "Geographical isolation"],
+            correctAnswer: "Geographical isolation"
+        },
+        {
+            question: "What term describes the process by which unrelated species develop similar traits in response to similar environmental pressures?",
+            options: ["Convergent evolution", "Parallel evolution", "Divergent evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which of the following is an example of a prezygotic barrier to reproduction?",
+            options: ["Mechanical isolation", "Hybrid breakdown", "Hybrid sterility", "Hybrid inviability"],
+            correctAnswer: "Mechanical isolation"
+        },
+        {
+            question: "What term describes the study of the geographic distribution of species?",
+            options: ["Biogeography", "Ecology", "Ethology", "Taxonomy"],
+            correctAnswer: "Biogeography"
+        },
+        {
+            question: "Which of the following is NOT an example of evidence for evolution?",
+            options: ["Embryological similarities", "Analogous structures", "Homologous structures", "Vestigial structures"],
+            correctAnswer: "Embryological similarities"
+        },
+        {
+            question: "What term describes the evolutionary process by which two species become more similar over time?",
+            options: ["Convergent evolution", "Divergent evolution", "Parallel evolution", "Adaptive radiation"],
+            correctAnswer: "Convergent evolution"
+        },
+        {
+            question: "Which type of reproductive isolation occurs due to differences in mating behaviors or rituals?",
+            options: ["Behavioral isolation", "Geographical isolation", "Temporal isolation", "Mechanical isolation"],
+            correctAnswer: "Behavioral isolation"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

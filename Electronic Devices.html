@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Electronic Devices - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Electronic Devices - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Electronic Devices</h1>
+                <p>Explore the principles and applications of electronic devices, essential for NEET preparation and understanding modern technology.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Electronic Devices</h2>
+                <div class="topic-content">
+                    <p>Electronic devices are integral components of modern technology, using semiconductor materials and circuits to control the flow of electric current for various applications.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3>Semiconductors</h3>
+                            <p>Study of materials with conductivity between conductors and insulators, essential for creating electronic components like diodes and transistors.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-signal"></i>
+                            </div>
+                            <h3>Diodes</h3>
+                            <p>Electronic components that allow current to flow in one direction, used for rectification and signal processing.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-transistor"></i>
+                            </div>
+                            <h3>Transistors</h3>
+                            <p>Semiconductor devices used for amplification and switching, forming the building blocks of modern electronics.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                            <h3>Integrated Circuits</h3>
+                            <p>Complex circuits combining multiple electronic components on a single chip, used in computers, smartphones, and other devices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Applications of Electronic Devices</h2>
+                <div class="topic-content">
+                    <p>Electronic devices are foundational to various applications, from communication systems to medical technology and consumer electronics.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tv"></i>
+                            </div>
+                            <h3>Communication Devices</h3>
+                            <p>Devices that enable information transfer, including radios, televisions, and smartphones.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <h3>Medical Electronics</h3>
+                            <p>Use of electronic devices in healthcare, such as ECG machines, MRI scanners, and patient monitoring systems.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h3>Computing Devices</h3>
+                            <p>Computers and related devices that perform complex calculations and data processing, powered by semiconductors and integrated circuits.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>Robotics and Automation</h3>
+                            <p>Electronic systems that enable automated processes and intelligent machines, widely used in manufacturing and research.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Electronic Devices concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "Which of the following is not a semiconductor material?",
+            options: ["Silicon", "Germanium", "Copper", "Gallium Arsenide"],
+            correctAnswer: "Copper"
+        },
+        {
+            question: "What is the process of adding impurities to a semiconductor called?",
+            options: ["Doping", "Polishing", "Refining", "Isolating"],
+            correctAnswer: "Doping"
+        },
+        {
+            question: "Which type of semiconductor has an excess of holes?",
+            options: ["N-type", "P-type", "Intrinsic", "Extrinsic"],
+            correctAnswer: "P-type"
+        },
+        {
+            question: "Which of the following is a common application of a diode?",
+            options: ["Voltage Amplification", "Current Amplification", "Rectification", "Oscillation"],
+            correctAnswer: "Rectification"
+        },
+        {
+            question: "What happens when a forward-biased diode conducts current?",
+            options: ["Anode becomes positive", "Anode becomes negative", "Anode becomes neutral", "Anode becomes overheated"],
+            correctAnswer: "Anode becomes positive"
+        },
+        {
+            question: "Which region of a transistor is responsible for controlling the current flow?",
+            options: ["Emitter", "Base", "Collector", "Substrate"],
+            correctAnswer: "Base"
+        },
+        {
+            question: "What is the function of a transistor in an electronic circuit?",
+            options: ["To amplify signals", "To generate signals", "To rectify signals", "To store signals"],
+            correctAnswer: "To amplify signals"
+        },
+        {
+            question: "What is the principle behind the operation of a field-effect transistor (FET)?",
+            options: ["Variation of resistance", "Variation of capacitance", "Variation of electric field", "Variation of inductance"],
+            correctAnswer: "Variation of electric field"
+        },
+        {
+            question: "What is the most common type of FET?",
+            options: ["JFET", "MOSFET", "BJT", "HEMT"],
+            correctAnswer: "MOSFET"
+        },
+        {
+            question: "What is the function of a capacitor in an electronic circuit?",
+            options: ["To store charge", "To amplify signals", "To rectify signals", "To generate signals"],
+            correctAnswer: "To store charge"
+        },
+        {
+            question: "Which of the following is a passive electronic component?",
+            options: ["Transistor", "Diode", "Resistor", "MOSFET"],
+            correctAnswer: "Resistor"
+        },
+        {
+            question: "What is the unit of electrical resistance?",
+            options: ["Ohm", "Volt", "Ampere", "Watt"],
+            correctAnswer: "Ohm"
+        },
+        {
+            question: "Which material has the highest resistance?",
+            options: ["Copper", "Silver", "Gold", "Nichrome"],
+            correctAnswer: "Nichrome"
+        },
+        {
+            question: "What is the resistance of a superconductor at low temperatures?",
+            options: ["Very high", "Very low", "Zero", "Variable"],
+            correctAnswer: "Zero"
+        },
+        {
+            question: "What happens to the resistance of a conductor as its temperature increases?",
+            options: ["Increases", "Decreases", "Remains constant", "Becomes zero"],
+            correctAnswer: "Increases"
+        },
+        {
+            question: "Which device is used to measure electrical resistance?",
+            options: ["Voltmeter", "Ammeter", "Ohmmeter", "Multimeter"],
+            correctAnswer: "Ohmmeter"
+        },
+        {
+            question: "What is the function of a light-emitting diode (LED)?",
+            options: ["To emit light", "To amplify signals", "To store charge", "To generate signals"],
+            correctAnswer: "To emit light"
+        },
+        {
+            question: "Which type of diode is used in solar cells?",
+            options: ["Schottky diode", "Zener diode", "Photodiode", "Tunnel diode"],
+            correctAnswer: "Photodiode"
+        },
+        {
+            question: "What is the reverse breakdown voltage of a Zener diode?",
+            options: ["Fixed", "Variable", "Zero", "Depends on temperature"],
+            correctAnswer: "Fixed"
+        },
+        {
+            question: "What is the primary function of a thyristor?",
+            options: ["Switching", "Amplification", "Oscillation", "Rectification"],
+            correctAnswer: "Switching"
+        },
+        {
+            question: "Which of the following is a characteristic of an ideal diode?",
+            options: ["Zero resistance in forward bias", "Zero resistance in reverse bias", "Infinite resistance in reverse bias", "Infinite resistance in forward bias"],
+            correctAnswer: "Zero resistance in forward bias"
+        },
+        {
+            question: "What is the primary use of a triode?",
+            options: ["As an amplifier", "As a rectifier", "As a switch", "As a capacitor"],
+            correctAnswer: "As an amplifier"
+        },
+        {
+            question: "Which of the following is an example of an integrated circuit (IC)?",
+            options: ["Microprocessor", "Transistor", "Diode", "Resistor"],
+            correctAnswer: "Microprocessor"
+        },
+        {
+            question: "What is the purpose of a voltage regulator?",
+            options: ["To maintain a constant output voltage", "To amplify signals", "To rectify signals", "To store charge"],
+            correctAnswer: "To maintain a constant output voltage"
+        },
+        {
+            question: "What is the function of a rectifier in an electronic circuit?",
+            options: ["To convert AC to DC", "To convert DC to AC", "To amplify signals", "To store charge"],
+            correctAnswer: "To convert AC to DC"
+        },
+        {
+            question: "Which type of transistor has the highest gain?",
+            options: ["Bipolar Junction Transistor (BJT)", "Field-Effect Transistor (FET)", "Darlington Transistor", "Phototransistor"],
+            correctAnswer: "Darlington Transistor"
+        },
+        {
+            question: "What is the primary function of an operational amplifier (op-amp)?",
+            options: ["Signal amplification", "Signal rectification", "Signal generation", "Signal inversion"],
+            correctAnswer: "Signal amplification"
+        },
+        {
+            question: "Which device is used to protect electronic circuits from excessive current?",
+            options: ["Fuse", "Resistor", "Capacitor", "Inductor"],
+            correctAnswer: "Fuse"
+        },
+        {
+            question: "What is the purpose of a capacitor in a power supply circuit?",
+            options: ["To smooth out voltage fluctuations", "To amplify signals", "To store charge", "To generate signals"],
+            correctAnswer: "To smooth out voltage fluctuations"
+        },
+        {
+            question: "What is the primary function of a diac?",
+            options: ["To trigger thyristors", "To amplify signals", "To rectify signals", "To store charge"],
+            correctAnswer: "To trigger thyristors"
+        },
+        {
+            question: "Which of the following is a characteristic of a good conductor?",
+            options: ["Low resistance", "High resistance", "Variable resistance", "Depends on temperature"],
+            correctAnswer: "Low resistance"
+        },
+        {
+            question: "What is the typical voltage drop across a silicon diode when forward-biased?",
+            options: ["0.7 volts", "1.7 volts", "2.7 volts", "3.7 volts"],
+            correctAnswer: "0.7 volts"
+        },
+        {
+            question: "Which device is used to store electrical energy in a circuit?",
+            options: ["Capacitor", "Resistor", "Diode", "Transistor"],
+            correctAnswer: "Capacitor"
+        },
+        {
+            question: "What is the primary function of a varistor?",
+            options: ["To protect against voltage spikes", "To amplify signals", "To rectify signals", "To store charge"],
+            correctAnswer: "To protect against voltage spikes"
+        },
+        {
+            question: "Which of the following is a characteristic of a good insulator?",
+            options: ["High resistance", "Low resistance", "Variable resistance", "Depends on temperature"],
+            correctAnswer: "High resistance"
+        },
+        {
+            question: "What is the primary function of a voltage divider?",
+            options: ["To divide input voltage", "To amplify signals", "To rectify signals", "To store charge"],
+            correctAnswer: "To divide input voltage"
+        },
+        {
+            question: "What is the primary function of a capacitor in a filter circuit?",
+            options: ["To filter out unwanted frequencies", "To amplify signals", "To rectify signals", "To store charge"],
+            correctAnswer: "To filter out unwanted frequencies"
+        },
+        {
+            question: "Which type of diode is used in reverse-biased condition for voltage reference?",
+            options: ["Zener diode", "Schottky diode", "Photodiode", "Varactor diode"],
+            correctAnswer: "Zener diode"
+        },
+        {
+            question: "What is the primary function of a varicap diode?",
+            options: ["To vary capacitance", "To amplify signals", "To rectify signals", "To store charge"],
+            correctAnswer: "To vary capacitance"
+        },
+        {
+            question: "Which of the following is a characteristic of a good semiconductor?",
+            options: ["Moderate resistance", "High resistance", "Low resistance", "Variable resistance"],
+            correctAnswer: "Low resistance"
+        },
+        {
+            question: "What is the primary function of a signal diode?",
+            options: ["To rectify signals", "To amplify signals", "To store charge", "To generate signals"],
+            correctAnswer: "To rectify signals"
+        },
+        {
+            question: "Which device is used to amplify weak signals?",
+            options: ["Transistor", "Resistor", "Capacitor", "Inductor"],
+            correctAnswer: "Transistor"
+        },
+        {
+            question: "What is the primary function of an inductor?",
+            options: ["To store energy in a magnetic field", "To store charge", "To amplify signals", "To generate signals"],
+            correctAnswer: "To store energy in a magnetic field"
+        },
+        {
+            question: "What is the primary function of a flyback diode?",
+            options: ["To prevent voltage spikes", "To amplify signals", "To rectify signals", "To store charge"],
+            correctAnswer: "To prevent voltage spikes"
+        },
+        {
+            question: "Which of the following is a characteristic of a good semiconductor diode?",
+            options: ["Low forward voltage drop", "High forward voltage drop", "Variable forward voltage drop", "Depends on temperature"],
+            correctAnswer: "Low forward voltage drop"
+        },
+        {
+            question: "What is the primary function of a Schottky diode?",
+            options: ["Fast switching", "High breakdown voltage", "Low leakage current", "High thermal stability"],
+            correctAnswer: "Fast switching"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

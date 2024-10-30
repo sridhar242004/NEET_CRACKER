@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Photosynthesis Process - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .photosynthesis-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .photosynthesis-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Photosynthesis Process - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="photosynthesis-header">
+                <h1 class="photosynthesis-title">Photosynthesis Process</h1>
+                <p>Explore the fundamental processes of photosynthesis, its stages, and its significance in the ecosystem.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Photosynthesis</h2>
+                <div class="topic-content">
+                    <p>Photosynthesis is the biochemical process by which green plants, algae, and some bacteria convert light energy into chemical energy in the form of glucose. This process is essential for producing oxygen and organic materials that sustain life on Earth.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Light Absorption</h3>
+                            <p>Photosynthesis begins with the absorption of sunlight by chlorophyll, primarily found in the chloroplasts of plant cells.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Water Splitting</h3>
+                            <p>In the light-dependent reactions, water molecules are split into oxygen, protons, and electrons, releasing oxygen as a byproduct.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Energy Conversion</h3>
+                            <p>Light energy is converted into chemical energy in the form of ATP and NADPH, which are used in the next stage of photosynthesis.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Calvin Cycle</h3>
+                            <p>This stage occurs in the stroma of chloroplasts, where ATP and NADPH are used to convert carbon dioxide into glucose through a series of reactions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Importance of Photosynthesis</h2>
+                <div class="topic-content">
+                    <p>Photosynthesis is not only vital for plants but also for all life on Earth. It is the foundation of the food chain and plays a critical role in the global carbon cycle.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Oxygen Production</h3>
+                            <p>Photosynthesis produces oxygen, which is essential for the survival of aerobic organisms, including humans.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                            <h3>Food Supply</h3>
+                            <p>Plants are primary producers in ecosystems, providing food for herbivores and, consequently, for carnivores.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <h3>Carbon Dioxide Reduction</h3>
+                            <p>Photosynthesis helps in reducing atmospheric carbon dioxide levels, mitigating climate change effects.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tree"></i>
+                            </div>
+                            <h3>Ecological Balance</h3>
+                            <p>It plays a crucial role in maintaining the balance of ecosystems by supporting food webs and contributing to biodiversity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Photosynthesis Process concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the primary process by which green plants convert light energy into chemical energy?",
+            options: ["Cellular respiration", "Photosynthesis", "Transpiration", "Glycolysis"],
+            correctAnswer: "Photosynthesis"
+        },
+        {
+            question: "Which pigment is primarily responsible for capturing light energy during photosynthesis?",
+            options: ["Carotenoids", "Chlorophyll", "Xanthophyll", "Phycobilins"],
+            correctAnswer: "Chlorophyll"
+        },
+        {
+            question: "During photosynthesis, what gas is taken in by the plant and used to produce oxygen?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the primary source of energy for the process of photosynthesis?",
+            options: ["Heat energy", "Chemical energy", "Nuclear energy", "Solar energy"],
+            correctAnswer: "Solar energy"
+        },
+        {
+            question: "In which organelle does photosynthesis take place in plant cells?",
+            options: ["Mitochondria", "Nucleus", "Chloroplast", "Endoplasmic reticulum"],
+            correctAnswer: "Chloroplast"
+        },
+        {
+            question: "What is the ultimate product of the light-dependent reactions in photosynthesis?",
+            options: ["Oxygen", "Glucose", "Carbon dioxide", "ATP"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "Which part of the chloroplast is responsible for the light-dependent reactions of photosynthesis?",
+            options: ["Thylakoid membrane", "Stroma", "Granum", "Outer membrane"],
+            correctAnswer: "Thylakoid membrane"
+        },
+        {
+            question: "During photosynthesis, where is the oxygen released?",
+            options: ["Thylakoid space", "Stroma", "Grana", "Cytoplasm"],
+            correctAnswer: "Thylakoid space"
+        },
+        {
+            question: "What is the primary purpose of the Calvin cycle in photosynthesis?",
+            options: ["To capture light energy", "To produce oxygen", "To fix carbon dioxide", "To generate ATP"],
+            correctAnswer: "To fix carbon dioxide"
+        },
+        {
+            question: "Which enzyme is responsible for carbon fixation in the Calvin cycle?",
+            options: ["Rubisco", "ATP synthase", "Pigment kinase", "Pyruvate carboxylase"],
+            correctAnswer: "Rubisco"
+        },
+        {
+            question: "What molecule is produced during the Calvin cycle and serves as the building block for glucose synthesis?",
+            options: ["Glucose-6-phosphate", "Ribulose bisphosphate", "Glyceraldehyde-3-phosphate", "Fructose-1,6-bisphosphate"],
+            correctAnswer: "Glyceraldehyde-3-phosphate"
+        },
+        {
+            question: "In which stage of photosynthesis does carbon fixation occur?",
+            options: ["Light-dependent reactions", "Calvin cycle", "Photorespiration", "Carbon assimilation"],
+            correctAnswer: "Calvin cycle"
+        },
+        {
+            question: "What is the primary function of ATP synthase during photosynthesis?",
+            options: ["To synthesize ATP", "To produce NADPH", "To split water molecules", "To fix carbon dioxide"],
+            correctAnswer: "To synthesize ATP"
+        },
+        {
+            question: "What is the primary role of NADPH in photosynthesis?",
+            options: ["To transfer electrons", "To produce oxygen", "To absorb light energy", "To synthesize ATP"],
+            correctAnswer: "To transfer electrons"
+        },
+        {
+            question: "What is the byproduct of the light-dependent reactions in photosynthesis?",
+            options: ["Glucose", "Water", "Oxygen", "Carbon dioxide"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the purpose of the electron transport chain during photosynthesis?",
+            options: ["To produce ATP", "To generate oxygen", "To fix carbon dioxide", "To synthesize glucose"],
+            correctAnswer: "To produce ATP"
+        },
+        {
+            question: "Which of the following is NOT a product of the light-dependent reactions in photosynthesis?",
+            options: ["Oxygen", "ATP", "NADPH", "Glucose"],
+            correctAnswer: "Glucose"
+        },
+        {
+            question: "During photosynthesis, what is the source of electrons for the photosynthetic electron transport chain?",
+            options: ["Water", "Carbon dioxide", "Oxygen", "NADPH"],
+            correctAnswer: "Water"
+        },
+        {
+            question: "In which region of the chloroplast do the light-dependent reactions primarily occur?",
+            options: ["Stroma", "Thylakoid membrane", "Granum", "Outer membrane"],
+            correctAnswer: "Thylakoid membrane"
+        },
+        {
+            question: "What is the primary function of the light-harvesting complexes during photosynthesis?",
+            options: ["To convert light energy into chemical energy", "To fix carbon dioxide", "To produce oxygen", "To synthesize ATP"],
+            correctAnswer: "To convert light energy into chemical energy"
+        },
+        {
+            question: "What happens to the electrons in chlorophyll molecules when they absorb light energy?",
+            options: ["They are excited to a higher energy level", "They are converted into oxygen", "They bind to Rubisco", "They are released as ATP"],
+            correctAnswer: "They are excited to a higher energy level"
+        },
+        {
+            question: "Which of the following is a product of the light-dependent reactions that is used in the Calvin cycle?",
+            options: ["Oxygen", "NADPH", "Carbon dioxide", "Glucose"],
+            correctAnswer: "NADPH"
+        },
+        {
+            question: "What role does water play in the light-dependent reactions of photosynthesis?",
+            options: ["It provides electrons to replace those lost from chlorophyll", "It acts as a carbon source for glucose synthesis", "It fixes carbon dioxide during carbon assimilation", "It produces ATP directly"],
+            correctAnswer: "It provides electrons to replace those lost from chlorophyll"
+        },
+        {
+            question: "What is the function of the proton gradient generated during the light-dependent reactions of photosynthesis?",
+            options: ["To drive ATP synthesis", "To produce glucose", "To fix carbon dioxide", "To synthesize NADPH"],
+            correctAnswer: "To drive ATP synthesis"
+        },
+        {
+            question: "What is the net amount of ATP molecules produced during the light-dependent reactions of photosynthesis?",
+            options: ["1 ATP", "2 ATP", "3 ATP", "4 ATP"],
+            correctAnswer: "3 ATP"
+        },
+        {
+            question: "Which of the following is NOT a part of the light-dependent reactions in photosynthesis?",
+            options: ["Photon absorption", "ATP synthesis", "Carbon fixation", "Electron transport chain"],
+            correctAnswer: "Carbon fixation"
+        },
+        {
+            question: "What is the primary process by which green plants convert light energy into chemical energy?",
+            options: ["Cellular respiration", "Photosynthesis", "Transpiration", "Glycolysis"],
+            correctAnswer: "Photosynthesis"
+        },
+        {
+            question: "Which pigment is primarily responsible for capturing light energy during photosynthesis?",
+            options: ["Carotenoids", "Chlorophyll", "Xanthophyll", "Phycobilins"],
+            correctAnswer: "Chlorophyll"
+        },
+        {
+            question: "During photosynthesis, what gas is taken in by the plant and used to produce oxygen?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the primary source of energy for the process of photosynthesis?",
+            options: ["Heat energy", "Chemical energy", "Nuclear energy", "Solar energy"],
+            correctAnswer: "Solar energy"
+        },
+        {
+            question: "In which organelle does photosynthesis take place in plant cells?",
+            options: ["Mitochondria", "Nucleus", "Chloroplast", "Endoplasmic reticulum"],
+            correctAnswer: "Chloroplast"
+        },
+        {
+            question: "What is the ultimate product of the light-dependent reactions in photosynthesis?",
+            options: ["Oxygen", "Glucose", "Carbon dioxide", "ATP"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "Which part of the chloroplast is responsible for the light-dependent reactions of photosynthesis?",
+            options: ["Thylakoid membrane", "Stroma", "Granum", "Outer membrane"],
+            correctAnswer: "Thylakoid membrane"
+        },
+        {
+            question: "During photosynthesis, where is the oxygen released?",
+            options: ["Thylakoid space", "Stroma", "Grana", "Cytoplasm"],
+            correctAnswer: "Thylakoid space"
+        },
+        {
+            question: "What is the primary purpose of the Calvin cycle in photosynthesis?",
+            options: ["To capture light energy", "To produce oxygen", "To fix carbon dioxide", "To generate ATP"],
+            correctAnswer: "To fix carbon dioxide"
+        },
+        {
+            question: "Which enzyme is responsible for carbon fixation in the Calvin cycle?",
+            options: ["Rubisco", "ATP synthase", "Pigment kinase", "Pyruvate carboxylase"],
+            correctAnswer: "Rubisco"
+        },
+        {
+            question: "What molecule is produced during the Calvin cycle and serves as the building block for glucose synthesis?",
+            options: ["Glucose-6-phosphate", "Ribulose bisphosphate", "Glyceraldehyde-3-phosphate", "Fructose-1,6-bisphosphate"],
+            correctAnswer: "Glyceraldehyde-3-phosphate"
+        },
+        {
+            question: "In which stage of photosynthesis does carbon fixation occur?",
+            options: ["Light-dependent reactions", "Calvin cycle", "Photorespiration", "Carbon assimilation"],
+            correctAnswer: "Calvin cycle"
+        },
+        {
+            question: "What is the primary function of ATP synthase during photosynthesis?",
+            options: ["To synthesize ATP", "To produce NADPH", "To split water molecules", "To fix carbon dioxide"],
+            correctAnswer: "To synthesize ATP"
+        },
+        {
+            question: "What is the primary role of NADPH in photosynthesis?",
+            options: ["To transfer electrons", "To produce oxygen", "To absorb light energy", "To synthesize ATP"],
+            correctAnswer: "To transfer electrons"
+        },
+        {
+            question: "What is the byproduct of the light-dependent reactions in photosynthesis?",
+            options: ["Glucose", "Water", "Oxygen", "Carbon dioxide"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the purpose of the electron transport chain during photosynthesis?",
+            options: ["To produce ATP", "To generate oxygen", "To fix carbon dioxide", "To synthesize glucose"],
+            correctAnswer: "To produce ATP"
+        },
+        {
+            question: "Which of the following is NOT a product of the light-dependent reactions in photosynthesis?",
+            options: ["Oxygen", "ATP", "NADPH", "Glucose"],
+            correctAnswer: "Glucose"
+        },
+        {
+            question: "During photosynthesis, what is the source of electrons for the photosynthetic electron transport chain?",
+            options: ["Water", "Carbon dioxide", "Oxygen", "NADPH"],
+            correctAnswer: "Water"
+        },
+        {
+            question: "In which region of the chloroplast do the light-dependent reactions primarily occur?",
+            options: ["Stroma", "Thylakoid membrane", "Granum", "Outer membrane"],
+            correctAnswer: "Thylakoid membrane"
+        },
+        {
+            question: "What is the primary function of the light-harvesting complexes during photosynthesis?",
+            options: ["To convert light energy into chemical energy", "To fix carbon dioxide", "To produce oxygen", "To synthesize ATP"],
+            correctAnswer: "To convert light energy into chemical energy"
+        },
+        {
+            question: "What happens to the electrons in chlorophyll molecules when they absorb light energy?",
+            options: ["They are excited to a higher energy level", "They are converted into oxygen", "They bind to Rubisco", "They are released as ATP"],
+            correctAnswer: "They are excited to a higher energy level"
+        },
+        {
+            question: "Which of the following is a product of the light-dependent reactions that is used in the Calvin cycle?",
+            options: ["Oxygen", "NADPH", "Carbon dioxide", "Glucose"],
+            correctAnswer: "NADPH"
+        },
+        {
+            question: "What role does water play in the light-dependent reactions of photosynthesis?",
+            options: ["It provides electrons to replace those lost from chlorophyll", "It acts as a carbon source for glucose synthesis", "It fixes carbon dioxide during carbon assimilation", "It produces ATP directly"],
+            correctAnswer: "It provides electrons to replace those lost from chlorophyll"
+        },
+        {
+            question: "What is the function of the proton gradient generated during the light-dependent reactions of photosynthesis?",
+            options: ["To drive ATP synthesis", "To produce glucose", "To fix carbon dioxide", "To synthesize NADPH"],
+            correctAnswer: "To drive ATP synthesis"
+        },
+        {
+            question: "What is the net amount of ATP molecules produced during the light-dependent reactions of photosynthesis?",
+            options: ["1 ATP", "2 ATP", "3 ATP", "4 ATP"],
+            correctAnswer: "3 ATP"
+        },
+        {
+            question: "Which of the following is NOT a part of the light-dependent reactions in photosynthesis?",
+            options: ["Photon absorption", "ATP synthesis", "Carbon fixation", "Electron transport chain"],
+            correctAnswer: "Carbon fixation"
+        },
+        {
+            question: "What is the primary function of the ATP produced during the light-dependent reactions of photosynthesis?",
+            options: ["To synthesize NADPH", "To drive the Calvin cycle", "To produce oxygen", "To provide energy for cellular activities"],
+            correctAnswer: "To drive the Calvin cycle"
+        },
+        {
+            question: "What is the role of the electron transport chain in the light-dependent reactions of photosynthesis?",
+            options: ["To produce ATP and NADPH", "To release oxygen", "To fix carbon dioxide", "To generate glucose"],
+            correctAnswer: "To produce ATP and NADPH"
+        },
+        {
+            question: "What happens to the electrons as they move through the electron transport chain during photosynthesis?",
+            options: ["They lose energy", "They gain energy", "They remain at the same energy level", "They split water molecules"],
+            correctAnswer: "They lose energy"
+        },
+        {
+            question: "Which molecule serves as the primary electron carrier in the light-dependent reactions of photosynthesis?",
+            options: ["NADP+", "NADPH", "ADP", "ATP"],
+            correctAnswer: "NADP+"
+        },
+        {
+            question: "What is the purpose of the light-dependent reactions in photosynthesis?",
+            options: ["To produce oxygen", "To fix carbon dioxide", "To generate glucose", "To produce ATP and NADPH"],
+            correctAnswer: "To produce ATP and NADPH"
+        },
+        {
+            question: "Which of the following is a product of the light-dependent reactions that is used as an energy source in the Calvin cycle?",
+            options: ["Oxygen", "Carbon dioxide", "ATP", "NADPH"],
+            correctAnswer: "ATP"
+        },
+        {
+            question: "What role does the proton gradient play in the light-dependent reactions of photosynthesis?",
+            options: ["It drives ATP synthesis", "It produces oxygen", "It fixes carbon dioxide", "It synthesizes glucose"],
+            correctAnswer: "It drives ATP synthesis"
+        },
+        {
+            question: "What is the source of the electrons that enter the photosynthetic electron transport chain?",
+            options: ["Water", "Carbon dioxide", "Oxygen", "ATP"],
+            correctAnswer: "Water"
+        },
+        {
+            question: "Which molecule is split during the light-dependent reactions of photosynthesis to provide electrons for the electron transport chain?",
+            options: ["Water", "Oxygen", "Carbon dioxide", "Glucose"],
+            correctAnswer: "Water"
+        },
+        {
+            question: "What is the final electron acceptor in the photosynthetic electron transport chain?",
+            options: ["NADP+", "NADPH", "Oxygen", "Carbon dioxide"],
+            correctAnswer: "NADP+"
+        },
+        {
+            question: "What is the primary function of the photosynthetic electron transport chain?",
+            options: ["To produce ATP and NADPH", "To release oxygen", "To fix carbon dioxide", "To generate glucose"],
+            correctAnswer: "To produce ATP and NADPH"
+        },
+        {
+            question: "What happens to the protons as they move through the electron transport chain during photosynthesis?",
+            options: ["They create a proton gradient", "They are used to split water molecules", "They combine with electrons to form NADPH", "They are released as oxygen"],
+            correctAnswer: "They create a proton gradient"
+        },
+        {
+            question: "What is the fate of the oxygen molecules produced during the light-dependent reactions of photosynthesis?",
+            options: ["They are released into the atmosphere", "They are used in the Calvin cycle", "They are converted into carbon dioxide", "They combine with water to form glucose"],
+            correctAnswer: "They are released into the atmosphere"
+        },
+        {
+            question: "Which of the following is NOT a product of the light-dependent reactions of photosynthesis?",
+            options: ["ATP", "NADPH", "Oxygen", "Glucose"],
+            correctAnswer: "Glucose"
+        }
+        
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

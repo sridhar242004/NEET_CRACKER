@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Electrochemistry - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .chemistry-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chemistry-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Electrochemistry - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="chemistry-header">
+                <h1 class="chemistry-title">Electrochemistry</h1>
+                <p>Discover the principles of electrochemistry and its applications, essential for understanding chemical reactions and NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Fundamentals of Electrochemistry</h2>
+                <div class="topic-content">
+                    <p>Electrochemistry studies the relationship between electricity and chemical reactions. It explores how chemical energy is converted to electrical energy and vice versa.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                            <h3>Redox Reactions</h3>
+                            <p>Understanding oxidation and reduction reactions that are fundamental to electrochemical processes.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-charging-station"></i>
+                            </div>
+                            <h3>Electrochemical Cells</h3>
+                            <p>Study of cells where redox reactions generate electrical current, including voltaic and electrolytic cells.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Electrode Potential</h3>
+                            <p>Understanding the potential difference between electrodes, which drives the flow of electrons.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Applications of Electrochemistry</h3>
+                            <p>Exploring real-world applications such as batteries, fuel cells, and electroplating.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Measurement in Electrochemistry</h2>
+                <div class="topic-content">
+                    <p>Electrochemical measurements are crucial for understanding cell potentials, concentration effects, and reaction kinetics.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <h3>Cell Potential</h3>
+                            <p>Measurement of the voltage of electrochemical cells, which indicates the driving force of reactions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Nernst Equation</h3>
+                            <p>Calculating cell potential based on concentration, temperature, and standard electrode potentials.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Electrolytic Conductance</h3>
+                            <p>Study of how ions conduct electricity in solution and measurement techniques used.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>Faraday’s Laws of Electrolysis</h3>
+                            <p>Principles that explain the relationship between the amount of substance and the electric current passed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Electrochemistry concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is an electrochemical cell?",
+            options: ["A device that converts chemical energy into electrical energy", "A device that converts electrical energy into chemical energy", "A device that stores electrical energy", "A device that measures electrical conductivity"],
+            correctAnswer: "A device that converts chemical energy into electrical energy"
+        },
+        {
+            question: "What is oxidation?",
+            options: ["Gain of electrons", "Loss of electrons", "Gain of protons", "Loss of protons"],
+            correctAnswer: "Loss of electrons"
+        },
+        {
+            question: "What is reduction?",
+            options: ["Gain of electrons", "Loss of electrons", "Gain of protons", "Loss of protons"],
+            correctAnswer: "Gain of electrons"
+        },
+        {
+            question: "In which part of an electrochemical cell does oxidation occur?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Anode"
+        },
+        {
+            question: "In which part of an electrochemical cell does reduction occur?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Cathode"
+        },
+        {
+            question: "What is an anode?",
+            options: ["The electrode where oxidation occurs", "The electrode where reduction occurs", "A conducting bridge between electrolytes", "A membrane separating electrodes"],
+            correctAnswer: "The electrode where oxidation occurs"
+        },
+        {
+            question: "What is a cathode?",
+            options: ["The electrode where oxidation occurs", "The electrode where reduction occurs", "A conducting bridge between electrolytes", "A membrane separating electrodes"],
+            correctAnswer: "The electrode where reduction occurs"
+        },
+        {
+            question: "What is an electrolyte in an electrochemical cell?",
+            options: ["A substance that conducts electricity", "A substance that is oxidized", "A substance that is reduced", "A substance that prevents reactions"],
+            correctAnswer: "A substance that conducts electricity"
+        },
+        {
+            question: "What is the purpose of a salt bridge in an electrochemical cell?",
+            options: ["To complete the circuit", "To prevent mixing of electrolytes", "To conduct electricity", "To balance charges"],
+            correctAnswer: "To balance charges"
+        },
+        {
+            question: "What is the standard hydrogen electrode (SHE)?",
+            options: ["A reference electrode used in electrochemical measurements", "An electrode made of hydrogen gas", "A standard solution of hydrogen ions", "A cell used for hydrogen production"],
+            correctAnswer: "A reference electrode used in electrochemical measurements"
+        },
+        {
+            question: "What is the standard electrode potential?",
+            options: ["The potential of an electrode measured against the standard hydrogen electrode (SHE)", "The potential of an electrode measured against a salt bridge", "The potential of an electrode in isolation", "The potential of an electrolyte solution"],
+            correctAnswer: "The potential of an electrode measured against the standard hydrogen electrode (SHE)"
+        },
+        {
+            question: "What is the Nernst equation used for in electrochemistry?",
+            options: ["To calculate the cell potential under non-standard conditions", "To measure electrode mass", "To determine reaction stoichiometry", "To balance redox reactions"],
+            correctAnswer: "To calculate the cell potential under non-standard conditions"
+        },
+        {
+            question: "What is Faraday's constant (F)?",
+            options: ["The charge of one mole of electrons", "The charge of one electron", "The charge of one mole of protons", "The charge of one mole of ions"],
+            correctAnswer: "The charge of one mole of electrons"
+        },
+        {
+            question: "What does Faraday's law of electrolysis state?",
+            options: ["The mass of substance deposited at an electrode is proportional to the charge passed through the electrolyte", "The mass of substance deposited is independent of the charge passed", "The temperature of electrolysis affects the mass deposited", "The type of electrolyte affects the mass deposited"],
+            correctAnswer: "The mass of substance deposited at an electrode is proportional to the charge passed through the electrolyte"
+        },
+        {
+            question: "What is overpotential in electrochemistry?",
+            options: ["The additional potential required to drive a reaction at an electrode", "The maximum potential of an electrode", "The potential at equilibrium", "The minimum potential of an electrode"],
+            correctAnswer: "The additional potential required to drive a reaction at an electrode"
+        },
+        {
+            question: "What is polarization in electrochemistry?",
+            options: ["The buildup of charge at an electrode", "The reduction of charge at an electrode", "The increase in potential at an electrode", "The decrease in potential at an electrode"],
+            correctAnswer: "The buildup of charge at an electrode"
+        },
+        {
+            question: "What is an electroplating process?",
+            options: ["Deposition of a metal coating using electrical current", "Removal of metal using electrical current", "Melting of metals using electrical current", "Purification of metals using electrical current"],
+            correctAnswer: "Deposition of a metal coating using electrical current"
+        },
+        {
+            question: "What is a galvanic cell?",
+            options: ["An electrochemical cell that produces electricity from spontaneous redox reactions", "An electrochemical cell that requires external energy to operate", "An electrolytic cell used for electroplating", "A fuel cell used for energy storage"],
+            correctAnswer: "An electrochemical cell that produces electricity from spontaneous redox reactions"
+        },
+        {
+            question: "What is an electrolytic cell?",
+            options: ["An electrochemical cell that produces electricity from spontaneous redox reactions", "An electrochemical cell that requires external energy to operate", "An electrolytic cell used for electroplating", "A fuel cell used for energy storage"],
+            correctAnswer: "An electrochemical cell that requires external energy to operate"
+        },
+        {
+            question: "What is a concentration cell?",
+            options: ["An electrochemical cell with the same electrodes and electrolytes of different concentrations", "An electrochemical cell with different electrodes and electrolytes", "An electrochemical cell without electrodes", "An electrochemical cell without electrolytes"],
+            correctAnswer: "An electrochemical cell with the same electrodes and electrolytes of different concentrations"
+        },
+        {
+            question: "What is the function of a reference electrode in electrochemical measurements?",
+            options: ["To measure the potential of the working electrode", "To complete the circuit", "To provide electrical power", "To measure the temperature"],
+            correctAnswer: "To measure the potential of the working electrode"
+        },
+        {
+            question: "What is the term for a substance that loses electrons in a redox reaction?",
+            options: ["Oxidizing agent", "Reducing agent", "Cathode", "Anode"],
+            correctAnswer: "Reducing agent"
+        },
+        {
+            question: "What is the term for a substance that gains electrons in a redox reaction?",
+            options: ["Oxidizing agent", "Reducing agent", "Cathode", "Anode"],
+            correctAnswer: "Oxidizing agent"
+        },
+        {
+            question: "What is the potential difference between two half-cells in an electrochemical cell called?",
+            options: ["Cell potential", "Electrolyte potential", "Electrode potential", "Reduction potential"],
+            correctAnswer: "Cell potential"
+        },
+        {
+            question: "What is the standard electrode potential of hydrogen (SHE)?",
+            options: ["0 V", "1.23 V", "-0.76 V", "1.00 V"],
+            correctAnswer: "0 V"
+        },
+        {
+            question: "What is the term for the potential difference required to stop a redox reaction?",
+            options: ["Equilibrium potential", "Overpotential", "Activation potential", "Reduction potential"],
+            correctAnswer: "Equilibrium potential"
+        },
+        {
+            question: "What is the term for a cell that uses a spontaneous redox reaction to generate electricity?",
+            options: ["Galvanic cell", "Electrolytic cell", "Concentration cell", "Electrochemical cell"],
+            correctAnswer: "Galvanic cell"
+        },
+        {
+            question: "What is the process of converting chemical energy into electrical energy called?",
+            options: ["Electrolysis", "Redox reaction", "Electroplating", "Galvanic cell"],
+            correctAnswer: "Galvanic cell"
+        },
+        {
+            question: "What is the process of using electrical energy to drive a non-spontaneous chemical reaction called?",
+            options: ["Electrolysis", "Redox reaction", "Electroplating", "Galvanic cell"],
+            correctAnswer: "Electrolysis"
+        },
+        {
+            question: "What is the equation relating cell potential (Ecell) to standard electrode potentials (E°) of the half-reactions?",
+            options: ["Ecell = E°(cathode) - E°(anode)", "Ecell = E°(anode) - E°(cathode)", "Ecell = E°(cathode) + E°(anode)", "Ecell = E°(anode) + E°(cathode)"],
+            correctAnswer: "Ecell = E°(cathode) - E°(anode)"
+        },
+        {
+            question: "What is the standard unit for cell potential?",
+            options: ["Volts (V)", "Joules (J)", "Coulombs (C)", "Watts (W)"],
+            correctAnswer: "Volts (V)"
+        },
+        {
+            question: "What is the term for the electrode at which oxidation occurs in an electrochemical cell?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Anode"
+        },
+        {
+            question: "What is the term for the electrode at which reduction occurs in an electrochemical cell?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Cathode"
+        },
+        {
+            question: "What is the standard state condition used in electrochemical measurements?",
+            options: ["1 M concentration, 1 atm pressure, 25°C", "1 M concentration, 0 atm pressure, 0°C", "0 M concentration, 1 atm pressure, 25°C", "0 M concentration, 0 atm pressure, 0°C"],
+            correctAnswer: "1 M concentration, 1 atm pressure, 25°C"
+        },
+        {
+            question: "What is the term for the movement of ions under the influence of an electric field?",
+            options: ["Electrophoresis", "Electroosmosis", "Electrolysis", "Electrochemical reaction"],
+            correctAnswer: "Electrophoresis"
+        },
+        {
+            question: "What is the term for the change in free energy that occurs during an electrochemical reaction?",
+            options: ["Gibbs free energy change", "Enthalpy change", "Entropy change", "Internal energy change"],
+            correctAnswer: "Gibbs free energy change"
+        },
+        {
+            question: "What is the relationship between cell potential (Ecell) and Gibbs free energy change (ΔG)?",
+            options: ["ΔG = -nFEcell", "ΔG = nFEcell", "ΔG = Ecell/nF", "ΔG = -Ecell/nF"],
+            correctAnswer: "ΔG = -nFEcell"
+        },
+        {
+            question: "What is the term for the spontaneous reaction in an electrochemical cell that generates electricity?",
+            options: ["Galvanic cell", "Electrolytic cell", "Concentration cell", "Electrochemical cell"],
+            correctAnswer: "Galvanic cell"
+        },
+        {
+            question: "What is the process of using an electric current to reduce metal ions in a solution to form a coherent metal coating on an electrode called?",
+            options: ["Electrolysis", "Reduction", "Electroplating", "Galvanization"],
+            correctAnswer: "Electroplating"
+        },
+        {
+            question: "What is the term for the electric current generated by a galvanic cell or battery when it is providing electrical power?",
+            options: ["Load current", "Short circuit current", "Cell current", "Electrolytic current"],
+            correctAnswer: "Load current"
+        },
+        {
+            question: "What is the term for a galvanic cell that can be used as a practical source of electrical energy?",
+            options: ["Battery", "Capacitor", "Electrolytic cell", "Fuel cell"],
+            correctAnswer: "Battery"
+        },
+        {
+            question: "What is the term for the potential difference required to stop a non-spontaneous redox reaction?",
+            options: ["Equilibrium potential", "Overpotential", "Activation potential", "Reduction potential"],
+            correctAnswer: "Overpotential"
+        },
+        {
+            question: "What is the term for a device that converts chemical energy directly into electrical energy?",
+            options: ["Battery", "Capacitor", "Electrolytic cell", "Fuel cell"],
+            correctAnswer: "Fuel cell"
+        },
+        {
+            question: "What is the term for the electrode at which electrons are lost in an oxidation reaction?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Anode"
+        },
+        {
+            question: "What is the term for the electrode at which electrons are gained in a reduction reaction?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Cathode"
+        },
+        {
+            question: "What is the term for the movement of solvent molecules under the influence of an electric field?",
+            options: ["Electrophoresis", "Electroosmosis", "Electrolysis", "Electrochemical reaction"],
+            correctAnswer: "Electroosmosis"
+        },
+        {
+            question: "What is the term for a solution that conducts electricity due to the presence of ions?",
+            options: ["Conductive solution", "Electrolyte", "Concentrated solution", "Non-conductive solution"],
+            correctAnswer: "Electrolyte"
+        },
+        {
+            question: "What is the term for a substance that is oxidized in a redox reaction?",
+            options: ["Oxidizing agent", "Reducing agent", "Cathode", "Anode"],
+            correctAnswer: "Reducing agent"
+        },
+        {
+            question: "What is the term for a substance that is reduced in a redox reaction?",
+            options: ["Oxidizing agent", "Reducing agent", "Cathode", "Anode"],
+            correctAnswer: "Oxidizing agent"
+        },
+        {
+            question: "What is the term for a substance that is capable of acting as both an oxidizing and reducing agent?",
+            options: ["Redox agent", "Neutral agent", "Electrolytic agent", "Conductive agent"],
+            correctAnswer: "Redox agent"
+        },
+        {
+            question: "What is the term for a reaction in which one species is oxidized and another is reduced?",
+            options: ["Redox reaction", "Electrolytic reaction", "Galvanic reaction", "Concentration reaction"],
+            correctAnswer: "Redox reaction"
+        },
+        {
+            question: "What is the term for the potential difference between the two half-cells in an electrochemical cell?",
+            options: ["Cell potential", "Electrolyte potential", "Electrode potential", "Reduction potential"],
+            correctAnswer: "Electrode potential"
+        },
+        {
+            question: "What is the standard electrode potential of the standard hydrogen electrode (SHE)?",
+            options: ["0 V", "1.23 V", "-0.76 V", "1.00 V"],
+            correctAnswer: "0 V"
+        },
+        {
+            question: "What is the term for the potential difference required to stop a reversible redox reaction?",
+            options: ["Equilibrium potential", "Overpotential", "Activation potential", "Reduction potential"],
+            correctAnswer: "Equilibrium potential"
+        },
+        {
+            question: "What is the term for a cell that uses an external electric current to drive a non-spontaneous redox reaction?",
+            options: ["Galvanic cell", "Electrolytic cell", "Concentration cell", "Electrochemical cell"],
+            correctAnswer: "Electrolytic cell"
+        },
+        {
+            question: "What is the process of using an electric current to decompose an electrolyte into its constituent elements called?",
+            options: ["Electrolysis", "Reduction", "Electroplating", "Galvanization"],
+            correctAnswer: "Electrolysis"
+        },
+        {
+            question: "What is the term for the electric current produced by a galvanic cell or battery when it is providing electrical power?",
+            options: ["Load current", "Short circuit current", "Cell current", "Electrolytic current"],
+            correctAnswer: "Load current"
+        },
+        {
+            question: "What is the term for a galvanic cell that can be used as a practical source of electrical energy?",
+            options: ["Battery", "Capacitor", "Electrolytic cell", "Fuel cell"],
+            correctAnswer: "Battery"
+        },
+        {
+            question: "What is the term for the potential difference required to stop a non-spontaneous redox reaction?",
+            options: ["Equilibrium potential", "Overpotential", "Activation potential", "Reduction potential"],
+            correctAnswer: "Overpotential"
+        },
+        {
+            question: "What is the term for a device that converts chemical energy directly into electrical energy?",
+            options: ["Battery", "Capacitor", "Electrolytic cell", "Fuel cell"],
+            correctAnswer: "Fuel cell"
+        },
+        {
+            question: "What is the term for the electrode at which electrons are lost in an oxidation reaction?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Anode"
+        },
+        {
+            question: "What is the term for the electrode at which electrons are gained in a reduction reaction?",
+            options: ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+            correctAnswer: "Cathode"
+        },
+        {
+            question: "What is the term for the movement of solvent molecules under the influence of an electric field?",
+            options: ["Electrophoresis", "Electroosmosis", "Electrolysis", "Electrochemical reaction"],
+            correctAnswer: "Electroosmosis"
+        },
+        {
+            question: "What is the term for a solution that conducts electricity due to the presence of ions?",
+            options: ["Conductive solution", "Electrolyte", "Concentrated solution", "Non-conductive solution"],
+            correctAnswer: "Electrolyte"
+        },
+        {
+            question: "What is the term for a substance that is oxidized in a redox reaction?",
+            options: ["Oxidizing agent", "Reducing agent", "Cathode", "Anode"],
+            correctAnswer: "Reducing agent"
+        },
+        {
+            question: "What is the term for a substance that is reduced in a redox reaction?",
+            options: ["Oxidizing agent", "Reducing agent", "Cathode", "Anode"],
+            correctAnswer: "Oxidizing agent"
+        },
+        {
+            question: "What is the term for a substance that is capable of acting as both an oxidizing and reducing agent?",
+            options: ["Redox agent", "Neutral agent", "Electrolytic agent", "Conductive agent"],
+            correctAnswer: "Redox agent"
+        },
+        {
+            question: "What is the term for a reaction in which one species is oxidized and another is reduced?",
+            options: ["Redox reaction", "Electrolytic reaction", "Galvanic reaction", "Concentration reaction"],
+            correctAnswer: "Redox reaction"
+        },
+        {
+            question: "What is the term for the potential difference between the two half-cells in an electrochemical cell?",
+            options: ["Cell potential", "Electrolyte potential", "Electrode potential", "Reduction potential"],
+            correctAnswer: "Electrode potential"
+        },
+        {
+            question: "What is the standard electrode potential of the standard hydrogen electrode (SHE)?",
+            options: ["0 V", "1.23 V", "-0.76 V", "1.00 V"],
+            correctAnswer: "0 V"
+        },
+        {
+            question: "What is the term for the potential difference required to stop a reversible redox reaction?",
+            options: ["Equilibrium potential", "Overpotential", "Activation potential", "Reduction potential"],
+            correctAnswer: "Equilibrium potential"
+        },
+        {
+            question: "What is a cell that uses an external electric current to drive a non-spontaneous redox reaction?",
+            options: ["Galvanic cell", "Electrolytic cell", "Concentration cell", "Electrochemical cell"],
+            correctAnswer: "Electrolytic cell"
+        },
+        {
+            question: "What is the process of using an electric current to decompose an electrolyte into its constituent elements called?",
+            options: ["Electrolysis", "Reduction", "Electroplating", "Galvanization"],
+            correctAnswer: "Electrolysis"
+        },
+        {
+            question: "What is the term for the electric current produced by a galvanic cell or battery when it is providing electrical power?",
+            options: ["Load current", "Short circuit current", "Cell current", "Electrolytic current"],
+            correctAnswer: "Load current"
+        },
+        {
+            question: "What is the term for a galvanic cell that can be used as a practical source of electrical energy?",
+            options: ["Battery", "Capacitor", "Electrolytic cell", "Fuel cell"],
+            correctAnswer: "Battery"
+        },
+        {
+            question: "What is the term for the potential difference required to stop a non-spontaneous redox reaction?",
+            options: ["Equilibrium potential", "Overpotential", "Activation potential", "Reduction potential"],
+            correctAnswer: "Overpotential"
+        },
+        {
+            question: "What is the term for a device that converts chemical energy directly into electrical energy?",
+            options: ["Battery", "Capacitor", "Electrolytic cell", "Fuel cell"],
+            correctAnswer: "Fuel cell"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

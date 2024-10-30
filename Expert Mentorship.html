@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Mentorship | NEET Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --secondary: #818CF8;
+            --accent: #F472B6;
+            --dark: #1F2937;
+            --light: #F3F4F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0F172A, #1E293B);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+            transform: rotate(-45deg);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            color: #94A3B8;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .cta-primary {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--primary);
+            border-radius: 0.5rem;
+            color: var(--light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .mentor-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .mentor-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mentor-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mentor-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+        }
+
+        .mentor-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mentor-specialty {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stats-section {
+            padding: 4rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #94A3B8;
+            font-size: 1.125rem;
+        }
+
+        .features-section {
+            padding: 8rem 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #94A3B8;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 2rem 2rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mentor-cards,
+            .features-section {
+                padding: 2rem;
+            }
+        }
+        .testimonials-section {
+            padding: 8rem 4rem;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95));
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(79, 70, 229, 0.1);
+            font-family: serif;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text {
+            color: #94A3B8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+        }
+
+        .author-info h4 {
+            color: var(--light);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--accent);
+            font-size: 0.875rem;
+        }
+
+        .booking-section {
+            padding: 6rem 4rem;
+            background: rgba(255, 255, 255, 0.02);
+            text-align: center;
+        }
+
+        .booking-form {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            text-align: left;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 4rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-section,
+            .booking-section {
+                padding: 4rem 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">NEET Hub</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="physics.html" class="nav-link">Physics</a>
+            <a href="chemistry.html" class="nav-link">Chemistry</a>
+            <a href="biology.html" class="nav-link">Biology</a>
+            <a href="Study Materials.html" class="nav-link">Resources</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <div class="hero-badge">Premium Mentorship Program</div>
+                <h1 class="hero-title">Transform Your NEET Journey with Expert Guidance</h1>
+                <p class="hero-description">
+                    Connect with India's top NEET mentors who have helped thousands of students achieve their medical dreams. Get personalized guidance, structured study plans, and real-time progress tracking.
+                </p>
+                <div class="cta-group">
+                    <button class="cta-primary">Schedule Free Consultation</button>
+                    <button class="cta-secondary">Explore Programs</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number">15K+</div>
+                <div class="stat-label">Students Mentored</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Expert Mentors</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number">4.9/5</div>
+                <div class="stat-label">Student Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title">Why Choose Our Mentorship?</h2>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up">
+                <div class="feature-icon"></div>
+                <h3 class="feature-title">Personalized Study Plans</h3>
+                <p class="feature-description">Get customized study schedules and strategies tailored to your strengths and areas of improvement.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon"></div>
+                <h3 class="feature-title">Live 1:1 Sessions</h3>
+                <p class="feature-description">Regular one-on-one sessions with your dedicated mentor to clear doubts and track progress.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon"></div>
+                <h3 class="feature-title">Performance Analytics</h3>
+                <p class="feature-description">Advanced analytics and progress tracking to help you stay on top of your preparation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mentor-cards">
+        <div class="mentor-card" data-aos="fade-up">
+            <div class="mentor-image"></div>
+            <h3 class="mentor-name">Dr. Priya Sharma</h3>
+            <div class="mentor-specialty">AIIMS Gold Medalist</div>
+            <p class="feature-description">Specialized in Biology with 8+ years of NEET mentoring experience. Helped 500+ students crack NEET.</p>
+        </div>
+        <div class="mentor-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="mentor-image"></div>
+            <h3 class="mentor-name">Dr. Rajesh Kumar</h3>
+            <div class="mentor-specialty">Physics Expert</div>
+            <p class="feature-description">Former IIT Professor with exceptional track record in simplifying complex Physics concepts.</p>
+        </div>
+        <div class="mentor-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="mentor-image"></div>
+            <h3 class="mentor-name">Dr. Ananya Patel</h3>
+            <div class="mentor-specialty">Chemistry Specialist</div>
+            <p class="feature-description">Chemistry researcher with innovative teaching methods and 95% success rate.</p>
+        </div>
+    </section>
+    <section class="testimonials-section">
+        <h2 class="section-title">What Our Students Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card" data-aos="fade-up">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">
+                        "The personalized mentorship program completely transformed my NEET preparation. My mentor understood my weak points and helped me overcome them systematically."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Rahul Mehta</h4>
+                            <p>AIIMS Rank 45</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">
+                        "The regular one-on-one sessions with my mentor helped me stay focused and motivated throughout my preparation journey."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Priya Singh</h4>
+                            <p>NEET Rank 156</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">
+                        "The analytics-driven approach helped me understand my progress and focus on areas that needed improvement. It was like having a personal guide."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Aryan Patel</h4>
+                            <p>JIPMER Rank 78</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-section">
+        <h2 class="section-title">Book Your Free Consultation</h2>
+        <form class="booking-form" data-aos="fade-up">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Preferred Subject</label>
+                <select id="subject" required>
+                    <option value="">Select a subject</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="biology">Biology</option>
+                    <option value="all">All Subjects</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Schedule Consultation</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Mentors</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Study Materials</a></li>
+                    <li><a href="#">Free Mock Tests</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li>support@neethub.com</li>
+                    <li>+91 1234567890</li>
+                    <li>Mumbai, Maharashtra</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" class="social-link">FB</a>
+                    <a href="#" class="social-link">TW</a>
+                    <a href="#" class="social-link">IG</a>
+                    <a href="#" class="social-link">YT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add hover effect for cards
+        const cards = document.querySelectorAll('.mentor-card, .feature-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

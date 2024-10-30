@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solutions - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Solutions - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Types of Solutions</h2>
+                <div class="topic-content">
+                    <p>A solution is a homogeneous mixture composed of two or more substances. Understanding the types of solutions is crucial in chemistry.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Liquid Solutions</h3>
+                            <p>Mixtures where a solute is dissolved in a solvent, forming a clear liquid. Examples include saltwater and sugarwater.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <h3>Solid Solutions</h3>
+                            <p>Homogeneous mixtures where solid solutes are dispersed within solid solvents, such as alloys like bronze and brass.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3>Gas Solutions</h3>
+                            <p>Mixtures where gases mix uniformly, such as air, which is a solution of gases like nitrogen, oxygen, and carbon dioxide.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h3>Aqueous Solutions</h3>
+                            <p>Solutions in which water is the solvent. Important in chemical reactions and biological processes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Concentration of Solutions</h2>
+                <div class="topic-content">
+                    <p>Concentration refers to the amount of solute in a given volume of solvent or solution. Understanding concentration is vital for preparing solutions.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Molarity (M)</h3>
+                            <p>The number of moles of solute per liter of solution. It is a common unit of concentration used in chemistry.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Molality (m)</h3>
+                            <p>The number of moles of solute per kilogram of solvent. Useful for temperature-related properties.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Percentage Concentration</h3>
+                            <p>Expressing the concentration of a solution as a percentage of solute in a given volume or mass of solution.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3>Parts Per Million (PPM)</h3>
+                            <p>A way to express very dilute concentrations of substances, often used in environmental science.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Solutions concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is a solute?",
+            options: ["The substance present in lesser amount in a solution", "The substance present in greater amount in a solution", "The substance that dissolves in a solvent", "The substance that does not dissolve in a solvent"],
+            correctAnswer: "The substance present in lesser amount in a solution"
+        },
+        {
+            question: "What is a solvent?",
+            options: ["The substance present in lesser amount in a solution", "The substance present in greater amount in a solution", "The substance that dissolves in a solute", "The substance that dissolves a solute"],
+            correctAnswer: "The substance that dissolves a solute"
+        },
+        {
+            question: "What is a solution?",
+            options: ["A mixture of two or more substances in which the components are evenly distributed", "A pure substance with a fixed composition", "A substance that does not dissolve in a solvent", "A substance that reacts with a solute"],
+            correctAnswer: "A mixture of two or more substances in which the components are evenly distributed"
+        },
+        {
+            question: "What is the term for a solution that can dissolve more solute at a given temperature?",
+            options: ["Saturated solution", "Unsaturated solution", "Supersaturated solution", "Concentrated solution"],
+            correctAnswer: "Unsaturated solution"
+        },
+        {
+            question: "What is the process of dissolving?",
+            options: ["The breaking down of solute particles into smaller particles", "The breaking down of solvent particles into smaller particles", "The interaction between solute and solvent particles", "The separation of solute from solvent"],
+            correctAnswer: "The interaction between solute and solvent particles"
+        },
+        {
+            question: "What does the term 'like dissolves like' refer to in solutions?",
+            options: ["Solute dissolves solvent", "Solvent dissolves solute", "Non-polar substances dissolve in polar solvents", "Polar substances dissolve in non-polar solvents"],
+            correctAnswer: "Non-polar substances dissolve in polar solvents"
+        },
+        {
+            question: "What is the Henry's law?",
+            options: ["The solubility of a gas in a liquid is directly proportional to the pressure of the gas above the liquid", "The solubility of a gas in a liquid is inversely proportional to the temperature of the gas", "The solubility of a gas in a liquid is directly proportional to the temperature of the gas", "The solubility of a gas in a liquid is inversely proportional to the pressure of the gas above the liquid"],
+            correctAnswer: "The solubility of a gas in a liquid is directly proportional to the pressure of the gas above the liquid"
+        },
+        {
+            question: "What is the term for the maximum amount of solute that can dissolve in a given amount of solvent at a specific temperature?",
+            options: ["Solubility", "Concentration", "Dilution", "Saturation"],
+            correctAnswer: "Solubility"
+        },
+        {
+            question: "What is the difference between solubility and concentration?",
+            options: ["Solubility refers to the amount of solute in a saturated solution, while concentration refers to the amount of solute in a given amount of solvent or solution", "Solubility refers to the amount of solvent in a saturated solution, while concentration refers to the amount of solute in a given amount of solvent or solution", "Solubility refers to the amount of solute in an unsaturated solution, while concentration refers to the amount of solute in a given amount of solvent or solution", "Solubility refers to the amount of solvent in an unsaturated solution, while concentration refers to the amount of solute in a given amount of solvent or solution"],
+            correctAnswer: "Solubility refers to the amount of solute in a saturated solution, while concentration refers to the amount of solute in a given amount of solvent or solution"
+        },
+        {
+            question: "What is the term for a solution that contains the maximum amount of solute that can dissolve at a given temperature?",
+            options: ["Saturated solution", "Unsaturated solution", "Supersaturated solution", "Dilute solution"],
+            correctAnswer: "Saturated solution"
+        },
+        {
+            question: "What is a supersaturated solution?",
+            options: ["A solution that contains less solute than it has the capacity to dissolve at a given temperature", "A solution that contains the maximum amount of solute that can dissolve at a given temperature", "A solution that contains more solute than it has the capacity to dissolve at a given temperature", "A solution that contains equal amounts of solute and solvent"],
+            correctAnswer: "A solution that contains more solute than it has the capacity to dissolve at a given temperature"
+        },
+        {
+            question: "What is the term for the process of reducing the concentration of a solute in a solution?",
+            options: ["Dilution", "Concentration", "Evaporation", "Precipitation"],
+            correctAnswer: "Dilution"
+        },
+        {
+            question: "What is the formula to calculate concentration (C)?",
+            options: ["C = mass/volume", "C = volume/mass", "C = moles/volume", "C = volume/moles"],
+            correctAnswer: "C = mass/volume"
+        },
+        {
+            question: "What is the unit of concentration in molarity (M)?",
+            options: ["mol/L", "g/L", "mol/g", "L/mol"],
+            correctAnswer: "mol/L"
+        },
+        {
+            question: "What is the term for a solution that contains a small amount of solute relative to the amount of solvent?",
+            options: ["Concentrated solution", "Dilute solution", "Saturated solution", "Unsaturated solution"],
+            correctAnswer: "Dilute solution"
+        },
+        {
+            question: "What is the term for a mixture that has uniform composition and properties throughout?",
+            options: ["Homogeneous mixture", "Heterogeneous mixture", "Pure substance", "Element"],
+            correctAnswer: "Homogeneous mixture"
+        },
+        {
+            question: "What is the term for a mixture that does not have uniform composition and properties throughout?",
+            options: ["Homogeneous mixture", "Heterogeneous mixture", "Pure substance", "Element"],
+            correctAnswer: "Heterogeneous mixture"
+        },
+        {
+            question: "What is the term for the process of particles in a colloid being scattered or dispersed throughout a dispersing medium?",
+            options: ["Dispersal", "Dissolution", "Dilution", "Dispersion"],
+            correctAnswer: "Dispersion"
+        },
+        {
+            question: "What is the term for a mixture that appears the same throughout and consists of particles larger than those in a solution but smaller than those in a suspension?",
+            options: ["Solution", "Colloid", "Suspension", "Emulsion"],
+            correctAnswer: "Colloid"
+        },
+        {
+            question: "What is the Tyndall effect?",
+            options: ["The scattering of light by colloidal particles", "The scattering of light by suspended particles", "The absorption of light by suspended particles", "The absorption of light by colloidal particles"],
+            correctAnswer: "The scattering of light by colloidal particles"
+        },
+        {
+            question: "What is the term for a mixture that appears cloudy or opaque and consists of particles larger than those in a solution?",
+            options: ["Solution", "Colloid", "Suspension", "Emulsion"],
+            correctAnswer: "Suspension"
+        },
+        {
+            question: "What is the Brownian motion?",
+            options: ["The erratic movement of colloidal particles in a liquid medium", "The regular movement of dissolved particles in a solution", "The movement of suspended particles in a solvent", "The movement of emulsified particles in a medium"],
+            correctAnswer: "The erratic movement of colloidal particles in a liquid medium"
+        },
+        {
+            question: "What is the term for a mixture of two or more immiscible liquids?",
+            options: ["Solution", "Colloid", "Suspension", "Emulsion"],
+            correctAnswer: "Emulsion"
+        },
+        {
+            question: "What is the term for the process of separating the components of a mixture based on their different boiling points?",
+            options: ["Distillation", "Filtration", "Evaporation", "Chromatography"],
+            correctAnswer: "Distillation"
+        },
+        {
+            question: "What is the term for the process of passing a liquid or gas through a filter to remove solid particles?",
+            options: ["Distillation", "Filtration", "Evaporation", "Chromatography"],
+            correctAnswer: "Filtration"
+        },
+        {
+            question: "What is the term for the process of converting a liquid into vapor, which is then condensed back into liquid form?",
+            options: ["Distillation", "Filtration", "Evaporation", "Chromatography"],
+            correctAnswer: "Evaporation"
+        },
+        {
+            question: "What is the term for the process of separating components of a mixture based on differences in their ability to adhere to a stationary phase as they flow over a mobile phase?",
+            options: ["Distillation", "Filtration", "Evaporation", "Chromatography"],
+            correctAnswer: "Chromatography"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their size, shape, and charge?",
+            options: ["Size-exclusion chromatography", "Ion-exchange chromatography", "Thin-layer chromatography", "Gas chromatography"],
+            correctAnswer: "Size-exclusion chromatography"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their charge?",
+            options: ["Size-exclusion chromatography", "Ion-exchange chromatography", "Thin-layer chromatography", "Gas chromatography"],
+            correctAnswer: "Ion-exchange chromatography"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their affinity for a stationary phase?",
+            options: ["Size-exclusion chromatography", "Ion-exchange chromatography", "Thin-layer chromatography", "Gas chromatography"],
+            correctAnswer: "Thin-layer chromatography"
+        },
+        {
+            question: "What is the term for a technique used to separate volatile substances based on their boiling points?",
+            options: ["Size-exclusion chromatography", "Ion-exchange chromatography", "Thin-layer chromatography", "Gas chromatography"],
+            correctAnswer: "Gas chromatography"
+        },
+        {
+            question: "What is the term for a solution in which the solvent is water?",
+            options: ["Aqueous solution", "Organic solution", "Polar solution", "Non-polar solution"],
+            correctAnswer: "Aqueous solution"
+        },
+        {
+            question: "What is the term for a solution in which the solvent is an organic compound?",
+            options: ["Aqueous solution", "Organic solution", "Polar solution", "Non-polar solution"],
+            correctAnswer: "Organic solution"
+        },
+        {
+            question: "What is the term for a solution in which the solvent has a partial positive charge and a partial negative charge?",
+            options: ["Aqueous solution", "Organic solution", "Polar solution", "Non-polar solution"],
+            correctAnswer: "Polar solution"
+        },
+        {
+            question: "What is the term for a solution in which the solvent does not have a partial positive charge or a partial negative charge?",
+            options: ["Aqueous solution", "Organic solution", "Polar solution", "Non-polar solution"],
+            correctAnswer: "Non-polar solution"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their solubility in a solvent?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Recrystallization"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to form crystals upon cooling?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Recrystallization"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to sublime?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Sublimation"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their different densities?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Decantation"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to be dissolved in a solvent?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Extraction"
+        },
+        {
+            question: "What is the term for a technique used to separate a mixture of solids by particle size?",
+            options: ["Filtration", "Centrifugation", "Decantation", "Chromatography"],
+            correctAnswer: "Filtration"
+        },
+        {
+            question: "What is the term for a technique used to separate a mixture of solids by density?",
+            options: ["Filtration", "Centrifugation", "Decantation", "Chromatography"],
+            correctAnswer: "Centrifugation"
+        },
+        {
+            question: "What is the term for a technique used to separate a mixture of solids by pouring off the liquid phase?",
+            options: ["Filtration", "Centrifugation", "Decantation", "Chromatography"],
+            correctAnswer: "Decantation"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their affinity for a stationary phase?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Adsorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to partition between two phases?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Partition"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to dissolve in a solvent?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Extraction"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to attract and hold onto molecules of another substance?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Adsorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to absorb into a bulk phase?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Absorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to interact with a solvent?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Extraction"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to be attracted to a stationary phase?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Absorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to dissolve in a solvent?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Extraction"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to attract and hold onto molecules of another substance?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Adsorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to absorb into a bulk phase?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Absorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to interact with a solvent?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Extraction"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to be attracted to a stationary phase?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Absorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to dissolve in a solvent?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Extraction"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to attract and hold onto molecules of another substance?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Adsorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to absorb into a bulk phase?",
+            options: ["Adsorption", "Absorption", "Partition", "Extraction"],
+            correctAnswer: "Absorption"
+        },
+        {
+            question: "What is the term for a technique used to separate substances based on their ability to interact with a solvent?",
+            options: ["Recrystallization", "Sublimation", "Decantation", "Extraction"],
+            correctAnswer: "Extraction"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

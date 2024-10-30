@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical World and Measurement - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title">Physical World and Measurement - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Physical World and Measurement</h1>
+                <p>Master the fundamentals of physics and measurement techniques essential for NEET preparation.</p>
+            </div>
+    
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding the Physical World</h2>
+                <div class="topic-content">
+                    <p>The physical world encompasses all matter and energy in the universe. It's governed by fundamental laws of physics that describe phenomena ranging from subatomic particles to cosmic structures.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3>Matter and Properties</h3>
+                            <p>Study of material substances and their characteristics, including states of matter, physical properties, and chemical composition.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Energy Forms</h3>
+                            <p>Understanding different types of energy - kinetic, potential, thermal, electromagnetic, and their transformations.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrows-alt"></i>
+                            </div>
+                            <h3>Forces and Interactions</h3>
+                            <p>Analysis of fundamental forces in nature and how they influence matter at various scales.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Space and Time</h3>
+                            <p>Exploration of the fundamental fabric of the universe and how it relates to physical phenomena.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="topic-container">
+                <h2 class="topic-title">Measurement and Units</h2>
+                <div class="topic-content">
+                    <p>Accurate measurement is the foundation of scientific investigation. Learn about SI units, measurement techniques, and error analysis.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <h3>SI Units</h3>
+                            <p>Understanding fundamental and derived units in the International System of Units.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Measurement Techniques</h3>
+                            <p>Methods and instruments used for precise measurement of physical quantities.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Error Analysis</h3>
+                            <p>Understanding types of errors, significant figures, and uncertainty in measurements.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>Unit Conversion</h3>
+                            <p>Techniques for converting between different units and dimensional analysis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Physical World and Measurement concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the SI unit of length?",
+            options: ["Meter", "Kilogram", "Second", "Candela"],
+            correctAnswer: "Meter"
+        },
+        {
+            question: "What is the SI unit of mass?",
+            options: ["Meter", "Kilogram", "Second", "Candela"],
+            correctAnswer: "Kilogram"
+        },
+        {
+            question: "What is the SI unit of time?",
+            options: ["Meter", "Kilogram", "Second", "Candela"],
+            correctAnswer: "Second"
+        },
+        {
+            question: "What is the SI unit of electric current?",
+            options: ["Ampere", "Kilogram", "Second", "Candela"],
+            correctAnswer: "Ampere"
+        },
+        {
+            question: "What is the SI unit of temperature?",
+            options: ["Meter", "Kilogram", "Second", "Kelvin"],
+            correctAnswer: "Kelvin"
+        },
+        {
+            question: "What is the SI unit of amount of substance?",
+            options: ["Meter", "Kilogram", "Mole", "Candela"],
+            correctAnswer: "Mole"
+        },
+        {
+            question: "What is the SI unit of luminous intensity?",
+            options: ["Meter", "Kilogram", "Second", "Candela"],
+            correctAnswer: "Candela"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for density?",
+            options: ["Mass/Volume", "Volume/Mass", "Mass x Volume", "Volume - Mass"],
+            correctAnswer: "Mass/Volume"
+        },
+        {
+            question: "What is the unit of density?",
+            options: ["g/cm³", "kg/m²", "m/s²", "g/mL"],
+            correctAnswer: "g/cm³"
+        },
+        {
+            question: "What is the formula for velocity?",
+            options: ["Distance/Time", "Time/Distance", "Distance x Time", "Time - Distance"],
+            correctAnswer: "Distance/Time"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for acceleration?",
+            options: ["Change in Velocity/Time", "Change in Distance/Time", "Change in Time/Distance", "Change in Time/Velocity"],
+            correctAnswer: "Change in Velocity/Time"
+        },
+        {
+            question: "What is the unit of acceleration?",
+            options: ["m/s²", "m/s", "s/m", "m²/s"],
+            correctAnswer: "m/s²"
+        },
+        {
+            question: "What is the formula for force?",
+            options: ["Mass x Acceleration", "Acceleration x Time", "Distance x Time", "Velocity x Time"],
+            correctAnswer: "Mass x Acceleration"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is Newton's first law of motion?",
+            options: ["Law of Inertia", "F = ma", "Action and Reaction", "Equal Areas in Equal Time"],
+            correctAnswer: "Law of Inertia"
+        },
+        {
+            question: "What is Newton's second law of motion?",
+            options: ["F = ma", "Law of Inertia", "Action and Reaction", "Equal Areas in Equal Time"],
+            correctAnswer: "F = ma"
+        },
+        {
+            question: "What is Newton's third law of motion?",
+            options: ["Action and Reaction", "F = ma", "Law of Inertia", "Equal Areas in Equal Time"],
+            correctAnswer: "Action and Reaction"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is work done?",
+            options: ["Force x Distance", "Force x Time", "Force/Distance", "Force + Distance"],
+            correctAnswer: "Force x Distance"
+        },
+        {
+            question: "What is the unit of work done?",
+            options: ["Joule", "Newton", "Watt", "Coulomb"],
+            correctAnswer: "Joule"
+        },
+        {
+            question: "What is the formula for power?",
+            options: ["Work Done/Time", "Work Done x Distance", "Work Done/Distance", "Work Done + Time"],
+            correctAnswer: "Work Done/Time"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is momentum?",
+            options: ["Mass x Velocity", "Mass x Acceleration", "Force x Time", "Force x Distance"],
+            correctAnswer: "Mass x Velocity"
+        },
+        {
+            question: "What is the unit of momentum?",
+            options: ["kg m/s", "N m", "J/s", "kg m²/s"],
+            correctAnswer: "kg m/s"
+        },
+        {
+            question: "What is the principle of conservation of momentum?",
+            options: ["The total momentum of an isolated system remains constant", "The total momentum of a system is zero", "Momentum is inversely proportional to mass", "Momentum is directly proportional to velocity"],
+            correctAnswer: "The total momentum of an isolated system remains constant"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is impulse?",
+            options: ["Change in Momentum", "Force x Time", "Force x Distance", "Change in Velocity"],
+            correctAnswer: "Change in Momentum"
+        },
+        {
+            question: "What is the unit of impulse?",
+            options: ["N s", "Joule", "kg m/s", "N m"],
+            correctAnswer: "N s"
+        },
+        {
+            question: "What is the formula for impulse?",
+            options: ["Force x Time", "Change in Velocity/Time", "Change in Momentum/Time", "Force x Distance"],
+            correctAnswer: "Force x Time"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is elasticity?",
+            options: ["Property of a body to regain its original shape after deformation", "Property of a body to stretch", "Property of a body to absorb energy", "Property of a body to emit light"],
+            correctAnswer: "Property of a body to regain its original shape after deformation"
+        },
+        {
+            question: "What is Hooke's Law?",
+            options: ["The extension of a spring is directly proportional to the force applied", "The extension of a spring is inversely proportional to the force applied", "The extension of a spring is directly proportional to the distance", "The extension of a spring is inversely proportional to the distance"],
+            correctAnswer: "The extension of a spring is directly proportional to the force applied"
+        },
+        {
+            question: "What is stress?",
+            options: ["Force per unit area", "Force per unit volume", "Pressure", "Force"],
+            correctAnswer: "Force per unit area"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is strain?",
+            options: ["Change in length/original length", "Force per unit area", "Force", "Pressure"],
+            correctAnswer: "Change in length/original length"
+        },
+        {
+            question: "What is the modulus of elasticity?",
+            options: ["Stress/Strain", "Strain/Stress", "Stress x Strain", "Strain - Stress"],
+            correctAnswer: "Stress/Strain"
+        },
+        {
+            question: "What is the unit of modulus of elasticity?",
+            options: ["Pascal", "N/m", "Joule", "kg m/s"],
+            correctAnswer: "Pascal"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is Newton's law of universal gravitation?",
+            options: ["Every particle attracts every other particle with a force proportional to the product of their masses and inversely proportional to the square of the distance between their centers", "Every particle attracts every other particle with a force proportional to the square of the distance between their centers", "Every particle attracts every other particle with a force proportional to the square root of the distance between their centers", "Every particle attracts every other particle with a force proportional to the cube of the distance between their centers"],
+            correctAnswer: "Every particle attracts every other particle with a force proportional to the product of their masses and inversely proportional to the square of the distance between their centers"
+        },
+        {
+            question: "What is gravitational force?",
+            options: ["Force of attraction between two masses", "Force exerted by a body", "Force due to motion", "Force due to deformation"],
+            correctAnswer: "Force of attraction between two masses"
+        },
+        {
+            question: "What is the formula for gravitational force?",
+            options: ["(G x m₁ x m₂) / r²", "(m₁ + m₂) / r²", "(m₁ - m₂) / r²", "(G x m₁ x m₂) / r"],
+            correctAnswer: "(G x m₁ x m₂) / r²"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is centripetal force?",
+            options: ["Force acting towards the center of circular motion", "Force acting away from the center of circular motion", "Force acting in the direction of motion", "Force acting perpendicular to the direction of motion"],
+            correctAnswer: "Force acting towards the center of circular motion"
+        },
+        {
+            question: "What is centrifugal force?",
+            options: ["Fictitious force", "Force acting towards the center of circular motion", "Force acting away from the center of circular motion", "Force acting in the direction of motion"],
+            correctAnswer: "Fictitious force"
+        },
+        {
+            question: "What is escape velocity?",
+            options: ["Minimum velocity required for an object to escape the gravitational pull of a celestial body", "Velocity required for an object to remain in orbit", "Velocity required for an object to land safely", "Velocity required for an object to reach the atmosphere"],
+            correctAnswer: "Minimum velocity required for an object to escape the gravitational pull of a celestial body"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is a scalar quantity?",
+            options: ["A physical quantity with magnitude only", "A physical quantity with magnitude and direction", "A physical quantity with direction only", "A physical quantity with no units"],
+            correctAnswer: "A physical quantity with magnitude only"
+        },
+        {
+            question: "What is a vector quantity?",
+            options: ["A physical quantity with magnitude and direction", "A physical quantity with magnitude only", "A physical quantity with direction only", "A physical quantity with no units"],
+            correctAnswer: "A physical quantity with magnitude and direction"
+        },
+        {
+            question: "What is the formula for displacement?",
+            options: ["Final Position - Initial Position", "Final Velocity - Initial Velocity", "Final Time - Initial Time", "Final Acceleration - Initial Acceleration"],
+            correctAnswer: "Final Position - Initial Position"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for velocity-time graph?",
+            options: ["Gradient of the graph", "Area under the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Gradient of the graph"
+        },
+        {
+            question: "What is the formula for acceleration-time graph?",
+            options: ["Gradient of the graph", "Area under the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Gradient of the graph"
+        },
+        {
+            question: "What is the formula for work done-time graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for force-time graph?",
+            options: ["Gradient of the graph", "Area under the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        {
+            question: "What is the formula for momentum-time graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        {
+            question: "What is the formula for impulse-time graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for displacement-time graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        {
+            question: "What is the formula for velocity-distance graph?",
+            options: ["Gradient of the graph", "Area under the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Gradient of the graph"
+        },
+        {
+            question: "What is the formula for acceleration-distance graph?",
+            options: ["Gradient of the graph", "Area under the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Gradient of the graph"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for work done-distance graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        {
+            question: "What is the formula for force-distance graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        {
+            question: "What is the formula for momentum-distance graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for impulse-distance graph?",
+            options: ["Area under the graph", "Gradient of the graph", "Length of the graph", "Width of the graph"],
+            correctAnswer: "Area under the graph"
+        },
+        {
+            question: "What is the formula for kinetic energy?",
+            options: ["(1/2)mv²", "mv", "F x d", "mgh"],
+            correctAnswer: "(1/2)mv²"
+        },
+        {
+            question: "What is the unit of kinetic energy?",
+            options: ["Joule", "Newton", "Watt", "kg m/s²"],
+            correctAnswer: "Joule"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for potential energy?",
+            options: ["mgh", "F x d", "(1/2)mv²", "mv"],
+            correctAnswer: "mgh"
+        },
+        {
+            question: "What is the unit of potential energy?",
+            options: ["Joule", "Newton", "Watt", "kg m/s²"],
+            correctAnswer: "Joule"
+        },
+        {
+            question: "What is the law of conservation of energy?",
+            options: ["Energy cannot be created or destroyed, only transformed from one form to another", "Energy is created and destroyed", "Energy is constant", "Energy is inversely proportional to mass"],
+            correctAnswer: "Energy cannot be created or destroyed, only transformed from one form to another"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is power?",
+            options: ["Rate of doing work", "Rate of change of momentum", "Rate of change of velocity", "Rate of change of distance"],
+            correctAnswer: "Rate of doing work"
+        },
+        {
+            question: "What is the unit of power?",
+            options: ["Watt", "Joule", "Newton", "kg m/s²"],
+            correctAnswer: "Watt"
+        },
+        {
+            question: "What is the formula for power?",
+            options: ["Work Done/Time", "Work Done x Distance", "Work Done/Distance", "Work Done + Time"],
+            correctAnswer: "Work Done/Time"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for gravitational potential energy?",
+            options: ["mgh", "(1/2)mv²", "F x d", "mv"],
+            correctAnswer: "mgh"
+        },
+        {
+            question: "What is the formula for elastic potential energy?",
+            options: ["(1/2)kx²", "mgh", "F x d", "mv"],
+            correctAnswer: "(1/2)kx²"
+        },
+        {
+            question: "What is the formula for mechanical energy?",
+            options: ["Kinetic Energy + Potential Energy", "Kinetic Energy - Potential Energy", "Kinetic Energy x Potential Energy", "Kinetic Energy / Potential Energy"],
+            correctAnswer: "Kinetic Energy + Potential Energy"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the law of reflection?",
+            options: ["Angle of incidence is equal to the angle of reflection", "Angle of incidence is greater than the angle of reflection", "Angle of incidence is less than the angle of reflection", "Angle of incidence is perpendicular to the angle of reflection"],
+            correctAnswer: "Angle of incidence is equal to the angle of reflection"
+        },
+        {
+            question: "What is refraction?",
+            options: ["Bending of light as it passes from one medium to another", "Reflection of light", "Absorption of light", "Dispersion of light"],
+            correctAnswer: "Bending of light as it passes from one medium to another"
+        },
+        {
+            question: "What is Snell's law?",
+            options: ["n₁sinθ₁ = n₂sinθ₂", "n₁cosθ₁ = n₂cosθ₂", "n₁tanθ₁ = n₂tanθ₂", "n₁cscθ₁ = n₂cscθ₂"],
+            correctAnswer: "n₁sinθ₁ = n₂sinθ₂"
+        },
+        // Add more quiz questions here...
+        {
+            question: "What is the formula for magnification?",
+            options: ["Image height/Object height", "Object height/Image height", "Image distance/Object distance", "Object distance/Image distance"],
+            correctAnswer: "Image height/Object height"
+        },
+        {
+            question: "What is the unit of magnification?",
+            options: ["No unit", "Meter", "Candela", "No option"],
+            correctAnswer: "No unit"
+        },
+        {
+            question: "What is the formula for critical angle?",
+            options: ["sin⁻¹(n₂/n₁)", "sin⁻¹(n₁/n₂)", "cos⁻¹(n₂/n₁)", "cos⁻¹(n₁/n₂)"],
+            correctAnswer: "sin⁻¹(n₂/n₁)"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+        
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+        addQuizResult('physics', 85);
+    </script>
+</body>
+</html>

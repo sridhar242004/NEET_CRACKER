@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Some Basic Concepts of Chemistry - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Some Basic Concepts of Chemistry - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="chemistry-header">
+                <h1 class="chemistry-title">Some Basic Concepts of Chemistry</h1>
+                <p>Explore the fundamental concepts of chemistry essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Basic Concepts</h2>
+                <div class="topic-content">
+                    <p>Chemistry is the study of matter and its interactions. It encompasses various principles that form the foundation of chemical science.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Atoms and Molecules</h3>
+                            <p>The basic building blocks of matter, atoms combine to form molecules, which are essential in chemical reactions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h3>Chemical Reactions</h3>
+                            <p>Understanding how substances interact and transform into new products through various types of chemical reactions.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Stoichiometry</h3>
+                            <p>The quantitative relationship between reactants and products in a chemical reaction, important for calculations in chemistry.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3>Periodic Table</h3>
+                            <p>Organization of elements based on their atomic number and properties, providing insights into their behavior and relationships.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">States of Matter</h2>
+                <div class="topic-content">
+                    <p>Understanding the different states of matter is essential for studying physical and chemical properties.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <h3>Solids</h3>
+                            <p>Characterized by a fixed shape and volume, solids have closely packed particles that vibrate in place.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Liquids</h3>
+                            <p>Liquids have a definite volume but take the shape of their container, with particles that are close together but can move freely.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3>Gases</h3>
+                            <p>Gases have neither a fixed shape nor volume, with particles that are far apart and move rapidly.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Plasma</h3>
+                            <p>A state of matter where gas is energized to the point that electrons are freed from atoms, creating an ionized gas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+       
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Some Basic Concepts of Chemistry concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the difference between an atom and a molecule?",
+            options: ["An atom is the smallest unit of an element, while a molecule is formed by the combination of two or more atoms.", "An atom is a type of molecule.", "An atom cannot exist independently, while a molecule can.", "There is no difference between an atom and a molecule."],
+            correctAnswer: "An atom is the smallest unit of an element, while a molecule is formed by the combination of two or more atoms."
+        },
+        {
+            question: "What is the chemical symbol for gold?",
+            options: ["Au", "Ag", "Al", "G"],
+            correctAnswer: "Au"
+        },
+        {
+            question: "How many atoms are present in one molecule of water (H2O)?",
+            options: ["2", "3", "1", "4"],
+            correctAnswer: "3"
+        },
+        {
+            question: "What is the molecular formula of methane?",
+            options: ["CH4", "CO2", "H2O", "NH3"],
+            correctAnswer: "CH4"
+        },
+        {
+            question: "What is the atomic number of carbon?",
+            options: ["6", "12", "14", "8"],
+            correctAnswer: "6"
+        },
+        {
+            question: "What is the mass number of an atom?",
+            options: ["The sum of protons and neutrons in the nucleus", "The number of protons in the nucleus", "The number of electrons in the nucleus", "The sum of protons, neutrons, and electrons in the nucleus"],
+            correctAnswer: "The sum of protons and neutrons in the nucleus"
+        },
+        {
+            question: "What is the charge of a proton?",
+            options: ["Positive", "Negative", "Neutral", "Variable"],
+            correctAnswer: "Positive"
+        },
+        {
+            question: "What is the charge of an electron?",
+            options: ["Negative", "Positive", "Neutral", "Variable"],
+            correctAnswer: "Negative"
+        },
+        {
+            question: "What is the charge of a neutron?",
+            options: ["Neutral", "Negative", "Positive", "Variable"],
+            correctAnswer: "Neutral"
+        },
+        {
+            question: "What is the chemical formula for table salt?",
+            options: ["NaCl", "H2O", "CO2", "CH4"],
+            correctAnswer: "NaCl"
+        },
+        {
+            question: "What is the pH value of a neutral solution?",
+            options: ["7", "1", "14", "0"],
+            correctAnswer: "7"
+        },
+        {
+            question: "What is the chemical formula for sulfuric acid?",
+            options: ["H2SO4", "HCl", "NaOH", "CH3COOH"],
+            correctAnswer: "H2SO4"
+        },
+        {
+            question: "Which of the following is a noble gas?",
+            options: ["Helium", "Nitrogen", "Oxygen", "Hydrogen"],
+            correctAnswer: "Helium"
+        },
+        {
+            question: "What is the chemical formula for ammonia?",
+            options: ["NH3", "H2O", "CO2", "CH4"],
+            correctAnswer: "NH3"
+        },
+        {
+            question: "Which element is essential for combustion?",
+            options: ["Oxygen", "Carbon", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the chemical symbol for iron?",
+            options: ["Fe", "I", "Ir", "In"],
+            correctAnswer: "Fe"
+        },
+        {
+            question: "Which gas is most abundant in the Earth's atmosphere?",
+            options: ["Nitrogen", "Oxygen", "Carbon dioxide", "Argon"],
+            correctAnswer: "Nitrogen"
+        },
+        {
+            question: "Which element is found in all organic compounds?",
+            options: ["Carbon", "Hydrogen", "Oxygen", "Nitrogen"],
+            correctAnswer: "Carbon"
+        },
+        {
+            question: "What is the chemical formula for carbon dioxide?",
+            options: ["CO2", "H2O", "NH3", "CH4"],
+            correctAnswer: "CO2"
+        },
+        {
+            question: "What is the chemical formula for water?",
+            options: ["H2O", "CO2", "NH3", "CH4"],
+            correctAnswer: "H2O"
+        },
+        {
+            question: "Which element is the most abundant in the human body?",
+            options: ["Oxygen", "Carbon", "Hydrogen", "Nitrogen"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the chemical symbol for sodium?",
+            options: ["Na", "S", "Si", "Sn"],
+            correctAnswer: "Na"
+        },
+        {
+            question: "Which gas is known as laughing gas?",
+            options: ["Nitrous oxide", "Oxygen", "Carbon dioxide", "Nitrogen"],
+            correctAnswer: "Nitrous oxide"
+        },
+        {
+            question: "What is the chemical symbol for hydrogen?",
+            options: ["H", "He", "Ho", "Hu"],
+            correctAnswer: "H"
+        },
+        {
+            question: "What is the chemical formula for methane?",
+            options: ["CH4", "CO2", "H2O", "NH3"],
+            correctAnswer: "CH4"
+        },
+        {
+            question: "What is the chemical formula for hydrochloric acid?",
+            options: ["HCl", "H2SO4", "NaOH", "CH3COOH"],
+            correctAnswer: "HCl"
+        },
+        {
+            question: "What is the chemical symbol for helium?",
+            options: ["He", "H", "Ho", "Hu"],
+            correctAnswer: "He"
+        },
+        {
+            question: "What is the chemical formula for sodium hydroxide?",
+            options: ["NaOH", "HCl", "H2SO4", "CH3COOH"],
+            correctAnswer: "NaOH"
+        },
+        {
+            question: "What is the chemical symbol for carbon?",
+            options: ["C", "Ca", "Cu", "Co"],
+            correctAnswer: "C"
+        },
+        {
+            question: "Which gas is used for photosynthesis by plants?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for acetic acid?",
+            options: ["CH3COOH", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "CH3COOH"
+        },
+        {
+            question: "What is the chemical symbol for potassium?",
+            options: ["K", "P", "Pt", "Pb"],
+            correctAnswer: "K"
+        },
+        {
+            question: "What is the chemical formula for sulfuric acid?",
+            options: ["H2SO4", "HCl", "NaOH", "CH3COOH"],
+            correctAnswer: "H2SO4"
+        },
+        {
+            question: "Which element is found in all acids?",
+            options: ["Hydrogen", "Oxygen", "Nitrogen", "Carbon"],
+            correctAnswer: "Hydrogen"
+        },
+        {
+            question: "What is the chemical symbol for silver?",
+            options: ["Ag", "Au", "Al", "Fe"],
+            correctAnswer: "Ag"
+        },
+        {
+            question: "Which gas is produced during the process of respiration?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for nitric acid?",
+            options: ["HNO3", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HNO3"
+        },
+        {
+            question: "Which element is essential for combustion?",
+            options: ["Oxygen", "Carbon", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the chemical symbol for copper?",
+            options: ["Cu", "C", "Co", "Ca"],
+            correctAnswer: "Cu"
+        },
+        {
+            question: "What is the chemical formula for phosphoric acid?",
+            options: ["H3PO4", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "H3PO4"
+        },
+        {
+            question: "What is the chemical symbol for lead?",
+            options: ["Pb", "Pt", "P", "K"],
+            correctAnswer: "Pb"
+        },
+        {
+            question: "Which gas is known as the greenhouse gas?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for hydrobromic acid?",
+            options: ["HBr", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HBr"
+        },
+        {
+            question: "What is the chemical symbol for zinc?",
+            options: ["Zn", "Z", "Zi", "Ze"],
+            correctAnswer: "Zn"
+        },
+        {
+            question: "What is the chemical formula for acetylsalicylic acid?",
+            options: ["C9H8O4", "C6H12O6", "NaCl", "H2O"],
+            correctAnswer: "C9H8O4"
+        },
+        {
+            question: "Which gas is used for extinguishing fires?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical symbol for nitrogen?",
+            options: ["N", "Ni", "Ne", "Na"],
+            correctAnswer: "N"
+        },
+        {
+            question: "What is the chemical formula for sulfuric acid?",
+            options: ["H2SO4", "HCl", "NaOH", "CH3COOH"],
+            correctAnswer: "H2SO4"
+        },
+        {
+            question: "Which element is found in all acids?",
+            options: ["Hydrogen", "Oxygen", "Nitrogen", "Carbon"],
+            correctAnswer: "Hydrogen"
+        },
+        {
+            question: "What is the chemical symbol for silver?",
+            options: ["Ag", "Au", "Al", "Fe"],
+            correctAnswer: "Ag"
+        },
+        {
+            question: "Which gas is produced during the process of respiration?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for nitric acid?",
+            options: ["HNO3", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HNO3"
+        },
+        {
+            question: "Which element is essential for combustion?",
+            options: ["Oxygen", "Carbon", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the chemical symbol for copper?",
+            options: ["Cu", "C", "Co", "Ca"],
+            correctAnswer: "Cu"
+        },
+        {
+            question: "What is the chemical formula for phosphoric acid?",
+            options: ["H3PO4", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "H3PO4"
+        },
+        {
+            question: "What is the chemical symbol for lead?",
+            options: ["Pb", "Pt", "P", "K"],
+            correctAnswer: "Pb"
+        },
+        {
+            question: "Which gas is known as the greenhouse gas?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for hydrobromic acid?",
+            options: ["HBr", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HBr"
+        },
+        {
+            question: "What is the chemical symbol for zinc?",
+            options: ["Zn", "Z", "Zi", "Ze"],
+            correctAnswer: "Zn"
+        },
+        {
+            question: "What is the chemical formula for acetylsalicylic acid?",
+            options: ["C9H8O4", "C6H12O6", "NaCl", "H2O"],
+            correctAnswer: "C9H8O4"
+        },
+        {
+            question: "Which gas is used for extinguishing fires?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical symbol for nitrogen?",
+            options: ["N", "Ni", "Ne", "Na"],
+            correctAnswer: "N"
+        },
+        {
+            question: "What is the chemical formula for sulfuric acid?",
+            options: ["H2SO4", "HCl", "NaOH", "CH3COOH"],
+            correctAnswer: "H2SO4"
+        },
+        {
+            question: "Which element is found in all acids?",
+            options: ["Hydrogen", "Oxygen", "Nitrogen", "Carbon"],
+            correctAnswer: "Hydrogen"
+        },
+        {
+            question: "What is the chemical symbol for silver?",
+            options: ["Ag", "Au", "Al", "Fe"],
+            correctAnswer: "Ag"
+        },
+        {
+            question: "Which gas is produced during the process of respiration?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for nitric acid?",
+            options: ["HNO3", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HNO3"
+        },
+        {
+            question: "Which element is essential for combustion?",
+            options: ["Oxygen", "Carbon", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the chemical symbol for copper?",
+            options: ["Cu", "C", "Co", "Ca"],
+            correctAnswer: "Cu"
+        },
+        {
+            question: "What is the chemical formula for phosphoric acid?",
+            options: ["H3PO4", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "H3PO4"
+        },
+        {
+            question: "What is the chemical symbol for lead?",
+            options: ["Pb", "Pt", "P", "K"],
+            correctAnswer: "Pb"
+        },
+        {
+            question: "Which gas is known as the greenhouse gas?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for hydrobromic acid?",
+            options: ["HBr", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HBr"
+        },
+        {
+            question: "What is the chemical symbol for zinc?",
+            options: ["Zn", "Z", "Zi", "Ze"],
+            correctAnswer: "Zn"
+        },
+        {
+            question: "What is the chemical formula for acetylsalicylic acid?",
+            options: ["C9H8O4", "C6H12O6", "NaCl", "H2O"],
+            correctAnswer: "C9H8O4"
+        },
+        {
+            question: "Which gas is used for extinguishing fires?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical symbol for nitrogen?",
+            options: ["N", "Ni", "Ne", "Na"],
+            correctAnswer: "N"
+        },
+        {
+            question: "What is the chemical formula for sulfuric acid?",
+            options: ["H2SO4", "HCl", "NaOH", "CH3COOH"],
+            correctAnswer: "H2SO4"
+        },
+        {
+            question: "Which element is found in all acids?",
+            options: ["Hydrogen", "Oxygen", "Nitrogen", "Carbon"],
+            correctAnswer: "Hydrogen"
+        },
+        {
+            question: "What is the chemical symbol for silver?",
+            options: ["Ag", "Au", "Al", "Fe"],
+            correctAnswer: "Ag"
+        },
+        {
+            question: "Which gas is produced during the process of respiration?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for nitric acid?",
+            options: ["HNO3", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HNO3"
+        },
+        {
+            question: "Which element is essential for combustion?",
+            options: ["Oxygen", "Carbon", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "What is the chemical symbol for copper?",
+            options: ["Cu", "C", "Co", "Ca"],
+            correctAnswer: "Cu"
+        },
+        {
+            question: "What is the chemical formula for phosphoric acid?",
+            options: ["H3PO4", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "H3PO4"
+        },
+        {
+            question: "What is the chemical symbol for lead?",
+            options: ["Pb", "Pt", "P", "K"],
+            correctAnswer: "Pb"
+        },
+        {
+            question: "Which gas is known as the greenhouse gas?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for hydrobromic acid?",
+            options: ["HBr", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HBr"
+        },
+        {
+            question: "What is the chemical symbol for zinc?",
+            options: ["Zn", "Z", "Zi", "Ze"],
+            correctAnswer: "Zn"
+        },
+        {
+            question: "What is the chemical formula for acetylsalicylic acid?",
+            options: ["C9H8O4", "C6H12O6", "NaCl", "H2O"],
+            correctAnswer: "C9H8O4"
+        },
+        {
+            question: "Which gas is used for extinguishing fires?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical symbol for nitrogen?",
+            options: ["N", "Ni", "Ne", "Na"],
+            correctAnswer: "N"
+        },
+        {
+            question: "What is the chemical formula for sulfuric acid?",
+            options: ["H2SO4", "HCl", "NaOH", "CH3COOH"],
+            correctAnswer: "H2SO4"
+        },
+        {
+            question: "Which element is found in all acids?",
+            options: ["Hydrogen", "Oxygen", "Nitrogen", "Carbon"],
+            correctAnswer: "Hydrogen"
+        },
+        {
+            question: "What is the chemical symbol for silver?",
+            options: ["Ag", "Au", "Al", "Fe"],
+            correctAnswer: "Ag"
+        },
+        {
+            question: "Which gas is produced during the process of respiration?",
+            options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+            correctAnswer: "Carbon dioxide"
+        },
+        {
+            question: "What is the chemical formula for nitric acid?",
+            options: ["HNO3", "HCl", "NaOH", "H2SO4"],
+            correctAnswer: "HNO3"
+        },
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

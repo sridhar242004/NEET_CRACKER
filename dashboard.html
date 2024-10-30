@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Hub Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--surface);
+            padding: 2rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .profile-section {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid var(--primary);
+            padding: 3px;
+        }
+
+        .username {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--text);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .recent-activity, .quiz-streak, .performance-analytics {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .recent-activity h2, .quiz-streak h2, .performance-analytics h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .quiz-categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+        }
+
+        .start-quiz-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .start-quiz-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+        }
+
+        .settings-form input {
+            padding: 0.75rem;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text);
+        }
+
+        .settings-form button {
+            padding: 0.75rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .settings-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logout-button {
+            margin-top: auto;
+            padding: 1rem;
+            background: var(--error);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background: #dc2626;
+        }
+
+        .performance-chart {
+            width: 100%;
+            height: 300px;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile-section">
+            <img src="/api/placeholder/100/100" alt="Profile" class="profile-pic">
+            <h2 class="username">John Doe</h2>
+            <p>student@neethub.com</p>
+        </div>
+        <nav class="navigation">
+            <a href="#overview" class="nav-item active">
+                <i class="fas fa-home"></i>
+                Overview
+            </a>
+            <a href="#progress" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                Progress
+            </a>
+            <a href="#quizzes" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Quizzes
+            </a>
+            <a href="#leaderboard" class="nav-item">
+                <i class="fas fa-trophy"></i>
+                Leaderboard
+            </a>
+            <a href="#messages" class="nav-item">
+                <i class="fas fa-envelope"></i>
+                Messages
+            </a>
+            <a href="#discussion" class="nav-item">
+                <i class="fas fa-comments"></i>
+                Discussion
+            </a>
+            <a href="#settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                Settings
+            </a>
+        </nav>
+        <button class="logout-button">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </button>
+    </div>
+
+    <main class="main-content">
+        <section id="overview" class="content-section active">
+            <h1>Overview</h1>
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Total Quizzes Taken</h3>
+                    <div class="card-value">24</div>
+                </div>
+                <div class="card">
+                    <h3>Correct Answers</h3>
+                    <div class="card-value">187</div>
+                </div>
+                <div class="card">
+                    <h3>Incorrect Answers</h3>
+                    <div class="card-value">43</div>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h2>Recent Activity</h2>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="activity-details">
+                        <div class="activity-title">Completed Physics Quiz</div>
+                        <div class="activity-time">2 hours ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="activity-details">
+                        <div class="activity-title">Started Biology Chapter</div>
+                        <div class="activity-time">5 hours ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-streak">
+                <h2>Daily Quiz Streak</h2>
+                <div class="card-value">7 days</div>
+            </div>
+
+            <div class="performance-analytics">
+                <h2>Performance Analytics</h2>
+                <div class="performance-chart">
+                    <!-- Chart will be rendered here -->
+                    Performance Chart
+                </div>
+            </div>
+        </section>
+
+        <section id="quizzes" class="content-section">
+            <h1>Quizzes</h1>
+            <div class="quiz-categories">
+                <button class="category-btn active">All Categories</button>
+                <button class="category-btn">Physics</button>
+                <button class="category-btn">Chemistry</button>
+                <button class="category-btn">Biology</button>
+            </div>
+            <a href="#" class="start-quiz-btn">Start New Quiz</a>
+            <div class="quiz-history">
+                <h2>Quiz History</h2>
+                <!-- Quiz history items will be populated here -->
+            </div>
+        </section>
+
+        <section id="leaderboard" class="content-section">
+            <h1>Leaderboard</h1>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>TopStudent123</td>
+                        <td>980</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>BiologyPro</td>
+                        <td>945</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>ChemistryKing</td>
+                        <td>920</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="settings" class="content-section">
+            <h1>Settings</h1>
+            <form class="settings-form">
+                <input type="text" placeholder="Username" value="John Doe">
+                <input type="email" placeholder="Email" value="student@neethub.com">
+                <button type="submit">Update Profile</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Navigation functionality
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.content-section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.currentTarget.getAttribute('href').substring(1);
+                
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+                
+                e.currentTarget.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Quiz category selection
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

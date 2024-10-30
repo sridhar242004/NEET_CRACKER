@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Coordination Compounds - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .chemistry-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chemistry-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Coordination Compounds - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="chemistry-header">
+                <h1 class="chemistry-title">Coordination Compounds</h1>
+                <p>Delve into the study of coordination compounds, exploring their structure, properties, and importance in chemistry and industry for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Coordination Compounds</h2>
+                <div class="topic-content">
+                    <p>Coordination compounds consist of a central metal atom or ion bonded to surrounding molecules or ions, called ligands. They exhibit unique properties that are widely applied in fields like catalysis, medicine, and biochemistry.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3>Coordination Number</h3>
+                            <p>Understanding the number of ligand atoms directly bonded to the central metal atom or ion in a complex.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <h3>Types of Ligands</h3>
+                            <p>Exploring different ligands based on their denticity, including monodentate, bidentate, and polydentate ligands.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3>Werner’s Theory</h3>
+                            <p>An introduction to Alfred Werner's theory explaining the structure and bonding of coordination compounds.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Isomerism in Complexes</h3>
+                            <p>Study of isomerism types in coordination compounds, including structural and stereoisomerism.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Properties and Applications</h2>
+                <div class="topic-content">
+                    <p>Coordination compounds exhibit distinctive properties, including color and magnetic behavior, which are useful in various applications from medical imaging to catalysis.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3>Color in Complexes</h3>
+                            <p>Understanding the origin of color in coordination compounds due to d-d transitions and crystal field splitting.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-magnet"></i>
+                            </div>
+                            <h3>Magnetic Properties</h3>
+                            <p>Exploring magnetic properties of complexes based on electron arrangement and spin states.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Applications in Medicine</h3>
+                            <p>Usage of coordination compounds in diagnostic imaging and chemotherapy.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Catalytic Properties</h3>
+                            <p>Role of coordination compounds as catalysts in industrial processes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Coordination Compounds concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What are coordination compounds?",
+            options: ["Compounds formed by coordination bonds", "Compounds formed by ionic bonds", "Compounds formed by covalent bonds", "Compounds formed by metallic bonds"],
+            correctAnswer: "Compounds formed by coordination bonds"
+        },
+        {
+            question: "What is a ligand in coordination chemistry?",
+            options: ["A central metal ion", "An atom or molecule that binds to a central metal ion", "A compound that stabilizes coordination compounds", "A type of coordination bond"],
+            correctAnswer: "An atom or molecule that binds to a central metal ion"
+        },
+        {
+            question: "What is a coordination number?",
+            options: ["The number of ligands bonded to a central metal ion", "The charge of a coordination compound", "The total number of atoms in a coordination compound", "The valence electrons of a central metal ion"],
+            correctAnswer: "The number of ligands bonded to a central metal ion"
+        },
+        {
+            question: "What is a chelate ligand?",
+            options: ["A ligand that forms a single bond with a metal ion", "A ligand that forms multiple bonds with a metal ion", "A ligand that forms a coordination compound", "A ligand that has a charge"],
+            correctAnswer: "A ligand that forms multiple bonds with a metal ion"
+        },
+        {
+            question: "What is a coordination sphere in a coordination compound?",
+            options: ["The central metal ion", "The ligands bonded to the central metal ion", "The overall charge of the compound", "The molecular formula of the compound"],
+            correctAnswer: "The central metal ion and its bonded ligands"
+        },
+        {
+            question: "What is the oxidation number of the central metal ion in [Fe(CN)6]^{3-}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What does the term 'chelate effect' refer to?",
+            options: ["The increased stability of chelate complexes compared to complexes with similar ligands", "The bonding ability of chelate ligands", "The color changes observed in coordination compounds", "The coordination number of a metal ion"],
+            correctAnswer: "The increased stability of chelate complexes compared to complexes with similar ligands"
+        },
+        {
+            question: "Which metal ion is commonly used as a catalyst in biological systems due to its ability to change oxidation states easily?",
+            options: ["Iron (Fe)", "Copper (Cu)", "Zinc (Zn)", "Manganese (Mn)"],
+            correctAnswer: "Iron (Fe)"
+        },
+        {
+            question: "What is the IUPAC name for [Co(NH3)6]Cl3?",
+            options: ["Hexaamminecobalt(III) chloride", "Trichlorohexaamminecobalt(III)", "Tris(hexaammine)cobalt chloride", "Hexaamminecobalt(III) trichloride"],
+            correctAnswer: "Hexaamminecobalt(III) chloride"
+        },
+        {
+            question: "Which of the following ligands is classified as a monodentate ligand?",
+            options: ["Ethylene diamine (en)", "EDTA", "Cyanide (CN-)", "Oxalate (ox)"],
+            correctAnswer: "Cyanide (CN-)"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [Ni(CN)4]^{2-}?",
+            options: ["2", "3", "4", "6"],
+            correctAnswer: "4"
+        },
+        {
+            question: "What is the formula for potassium tetracyanonickelate(II)?",
+            options: ["K2[Ni(CN)4]", "K3[Ni(CN)4]", "K[Ni(CN)4]", "K[Ni(CN)2]"],
+            correctAnswer: "K2[Ni(CN)4]"
+        },
+        {
+            question: "What is the oxidation number of cobalt in [Co(NH3)5Cl]Cl2?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "Which of the following is a bidentate ligand?",
+            options: ["Ammonia (NH3)", "Water (H2O)", "Ethylene diamine (en)", "Carbon monoxide (CO)"],
+            correctAnswer: "Ethylene diamine (en)"
+        },
+        {
+            question: "What is the formula for tetraammineaquachromium(III) chloride?",
+            options: ["[Cr(NH3)4Cl(H2O)]Cl2", "[Cr(NH3)4Cl(H2O)]Cl3", "[Cr(NH3)4(H2O)Cl]Cl2", "[Cr(NH3)4(H2O)Cl]Cl3"],
+            correctAnswer: "[Cr(NH3)4Cl(H2O)]Cl3"
+        },
+        {
+            question: "Which metal ion forms a complex with cyanide to produce a highly toxic compound?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Zinc (Zn)", "Mercury (Hg)"],
+            correctAnswer: "Mercury (Hg)"
+        },
+        {
+            question: "What is the oxidation number of platinum in [PtCl4]^{2-}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+2"
+        },
+        {
+            question: "Which of the following ligands can form a stable complex with many metal ions due to its ability to donate multiple lone pairs?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the formula for potassium hexacyanoferrate(II)?",
+            options: ["K2[Fe(CN)6]", "K3[Fe(CN)6]", "K4[Fe(CN)6]", "K[Fe(CN)6]"],
+            correctAnswer: "K4[Fe(CN)6]"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [Cu(NH3)4]^{2+}?",
+            options: ["2", "4", "5", "6"],
+            correctAnswer: "4"
+        },
+        {
+            question: "What is the IUPAC name for [Ag(NH3)2]NO2?",
+            options: ["Diamminesilver(I) nitrite", "Silver nitrite diammine", "Silver nitrate diammine", "Diammine nitrite silver(I)"],
+            correctAnswer: "Diamminesilver(I) nitrite"
+        },
+        {
+            question: "Which metal ion forms a complex with EDTA in analytical chemistry for titration purposes?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Zinc (Zn)", "Calcium (Ca)"],
+            correctAnswer: "Calcium (Ca)"
+        },
+        {
+            question: "What is the oxidation number of chromium in [Cr(CN)6]^{3-}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What is the formula for pentaamminechlorocobalt(III) chloride?",
+            options: ["[Co(NH3)5Cl]Cl2", "[Co(NH3)5Cl]Cl3", "[Co(NH3)5(H2O)Cl]Cl2", "[Co(NH3)5(H2O)Cl]Cl3"],
+            correctAnswer: "[Co(NH3)5Cl]Cl2"
+        },
+        {
+            question: "Which of the following ligands can form a complex with a metal ion by bonding through multiple atoms?",
+            options: ["Cyanide (CN-)", "Water (H2O)", "Ammonia (NH3)", "Carbon monoxide (CO)"],
+            correctAnswer: "Carbon monoxide (CO)"
+        },
+        {
+            question: "What is the formula for diamminedichloroplatinum(II)?",
+            options: ["[Pt(NH3)2Cl]Cl", "[Pt(NH3)2Cl]Cl2", "[Pt(NH3)2Cl2]", "[Pt(NH3)2Cl]2"],
+            correctAnswer: "[Pt(NH3)2Cl2]"
+        },
+        {
+            question: "What is the oxidation number of cobalt in [Co(en)3]^{3+}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "Which of the following ligands is commonly used in medicine for binding to metal ions to form stable complexes?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [PtCl6]^{2-}?",
+            options: ["4", "5", "6", "7"],
+            correctAnswer: "6"
+        },
+        {
+            question: "What is the IUPAC name for [Co(en)2Cl2]Cl?",
+            options: ["Dichlorobis(ethylenediamine)cobalt(II) chloride", "Chlorobis(ethylenediamine)cobalt(II) chloride", "Chlorotetraamminecobalt(III) chloride", "Dichlorotetraamminecobalt(III) chloride"],
+            correctAnswer: "Dichlorobis(ethylenediamine)cobalt(II) chloride"
+        },
+        {
+            question: "Which metal ion is known for forming blue-colored complexes with ammonia due to its d-orbital splitting?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Cobalt (Co)", "Nickel (Ni)"],
+            correctAnswer: "Cobalt (Co)"
+        },
+        {
+            question: "What is the oxidation number of nickel in [Ni(CO)4]?",
+            options: ["0", "+1", "+2", "+3"],
+            correctAnswer: "0"
+        },
+        {
+            question: "What is the formula for hexaamminecobalt(III) chloride?",
+            options: ["[Co(NH3)6]Cl3", "[Co(NH3)3]Cl3", "[Co(NH3)6]Cl", "[Co(NH3)3]Cl"],
+            correctAnswer: "[Co(NH3)6]Cl3"
+        },
+        {
+            question: "Which of the following ligands is known for forming stable complexes with metal ions due to its ability to bind through nitrogen and oxygen atoms?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the oxidation number of iron in [Fe(H2O)6]^{3+}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What is the formula for potassium tetracyanonickelate(II)?",
+            options: ["K2[Ni(CN)4]", "K3[Ni(CN)4]", "K[Ni(CN)4]", "K[Ni(CN)2]"],
+            correctAnswer: "K2[Ni(CN)4]"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [Cu(NH3)4]^{2+}?",
+            options: ["2", "4", "5", "6"],
+            correctAnswer: "4"
+        },
+        {
+            question: "What is the IUPAC name for [Ag(NH3)2]NO2?",
+            options: ["Diamminesilver(I) nitrite", "Silver nitrite diammine", "Silver nitrate diammine", "Diammine nitrite silver(I)"],
+            correctAnswer: "Diamminesilver(I) nitrite"
+        },
+        {
+            question: "Which metal ion forms a complex with EDTA in analytical chemistry for titration purposes?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Zinc (Zn)", "Calcium (Ca)"],
+            correctAnswer: "Calcium (Ca)"
+        },
+        {
+            question: "What is the oxidation number of chromium in [Cr(CN)6]^{3-}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What is the formula for pentaamminechlorocobalt(III) chloride?",
+            options: ["[Co(NH3)5Cl]Cl2", "[Co(NH3)5Cl]Cl3", "[Co(NH3)5(H2O)Cl]Cl2", "[Co(NH3)5(H2O)Cl]Cl3"],
+            correctAnswer: "[Co(NH3)5Cl]Cl2"
+        },
+        {
+            question: "Which of the following ligands can form a complex with a metal ion by bonding through multiple atoms?",
+            options: ["Cyanide (CN-)", "Water (H2O)", "Ammonia (NH3)", "Carbon monoxide (CO)"],
+            correctAnswer: "Carbon monoxide (CO)"
+        },
+        {
+            question: "What is the formula for diamminedichloroplatinum(II)?",
+            options: ["[Pt(NH3)2Cl]Cl", "[Pt(NH3)2Cl]Cl2", "[Pt(NH3)2Cl2]", "[Pt(NH3)2Cl]2"],
+            correctAnswer: "[Pt(NH3)2Cl2]"
+        },
+        {
+            question: "What is the oxidation number of cobalt in [Co(en)3]^{3+}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "Which of the following ligands is commonly used in medicine for binding to metal ions to form stable complexes?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [PtCl6]^{2-}?",
+            options: ["4", "5", "6", "7"],
+            correctAnswer: "6"
+        },
+        {
+            question: "What is the IUPAC name for [Co(en)2Cl2]Cl?",
+            options: ["Dichlorobis(ethylenediamine)cobalt(II) chloride", "Chlorobis(ethylenediamine)cobalt(II) chloride", "Chlorotetraamminecobalt(III) chloride", "Dichlorotetraamminecobalt(III) chloride"],
+            correctAnswer: "Dichlorobis(ethylenediamine)cobalt(II) chloride"
+        },
+        {
+            question: "Which metal ion is known for forming blue-colored complexes with ammonia due to its d-orbital splitting?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Cobalt (Co)", "Nickel (Ni)"],
+            correctAnswer: "Cobalt (Co)"
+        },
+        {
+            question: "What is the oxidation number of nickel in [Ni(CO)4]?",
+            options: ["0", "+1", "+2", "+3"],
+            correctAnswer: "0"
+        },
+        {
+            question: "What is the formula for hexaamminecobalt(III) chloride?",
+            options: ["[Co(NH3)6]Cl3", "[Co(NH3)3]Cl3", "[Co(NH3)6]Cl", "[Co(NH3)3]Cl"],
+            correctAnswer: "[Co(NH3)6]Cl3"
+        },
+        {
+            question: "Which of the following ligands is known for forming stable complexes with metal ions due to its ability to bind through nitrogen and oxygen atoms?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the oxidation number of iron in [Fe(H2O)6]^{3+}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What is the formula for potassium tetracyanonickelate(II)?",
+            options: ["K2[Ni(CN)4]", "K3[Ni(CN)4]", "K[Ni(CN)4]", "K[Ni(CN)2]"],
+            correctAnswer: "K2[Ni(CN)4]"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [Cu(NH3)4]^{2+}?",
+            options: ["2", "4", "5", "6"],
+            correctAnswer: "4"
+        },
+        {
+            question: "What is the IUPAC name for [Ag(NH3)2]NO2?",
+            options: ["Diamminesilver(I) nitrite", "Silver nitrite diammine", "Silver nitrate diammine", "Diammine nitrite silver(I)"],
+            correctAnswer: "Diamminesilver(I) nitrite"
+        },
+        {
+            question: "Which metal ion forms a complex with EDTA in analytical chemistry for titration purposes?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Zinc (Zn)", "Calcium (Ca)"],
+            correctAnswer: "Calcium (Ca)"
+        },
+        {
+            question: "What is the oxidation number of chromium in [Cr(CN)6]^{3-}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What is the formula for pentaamminechlorocobalt(III) chloride?",
+            options: ["[Co(NH3)5Cl]Cl2", "[Co(NH3)5Cl]Cl3", "[Co(NH3)5(H2O)Cl]Cl2", "[Co(NH3)5(H2O)Cl]Cl3"],
+            correctAnswer: "[Co(NH3)5Cl]Cl2"
+        },
+        {
+            question: "Which of the following ligands can form a complex with a metal ion by bonding through multiple atoms?",
+            options: ["Cyanide (CN-)", "Water (H2O)", "Ammonia (NH3)", "Carbon monoxide (CO)"],
+            correctAnswer: "Carbon monoxide (CO)"
+        },
+        {
+            question: "What is the formula for diamminedichloroplatinum(II)?",
+            options: ["[Pt(NH3)2Cl]Cl", "[Pt(NH3)2Cl]Cl2", "[Pt(NH3)2Cl2]", "[Pt(NH3)2Cl]2"],
+            correctAnswer: "[Pt(NH3)2Cl2]"
+        },
+        {
+            question: "What is the oxidation number of cobalt in [Co(en)3]^{3+}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "Which of the following ligands is commonly used in medicine for binding to metal ions to form stable complexes?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [PtCl6]^{2-}?",
+            options: ["4", "5", "6", "7"],
+            correctAnswer: "6"
+        },
+        {
+            question: "What is the IUPAC name for [Co(en)2Cl2]Cl?",
+            options: ["Dichlorobis(ethylenediamine)cobalt(II) chloride", "Chlorobis(ethylenediamine)cobalt(II) chloride", "Chlorotetraamminecobalt(III) chloride", "Dichlorotetraamminecobalt(III) chloride"],
+            correctAnswer: "Dichlorobis(ethylenediamine)cobalt(II) chloride"
+        },
+        {
+            question: "Which metal ion is known for forming blue-colored complexes with ammonia due to its d-orbital splitting?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Cobalt (Co)", "Nickel (Ni)"],
+            correctAnswer: "Cobalt (Co)"
+        },
+        {
+            question: "What is the oxidation number of nickel in [Ni(CO)4]?",
+            options: ["0", "+1", "+2", "+3"],
+            correctAnswer: "0"
+        },
+        {
+            question: "What is the formula for hexaamminecobalt(III) chloride?",
+            options: ["[Co(NH3)6]Cl3", "[Co(NH3)3]Cl3", "[Co(NH3)6]Cl", "[Co(NH3)3]Cl"],
+            correctAnswer: "[Co(NH3)6]Cl3"
+        },
+        {
+            question: "Which of the following ligands is known for forming stable complexes with metal ions due to its ability to bind through nitrogen and oxygen atoms?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the oxidation number of iron in [Fe(H2O)6]^{3+}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What is the formula for potassium tetracyanonickelate(II)?",
+            options: ["K2[Ni(CN)4]", "K3[Ni(CN)4]", "K[Ni(CN)4]", "K[Ni(CN)2]"],
+            correctAnswer: "K2[Ni(CN)4]"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [Cu(NH3)4]^{2+}?",
+            options: ["2", "4", "5", "6"],
+            correctAnswer: "4"
+        },
+        {
+            question: "What is the IUPAC name for [Ag(NH3)2]NO2?",
+            options: ["Diamminesilver(I) nitrite", "Silver nitrite diammine", "Silver nitrate diammine", "Diammine nitrite silver(I)"],
+            correctAnswer: "Diamminesilver(I) nitrite"
+        },
+        {
+            question: "Which metal ion forms a complex with EDTA in analytical chemistry for titration purposes?",
+            options: ["Copper (Cu)", "Iron (Fe)", "Zinc (Zn)", "Calcium (Ca)"],
+            correctAnswer: "Calcium (Ca)"
+        },
+        {
+            question: "What is the oxidation number of chromium in [Cr(CN)6]^{3-}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "What is the formula for pentaamminechlorocobalt(III) chloride?",
+            options: ["[Co(NH3)5Cl]Cl2", "[Co(NH3)5Cl]Cl3", "[Co(NH3)5(H2O)Cl]Cl2", "[Co(NH3)5(H2O)Cl]Cl3"],
+            correctAnswer: "[Co(NH3)5Cl]Cl2"
+        },
+        {
+            question: "Which of the following ligands can form a complex with a metal ion by bonding through multiple atoms?",
+            options: ["Cyanide (CN-)", "Water (H2O)", "Ammonia (NH3)", "Carbon monoxide (CO)"],
+            correctAnswer: "Carbon monoxide (CO)"
+        },
+        {
+            question: "What is the formula for diamminedichloroplatinum(II)?",
+            options: ["[Pt(NH3)2Cl]Cl", "[Pt(NH3)2Cl]Cl2", "[Pt(NH3)2Cl2]", "[Pt(NH3)2Cl]2"],
+            correctAnswer: "[Pt(NH3)2Cl2]"
+        },
+        {
+            question: "What is the oxidation number of cobalt in [Co(en)3]^{3+}?",
+            options: ["+1", "+2", "+3", "+4"],
+            correctAnswer: "+3"
+        },
+        {
+            question: "Which of the following ligands is commonly used in medicine for binding to metal ions to form stable complexes?",
+            options: ["Water (H2O)", "Ammonia (NH3)", "Cyanide (CN-)", "EDTA"],
+            correctAnswer: "EDTA"
+        },
+        {
+            question: "What is the coordination number of the central metal ion in [PtCl6]^{2-}?",
+            options: ["4", "5", "6", "7"],
+            correctAnswer: "6"
+        },
+        {
+            question: "What is the IUPAC name for [Co(en)2Cl2]Cl?",
+            options: ["Dichlorobis(ethylenediamine)cobalt(II) chloride", "Chlorobis(ethylenediamine)cobalt(II) chloride", "Chlorotetraamminecobalt(III) chloride", "Dichlorotetraamminecobalt(III) chloride"],
+            correctAnswer: "Dichlorobis(ethylenediamine)cobalt(II) chloride"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

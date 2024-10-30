@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Aspirants Hub - Next-Gen Preparation Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+ 
+        :root {
+  /* Enhanced Premium Color Palette */
+  --primary: #9333EA;
+  --primary-dark: #7C3AED;
+  --secondary: #EC4899;
+  --accent: #8B5CF6;
+  --background: #0C0A1D;
+  --surface: #1A1635;
+  --text: #F8FAFC;
+  --text-light: #94A3B8;
+  --white: #FFFFFF;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  
+  /* Gradient Colors */
+  --gradient-start: #9333EA;
+  --gradient-mid: #8B5CF6;
+  --gradient-end: #EC4899;
+}
+          
+          
+          /* Premium Loader */
+          .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            z-index: 9999;
+          }
+          
+          .loader {
+            position: relative;
+            width: 120px;
+            height: 120px;
+          }
+          
+          .loader-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--primary);
+            animation: spin 2s linear infinite;
+          }
+          
+          .loader-circle:nth-child(2) {
+            border-top-color: var(--secondary);
+            animation-delay: -0.5s;
+            scale: 0.8;
+          }
+          
+          .loader-circle:nth-child(3) {
+            border-top-color: var(--accent);
+            animation-delay: -1s;
+            scale: 0.6;
+          }
+          
+          .loader-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text);
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            white-space: nowrap;
+          }
+          
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+          
+          /* Premium Gradients */
+          .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite;
+          }
+          
+          .blob-1 {
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+          }
+          
+          .blob-2 {
+            bottom: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--gradient-mid), var(--gradient-end));
+            animation-delay: -4s;
+          }
+          
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0) scale(1);
+            }
+            50% {
+              transform: translateY(-20px) scale(1.05);
+            }
+          }
+          
+          /* Hide loader when content is loaded */
+          .loaded .loader-container {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+          }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .gradient-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            background: var(--primary);
+            top: -200px;
+            left: -200px;
+        }
+
+        .blob-2 {
+            background: var(--secondary);
+            bottom: -200px;
+            right: -200px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-text {
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-visual {
+            position: relative;
+            z-index: 1;
+            height: 600px;
+        }
+
+        .floating-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .card-1 {
+            top: 10%;
+            left: 0;
+            animation-delay: 0s;
+            width: 200px;
+        }
+
+        .card-2 {
+            top: 40%;
+            right: 0;
+            animation-delay: 0.5s;
+            width: 240px;
+        }
+
+        .card-3 {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 1s;
+            width: 180px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .features {
+            padding: 8rem 2rem;
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 500;
+            margin: 0 auto 1rem;
+            width: fit-content;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .floating-card {
+                transform: scale(0.8);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        #explore {
+            padding: 8rem 2rem;
+            background: var(--background);
+            position: relative;
+        }
+
+        #explore .grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        #explore .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #explore .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        #explore .card h3 {
+            color: var(--text);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        #explore .card-content {
+            flex-grow: 1;
+        }
+
+        #explore .card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .view-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Quiz Popup Styles */
+        .quiz-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 24px;
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .quiz-popup.active {
+            display: block;
+            animation: popIn 0.5s ease-out forwards;
+        }
+
+        .quiz-popup h3 {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-popup p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+
+        /* Floating Quiz Button */
+        .floating-quiz-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .floating-quiz-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+        .glow-effect {
+            filter: drop-shadow(0 0 8px #00f2ff);
+        }
+    </style>
+</head>
+<div class="loader-container">
+    <div class="loader">
+      <div class="loader-circle"></div>
+      <div class="loader-circle"></div>
+      <div class="loader-circle"></div>
+      <div class="loader-text">Loading NEET Hub...</div>
+    </div>
+  </div>
+<body>
+    <div class="gradient-blob blob-1"></div>
+    <div class="gradient-blob blob-2"></div>
+
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="livecources_testimonals.html" class="nav-link">Courses</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+                <a href="#" class="nav-link">Community</a>
+                <a href="news.html" class="nav-link">NEET News</a>
+                <a href="testimonals.html" class="nav-link">Success Stories</a>
+                <a href="#" class="cta-button">Start Learning</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <i class="fas fa-sparkles"></i>
+                    Next-Gen Learning Platform
+                </div>
+                <h1 class="hero-title">Master NEET with AI-Powered Learning</h1>
+                <p class="hero-subtitle">Join thousands of successful students who cracked NEET using our innovative learning platform. Get personalized study plans, real-time analytics, and expert guidance.</p>
+                <div class="hero-cta">
+                    <a href="#" class="cta-button">Start Free Trial</a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-play-circle"></i>
+                        Watch Demo
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Active Students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">92%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.9/5</span>
+                        <span class="stat-label">Student Rating</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <div class="card-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="card-title">Physics Master Class</h3>
+                    <p class="card-subtitle">Interactive 3D simulations for complex concepts</p>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="card-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="card-title">Biology Deep Dive</h3>
+                    <p class="card-subtitle">Comprehensive coverage of NCERT syllabus</p>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="card-title">Chemistry Lab</h3>
+                    <p class="card-subtitle">Virtual experiments and reactions</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section id="explore" class="py-12 bg-gray-900 text-white">
+        <h2 class="section-title text-center text-3xl font-bold text-teal-400 mb-10">Explore Our Advanced Resources</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-8">
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-atom text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">Physics Mastery</h3>
+                </div>
+                <p class="card-content mb-6">Interactive physics resources and study guides to help you master the subject.</p>
+                <a href="physics.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+    
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-flask text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">Chemistry Explorer</h3>
+                </div>
+                <p class="card-content mb-6">Comprehensive chemistry tutorials and practice problems to boost your knowledge.</p>
+                <a href="chemistry.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+    
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-dna text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">Biology Explorer</h3>
+                </div>
+                <p class="card-content mb-6">Engaging biology lessons and quizzes to enhance your understanding of the subject.</p>
+                <a href="biology.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+    
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-book-open text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">Smart Study Materials</h3>
+                </div>
+                <p class="card-content mb-6">Access the best study materials and resources to excel in NEET.</p>
+                <a href="Study Materials.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+    
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-chalkboard-teacher text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">NEET Courses</h3>
+                </div>
+                <p class="card-content mb-6">Access the best Live and Pre-loaded NEET Courses.</p>
+                <a href="livecources_testimonals.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+    
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-trophy text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">NEET Toppers</h3>
+                </div>
+                <p class="card-content mb-6">Interactive sessions with NEET Toppers and their success stories.</p>
+                <a href="testimonals.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+    
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-brain text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">Adaptive Testing</h3>
+                </div>
+                <p class="card-content mb-6">Challenge yourself with AI-powered tests that evolve based on your performance.</p>
+                <a href="adaptivetesting.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+    
+            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-user-graduate text-teal-400 text-4xl glow-effect"></i>
+                    <h3 class="text-xl font-semibold ml-4">Expert Mentorship</h3>
+                </div>
+                <p class="card-content mb-6">Receive personalized guidance from top NEET mentors through virtual sessions.</p>
+                <a href="mentorship.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="quiz-popup" id="quizPopup">
+        <button class="popup-close" onclick="closeQuizPopup()">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3>Quick NEET Quiz Challenge!</h3>
+        <p>Test your knowledge with our adaptive quiz system. Get instant feedback and personalized recommendations!</p>
+        <div class="popup-buttons">
+            <a href="Practice Tests.html" class="view-button">Start Quiz</a>
+            <button class="view-button" style="background: var(--surface); border: 1px solid var(--primary)" onclick="closeQuizPopup()">Maybe Later</button>
+        </div>
+    </div>
+
+    <!-- Floating Quiz Button -->
+    <div class="floating-quiz-button" id="floatingQuizButton" onclick="showQuizPopup()">
+        <i class="fas fa-quiz"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+          });
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.75rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                navbar.style.padding = '1rem 2rem';
+                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+            }
+        });
+
+        // Hero section animations
+        const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        heroTimeline
+            .from('.hero-badge', { opacity: 0, y: 30, duration: 0.8 })
+            .from('.hero-title', { opacity: 0, y: 30, duration: 0.8 }, '-=0.6')
+            .from('.hero-subtitle', { opacity: 0, y: 30, duration: 0.8 }, '-=0.6')
+            .from('.hero-cta', { opacity: 0, y: 30, duration: 0.8 }, '-=0.6')
+            .from('.hero-stats', { opacity: 0, y: 30, duration: 0.8 }, '-=0.6')
+            .from('.floating-card', {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'back.out(1.7)'
+            }, '-=0.4');
+
+        setTimeout(showQuizPopup, 5000);
+
+        function showQuizPopup() {
+            document.getElementById('quizPopup').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('floatingQuizButton').style.display = 'none';
+        }
+
+        function closeQuizPopup() {
+            document.getElementById('quizPopup').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('floatingQuizButton').style.display = 'flex';
+        }
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Hydrocarbons - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .hydrocarbons-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hydrocarbons-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Hydrocarbons - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="hydrocarbons-header">
+                <h1 class="hydrocarbons-title">Hydrocarbons: The Foundations of Organic Chemistry</h1>
+                <p>Explore the structure, properties, and applications of hydrocarbons, the simplest organic compounds.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Hydrocarbons</h2>
+                <div class="topic-content">
+                    <p>Hydrocarbons are organic compounds consisting entirely of hydrogen and carbon. They are fundamental in organic chemistry and serve as the building blocks for more complex molecules.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h3>Types of Hydrocarbons</h3>
+                            <p>Hydrocarbons can be classified into aliphatic (alkanes, alkenes, alkynes) and aromatic hydrocarbons, each with unique properties and structures.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <h3>Combustion of Hydrocarbons</h3>
+                            <p>Hydrocarbons are commonly used as fuels. Understanding their combustion process is crucial for energy production and environmental impact assessments.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Reactions of Hydrocarbons</h3>
+                            <p>Hydrocarbons participate in various chemical reactions, including substitution, addition, and elimination reactions, forming a wide range of products.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h3>Applications of Hydrocarbons</h3>
+                            <p>Hydrocarbons are used in numerous applications, including fuels, lubricants, and as raw materials in the petrochemical industry.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Hydrocarbon Compounds in Nature</h2>
+                <div class="topic-content">
+                    <p>Hydrocarbons are not only important in industrial applications but also occur naturally in various forms.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Natural Gas</h3>
+                            <p>Natural gas is primarily composed of methane, a simple alkane, and is a significant energy source globally.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3>Petroleum</h3>
+                            <p>Petroleum is a complex mixture of hydrocarbons, which can be refined into fuels, lubricants, and various chemicals.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Biomass</h3>
+                            <p>Many organic materials, such as plant oils and animal fats, are rich in hydrocarbons and can be used as renewable energy sources.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-syringe"></i>
+                            </div>
+                            <h3>Medicinal Applications</h3>
+                            <p>Certain hydrocarbons are used in pharmaceuticals and as precursors for drug synthesis, highlighting their significance in healthcare.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Hydrocarbons concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the general formula for alkanes?",
+            options: ["CnH2n", "CnH2n+2", "CnHn", "CnHn+2"],
+            correctAnswer: "CnH2n+2"
+        },
+        {
+            question: "Which type of hydrocarbon contains only single bonds between carbon atoms?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Alkanes"
+        },
+        {
+            question: "What is the name of the simplest alkane?",
+            options: ["Methane", "Ethane", "Propane", "Butane"],
+            correctAnswer: "Methane"
+        },
+        {
+            question: "Which hydrocarbon has a triple bond between carbon atoms?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Alkynes"
+        },
+        {
+            question: "What is the general formula for alkenes?",
+            options: ["CnH2n", "CnH2n+2", "CnHn", "CnHn+2"],
+            correctAnswer: "CnH2n"
+        },
+        {
+            question: "Which hydrocarbon contains one or more double bonds between carbon atoms?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Alkenes"
+        },
+        {
+            question: "What is the name of the simplest alkene?",
+            options: ["Ethene", "Propene", "Butene", "Pentene"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the general formula for alkynes?",
+            options: ["CnH2n", "CnH2n+2", "CnHn", "CnHn+2"],
+            correctAnswer: "CnH2n-2"
+        },
+        {
+            question: "Which hydrocarbon contains one or more triple bonds between carbon atoms?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Alkynes"
+        },
+        {
+            question: "What is the name of the simplest alkyne?",
+            options: ["Ethyne", "Propyne", "Butyne", "Pentyne"],
+            correctAnswer: "Ethyne"
+        },
+        {
+            question: "Which type of hydrocarbon has a benzene ring structure?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Aromatic hydrocarbons"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH2-CH2-CH3?",
+            options: ["Pentane", "Butane", "Hexane", "Propane"],
+            correctAnswer: "Pentane"
+        },
+        {
+            question: "What is the IUPAC name for CH2=CH-CH3?",
+            options: ["Propene", "Butene", "Pentene", "Hexene"],
+            correctAnswer: "Propene"
+        },
+        {
+            question: "What is the IUPAC name for CH≡CH?",
+            options: ["Ethene", "Propyne", "Butene", "Pentene"],
+            correctAnswer: "Propyne"
+        },
+        {
+            question: "Which hydrocarbon undergoes addition reactions?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Alkenes"
+        },
+        {
+            question: "Which hydrocarbon is generally less reactive compared to alkenes and alkynes?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Alkanes"
+        },
+        {
+            question: "What is the IUPAC name for benzene?",
+            options: ["Cyclohexane", "Cyclopentane", "Benzane", "Benzene"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the common name for CH3-CH2-CH2-CH2-CH2-CH3?",
+            options: ["Hexane", "Pentane", "Heptane", "Octane"],
+            correctAnswer: "Hexane"
+        },
+        {
+            question: "Which hydrocarbon can form geometric isomers?",
+            options: ["Alkanes", "Alkenes", "Alkynes", "Aromatic hydrocarbons"],
+            correctAnswer: "Alkenes"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH=CH-CH3?",
+            options: ["But-1-ene", "But-2-ene", "But-3-ene", "But-4-ene"],
+            correctAnswer: "But-2-ene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-C≡CH?",
+            options: ["Prop-1-yne", "Prop-2-yne", "Prop-3-yne", "Prop-4-yne"],
+            correctAnswer: "Prop-2-yne"
+        },
+        {
+            question: "Which hydrocarbon is used as a fuel in gas stoves?",
+            options: ["Methane", "Ethane", "Propane", "Butane"],
+            correctAnswer: "Propane"
+        },
+        {
+            question: "What is the IUPAC name for CH≡C-CH2-CH3?",
+            options: ["Pent-1-yne", "Pent-2-yne", "Pent-3-yne", "Pent-4-yne"],
+            correctAnswer: "Pent-2-yne"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH=CH-CH3?",
+            options: ["Pent-1-ene", "Pent-2-ene", "Pent-3-ene", "Pent-4-ene"],
+            correctAnswer: "Pent-2-ene"
+        },
+        {
+            question: "What is the IUPAC name for C6H6?",
+            options: ["Hexane", "Benzene", "Cyclohexane", "Toluene"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for C2H2?",
+            options: ["Ethane", "Ethene", "Ethyne", "Ethyl"],
+            correctAnswer: "Ethyne"
+        },
+        {
+            question: "Which hydrocarbon is found abundantly in natural gas?",
+            options: ["Methane", "Ethane", "Propane", "Butane"],
+            correctAnswer: "Methane"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH=CH-CH=CH2?",
+            options: ["But-1,3-diene", "But-1,2-diene", "But-2,3-diene", "But-2,4-diene"],
+            correctAnswer: "But-1,3-diene"
+        },
+        {
+            question: "What is the IUPAC name for CH≡C-CH=CH2?",
+            options: ["Pent-1-en-4-yne", "Pent-1-yne-4-ene", "Pent-2-en-4-yne", "Pent-2-yne-4-ene"],
+            correctAnswer: "Pent-1-en-4-yne"
+        },
+        {
+            question: "Which hydrocarbon is used as a refrigerant in refrigerators?",
+            options: ["Methane", "Ethane", "Propane", "Butane"],
+            correctAnswer: "Propane"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH2-CH2-CH=CH2?",
+            options: ["Pent-1-ene", "Pent-2-ene", "Pent-3-ene", "Pent-4-ene"],
+            correctAnswer: "Pent-1-ene"
+        },
+        {
+            question: "What is the IUPAC name for C6H5CH3?",
+            options: ["Toluene", "Benzene", "Phenol", "Aniline"],
+            correctAnswer: "Toluene"
+        },
+        {
+            question: "What is the IUPAC name for C2H4?",
+            options: ["Ethane", "Ethene", "Ethyne", "Ethyl"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "Which hydrocarbon is known for its sweet-smelling characteristic?",
+            options: ["Methane", "Ethane", "Benzene", "Ethene"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-C≡CH?",
+            options: ["But-1-yne", "But-2-yne", "But-3-yne", "But-4-yne"],
+            correctAnswer: "But-1-yne"
+        },
+        {
+            question: "What is the IUPAC name for CH2=CH-CH=CH2?",
+            options: ["Buta-1,3-diene", "Buta-1,2-diene", "But-2,3-diene", "But-2,4-diene"],
+            correctAnswer: "Buta-1,3-diene"
+        },
+        {
+            question: "Which hydrocarbon is used as a raw material for making plastic?",
+            options: ["Ethene", "Ethane", "Benzene", "Methane"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the IUPAC name for C6H5OH?",
+            options: ["Phenol", "Benzene", "Toluene", "Aniline"],
+            correctAnswer: "Phenol"
+        },
+        {
+            question: "What is the IUPAC name for C2H6?",
+            options: ["Ethane", "Ethene", "Ethyne", "Ethyl"],
+            correctAnswer: "Ethane"
+        },
+        {
+            question: "Which hydrocarbon is used as a starting material for making aspirin?",
+            options: ["Benzene", "Ethene", "Methane", "Ethane"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-C≡CH?",
+            options: ["But-1-yne", "But-2-yne", "But-3-yne", "But-4-yne"],
+            correctAnswer: "But-1-yne"
+        },
+        {
+            question: "What is the IUPAC name for CH2=CH-CH=CH2?",
+            options: ["Buta-1,3-diene", "Buta-1,2-diene", "But-2,3-diene", "But-2,4-diene"],
+            correctAnswer: "Buta-1,3-diene"
+        },
+        {
+            question: "Which hydrocarbon is used as a raw material for making plastic?",
+            options: ["Ethene", "Ethane", "Benzene", "Methane"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the IUPAC name for C6H5OH?",
+            options: ["Phenol", "Benzene", "Toluene", "Aniline"],
+            correctAnswer: "Phenol"
+        },
+        {
+            question: "What is the IUPAC name for C2H6?",
+            options: ["Ethane", "Ethene", "Ethyne", "Ethyl"],
+            correctAnswer: "Ethane"
+        },
+        {
+            question: "Which hydrocarbon is used as a starting material for making aspirin?",
+            options: ["Benzene", "Ethene", "Methane", "Ethane"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH2-CH2-CH2-CH2-CH3?",
+            options: ["Heptane", "Hexane", "Octane", "Nonane"],
+            correctAnswer: "Heptane"
+        },
+        {
+            question: "Which hydrocarbon has the highest boiling point among these?",
+            options: ["Methane", "Ethane", "Propane", "Butane"],
+            correctAnswer: "Butane"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH2-CH=CH2?",
+            options: ["But-1-ene", "But-2-ene", "But-3-ene", "But-4-ene"],
+            correctAnswer: "But-1-ene"
+        },
+        {
+            question: "Which hydrocarbon is a major component of natural gas?",
+            options: ["Methane", "Ethane", "Propane", "Butane"],
+            correctAnswer: "Methane"
+        },
+        {
+            question: "What is the IUPAC name for C6H6?",
+            options: ["Benzene", "Cyclohexane", "Toluene", "Phenol"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "Which hydrocarbon is used as a starting material for making rubber?",
+            options: ["Methane", "Ethane", "Benzene", "Ethene"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH2-C≡CH?",
+            options: ["But-1-yne", "But-2-yne", "But-3-yne", "But-4-yne"],
+            correctAnswer: "But-3-yne"
+        },
+        {
+            question: "Which hydrocarbon is used as a solvent in dry cleaning?",
+            options: ["Methane", "Ethane", "Benzene", "Toluene"],
+            correctAnswer: "Toluene"
+        },
+        {
+            question: "What is the IUPAC name for CH2=CH-CH2-CH2-CH3?",
+            options: ["Pent-1-ene", "Pent-2-ene", "Pent-3-ene", "Pent-4-ene"],
+            correctAnswer: "Pent-1-ene"
+        },
+        {
+            question: "Which hydrocarbon is found in motor gasoline?",
+            options: ["Methane", "Ethane", "Benzene", "Hexane"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for C2H5OH?",
+            options: ["Ethanol", "Methanol", "Propanol", "Butanol"],
+            correctAnswer: "Ethanol"
+        },
+        {
+            question: "Which hydrocarbon is used as a starting material for making aspirin?",
+            options: ["Ethene", "Methane", "Benzene", "Ethane"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH2-CH2-CH2-CH3?",
+            options: ["Hexane", "Pentane", "Heptane", "Octane"],
+            correctAnswer: "Hexane"
+        },
+        {
+            question: "Which hydrocarbon is known for its sweet-smelling characteristic?",
+            options: ["Methane", "Ethane", "Benzene", "Ethene"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-CH=CH-CH2-CH3?",
+            options: ["Hex-1-ene", "Hex-2-ene", "Hex-3-ene", "Hex-4-ene"],
+            correctAnswer: "Hex-1-ene"
+        },
+        {
+            question: "Which hydrocarbon is used as a raw material for making plastic?",
+            options: ["Methane", "Ethene", "Benzene", "Ethane"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the IUPAC name for C6H5CH3?",
+            options: ["Toluene", "Benzene", "Phenol", "Aniline"],
+            correctAnswer: "Toluene"
+        },
+        {
+            question: "Which hydrocarbon is used as a starting material for making aspirin?",
+            options: ["Benzene", "Ethene", "Methane", "Ethane"],
+            correctAnswer: "Benzene"
+        },
+        {
+            question: "What is the IUPAC name for CH3-CH2-C≡CH?",
+            options: ["But-1-yne", "But-2-yne", "But-3-yne", "But-4-yne"],
+            correctAnswer: "But-1-yne"
+        },
+        {
+            question: "What is the IUPAC name for CH2=CH-CH=CH2?",
+            options: ["Buta-1,3-diene", "Buta-1,2-diene", "But-2,3-diene", "But-2,4-diene"],
+            correctAnswer: "Buta-1,3-diene"
+        },
+        {
+            question: "Which hydrocarbon is used as a raw material for making plastic?",
+            options: ["Ethene", "Ethane", "Benzene", "Methane"],
+            correctAnswer: "Ethene"
+        },
+        {
+            question: "What is the IUPAC name for C6H5OH?",
+            options: ["Phenol", "Benzene", "Toluene", "Aniline"],
+            correctAnswer: "Phenol"
+        },
+        {
+            question: "What is the IUPAC name for C2H6?",
+            options: ["Ethane", "Ethene", "Ethyne", "Ethyl"],
+            correctAnswer: "Ethane"
+        },
+        {
+            question: "Which hydrocarbon is used as a starting material for making aspirin?",
+            options: ["Benzene", "Ethene", "Methane", "Ethane"],
+            correctAnswer: "Benzene"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

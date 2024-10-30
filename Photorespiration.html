@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Photorespiration - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .photorespiration-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .photorespiration-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Photorespiration - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="photorespiration-header">
+                <h1 class="photorespiration-title">Photorespiration</h1>
+                <p>Explore the process of photorespiration and its significance in plant metabolism and environmental adaptations.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Photorespiration</h2>
+                <div class="topic-content">
+                    <p>Photorespiration is a metabolic pathway in plants that occurs when the enzyme RuBisCO reacts with oxygen instead of carbon dioxide, leading to the production of a five-carbon sugar that can be converted back to carbon dioxide.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Role of RuBisCO</h3>
+                            <p>RuBisCO is a key enzyme in the Calvin cycle, responsible for fixing carbon dioxide. However, it can also catalyze the reaction with oxygen, leading to photorespiration.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3>Conditions Favoring Photorespiration</h3>
+                            <p>High temperatures and low carbon dioxide concentrations increase the likelihood of photorespiration, impacting plant efficiency.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-thermometer-half"></i>
+                            </div>
+                            <h3>Impact on Plant Growth</h3>
+                            <p>Photorespiration can reduce the overall efficiency of photosynthesis, leading to decreased growth and yield in plants.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>Adaptive Mechanisms</h3>
+                            <p>Certain plants have developed mechanisms, such as C4 and CAM pathways, to minimize photorespiration and enhance photosynthetic efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Photorespiration vs. Photosynthesis</h2>
+                <div class="topic-content">
+                    <p>Understanding the differences between photorespiration and photosynthesis is crucial for grasping plant metabolic processes and adaptations.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-arrow-alt-circle-right"></i>
+                            </div>
+                            <h3>Energy Consumption</h3>
+                            <p>Photorespiration consumes energy, whereas photosynthesis captures and stores energy from sunlight.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <h3>Carbon Fixation</h3>
+                            <p>Photosynthesis leads to carbon fixation and the production of glucose, while photorespiration releases previously fixed carbon as carbon dioxide.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Environmental Response</h3>
+                            <p>Photorespiration acts as a response to unfavorable conditions, whereas photosynthesis is optimized under ideal conditions for growth.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Implications for Agriculture</h3>
+                            <p>Understanding photorespiration helps in developing crops that can maintain higher photosynthetic efficiency under varying environmental conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Photorespiration concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is photorespiration?",
+            options: ["A process of converting light energy into chemical energy", "A process of converting carbon dioxide into glucose", "A process of releasing oxygen during photosynthesis", "A process of converting oxygen into carbon dioxide in photosynthetic organisms"],
+            correctAnswer: "A process of converting oxygen into carbon dioxide in photosynthetic organisms"
+        },
+        {
+            question: "Which organelle is primarily involved in photorespiration?",
+            options: ["Chloroplast", "Mitochondrion", "Golgi apparatus", "Endoplasmic reticulum"],
+            correctAnswer: "Chloroplast"
+        },
+        {
+            question: "What is the primary substrate of photorespiration?",
+            options: ["Carbon dioxide", "Oxygen", "Glucose", "ATP"],
+            correctAnswer: "Oxygen"
+        },
+        {
+            question: "Where does photorespiration occur in plant cells?",
+            options: ["In the cytoplasm", "In the nucleus", "In the vacuole", "In the chloroplast"],
+            correctAnswer: "In the chloroplast"
+        },
+        {
+            question: "What is the consequence of photorespiration on the efficiency of photosynthesis?",
+            options: ["It enhances photosynthetic efficiency", "It has no effect on photosynthetic efficiency", "It decreases photosynthetic efficiency", "It completely stops photosynthesis"],
+            correctAnswer: "It decreases photosynthetic efficiency"
+        },
+        {
+            question: "Which enzyme is involved in the initial step of photorespiration?",
+            options: ["Rubisco", "ATP synthase", "NADP reductase", "PEP carboxylase"],
+            correctAnswer: "Rubisco"
+        },
+        {
+            question: "Under what conditions does photorespiration become more prevalent?",
+            options: ["High carbon dioxide levels", "Low oxygen levels", "High oxygen levels", "Low light intensity"],
+            correctAnswer: "High oxygen levels"
+        },
+        {
+            question: "What is the primary product of photorespiration?",
+            options: ["Glucose", "ATP", "Glycolate", "Pyruvate"],
+            correctAnswer: "Glycolate"
+        },
+        {
+            question: "How does photorespiration affect the yield of photosynthetic products?",
+            options: ["It increases the yield", "It decreases the yield", "It has no effect on the yield", "It completely inhibits product formation"],
+            correctAnswer: "It decreases the yield"
+        },
+        {
+            question: "What role does photorespiration play in plant metabolism?",
+            options: ["To conserve energy", "To produce oxygen", "To regulate temperature", "To detoxify reactive oxygen species"],
+            correctAnswer: "To detoxify reactive oxygen species"
+        },
+        {
+            question: "Which plant types are more prone to photorespiration?",
+            options: ["C3 plants", "C4 plants", "CAM plants", "Mosses"],
+            correctAnswer: "C3 plants"
+        },
+        {
+            question: "What is the main consequence of photorespiration on water use efficiency in plants?",
+            options: ["It increases water use efficiency", "It decreases water use efficiency", "It has no effect on water use efficiency", "It completely inhibits water absorption"],
+            correctAnswer: "It decreases water use efficiency"
+        },
+        {
+            question: "How does photorespiration affect the energy balance of the plant?",
+            options: ["It increases energy production", "It decreases energy production", "It has no effect on energy production", "It completely stops energy production"],
+            correctAnswer: "It decreases energy production"
+        },
+        {
+            question: "What is the physiological significance of photorespiration?",
+            options: ["To increase carbon dioxide levels", "To enhance oxygen levels", "To protect against oxidative damage", "To promote rapid growth"],
+            correctAnswer: "To protect against oxidative damage"
+        },
+        {
+            question: "Which environmental factor exacerbates photorespiration?",
+            options: ["High humidity", "Low temperature", "Low light intensity", "High temperature"],
+            correctAnswer: "High temperature"
+        },
+        {
+            question: "How does photorespiration affect the pH balance within plant cells?",
+            options: ["It increases cellular pH", "It decreases cellular pH", "It has no effect on cellular pH", "It completely disrupts cellular pH"],
+            correctAnswer: "It decreases cellular pH"
+        },
+        {
+            question: "What is the fate of the glycolate produced during photorespiration?",
+            options: ["It is converted into glucose", "It is metabolized to produce ATP", "It is exported out of the chloroplast", "It is stored in vacuoles"],
+            correctAnswer: "It is exported out of the chloroplast"
+        },
+        {
+            question: "Which cellular compartment contains enzymes involved in the photorespiratory pathway?",
+            options: ["Cytosol", "Mitochondria", "Plastids", "Endoplasmic reticulum"],
+            correctAnswer: "Cytosol"
+        },
+        {
+            question: "How does photorespiration influence plant growth and development under stress conditions?",
+            options: ["It promotes stress resistance", "It exacerbates stress effects", "It has no effect on stress response", "It completely stops stress adaptation"],
+            correctAnswer: "It exacerbates stress effects"
+        },
+        {
+            question: "What is the metabolic cost of photorespiration to the plant?",
+            options: ["It consumes ATP", "It produces ATP", "It consumes glucose", "It produces glucose"],
+            correctAnswer: "It consumes ATP"
+        },
+        {
+            question: "How does photorespiration affect the carbon fixation efficiency of plants?",
+            options: ["It enhances carbon fixation efficiency", "It reduces carbon fixation efficiency", "It has no effect on carbon fixation efficiency", "It completely inhibits carbon fixation"],
+            correctAnswer: "It reduces carbon fixation efficiency"
+        },
+        {
+            question: "What is the role of photorespiration in nitrogen metabolism?",
+            options: ["To increase nitrogen uptake", "To inhibit nitrogen assimilation", "To promote nitrogen recycling", "To reduce nitrogen loss"],
+            correctAnswer: "To reduce nitrogen loss"
+        },
+        {
+            question: "Which enzyme catalyzes the conversion of glycolate to glyoxylate in the photorespiratory pathway?",
+            options: ["Rubisco", "Glycolate oxidase", "Glycine decarboxylase", "Alanine aminotransferase"],
+            correctAnswer: "Glycolate oxidase"
+        },
+        {
+            question: "Under what conditions does photorespiration become less prevalent?",
+            options: ["Low carbon dioxide levels", "High oxygen levels", "Low light intensity", "High humidity"],
+            correctAnswer: "Low oxygen levels"
+        },
+        {
+            question: "What is the role of photorespiration in the production of reactive oxygen species?",
+            options: ["To promote ROS production", "To inhibit ROS production", "To scavenge ROS", "To neutralize ROS"],
+            correctAnswer: "To scavenge ROS"
+        },
+        {
+            question: "Which metabolic pathway is closely linked to photorespiration?",
+            options: ["Glycolysis", "Calvin cycle", "Krebs cycle", "Pentose phosphate pathway"],
+            correctAnswer: "Calvin cycle"
+        },
+        {
+            question: "How does photorespiration affect the efficiency of ATP production in plants?",
+            options: ["It enhances ATP production", "It reduces ATP production", "It has no effect on ATP production", "It completely inhibits ATP production"],
+            correctAnswer: "It reduces ATP production"
+        },
+        {
+            question: "What is the relationship between temperature and the rate of photorespiration?",
+            options: ["As temperature increases, photorespiration rate decreases", "As temperature increases, photorespiration rate increases", "Temperature has no effect on photorespiration rate", "Temperature completely inhibits photorespiration"],
+            correctAnswer: "As temperature increases, photorespiration rate increases"
+        },
+        {
+            question: "Which of the following is a consequence of photorespiration on plant growth under high light intensity?",
+            options: ["It promotes growth", "It inhibits growth", "It has no effect on growth", "It completely stops growth"],
+            correctAnswer: "It inhibits growth"
+        },
+        {
+            question: "What is the primary role of photorespiration in maintaining cellular redox balance?",
+            options: ["To oxidize NADPH", "To reduce NADH", "To oxidize NADH", "To reduce NADPH"],
+            correctAnswer: "To oxidize NADPH"
+        },
+        {
+            question: "How does photorespiration affect the rate of carbon assimilation in plants?",
+            options: ["It increases carbon assimilation rate", "It decreases carbon assimilation rate", "It has no effect on carbon assimilation rate", "It completely inhibits carbon assimilation"],
+            correctAnswer: "It decreases carbon assimilation rate"
+        },
+        {
+            question: "What is the impact of photorespiration on the carbon-to-nitrogen ratio in plant tissues?",
+            options: ["It increases the ratio", "It decreases the ratio", "It has no effect on the ratio", "It completely disrupts the ratio"],
+            correctAnswer: "It decreases the ratio"
+        },
+        {
+            question: "What is the primary consequence of photorespiration on the utilization of energy by plants?",
+            options: ["It enhances energy utilization", "It reduces energy utilization", "It has no effect on energy utilization", "It completely inhibits energy utilization"],
+            correctAnswer: "It reduces energy utilization"
+        },
+        {
+            question: "How does photorespiration affect the pH of the chloroplast stroma?",
+            options: ["It increases stromal pH", "It decreases stromal pH", "It has no effect on stromal pH", "It completely disrupts stromal pH"],
+            correctAnswer: "It decreases stromal pH"
+        },
+        {
+            question: "What is the significance of photorespiration in regulating the levels of photorespiratory intermediates?",
+            options: ["To promote accumulation of intermediates", "To inhibit accumulation of intermediates", "To maintain constant levels of intermediates", "To completely deplete intermediates"],
+            correctAnswer: "To maintain constant levels of intermediates"
+        },
+        {
+            question: "Which of the following is a characteristic feature of plants with reduced photorespiration?",
+            options: ["Increased water use efficiency", "Decreased carbon assimilation rate", "Enhanced growth under stress conditions", "Reduced oxidative stress tolerance"],
+            correctAnswer: "Increased water use efficiency"
+        },
+        {
+            question: "How does photorespiration affect the efficiency of carbon dioxide uptake by plants?",
+            options: ["It enhances carbon dioxide uptake efficiency", "It reduces carbon dioxide uptake efficiency", "It has no effect on carbon dioxide uptake efficiency", "It completely inhibits carbon dioxide uptake"],
+            correctAnswer: "It reduces carbon dioxide uptake efficiency"
+        },
+        {
+            question: "What is the primary role of photorespiration in maintaining cellular redox balance?",
+            options: ["To oxidize NADPH", "To reduce NADH", "To oxidize NADH", "To reduce NADPH"],
+            correctAnswer: "To oxidize NADPH"
+        },
+        {
+            question: "How does photorespiration affect the rate of carbon assimilation in plants?",
+            options: ["It increases carbon assimilation rate", "It decreases carbon assimilation rate", "It has no effect on carbon assimilation rate", "It completely inhibits carbon assimilation"],
+            correctAnswer: "It decreases carbon assimilation rate"
+        },
+        {
+            question: "What is the impact of photorespiration on the carbon-to-nitrogen ratio in plant tissues?",
+            options: ["It increases the ratio", "It decreases the ratio", "It has no effect on the ratio", "It completely disrupts the ratio"],
+            correctAnswer: "It decreases the ratio"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

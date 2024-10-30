@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Solid State - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .solid-state-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .solid-state-title{
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Solid State - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="solid-state-header">
+                <h1 class="solid-state-title">Solid State</h1>
+                <p>Explore the properties, structures, and behaviors of solid materials essential for understanding advanced physics concepts.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Solid State</h2>
+                <div class="topic-content">
+                    <p>The solid state of matter has unique properties and structures that distinguish it from liquids and gases. Understanding these properties is essential in fields like materials science and condensed matter physics.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3>Crystal Lattices</h3>
+                            <p>Study of the arrangement of atoms in a crystalline structure and how this affects material properties.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-th-large"></i>
+                            </div>
+                            <h3>Types of Solids</h3>
+                            <p>Distinguishing between different types of solids: metallic, ionic, covalent, and molecular solids.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3>Mechanical Properties</h3>
+                            <p>Analysis of properties such as elasticity, plasticity, hardness, and toughness in solid materials.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>Electrical Conductivity</h3>
+                            <p>Understanding how the structure of solids affects their ability to conduct electricity, including semiconductors and insulators.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Phase Changes in Solids</h2>
+                <div class="topic-content">
+                    <p>Phase changes in solids involve transitions between different states of matter and are fundamental in various applications, including metallurgy and crystallography.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <h3>Melting and Freezing</h3>
+                            <p>Understanding the processes of melting and freezing, including the role of temperature and pressure.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3>Sublimation and Deposition</h3>
+                            <p>The transition between solid and gas phases without passing through the liquid phase, significant in various applications.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <h3>Phase Diagrams</h3>
+                            <p>Graphical representations of the physical states of a substance under varying conditions of temperature and pressure.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <h3>Allotropes</h3>
+                            <p>Understanding different structural forms of the same element in solid state, such as carbon in diamond and graphite forms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Physical World and Measurement concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is a crystal lattice?",
+            options: ["A regular arrangement of atoms, ions, or molecules in three-dimensional space", "A random arrangement of atoms, ions, or molecules", "A liquid state of matter", "A gaseous state of matter"],
+            correctAnswer: "A regular arrangement of atoms, ions, or molecules in three-dimensional space"
+        },
+        {
+            question: "What are unit cells in the context of solid state?",
+            options: ["The smallest repeating unit in a crystal lattice", "A measure of electrical conductivity", "A measure of thermal conductivity", "The arrangement of atoms in a solid"],
+            correctAnswer: "The smallest repeating unit in a crystal lattice"
+        },
+        {
+            question: "What is the difference between a crystalline and an amorphous solid?",
+            options: ["Crystalline solids have a regular repeating pattern; amorphous solids do not", "Amorphous solids have a regular repeating pattern; crystalline solids do not", "Crystalline solids are softer than amorphous solids", "Amorphous solids are softer than crystalline solids"],
+            correctAnswer: "Crystalline solids have a regular repeating pattern; amorphous solids do not"
+        },
+        {
+            question: "What is the term for the arrangement of ions in a crystal lattice?",
+            options: ["Crystal structure", "Atomic structure", "Molecular structure", "Ionic structure"],
+            correctAnswer: "Crystal structure"
+        },
+        {
+            question: "What is the Bravais lattice?",
+            options: ["A classification system for crystal structures based on unit cell geometry", "A type of ionic bonding", "A measure of crystallographic defects", "A type of covalent bonding"],
+            correctAnswer: "A classification system for crystal structures based on unit cell geometry"
+        },
+        {
+            question: "Which of the following is not a type of crystal structure?",
+            options: ["Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)", "Atomic-centered cubic (ACC)"],
+            correctAnswer: "Atomic-centered cubic (ACC)"
+        },
+        {
+            question: "What is the coordination number of an atom in a simple cubic structure?",
+            options: ["6", "8", "12", "4"],
+            correctAnswer: "6"
+        },
+        {
+            question: "Which crystal structure has the highest packing efficiency?",
+            options: ["Face-centered cubic (FCC)", "Body-centered cubic (BCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the formula for packing efficiency in a crystal lattice?",
+            options: ["(Volume of atoms in unit cell / Total volume of unit cell) * 100%", "(Volume of unit cell / Volume of atoms in unit cell) * 100%", "(Number of atoms in unit cell / Total volume of unit cell) * 100%", "(Total volume of unit cell / Number of atoms in unit cell) * 100%"],
+            correctAnswer: "(Volume of atoms in unit cell / Total volume of unit cell) * 100%"
+        },
+        {
+            question: "Which type of bond holds the atoms together in a metallic crystal?",
+            options: ["Metallic bond", "Ionic bond", "Covalent bond", "Van der Waals bond"],
+            correctAnswer: "Metallic bond"
+        },
+        {
+            question: "What is the term for the regular arrangement of atoms or ions in a crystal lattice?",
+            options: ["Crystal structure", "Molecular structure", "Amorphous structure", "Liquid structure"],
+            correctAnswer: "Crystal structure"
+        },
+        {
+            question: "What is the term for the smallest repeating unit in a crystal lattice?",
+            options: ["Unit cell", "Molecule", "Ion", "Element"],
+            correctAnswer: "Unit cell"
+        },
+        {
+            question: "Which crystal structure is often found in metals?",
+            options: ["Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the term for a solid material whose constituent atoms, molecules, or ions are arranged in an orderly repeating pattern extending in all three spatial dimensions?",
+            options: ["Crystalline solid", "Amorphous solid", "Liquid", "Gas"],
+            correctAnswer: "Crystalline solid"
+        },
+        {
+            question: "Which type of crystal structure is characterized by a cube with atoms at each corner and one in the center of the cube?",
+            options: ["Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Body-centered cubic (BCC)"
+        },
+        {
+            question: "Which crystal structure has a coordination number of 12 for each atom?",
+            options: ["Face-centered cubic (FCC)", "Body-centered cubic (BCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the term for the structure formed by ions of opposite charges arranged in a regular pattern?",
+            options: ["Ionic crystal", "Covalent crystal", "Metallic crystal", "Van der Waals crystal"],
+            correctAnswer: "Ionic crystal"
+        },
+        {
+            question: "Which type of crystal structure has an ABAB... stacking sequence?",
+            options: ["Hexagonal close-packed (HCP)", "Cubic close-packed (CCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Hexagonal close-packed (HCP)"
+        },
+        {
+            question: "What is the term for the geometric arrangement of atoms or ions in a crystal lattice?",
+            options: ["Crystal structure", "Molecular structure", "Atomic structure", "Amorphous structure"],
+            correctAnswer: "Crystal structure"
+        },
+        {
+            question: "Which crystal structure has the highest density among metals?",
+            options: ["Face-centered cubic (FCC)", "Body-centered cubic (BCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the term for the arrangement of atoms or ions in a crystal structure with the least free space?",
+            options: ["Close-packed structure", "Open-packed structure", "Random-packed structure", "Porous structure"],
+            correctAnswer: "Close-packed structure"
+        },
+        {
+            question: "Which type of crystal structure has an ABCABC... stacking sequence?",
+            options: ["Cubic close-packed (CCP)", "Hexagonal close-packed (HCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Cubic close-packed (CCP)"
+        },
+        {
+            question: "What is the term for a solid material whose atoms, ions, or molecules are arranged in a random manner?",
+            options: ["Amorphous solid", "Crystalline solid", "Liquid", "Gas"],
+            correctAnswer: "Amorphous solid"
+        },
+        {
+            question: "Which type of crystal structure has an AA... stacking sequence?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the maximum number of nearest neighbors around an atom in a crystal lattice?",
+            options: ["Coordination number", "Ionic number", "Metallic number", "Atomic number"],
+            correctAnswer: "Coordination number"
+        },
+        {
+            question: "Which crystal structure has the lowest packing efficiency?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the energy required to separate one mole of a solid ionic compound into its gaseous ions?",
+            options: ["Lattice energy", "Bond energy", "Activation energy", "Heat of formation"],
+            correctAnswer: "Lattice energy"
+        },
+        {
+            question: "Which crystal structure has the highest atomic packing factor?",
+            options: ["Face-centered cubic (FCC)", "Body-centered cubic (BCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the term for the tendency of a solid to fracture or break along specific planes?",
+            options: ["Cleavage", "Fracture", "Brittleness", "Ductility"],
+            correctAnswer: "Cleavage"
+        },
+        {
+            question: "Which crystal structure has an ABAB... stacking sequence?",
+            options: ["Hexagonal close-packed (HCP)", "Cubic close-packed (CCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Hexagonal close-packed (HCP)"
+        },
+        {
+            question: "What is the term for the arrangement of ions in a crystal lattice such that the positive and negative charges balance each other?",
+            options: ["Electrostatic balance", "Ionic balance", "Charge balance", "Crystal balance"],
+            correctAnswer: "Electrostatic balance"
+        },
+        {
+            question: "Which crystal structure has a coordination number of 8 for each atom?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the arrangement of atoms or ions in a crystal lattice that repeats indefinitely?",
+            options: ["Periodic arrangement", "Crystal lattice", "Molecular structure", "Atomic structure"],
+            correctAnswer: "Crystal lattice"
+        },
+        {
+            question: "Which type of crystal structure has an ABCABC... stacking sequence?",
+            options: ["Cubic close-packed (CCP)", "Hexagonal close-packed (HCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Cubic close-packed (CCP)"
+        },
+        {
+            question: "What is the term for the state of a solid when it has a highly ordered arrangement of atoms, ions, or molecules?",
+            options: ["Crystalline state", "Amorphous state", "Liquid state", "Gaseous state"],
+            correctAnswer: "Crystalline state"
+        },
+        {
+            question: "Which type of crystal structure has an AA... stacking sequence?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the maximum number of nearest neighbors around an atom in a crystal lattice?",
+            options: ["Coordination number", "Ionic number", "Metallic number", "Atomic number"],
+            correctAnswer: "Coordination number"
+        },
+        {
+            question: "Which crystal structure has the lowest packing efficiency?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the energy required to separate one mole of a solid ionic compound into its gaseous ions?",
+            options: ["Lattice energy", "Bond energy", "Activation energy", "Heat of formation"],
+            correctAnswer: "Lattice energy"
+        },
+        {
+            question: "Which crystal structure has the highest atomic packing factor?",
+            options: ["Face-centered cubic (FCC)", "Body-centered cubic (BCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the term for the tendency of a solid to fracture or break along specific planes?",
+            options: ["Cleavage", "Fracture", "Brittleness", "Ductility"],
+            correctAnswer: "Cleavage"
+        },
+        {
+            question: "Which crystal structure has an ABAB... stacking sequence?",
+            options: ["Hexagonal close-packed (HCP)", "Cubic close-packed (CCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Hexagonal close-packed (HCP)"
+        },
+        {
+            question: "What is the term for the arrangement of ions in a crystal lattice such that the positive and negative charges balance each other?",
+            options: ["Electrostatic balance", "Ionic balance", "Charge balance", "Crystal balance"],
+            correctAnswer: "Electrostatic balance"
+        },
+        {
+            question: "Which crystal structure has a coordination number of 8 for each atom?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the arrangement of atoms or ions in a crystal lattice that repeats indefinitely?",
+            options: ["Periodic arrangement", "Crystal lattice", "Molecular structure", "Atomic structure"],
+            correctAnswer: "Crystal lattice"
+        },
+        {
+            question: "Which type of crystal structure has an ABCABC... stacking sequence?",
+            options: ["Cubic close-packed (CCP)", "Hexagonal close-packed (HCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Cubic close-packed (CCP)"
+        },
+        {
+            question: "What is the term for the state of a solid when it has a highly ordered arrangement of atoms, ions, or molecules?",
+            options: ["Crystalline state", "Amorphous state", "Liquid state", "Gaseous state"],
+            correctAnswer: "Crystalline state"
+        },
+        {
+            question: "Which type of crystal structure has an AA... stacking sequence?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the maximum number of nearest neighbors around an atom in a crystal lattice?",
+            options: ["Coordination number", "Ionic number", "Metallic number", "Atomic number"],
+            correctAnswer: "Coordination number"
+        },
+        {
+            question: "Which crystal structure has the lowest packing efficiency?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the energy required to separate one mole of a solid ionic compound into its gaseous ions?",
+            options: ["Lattice energy", "Bond energy", "Activation energy", "Heat of formation"],
+            correctAnswer: "Lattice energy"
+        },
+        {
+            question: "Which crystal structure has the highest atomic packing factor?",
+            options: ["Face-centered cubic (FCC)", "Body-centered cubic (BCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the term for the tendency of a solid to fracture or break along specific planes?",
+            options: ["Cleavage", "Fracture", "Brittleness", "Ductility"],
+            correctAnswer: "Cleavage"
+        },
+        {
+            question: "Which crystal structure has an ABAB... stacking sequence?",
+            options: ["Hexagonal close-packed (HCP)", "Cubic close-packed (CCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Hexagonal close-packed (HCP)"
+        },
+        {
+            question: "What is the term for the arrangement of ions in a crystal lattice such that the positive and negative charges balance each other?",
+            options: ["Electrostatic balance", "Ionic balance", "Charge balance", "Crystal balance"],
+            correctAnswer: "Electrostatic balance"
+        },
+        {
+            question: "Which crystal structure has a coordination number of 8 for each atom?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the arrangement of atoms or ions in a crystal lattice that repeats indefinitely?",
+            options: ["Periodic arrangement", "Crystal lattice", "Molecular structure", "Atomic structure"],
+            correctAnswer: "Crystal lattice"
+        },
+        {
+            question: "Which type of crystal structure has an ABCABC... stacking sequence?",
+            options: ["Cubic close-packed (CCP)", "Hexagonal close-packed (HCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Cubic close-packed (CCP)"
+        },
+        {
+            question: "What is the term for the state of a solid when it has a highly ordered arrangement of atoms, ions, or molecules?",
+            options: ["Crystalline state", "Amorphous state", "Liquid state", "Gaseous state"],
+            correctAnswer: "Crystalline state"
+        },
+        {
+            question: "Which type of crystal structure has an AA... stacking sequence?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the maximum number of nearest neighbors around an atom in a crystal lattice?",
+            options: ["Coordination number", "Ionic number", "Metallic number", "Atomic number"],
+            correctAnswer: "Coordination number"
+        },
+        {
+            question: "Which crystal structure has the lowest packing efficiency?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the energy required to separate one mole of a solid ionic compound into its gaseous ions?",
+            options: ["Lattice energy", "Bond energy", "Activation energy", "Heat of formation"],
+            correctAnswer: "Lattice energy"
+        },
+        {
+            question: "Which crystal structure has the highest atomic packing factor?",
+            options: ["Face-centered cubic (FCC)", "Body-centered cubic (BCC)", "Simple cubic", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Face-centered cubic (FCC)"
+        },
+        {
+            question: "What is the term for the tendency of a solid to fracture or break along specific planes?",
+            options: ["Cleavage", "Fracture", "Brittleness", "Ductility"],
+            correctAnswer: "Cleavage"
+        },
+        {
+            question: "Which crystal structure has an ABAB... stacking sequence?",
+            options: ["Hexagonal close-packed (HCP)", "Cubic close-packed (CCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Hexagonal close-packed (HCP)"
+        },
+        {
+            question: "What is the term for the arrangement of ions in a crystal lattice such that the positive and negative charges balance each other?",
+            options: ["Electrostatic balance", "Ionic balance", "Charge balance", "Crystal balance"],
+            correctAnswer: "Electrostatic balance"
+        },
+        {
+            question: "Which crystal structure has a coordination number of 8 for each atom?",
+            options: ["Simple cubic", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)", "Hexagonal close-packed (HCP)"],
+            correctAnswer: "Simple cubic"
+        },
+        {
+            question: "What is the term for the arrangement of atoms or ions in a crystal lattice that repeats indefinitely?",
+            options: ["Periodic arrangement", "Crystal lattice", "Molecular structure", "Atomic structure"],
+            correctAnswer: "Crystal lattice"
+        },
+        {
+            question: "Which type of crystal structure has an ABCABC... stacking sequence?",
+            options: ["Cubic close-packed (CCP)", "Hexagonal close-packed (HCP)", "Body-centered cubic (BCC)", "Face-centered cubic (FCC)"],
+            correctAnswer: "Cubic close-packed (CCP)"
+        },
+        {
+            question: "What is the term for the state of a solid when it has a highly ordered arrangement of atoms, ions, or molecules?",
+            options: ["Crystalline state", "Amorphous state", "Liquid state", "Gaseous state"],
+            correctAnswer: "Crystalline state"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>
