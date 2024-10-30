@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Biomolecules - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .chemistry-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chemistry-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Biomolecules - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        <main class="main-content">
+            <div class="chemistry-header">
+                <h1 class="chemistry-title">Biomolecules</h1>
+                <p>Explore the chemistry of life by understanding the structure, function, and significance of biomolecules essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Introduction to Biomolecules</h2>
+                <div class="topic-content">
+                    <p>Biomolecules are organic compounds that form the basis of living organisms. They play essential roles in structure, metabolism, and genetic information processing.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Carbohydrates</h3>
+                            <p>Study the structure and function of carbohydrates, which serve as primary sources of energy and structural components.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-drumstick-bite"></i>
+                            </div>
+                            <h3>Proteins</h3>
+                            <p>Explore proteins, the workhorses of the cell, involved in catalysis, transport, signaling, and structural support.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Lipids</h3>
+                            <p>Understand the role of lipids as energy reserves, cell membrane components, and signaling molecules.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Nucleic Acids</h3>
+                            <p>Learn about DNA and RNA, the molecules responsible for genetic information storage and transmission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Types and Functions of Biomolecules</h2>
+                <div class="topic-content">
+                    <p>Biomolecules vary in structure and function, contributing uniquely to life processes. Explore the diverse types and their essential roles.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Monosaccharides</h3>
+                            <p>Simple sugars like glucose and fructose, which serve as basic energy sources and building blocks.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <h3>Polysaccharides</h3>
+                            <p>Complex carbohydrates such as starch and cellulose, providing energy storage and structural integrity.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h3>Enzymes</h3>
+                            <p>Proteins that act as biological catalysts, accelerating chemical reactions necessary for life processes.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <h3>Genetic Material</h3>
+                            <p>DNA and RNA, carriers of genetic information, responsible for inheritance and protein synthesis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Biomolecules concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What are biomolecules?",
+            options: ["Molecules found in biological organisms", "Molecules synthesized in laboratories", "Molecules used in industrial processes", "Molecules found in non-living matter"],
+            correctAnswer: "Molecules found in biological organisms"
+        },
+        {
+            question: "What is the most abundant biomolecule in living organisms?",
+            options: ["Proteins", "Carbohydrates", "Lipids", "Nucleic acids"],
+            correctAnswer: "Proteins"
+        },
+        {
+            question: "What are carbohydrates primarily composed of?",
+            options: ["Carbon, hydrogen, oxygen", "Carbon, nitrogen, phosphorus", "Carbon, hydrogen, nitrogen", "Carbon, oxygen, nitrogen"],
+            correctAnswer: "Carbon, hydrogen, oxygen"
+        },
+        {
+            question: "Which carbohydrate is known as blood sugar?",
+            options: ["Glucose", "Fructose", "Sucrose", "Lactose"],
+            correctAnswer: "Glucose"
+        },
+        {
+            question: "What is the primary function of carbohydrates in living organisms?",
+            options: ["Energy storage and structure", "Enzyme catalysis", "Cell membrane formation", "Hormone synthesis"],
+            correctAnswer: "Energy storage and structure"
+        },
+        {
+            question: "Which biomolecule is primarily responsible for storing genetic information?",
+            options: ["Proteins", "Carbohydrates", "Lipids", "Nucleic acids"],
+            correctAnswer: "Nucleic acids"
+        },
+        {
+            question: "What are the building blocks of proteins?",
+            options: ["Monosaccharides", "Amino acids", "Fatty acids", "Nucleotides"],
+            correctAnswer: "Amino acids"
+        },
+        {
+            question: "What is the primary function of proteins?",
+            options: ["Energy storage", "Genetic information storage", "Structural support and enzymatic activity", "Cell membrane formation"],
+            correctAnswer: "Structural support and enzymatic activity"
+        },
+        {
+            question: "Which lipid is a major component of cell membranes?",
+            options: ["Cholesterol", "Triglycerides", "Phospholipids", "Saturated fats"],
+            correctAnswer: "Phospholipids"
+        },
+        {
+            question: "What is the main function of lipids in living organisms?",
+            options: ["Energy storage and insulation", "Genetic information storage", "Protein synthesis", "Cell wall formation"],
+            correctAnswer: "Energy storage and insulation"
+        },
+        {
+            question: "Which nucleic acid carries genetic information?",
+            options: ["Ribonucleic acid (RNA)", "Deoxyribonucleic acid (DNA)", "Messenger RNA (mRNA)", "Transfer RNA (tRNA)"],
+            correctAnswer: "Deoxyribonucleic acid (DNA)"
+        },
+        {
+            question: "What are the building blocks of nucleic acids?",
+            options: ["Amino acids", "Nucleotides", "Monosaccharides", "Fatty acids"],
+            correctAnswer: "Nucleotides"
+        },
+        {
+            question: "What is the function of nucleic acids in living organisms?",
+            options: ["Energy storage", "Structural support", "Genetic information storage and protein synthesis", "Enzyme catalysis"],
+            correctAnswer: "Genetic information storage and protein synthesis"
+        },
+        {
+            question: "Which biomolecule category includes insulin and hemoglobin?",
+            options: ["Proteins", "Carbohydrates", "Lipids", "Nucleic acids"],
+            correctAnswer: "Proteins"
+        },
+        {
+            question: "What is the function of insulin in the body?",
+            options: ["Energy storage", "Blood sugar regulation", "Hormone synthesis", "Muscle contraction"],
+            correctAnswer: "Blood sugar regulation"
+        },
+        {
+            question: "Which carbohydrate is commonly found in milk?",
+            options: ["Glucose", "Fructose", "Sucrose", "Lactose"],
+            correctAnswer: "Lactose"
+        },
+        {
+            question: "What is the function of lipids in cell membranes?",
+            options: ["Energy storage", "Structural support", "Hormone synthesis", "Formation of hydrophobic barrier"],
+            correctAnswer: "Formation of hydrophobic barrier"
+        },
+        {
+            question: "Which nucleic acid is involved in protein synthesis?",
+            options: ["Ribonucleic acid (RNA)", "Deoxyribonucleic acid (DNA)", "Messenger RNA (mRNA)", "Transfer RNA (tRNA)"],
+            correctAnswer: "Ribonucleic acid (RNA)"
+        },
+        {
+            question: "What is the structure of DNA?",
+            options: ["Double helix", "Single strand", "Triple helix", "Random coil"],
+            correctAnswer: "Double helix"
+        },
+        {
+            question: "Which lipid is essential for the absorption of fat-soluble vitamins?",
+            options: ["Cholesterol", "Triglycerides", "Phospholipids", "Saturated fats"],
+            correctAnswer: "Cholesterol"
+        },
+        {
+            question: "What is the primary role of enzymes in biomolecules?",
+            options: ["Energy storage", "Catalyzing chemical reactions", "Structural support", "Hormone regulation"],
+            correctAnswer: "Catalyzing chemical reactions"
+        },
+        {
+            question: "Which biomolecule is involved in long-term energy storage in organisms?",
+            options: ["Proteins", "Carbohydrates", "Lipids", "Nucleic acids"],
+            correctAnswer: "Lipids"
+        },
+        {
+            question: "What is the function of RNA in protein synthesis?",
+            options: ["Carrying amino acids to ribosomes", "Storing genetic information", "Regulating gene expression", "Translating DNA code into proteins"],
+            correctAnswer: "Translating DNA code into proteins"
+        },
+        {
+            question: "Which carbohydrate is commonly known as table sugar?",
+            options: ["Glucose", "Fructose", "Sucrose", "Lactose"],
+            correctAnswer: "Sucrose"
+        },
+        {
+            question: "What is the function of ATP (adenosine triphosphate) in cells?",
+            options: ["Energy storage", "Genetic information storage", "Cell membrane formation", "Energy currency for cellular processes"],
+            correctAnswer: "Energy currency for cellular processes"
+        },
+        {
+            question: "Which nucleotide base pairs with adenine in DNA?",
+            options: ["Thymine", "Guanine", "Cytosine", "Uracil"],
+            correctAnswer: "Thymine"
+        },
+        {
+            question: "What is the main function of DNA in cells?",
+            options: ["Energy storage", "Protein synthesis", "Genetic information storage", "Cell structure"],
+            correctAnswer: "Genetic information storage"
+        },
+        {
+            question: "Which lipid is solid at room temperature?",
+            options: ["Cholesterol", "Triglycerides", "Phospholipids", "Saturated fats"],
+            correctAnswer: "Saturated fats"
+        },
+        {
+            question: "What is the primary function of phospholipids in cell membranes?",
+            options: ["Energy storage", "Structural support", "Hormone synthesis", "Forming the lipid bilayer"],
+            correctAnswer: "Forming the lipid bilayer"
+        },
+        {
+            question: "Which nucleotide base pairs with cytosine in DNA?",
+            options: ["Thymine", "Guanine", "Adenine", "Uracil"],
+            correctAnswer: "Guanine"
+        },
+        {
+            question: "What is the structure of RNA?",
+            options: ["Double helix", "Single strand", "Triple helix", "Random coil"],
+            correctAnswer: "Single strand"
+        },
+        {
+            question: "Which carbohydrate is commonly found in fruits and honey?",
+            options: ["Glucose", "Fructose", "Sucrose", "Lactose"],
+            correctAnswer: "Fructose"
+        },
+        {
+            question: "What is the function of triglycerides in living organisms?",
+            options: ["Energy storage", "Genetic information storage", "Structural support", "Enzyme catalysis"],
+            correctAnswer: "Energy storage"
+        },
+        {
+            question: "Which nucleotide base pairs with uracil in RNA?",
+            options: ["Thymine", "Guanine", "Cytosine", "Adenine"],
+            correctAnswer: "Adenine"
+        },
+        {
+            question: "What is the function of DNA polymerase in cells?",
+            options: ["Transcribing RNA from DNA", "Translating mRNA into proteins", "Replicating DNA", "Breaking down DNA molecules"],
+            correctAnswer: "Replicating DNA"
+        },
+        {
+            question: "Which lipid is important for hormone production?",
+            options: ["Cholesterol", "Triglycerides", "Phospholipids", "Saturated fats"],
+            correctAnswer: "Cholesterol"
+        },
+        {
+            question: "What is the function of messenger RNA (mRNA) in protein synthesis?",
+            options: ["Carrying amino acids to ribosomes", "Storing genetic information", "Regulating gene expression", "Translating DNA code into proteins"],
+            correctAnswer: "Translating DNA code into proteins"
+        },
+        {
+            question: "Which carbohydrate is commonly found in plant cells as a storage form of glucose?",
+            options: ["Glucose", "Fructose", "Sucrose", "Starch"],
+            correctAnswer: "Starch"
+        },
+        {
+            question: "What is the function of phospholipids in cell membranes?",
+            options: ["Energy storage", "Structural support", "Hormone synthesis", "Forming the lipid bilayer"],
+            correctAnswer: "Forming the lipid bilayer"
+        },
+        {
+            question: "Which nucleotide base pairs with adenine in RNA?",
+            options: ["Thymine", "Guanine", "Cytosine", "Uracil"],
+            correctAnswer: "Uracil"
+        },
+        {
+            question: "What is the function of transfer RNA (tRNA) in protein synthesis?",
+            options: ["Carrying amino acids to ribosomes", "Storing genetic information", "Regulating gene expression", "Translating DNA code into proteins"],
+            correctAnswer: "Carrying amino acids to ribosomes"
+        },
+        {
+            question: "Which carbohydrate is a polymer of glucose units and is found in the cell walls of plants?",
+            options: ["Glucose", "Fructose", "Sucrose", "Cellulose"],
+            correctAnswer: "Cellulose"
+        },
+        {
+            question: "What is the function of steroids among lipids?",
+            options: ["Energy storage", "Structural support", "Hormone regulation", "Enzyme catalysis"],
+            correctAnswer: "Hormone regulation"
+        },
+        {
+            question: "Which nucleotide base pairs with guanine in RNA?",
+            options: ["Thymine", "Adenine", "Cytosine", "Uracil"],
+            correctAnswer: "Cytosine"
+        },
+        {
+            question: "What is the function of ribosomal RNA (rRNA) in protein synthesis?",
+            options: ["Carrying amino acids to ribosomes", "Storing genetic information", "Regulating gene expression", "Forming part of the ribosome"],
+            correctAnswer: "Forming part of the ribosome"
+        },
+        {
+            question: "Which biomolecule category includes antibodies and enzymes?",
+            options: ["Proteins", "Carbohydrates", "Lipids", "Nucleic acids"],
+            correctAnswer: "Proteins"
+        },
+        {
+            question: "What is the function of antibodies in the immune system?",
+            options: ["Energy storage", "Blood sugar regulation", "Defense against pathogens", "Muscle contraction"],
+            correctAnswer: "Defense against pathogens"
+        },
+        {
+            question: "Which carbohydrate is commonly found in honey and fruit?",
+            options: ["Glucose", "Fructose", "Sucrose", "Lactose"],
+            correctAnswer: "Fructose"
+        },
+        {
+            question: "What is the function of glycerol in lipid molecules?",
+            options: ["Energy storage", "Structural support", "Component of triglycerides", "Regulation of metabolic pathways"],
+            correctAnswer: "Component of triglycerides"
+        },
+        {
+            question: "Which nucleotide base pairs with thymine in DNA?",
+            options: ["Adenine", "Guanine", "Cytosine", "Uracil"],
+            correctAnswer: "Adenine"
+        },
+        {
+            question: "What is the function of helicase in DNA replication?",
+            options: ["Unwinding the double helix", "Adding nucleotides to the growing strand", "Proofreading DNA sequences", "Recognizing promoters"],
+            correctAnswer: "Unwinding the double helix"
+        },
+        {
+            question: "Which lipid is a precursor for steroid hormones?",
+            options: ["Cholesterol", "Triglycerides", "Phospholipids", "Saturated fats"],
+            correctAnswer: "Cholesterol"
+        },
+        {
+            question: "What is the function of chaperone proteins in cells?",
+            options: ["Energy storage", "Facilitating protein folding", "Structural support", "Hormone regulation"],
+            correctAnswer: "Facilitating protein folding"
+        },
+        {
+            question: "Which nucleotide base pairs with uracil in RNA?",
+            options: ["Thymine", "Guanine", "Cytosine", "Adenine"],
+            correctAnswer: "Adenine"
+        },
+        {
+            question: "What is the function of RNA polymerase in gene expression?",
+            options: ["Transcribing RNA from DNA", "Translating mRNA into proteins", "Replicating DNA", "Breaking down DNA molecules"],
+            correctAnswer: "Transcribing RNA from DNA"
+        },
+        {
+            question: "Which carbohydrate is commonly found in milk?",
+            options: ["Glucose", "Fructose", "Sucrose", "Lactose"],
+            correctAnswer: "Lactose"
+        },
+        {
+            question: "What is the function of phospholipids in cell membranes?",
+            options: ["Energy storage", "Structural support", "Hormone synthesis", "Forming the lipid bilayer"],
+            correctAnswer: "Forming the lipid bilayer"
+        },
+        {
+            question: "Which nucleotide base pairs with cytosine in DNA?",
+            options: ["Thymine", "Guanine", "Adenine", "Uracil"],
+            correctAnswer: "Guanine"
+        },
+        {
+            question: "What is the structure of RNA?",
+            options: ["Double helix", "Single strand", "Triple helix", "Random coil"],
+            correctAnswer: "Single strand"
+        },
+        {
+            question: "Which carbohydrate is commonly found in fruits and honey?",
+            options: ["Glucose", "Fructose", "Sucrose", "Lactose"],
+            correctAnswer: "Fructose"
+        },
+        {
+            question: "What is the function of triglycerides in living organisms?",
+            options: ["Energy storage", "Genetic information storage", "Structural support", "Enzyme catalysis"],
+            correctAnswer: "Energy storage"
+        },
+        {
+            question: "Which nucleotide base pairs with uracil in RNA?",
+            options: ["Thymine", "Guanine", "Cytosine", "Adenine"],
+            correctAnswer: "Adenine"
+        },
+        {
+            question: "What is the function of DNA polymerase in cells?",
+            options: ["Transcribing RNA from DNA", "Translating mRNA into proteins", "Replicating DNA", "Breaking down DNA molecules"],
+            correctAnswer: "Replicating DNA"
+        },
+        {
+            question: "Which lipid is important for hormone production?",
+            options: ["Cholesterol", "Triglycerides", "Phospholipids", "Saturated fats"],
+            correctAnswer: "Cholesterol"
+        },
+        {
+            question: "What is the function of messenger RNA (mRNA) in protein synthesis?",
+            options: ["Carrying amino acids to ribosomes", "Storing genetic information", "Regulating gene expression", "Translating DNA code into proteins"],
+            correctAnswer: "Translating DNA code into proteins"
+        },
+        {
+            question: "Which carbohydrate is commonly found in plant cells as a storage form of glucose?",
+            options: ["Glucose", "Fructose", "Sucrose", "Starch"],
+            correctAnswer: "Starch"
+        },
+        {
+            question: "What is the function of phospholipids in cell membranes?",
+            options: ["Energy storage", "Structural support", "Hormone synthesis", "Forming the lipid bilayer"],
+            correctAnswer: "Forming the lipid bilayer"
+        },
+        {
+            question: "Which nucleotide base pairs with adenine in RNA?",
+            options: ["Thymine", "Guanine", "Cytosine", "Uracil"],
+            correctAnswer: "Uracil"
+        },
+        {
+            question: "What is the function of transfer RNA (tRNA) in protein synthesis?",
+            options: ["Carrying amino acids to ribosomes", "Storing genetic information", "Regulating gene expression", "Translating DNA code into proteins"],
+            correctAnswer: "Carrying amino acids to ribosomes"
+        },
+        {
+            question: "Which carbohydrate is a polymer of glucose units and is found in the cell walls of plants?",
+            options: ["Glucose", "Fructose", "Sucrose", "Cellulose"],
+            correctAnswer: "Cellulose"
+        },
+        {
+            question: "What is the function of steroids among lipids?",
+            options: ["Energy storage", "Structural support", "Hormone regulation", "Enzyme catalysis"],
+            correctAnswer: "Hormone regulation"
+        },
+        {
+            question: "Which nucleotide base pairs with guanine in RNA?",
+            options: ["Thymine", "Adenine", "Cytosine", "Uracil"],
+            correctAnswer: "Cytosine"
+        },
+        {
+            question: "What is the function of ribosomal RNA (rRNA) in protein synthesis?",
+            options: ["Carrying amino acids to ribosomes", "Storing genetic information", "Regulating gene expression", "Forming part of the ribosome"],
+            correctAnswer: "Forming part of the ribosome"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

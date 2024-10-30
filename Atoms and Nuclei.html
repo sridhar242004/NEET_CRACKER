@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Atoms and Nuclei - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .physics-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .physics-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Atoms and Nuclei - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+        
+        <main class="main-content">
+            <div class="physics-header">
+                <h1 class="physics-title">Atoms and Nuclei</h1>
+                <p>Explore the structure of atoms, their properties, and the fundamental principles of nuclear physics essential for NEET preparation.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Structure of the Atom</h2>
+                <div class="topic-content">
+                    <p>An atom is the smallest unit of an element, composed of protons, neutrons, and electrons. Understanding atomic structure is crucial for grasping the fundamentals of chemistry and physics.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <h3>Subatomic Particles</h3>
+                            <p>Study the fundamental particles that make up an atom: protons, neutrons, and electrons, and their roles in atomic structure.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>Atomic Models</h3>
+                            <p>Explore various atomic models, including Dalton's, Thomson's, Rutherford's, and Bohr's models, and their contributions to atomic theory.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3>Electron Configuration</h3>
+                            <p>Understanding how electrons are arranged in an atom and the significance of electron shells and subshells.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <h3>Ions and Isotopes</h3>
+                            <p>Explore the concepts of ions, isotopes, and how they affect the chemical behavior of elements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Nuclear Physics</h2>
+                <div class="topic-content">
+                    <p>Nuclear physics studies the components and behavior of atomic nuclei. This section covers nuclear forces, reactions, and applications.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-radiation"></i>
+                            </div>
+                            <h3>Nuclear Forces</h3>
+                            <p>Understanding the strong and weak nuclear forces that hold the nucleus together and govern radioactive decay.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-explosion"></i>
+                            </div>
+                            <h3>Nuclear Reactions</h3>
+                            <p>Learn about fission, fusion, and other nuclear reactions, along with their applications in energy production and medicine.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-lambda"></i>
+                            </div>
+                            <h3>Radioactivity</h3>
+                            <p>Explore the phenomenon of radioactivity, types of radioactive decay, and its implications in various fields.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>Applications of Nuclear Physics</h3>
+                            <p>Understanding how nuclear physics principles are applied in medicine, energy, and technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Atoms and Nuclei concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the charge of an electron?",
+            options: ["Positive", "Negative", "Neutral", "Variable"],
+            correctAnswer: "Negative"
+        },
+        {
+            question: "Who discovered the electron?",
+            options: ["J.J. Thomson", "Ernest Rutherford", "Niels Bohr", "Max Planck"],
+            correctAnswer: "J.J. Thomson"
+        },
+        {
+            question: "What is the charge of a proton?",
+            options: ["Positive", "Negative", "Neutral", "Variable"],
+            correctAnswer: "Positive"
+        },
+        {
+            question: "Who discovered the proton?",
+            options: ["J.J. Thomson", "Ernest Rutherford", "Niels Bohr", "Max Planck"],
+            correctAnswer: "Ernest Rutherford"
+        },
+        {
+            question: "What is the charge of a neutron?",
+            options: ["Positive", "Negative", "Neutral", "Variable"],
+            correctAnswer: "Neutral"
+        },
+        {
+            question: "Who discovered the neutron?",
+            options: ["J.J. Thomson", "Ernest Rutherford", "Niels Bohr", "James Chadwick"],
+            correctAnswer: "James Chadwick"
+        },
+        {
+            question: "What is the nucleus of an atom composed of?",
+            options: ["Protons and electrons", "Protons and neutrons", "Electrons and neutrons", "Only protons"],
+            correctAnswer: "Protons and neutrons"
+        },
+        {
+            question: "What is the atomic number of an element?",
+            options: ["Number of protons", "Number of neutrons", "Number of electrons", "Number of nucleons"],
+            correctAnswer: "Number of protons"
+        },
+        {
+            question: "What is the mass number of an element?",
+            options: ["Number of protons", "Number of neutrons", "Number of electrons", "Number of nucleons"],
+            correctAnswer: "Number of nucleons"
+        },
+        {
+            question: "What is an isotope?",
+            options: ["Atoms of different elements with the same number of neutrons", "Atoms of different elements with the same number of protons", "Atoms of the same element with the same number of neutrons", "Atoms of the same element with the same number of protons"],
+            correctAnswer: "Atoms of the same element with the same number of protons"
+        },
+        {
+            question: "What is the process of converting an isotope into another by emitting radiation?",
+            options: ["Fission", "Fusion", "Radioactivity", "Decay"],
+            correctAnswer: "Radioactivity"
+        },
+        {
+            question: "What is the unit of activity of a radioactive sample?",
+            options: ["Coulomb", "Radian", "Becquerel", "Sievert"],
+            correctAnswer: "Becquerel"
+        },
+        {
+            question: "What is the half-life of a radioactive substance?",
+            options: ["Time taken for the activity to reduce to half of its initial value", "Time taken for the activity to become zero", "Time taken for the activity to double", "Time taken for the activity to reach its maximum"],
+            correctAnswer: "Time taken for the activity to reduce to half of its initial value"
+        },
+        {
+            question: "What is the phenomenon in which a heavy nucleus splits into two or more lighter nuclei?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fission"
+        },
+        {
+            question: "Which particle is emitted during beta decay?",
+            options: ["Alpha particle", "Beta particle", "Gamma ray", "Neutron"],
+            correctAnswer: "Beta particle"
+        },
+        {
+            question: "Which of the following represents a positron?",
+            options: ["β-", "β+", "γ", "α"],
+            correctAnswer: "β+"
+        },
+        {
+            question: "What is the charge of an alpha particle?",
+            options: ["Positive", "Negative", "Neutral", "Variable"],
+            correctAnswer: "Positive"
+        },
+        {
+            question: "Which radiation has the highest penetration power?",
+            options: ["Alpha", "Beta", "Gamma", "Neutron"],
+            correctAnswer: "Gamma"
+        },
+        {
+            question: "What is the process of combining two light nuclei to form a heavier nucleus?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fusion"
+        },
+        {
+            question: "What is the unit of energy released in a nuclear reaction?",
+            options: ["Electronvolt", "Joule", "Watt", "Volt"],
+            correctAnswer: "Electronvolt"
+        },
+        {
+            question: "What is the term for the energy required to remove a neutron or proton from the nucleus of an atom?",
+            options: ["Binding energy", "Fusion energy", "Fission energy", "Activation energy"],
+            correctAnswer: "Binding energy"
+        },
+        {
+            question: "What is the name given to a substance capable of causing nuclear fission?",
+            options: ["Fissile material", "Fusion material", "Radioactive material", "Fertile material"],
+            correctAnswer: "Fissile material"
+        },
+        {
+            question: "Which element is used as a moderator in nuclear reactors?",
+            options: ["Uranium", "Plutonium", "Thorium", "Graphite"],
+            correctAnswer: "Graphite"
+        },
+        {
+            question: "What is the name of the nuclear reaction that powers the sun?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fusion"
+        },
+        {
+            question: "What is the process of converting mass into energy called?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fusion"
+        },
+        {
+            question: "What is the most common isotope of hydrogen?",
+            options: ["Protium", "Deuterium", "Tritium", "None of the above"],
+            correctAnswer: "Protium"
+        },
+        {
+            question: "What is the name of the reaction in which an atomic nucleus absorbs a neutron and splits into two or more lighter nuclei?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fission"
+        },
+        {
+            question: "Which of the following is a type of radioactive decay?",
+            options: ["α-decay", "β-decay", "γ-decay", "All of the above"],
+            correctAnswer: "All of the above"
+        },
+        {
+            question: "What is the name given to the time required for a radioactive substance to decay to half of its initial value?",
+            options: ["Decay time", "Half-life", "Activity time", "Fusion time"],
+            correctAnswer: "Half-life"
+        },
+        {
+            question: "What is the unit of radioactivity?",
+            options: ["Coulomb", "Radian", "Becquerel", "Sievert"],
+            correctAnswer: "Becquerel"
+        },
+        {
+            question: "What is the process of combining two light nuclei to form a heavier nucleus?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fusion"
+        },
+        {
+            question: "What is the unit of energy released in a nuclear reaction?",
+            options: ["Electronvolt", "Joule", "Watt", "Volt"],
+            correctAnswer: "Electronvolt"
+        },
+        {
+            question: "What is the term for the energy required to remove a neutron or proton from the nucleus of an atom?",
+            options: ["Binding energy", "Fusion energy", "Fission energy", "Activation energy"],
+            correctAnswer: "Binding energy"
+        },
+        {
+            question: "What is the name given to a substance capable of causing nuclear fission?",
+            options: ["Fissile material", "Fusion material", "Radioactive material", "Fertile material"],
+            correctAnswer: "Fissile material"
+        },
+        {
+            question: "Which element is used as a moderator in nuclear reactors?",
+            options: ["Uranium", "Plutonium", "Thorium", "Graphite"],
+            correctAnswer: "Graphite"
+        },
+        {
+            question: "What is the name of the nuclear reaction that powers the sun?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fusion"
+        },
+        {
+            question: "What is the process of converting mass into energy called?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fusion"
+        },
+        {
+            question: "What is the most common isotope of hydrogen?",
+            options: ["Protium", "Deuterium", "Tritium", "None of the above"],
+            correctAnswer: "Protium"
+        },
+        {
+            question: "What is the name of the reaction in which an atomic nucleus absorbs a neutron and splits into two or more lighter nuclei?",
+            options: ["Fusion", "Fission", "Radioactivity", "Decay"],
+            correctAnswer: "Fission"
+        },
+        {
+            question: "Which of the following is a type of radioactive decay?",
+            options: ["α-decay", "β-decay", "γ-decay", "All of the above"],
+            correctAnswer: "All of the above"
+        },
+        {
+            question: "What is the name given to the time required for a radioactive substance to decay to half of its initial value?",
+            options: ["Decay time", "Half-life", "Activity time", "Fusion time"],
+            correctAnswer: "Half-life"
+        },
+        {
+            question: "What is the unit of radioactivity?",
+            options: ["Coulomb", "Radian", "Becquerel", "Sievert"],
+            correctAnswer: "Becquerel"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>

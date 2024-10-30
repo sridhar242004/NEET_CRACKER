@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Biotechnology and its Applications - NEET Aspirants Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F8FAFC;
+            --text-light: #94A3B8;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .video-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .quiz-section {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mcq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mcq-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #score-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #score-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        #score-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mcq-card {
+                padding: 1.5rem;
+            }
+        }
+        .biotechnology-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .biotechnology-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .topic-content {
+            color: var(--text-light);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                NEET Hub
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="physics.html" class="nav-link">Physics</a>
+                <a href="chemistry.html" class="nav-link">Chemistry</a>
+                <a href="biology.html" class="nav-link">Biology</a>
+                <a href="Study Materials.html" class="nav-link">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="video-section">
+            <h2 class="video-title"> Biotechnology and its Applications - Video Lecture</h2>
+            <div class="video-container">
+                <iframe src="/CBSE Class 11 __ Physics __ Physical World __ Animation __ in English @digitalguruji3147.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="biotechnology-header">
+                <h1 class="biotechnology-title">Biotechnology and its Applications</h1>
+                <p>Explore the exciting field of biotechnology and its various applications in health, agriculture, and industry.</p>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Understanding Biotechnology</h2>
+                <div class="topic-content">
+                    <p>Biotechnology involves the use of living organisms or their products to develop new technologies and processes. It plays a critical role in enhancing human health, improving food production, and creating sustainable solutions.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Molecular Biology Techniques</h3>
+                            <p>Overview of techniques such as PCR, DNA sequencing, and gene cloning that are fundamental in biotechnology research.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Genetic Engineering</h3>
+                            <p>Understanding the processes involved in modifying the genetic makeup of organisms to achieve desired traits.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <h3>Pharmaceutical Biotechnology</h3>
+                            <p>Exploration of the development of drugs and vaccines through biotechnological methods, including monoclonal antibodies and gene therapy.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-tractor"></i>
+                            </div>
+                            <h3>Biotechnology in Agriculture</h3>
+                            <p>Applications of biotechnology in agriculture, including genetically modified organisms (GMOs) and sustainable farming practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topic-container">
+                <h2 class="topic-title">Applications of Biotechnology</h2>
+                <div class="topic-content">
+                    <p>Biotechnology has numerous applications that impact various sectors, including health care, agriculture, and environmental management.</p>
+                    
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>Medical Applications</h3>
+                            <p>Biotechnology's role in diagnostics, treatment, and prevention of diseases, focusing on innovations in medicine.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Environmental Biotechnology</h3>
+                            <p>Using biotechnological methods to tackle environmental issues, such as bioremediation and waste management.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h3>Industrial Biotechnology</h3>
+                            <p>Application of biotechnological processes in industrial production, including biofuels, enzymes, and bioplastics.</p>
+                        </div>
+                        
+                        <div class="concept-card">
+                            <div class="concept-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3>Food Biotechnology</h3>
+                            <p>Exploring the use of biotechnology in food production, preservation, and safety.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <h2 class="quiz-title">Test Your Knowledge</h2>
+                <p>Challenge yourself with our interactive quiz on Biotechnology and its Applications concepts.</p>
+                <div id="score-card">
+                    <p><span>Total Questions:</span> 0</p>
+                    <p><span>Correct Answers:</span> 0</p>
+                    <p><span>Incorrect Answers:</span> 0</p>
+                </div>
+                <button class="refresh-btn" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh Quiz
+                </button>
+            </div>
+            <div id="quiz"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 NEET Aspirants Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var totalQuestions = 0;
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var quizPool = [
+        {
+            question: "What is the main goal of genetic engineering in biotechnology?",
+            options: ["To cure diseases", "To modify organisms", "To study fossils", "To observe animal behavior"],
+            correctAnswer: "To modify organisms"
+        },
+        {
+            question: "Which technique is used to amplify DNA segments in the lab?",
+            options: ["Gel electrophoresis", "PCR", "Western blotting", "Southern blotting"],
+            correctAnswer: "PCR"
+        },
+        {
+            question: "What is the purpose of using restriction enzymes in genetic engineering?",
+            options: ["To join DNA fragments", "To cut DNA at specific sites", "To amplify DNA", "To sequence DNA"],
+            correctAnswer: "To cut DNA at specific sites"
+        },
+        {
+            question: "Which organism is commonly used as a host for gene cloning?",
+            options: ["Drosophila", "Escherichia coli", "Zebrafish", "Mouse"],
+            correctAnswer: "Escherichia coli"
+        },
+        {
+            question: "What is the role of plasmids in genetic engineering?",
+            options: ["To replicate DNA", "To transport genes", "To cut DNA", "To amplify RNA"],
+            correctAnswer: "To transport genes"
+        },
+        {
+            question: "What is CRISPR-Cas9 primarily used for?",
+            options: ["DNA amplification", "Gene editing", "Protein synthesis", "Cell culture"],
+            correctAnswer: "Gene editing"
+        },
+        {
+            question: "Which biotechnology technique involves creating genetically identical organisms?",
+            options: ["PCR", "Cloning", "Gel electrophoresis", "Sequencing"],
+            correctAnswer: "Cloning"
+        },
+        {
+            question: "What is a transgenic organism?",
+            options: ["An organism with altered behavior", "An organism with a cloned gene", "An organism with foreign genes", "An organism with deleted genes"],
+            correctAnswer: "An organism with foreign genes"
+        },
+        {
+            question: "Which process involves transferring genes from one organism to another?",
+            options: ["Transcription", "Translation", "Transgenesis", "Transformation"],
+            correctAnswer: "Transgenesis"
+        },
+        {
+            question: "What is the purpose of gene therapy?",
+            options: ["To replace defective genes", "To diagnose diseases", "To sequence genomes", "To clone animals"],
+            correctAnswer: "To replace defective genes"
+        },
+        {
+            question: "Which biotechnological application is used to produce insulin?",
+            options: ["Gene therapy", "Recombinant DNA technology", "Cloning", "PCR"],
+            correctAnswer: "Recombinant DNA technology"
+        },
+        {
+            question: "What is the main advantage of using bioreactors in biotechnology?",
+            options: ["To visualize DNA", "To culture cells in large quantities", "To amplify DNA", "To sequence DNA"],
+            correctAnswer: "To culture cells in large quantities"
+        },
+        {
+            question: "Which biotechnology application is used in forensic science for identifying individuals?",
+            options: ["PCR", "DNA fingerprinting", "Cloning", "Gene therapy"],
+            correctAnswer: "DNA fingerprinting"
+        },
+        {
+            question: "Which method is used to introduce foreign DNA into plant cells?",
+            options: ["Electroporation", "Microinjection", "Agrobacterium-mediated transformation", "Lipofection"],
+            correctAnswer: "Agrobacterium-mediated transformation"
+        },
+        {
+            question: "Which enzyme is crucial for the synthesis of complementary DNA from RNA?",
+            options: ["DNA polymerase", "RNA polymerase", "Reverse transcriptase", "Ligase"],
+            correctAnswer: "Reverse transcriptase"
+        },
+        {
+            question: "What is the role of a vector in genetic engineering?",
+            options: ["To replicate DNA", "To sequence DNA", "To carry foreign DNA", "To amplify RNA"],
+            correctAnswer: "To carry foreign DNA"
+        },
+        {
+            question: "What is the main application of stem cell technology?",
+            options: ["Genetic fingerprinting", "Gene cloning", "Tissue regeneration", "DNA sequencing"],
+            correctAnswer: "Tissue regeneration"
+        },
+        {
+            question: "Which biotechnological tool is used for gene silencing?",
+            options: ["CRISPR-Cas9", "RNA interference", "PCR", "Gel electrophoresis"],
+            correctAnswer: "RNA interference"
+        },
+        {
+            question: "What is the significance of bioinformatics in biotechnology?",
+            options: ["To study animal behavior", "To analyze biological data", "To culture cells", "To amplify DNA"],
+            correctAnswer: "To analyze biological data"
+        },
+        {
+            question: "Which biotechnological method is used to detect specific proteins?",
+            options: ["Western blotting", "PCR", "Southern blotting", "Gel electrophoresis"],
+            correctAnswer: "Western blotting"
+        },
+        {
+            question: "Which technique separates DNA fragments based on size?",
+            options: ["PCR", "Gel electrophoresis", "Western blotting", "Northern blotting"],
+            correctAnswer: "Gel electrophoresis"
+        },
+        {
+            question: "What is the purpose of using Taq polymerase in PCR?",
+            options: ["To cut DNA", "To ligate DNA fragments", "To synthesize DNA at high temperatures", "To sequence DNA"],
+            correctAnswer: "To synthesize DNA at high temperatures"
+        },
+        {
+            question: "What is gene knockout used for?",
+            options: ["To amplify genes", "To inactivate specific genes", "To sequence genes", "To express genes"],
+            correctAnswer: "To inactivate specific genes"
+        },
+        {
+            question: "Which biotechnology technique is used to create genetically modified animals?",
+            options: ["PCR", "Gene cloning", "Transgenesis", "DNA sequencing"],
+            correctAnswer: "Transgenesis"
+        },
+        {
+            question: "What is the purpose of using biolistics in genetic engineering?",
+            options: ["To amplify DNA", "To introduce DNA into cells", "To cut DNA", "To sequence DNA"],
+            correctAnswer: "To introduce DNA into cells"
+        },
+        {
+            question: "Which application involves the production of vaccines using biotechnology?",
+            options: ["Gene therapy", "Pharming", "Cloning", "Bioinformatics"],
+            correctAnswer: "Pharming"
+        }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            incorrectAnswers = 0;
+            updateScoreCard();
+
+            const shuffledQuestions = shuffleArray([...quizPool]);
+            const selectedQuestions = shuffledQuestions.slice(0, 5);
+
+            let quizHTML = "";
+            selectedQuestions.forEach((question, index) => {
+                const shuffledOptions = shuffleArray([...question.options]);
+                
+                quizHTML += `
+                    <div class="mcq-card">
+                        <h3 class="mcq-question">${index + 1}. ${question.question}</h3>
+                        <ul class="mcq-options">
+                            ${shuffledOptions.map((option, i) => `
+                                <li class="mcq-option" onclick="checkAnswer(this, '${question.correctAnswer}')">${String.fromCharCode(65 + i)}. ${option}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+
+            document.getElementById("quiz").innerHTML = quizHTML;
+        }
+
+        function checkAnswer(option, correctAnswer) {
+            const options = option.parentNode.children;
+            for (let opt of options) {
+                opt.style.pointerEvents = "none";
+            }
+
+            if (option.textContent.slice(3) === correctAnswer) {
+                option.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                correctAnswers++;
+            } else {
+                option.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+                for (let opt of options) {
+                    if (opt.textContent.slice(3) === correctAnswer) {
+                        opt.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+                    }
+                }
+                incorrectAnswers++;
+            }
+            
+            totalQuestions++;
+            updateScoreCard();
+        }
+
+        function updateScoreCard() {
+            document.getElementById("score-card").innerHTML = `
+                <p><span>Total Questions:</span> ${totalQuestions}</p>
+                <p><span>Correct Answers:</span> ${correctAnswers}</p>
+                <p><span>Incorrect Answers:</span> ${incorrectAnswers}</p>
+            `;
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateQuiz);
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>
