@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEET Aspirants Hub - Next-Gen Preparation Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A0F1C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Essential CSS Links -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+<!-- Add these just before closing </body> tag -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <style>
  
         :root {
@@ -390,60 +407,152 @@
             height: 600px;
         }
 
-        .floating-card {
-            background: var(--surface);
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            position: absolute;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .card-1 {
-            top: 10%;
-            left: 0;
-            animation-delay: 0s;
-            width: 200px;
-        }
-
-        .card-2 {
-            top: 40%;
-            right: 0;
-            animation-delay: 0.5s;
-            width: 240px;
-        }
-
-        .card-3 {
-            bottom: 10%;
-            left: 20%;
-            animation-delay: 1s;
-            width: 180px;
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .card-title {
-            color: var(--text);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-subtitle {
-            color: var(--text-light);
-            font-size: 0.875rem;
-        }
+        /* Base floating card styles */
+.floating-card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    animation: float 3s ease-in-out infinite;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  
+  /* Enhanced floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+  }
+  
+  /* Card-specific positioning and animations */
+  .card-1 {
+    top: 10%;
+    left: 0;
+    animation-delay: 0s;
+    width: 200px;
+  }
+  
+  .card-2 {
+    top: 40%;
+    right: 0;
+    animation-delay: 0.5s;
+    width: 240px;
+  }
+  
+  .card-3 {
+    bottom: 10%;
+    left: 20%;
+    animation-delay: 1s;
+    width: 180px;
+  }
+  
+  /* Enhanced icon container */
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+  
+  .card-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Typography */
+  .card-title {
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .card-subtitle {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Decorative shapes */
+  .floating-card::before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, var(--primary), transparent);
+    border-radius: 50%;
+    top: -75px;
+    right: -75px;
+    opacity: 0.1;
+    z-index: 0;
+    animation: rotate 10s linear infinite;
+  }
+  
+  .floating-card::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(-45deg, var(--primary), transparent);
+    border-radius: 12px;
+    bottom: -25px;
+    left: 10%;
+    opacity: 0.1;
+    z-index: 0;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  
+  /* Additional animations */
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.5); opacity: 0.2; }
+  }
+  
+  /* Hover effects */
+  .floating-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+  }
+  
+  /* Glass morphism effect */
+  .floating-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    );
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .floating-card {
+      position: relative;
+      width: 100% !important;
+      margin-bottom: 2rem;
+      left: 0 !important;
+      right: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+    }
+  }
 
         .features {
             padding: 8rem 2rem;
@@ -623,53 +732,103 @@
             }
         }
 
-        #explore {
-            padding: 8rem 2rem;
-            background: var(--background);
+        .explore {
+            padding: 6rem 2rem;
             position: relative;
+            overflow: hidden;
         }
 
-        #explore .grid {
+        .explore .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, var(--text), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .explore-grid {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            padding: 2rem 0;
+            padding: 0 2rem;
         }
 
-        #explore .card {
+        .explore-card {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 2rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        #explore .card:hover {
+        .explore-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .explore-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        #explore .card h3 {
-            color: var(--text);
+        .explore-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .explore-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .explore-title {
             font-size: 1.5rem;
-            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            color: var(--text);
         }
 
-        #explore .card-content {
-            flex-grow: 1;
-        }
-
-        #explore .card p {
-            color: var(--text-light);
+        .explore-description {
+            color: var(--text-secondary);
             line-height: 1.6;
+            position: relative;
+            margin-bottom: 1.5rem;
         }
 
+        .explore-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .explore-link:hover {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .explore {
+                padding: 4rem 1rem;
+            }
+            
+            .explore .section-title {
+                font-size: 2rem;
+            }
+        }
+        
         .view-button {
             display: inline-block;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -790,6 +949,51 @@
         .glow-effect {
             filter: drop-shadow(0 0 8px #00f2ff);
         }
+        /* General styles for all screen sizes */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .container {
+        padding: 0 10px;
+    }
+    .navbar-brand {
+        font-size: 20px;
+    }
+    .responsive-text {
+        font-size: 14px;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .container {
+        padding: 0 15px;
+    }
+    .responsive-text {
+        font-size: 16px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .container {
+        padding: 0 20px;
+    }
+    .responsive-text {
+        font-size: 18px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .responsive-text {
+        font-size: 20px;
+    }
+}
+
     </style>
 </head>
 <div class="loader-container">
@@ -885,82 +1089,216 @@
         </div>
     </section>
 
-    <section id="explore" class="py-12 bg-gray-900 text-white">
-        <h2 class="section-title text-center text-3xl font-bold text-teal-400 mb-10">Explore Our Advanced Resources</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-8">
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-atom text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">Physics Mastery</h3>
+    <section class="features">
+        <style>
+            .features {
+                padding: 6rem 2rem;
+                background: var(--surface);
+                position: relative;
+            }
+
+            .features-grid {
+                max-width: 1400px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .feature-card {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 20px;
+                padding: 2rem;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .feature-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, var(--primary), var(--secondary));
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .feature-card:hover::before {
+                opacity: 0.1;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+                background: linear-gradient(45deg, var(--primary), var(--secondary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .feature-title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                position: relative;
+            }
+
+            .feature-description {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                position: relative;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+                background: linear-gradient(45deg, var(--text), var(--primary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .features-badge {
+                position: absolute;
+                top: 2rem;
+                right: 2rem;
+                background: linear-gradient(45deg, var(--primary), var(--secondary));
+                padding: 0.5rem 1rem;
+                border-radius: 50px;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+        </style>
+
+        <div class="features-badge">Revolutionary Features</div>
+        <h2 class="section-title">Why Choose NEET Hub?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
                 </div>
-                <p class="card-content mb-6">Interactive physics resources and study guides to help you master the subject.</p>
-                <a href="physics.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+                <h3 class="feature-title">AI-Powered Learning</h3>
+                <p class="feature-description">Personalized study plans and adaptive assessments that evolve with your progress</p>
             </div>
-    
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-flask text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">Chemistry Explorer</h3>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-vr-cardboard"></i>
                 </div>
-                <p class="card-content mb-6">Comprehensive chemistry tutorials and practice problems to boost your knowledge.</p>
-                <a href="chemistry.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+                <h3 class="feature-title">3D Concept Visualization</h3>
+                <p class="feature-description">Interactive 3D models and AR experiences for complex medical concepts</p>
             </div>
-    
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-dna text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">Biology Explorer</h3>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                <p class="card-content mb-6">Engaging biology lessons and quizzes to enhance your understanding of the subject.</p>
-                <a href="biology.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+                <h3 class="feature-title">Real-time Analytics</h3>
+                <p class="feature-description">Detailed performance tracking and predictive score analysis</p>
             </div>
-    
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-book-open text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">Smart Study Materials</h3>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
                 </div>
-                <p class="card-content mb-6">Access the best study materials and resources to excel in NEET.</p>
-                <a href="Study Materials.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+                <h3 class="feature-title">Expert Mentorship</h3>
+                <p class="feature-description">1-on-1 guidance from top NEET educators and medical professionals</p>
             </div>
-    
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-chalkboard-teacher text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">NEET Courses</h3>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop-code"></i>
                 </div>
-                <p class="card-content mb-6">Access the best Live and Pre-loaded NEET Courses.</p>
-                <a href="livecources_testimonals.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+                <h3 class="feature-title">Virtual Lab Simulations</h3>
+                <p class="feature-description">Practice experiments and procedures in our state-of-the-art virtual labs</p>
             </div>
-    
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-trophy text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">NEET Toppers</h3>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
                 </div>
-                <p class="card-content mb-6">Interactive sessions with NEET Toppers and their success stories.</p>
-                <a href="testimonals.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
-            </div>
-    
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-brain text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">Adaptive Testing</h3>
-                </div>
-                <p class="card-content mb-6">Challenge yourself with AI-powered tests that evolve based on your performance.</p>
-                <a href="adaptivetesting.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
-            </div>
-    
-            <div class="card bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-user-graduate text-teal-400 text-4xl glow-effect"></i>
-                    <h3 class="text-xl font-semibold ml-4">Expert Mentorship</h3>
-                </div>
-                <p class="card-content mb-6">Receive personalized guidance from top NEET mentors through virtual sessions.</p>
-                <a href="mentorship.html" class="view-button inline-block text-teal-400 font-semibold hover:underline">View Details</a>
+                <h3 class="feature-title">Community Learning</h3>
+                <p class="feature-description">Connect with fellow aspirants and learn together in our moderated forums</p>
             </div>
         </div>
     </section>
+
+    <section class="explore py-12 bg-gray-900 text-white"></section>
+    <h2 class="section-title">Explore Our Advanced Resources</h2>
+    <div class="explore-grid">
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-atom"></i>
+            </div>
+            <h3 class="explore-title">Physics Mastery</h3>
+            <p class="explore-description">Interactive physics resources and study guides to help you master the subject.</p>
+            <a href="physics.html" class="explore-link">Explore Physics <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-flask"></i>
+            </div>
+            <h3 class="explore-title">Chemistry Explorer</h3>
+            <p class="explore-description">Comprehensive chemistry tutorials and practice problems to boost your knowledge.</p>
+            <a href="chemistry.html" class="explore-link">Explore Chemistry <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-dna"></i>
+            </div>
+            <h3 class="explore-title">Biology Explorer</h3>
+            <p class="explore-description">Engaging biology lessons and quizzes to enhance your understanding of the subject.</p>
+            <a href="biology.html" class="explore-link">Explore Biology <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h3 class="explore-title">Smart Study Materials</h3>
+            <p class="explore-description">Access the best study materials and resources to excel in NEET.</p>
+            <a href="Study Materials.html" class="explore-link">View Materials <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3 class="explore-title">NEET Courses</h3>
+            <p class="explore-description">Access the best Live and Pre-loaded NEET Courses.</p>
+            <a href="livecources_testimonals.html" class="explore-link">View Courses <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h3 class="explore-title">NEET Toppers</h3>
+            <p class="explore-description">Interactive sessions with NEET Toppers and their success stories.</p>
+            <a href="testimonals.html" class="explore-link">View Stories <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="explore-title">Adaptive Testing</h3>
+            <p class="explore-description">Challenge yourself with AI-powered tests that evolve based on your performance.</p>
+            <a href="adaptivetesting.html" class="explore-link">Start Testing <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+        <div class="explore-card">
+            <div class="explore-icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3 class="explore-title">Expert Mentorship</h3>
+            <p class="explore-description">Receive personalized guidance from top NEET mentors through virtual sessions.</p>
+            <a href="mentorship.html" class="explore-link">Meet Mentors <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+    </div>
+</section>
 
     <!-- Quiz Popup -->
     <div class="overlay" id="overlay"></div>
@@ -984,6 +1322,287 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script>
+        // Initialize mobile-first functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS animations
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+        disable: 'mobile' // Disable on mobile for better performance
+    });
+
+    // Mobile Menu Functionality
+    const mobileMenu = {
+        button: document.querySelector('.mobile-menu-button'),
+        nav: document.querySelector('.nav-links'),
+        links: document.querySelectorAll('.nav-link'),
+        isOpen: false,
+
+        init() {
+            this.button.addEventListener('click', () => this.toggleMenu());
+            this.links.forEach(link => link.addEventListener('click', () => this.closeMenu()));
+            window.addEventListener('resize', () => this.handleResize());
+            window.addEventListener('scroll', () => this.handleScroll());
+        },
+
+        toggleMenu() {
+            this.isOpen = !this.isOpen;
+            this.nav.classList.toggle('active');
+            this.button.setAttribute('aria-expanded', this.isOpen);
+            document.body.style.overflow = this.isOpen ? 'hidden' : '';
+        },
+
+        closeMenu() {
+            this.isOpen = false;
+            this.nav.classList.remove('active');
+            this.button.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        },
+
+        handleResize() {
+            if (window.innerWidth > 768 && this.isOpen) {
+                this.closeMenu();
+            }
+        },
+
+        handleScroll() {
+            if (this.isOpen) {
+                this.closeMenu();
+            }
+        }
+    };
+
+    // Initialize mobile menu
+    mobileMenu.init();
+
+    // Responsive Images Handling
+    function handleResponsiveImages() {
+        const images = document.querySelectorAll('img[data-src]');
+        images.forEach(img => {
+            if (window.innerWidth <= 768) {
+                img.src = img.getAttribute('data-src-mobile') || img.getAttribute('data-src');
+            } else {
+                img.src = img.getAttribute('data-src');
+            }
+        });
+    }
+
+    // Initialize responsive images
+    handleResponsiveImages();
+    window.addEventListener('resize', handleResponsiveImages);
+
+    // Touch Events Handler
+    const touchHandler = {
+        init() {
+            document.addEventListener('touchstart', this.handleTouchStart.bind(this), false);
+            document.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
+        },
+
+        xDown: null,
+        yDown: null,
+
+        handleTouchStart(evt) {
+            this.xDown = evt.touches[0].clientX;
+            this.yDown = evt.touches[0].clientY;
+        },
+
+        handleTouchMove(evt) {
+            if (!this.xDown || !this.yDown) return;
+
+            const xUp = evt.touches[0].clientX;
+            const yUp = evt.touches[0].clientY;
+            const xDiff = this.xDown - xUp;
+            const yDiff = this.yDown - yUp;
+
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                if (xDiff > 0) {
+                    // Left swipe
+                    if (mobileMenu.isOpen) mobileMenu.closeMenu();
+                } else {
+                    // Right swipe
+                    if (!mobileMenu.isOpen && window.innerWidth <= 768) mobileMenu.toggleMenu();
+                }
+            }
+
+            this.xDown = null;
+            this.yDown = null;
+        }
+    };
+
+    // Initialize touch handler
+    touchHandler.init();
+
+    // Performance Optimizations
+    const performance = {
+        init() {
+            this.lazyLoadImages();
+            this.handleAnimations();
+            this.optimizeForMobile();
+        },
+
+        lazyLoadImages() {
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img.lazy').forEach(img => imageObserver.observe(img));
+            }
+        },
+
+        handleAnimations() {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (reduceMotion.matches) {
+                document.documentElement.style.setProperty('--transition-duration', '0s');
+            }
+        },
+
+        optimizeForMobile() {
+            if (window.innerWidth <= 768) {
+                // Disable heavy animations
+                document.documentElement.style.setProperty('--enable-animations', '0');
+                
+                // Remove non-essential elements
+                document.querySelectorAll('.desktop-only').forEach(el => el.remove());
+                
+                // Optimize image quality
+                document.querySelectorAll('img').forEach(img => {
+                    if (img.src.includes('high-res')) {
+                        img.src = img.src.replace('high-res', 'low-res');
+                    }
+                });
+            }
+        }
+    };
+
+    // Initialize performance optimizations
+    performance.init();
+
+    // Quiz Popup Handler
+    const quizPopup = {
+        popup: document.getElementById('quizPopup'),
+        overlay: document.getElementById('overlay'),
+        closeButton: document.querySelector('.popup-close'),
+        floatingButton: document.getElementById('floatingQuizButton'),
+
+        init() {
+            this.closeButton.addEventListener('click', () => this.close());
+            this.overlay.addEventListener('click', () => this.close());
+            this.floatingButton.addEventListener('click', () => this.open());
+
+            // Show popup after 5 seconds only on desktop
+            if (window.innerWidth > 768) {
+                setTimeout(() => this.open(), 5000);
+            }
+        },
+
+        open() {
+            this.popup.style.display = 'block';
+            this.overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        },
+
+        close() {
+            this.popup.style.display = 'none';
+            this.overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    };
+
+    // Initialize quiz popup
+    quizPopup.init();
+});
+
+// Debounce function for performance
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Viewport height fix for mobile browsers
+function setViewportHeight() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', debounce(setViewportHeight, 150));
+setViewportHeight();
+
+// Handle orientation change
+window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+        setViewportHeight();
+        window.scrollTo(0, 0);
+    }, 200);
+});
+
+// Save user preferences
+const userPreferences = {
+    save(key, value) {
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+        } catch (e) {
+            console.warn('Local storage is not available');
+        }
+    },
+
+    load(key, defaultValue) {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : defaultValue;
+        } catch (e) {
+            return defaultValue;
+        }
+    }
+};
+
+// Add to Home Screen prompt for mobile devices
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    if (!userPreferences.load('installPromptDismissed', false)) {
+        // Show your custom "Add to Home Screen" prompt
+        const installBanner = document.createElement('div');
+        installBanner.className = 'install-banner';
+        installBanner.innerHTML = `
+            <p>Install NEET Hub for a better experience!</p>
+            <button id="installBtn">Install</button>
+            <button id="dismissBtn">Later</button>
+        `;
+        document.body.appendChild(installBanner);
+
+        document.getElementById('installBtn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installBanner.remove();
+            }
+        });
+
+        document.getElementById('dismissBtn').addEventListener('click', () => {
+            userPreferences.save('installPromptDismissed', true);
+            installBanner.remove();
+        });
+    }
+});
         window.addEventListener('load', function() {
             document.body.classList.add('loaded');
           });
